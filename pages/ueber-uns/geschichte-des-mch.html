@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geschichte des MCH - Motorsportclub Singen Hohentwiel</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <button class="hamburger-btn" id="open-menu">&#9776;</button>
+        <div class="header-text">
+            <h1>Motorsportclub Singen Hohentwiel</h1>
+            <p>DMV Mitglied - Motorsport aus Leidenschaft</p>
+        </div>
+    </header>
+
+    <main>
+        <h1>Geschichte des MCH</h1>
+        
+        <p>Der Motorsportclub Hohentwiel e.V. (MCH Singen) blickt auf eine lange Tradition zurück. Gegründet im Jahr 1954, hat sich der Verein von Anfang an der Förderung des Motorsports in der Region Hegau und Bodensee verschrieben.</p>
+        
+        <p>Während in den Anfangsjahren verschiedenste Motorsportarten im Fokus standen, hat sich der Verein im Laufe der Jahrzehnte spezialisiert. Heute liegt unser Hauptaugenmerk auf der aktiven Jugendarbeit im <strong>Kartslalom</strong> sowie der anspruchsvollen Disziplin des <strong>Trialsports</strong>.</p>
+        
+        <p>Wir sind stolzes Mitglied im Deutschen Motorsport Verband (DMV) und richten regelmäßig eigene Turniere und Meisterschaftsläufe aus.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
+    </footer>
+</div>
+
+<aside id="side-menu">
+    <button class="close-btn" id="close-menu">&times;</button>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Startseite</a></li>
+            <li><a href="aktuelles.html">Aktuelle News & Termine</a></li>
+            <li><a href="ueber-uns.html">Über uns</a></li>
+            <li><a href="kartsport.html">Kartsport</a></li>
+            <li><a href="trialsport.html">Trialsport</a></li>
+            <li><a href="statistiken.html">Statistiken</a></li>
+            <li><a href="vorstand.html">Vorstand</a></li>
+            <li><a href="sponsoren-links.html">Sponsoren & Links</a></li>
+            <li><a href="kontakt.html">Kontakt & Kontaktformular</a></li>
+            <li><a href="archiv.html">Archiv</a></li>
+            <li><a href="impressum-datenschutz.html">Impressum & Datenschutz</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<script>
+    const openMenuBtn = document.getElementById('open-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const sideMenu = document.getElementById('side-menu');
+
+    openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
+    closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        body.classList.add('dark-mode');
+        themeToggleBtn.textContent = '☀️';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('dark-mode', 'enabled');
+            themeToggleBtn.textContent = '☀️';
+        } else {
+            localStorage.setItem('dark-mode', 'disabled');
+            themeToggleBtn.textContent = '🌙';
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - Motorsportclub Singen Hohentwiel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Spezielles Design für das Formular, damit es perfekt formatiert ist */
+        .contact-form { 
+            display: flex; 
+            flex-direction: column; 
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-blue);
+            width: 100%;
+        }
+        body.dark-mode .contact-form {
+            background: #1e1e1e;
+            border-color: #333;
+            border-top: 4px solid var(--dark-blue);
+        }
+        .contact-form label { 
+            margin-top: 15px; 
+            font-weight: 600; 
+            color: var(--text-main);
+        }
+        body.dark-mode .contact-form label {
+            color: #e0e0e0;
+        }
+        .contact-form input, .contact-form textarea { 
+            padding: 12px; 
+            margin-top: 5px; 
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+            font-family: inherit; 
+            background: #fafafa;
+            color: #333;
+        }
+        body.dark-mode .contact-form input, body.dark-mode .contact-form textarea {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: #fff;
+        }
+        .contact-form button { 
+            margin-top: 25px; 
+            padding: 12px; 
+            background-color: var(--primary-blue); 
+            color: #fff; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 1.05rem; 
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .contact-form button:hover { 
+            background-color: var(--dark-blue); 
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <button class="hamburger-btn" id="open-menu">☰</button>
+        <div class="header-text">
+            <h1>Motorsportclub Singen Hohentwiel</h1>
+            <p>DMV Mitglied - Motorsport aus Leidenschaft</p>
+        </div>
+        <div class="social-header">
+            <span class="social-text">Folgt uns auf Social Media:</span>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">🌙</button>
+            <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <h1>Kontakt & Kontaktformular</h1>
+        <p>Du hast Interesse an unserem Verein oder Fragen zu unseren Aktivitäten? Melde dich gerne bei uns!</p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px;">
+            <div style="flex: 1; min-width: 250px;">
+                <h2>Postanschrift & Ansprechpartner</h2>
+                <p><strong>MCH Singen e.V. im DMV</strong><br>
+                1. Vorsitzender: Jochen Isak<br>
+                Kleiststr. 3<br>
+                78239 Rielasingen</p>
+
+                <p><strong>Telefon:</strong> 07731 / 2 34 22<br>
+                <strong>E-Mail:</strong> <a href="mailto:info@mch-singen.de">info@mch-singen.de</a></p>
+            </div>
+
+            <div style="flex: 1; min-width: 300px;">
+                <form class="contact-form" action="mailto:info@mch-singen.de" method="POST" enctype="text/plain" style="margin-top: 0;">
+                    <label for="name">Dein Name:</label>
+                    <input type="text" id="name" name="Name" placeholder="Max Mustermann" required>
+
+                    <label for="email">Deine E-Mail-Adresse:</label>
+                    <input type="email" id="email" name="Email" placeholder="max@beispiel.de" required>
+
+                    <label for="message">Deine Nachricht:</label>
+                    <textarea id="message" name="Nachricht" rows="4" placeholder="Was möchtest du uns mitteilen?" required></textarea>
+
+                    <button type="submit">Nachricht senden ✉️</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
+        <p class="designer-credit">Designed by <a href="#">Daniel Krieger</a></p>
+    </footer>
+</div>
+
+<aside id="side-menu">
+    <button class="close-btn" id="close-menu">&times;</button>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Startseite</a></li>
+            <li><a href="aktuelles.html">Aktuelle News & Termine</a></li>
+            <li><a href="ueber-uns.html">Über uns</a></li>
+            <li><a href="kartsport.html">Kartsport</a></li>
+            <li><a href="trialsport.html">Trialsport</a></li>
+            <li><a href="statistiken.html">Statistiken</a></li>
+            <li><a href="vorstand.html">Vorstand</a></li>
+            <li><a href="sponsoren-links.html">Sponsoren & Links</a></li>
+            <li><a href="kontakt.html" class="menu_current">Kontaktformular & Kontakt</a></li>
+            <li><a href="archiv.html">Archiv</a></li>
+            <li><a href="impressum-datenschutz.html">Impressum & Datenschutz</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<script>
+    const openMenuBtn = document.getElementById('open-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const sideMenu = document.getElementById('side-menu');
+
+    openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
+    closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        body.classList.add('dark-mode');
+        themeToggleBtn.textContent = '☀️';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('dark-mode', 'enabled');
+            themeToggleBtn.textContent = '☀️';
+        } else {
+            localStorage.setItem('dark-mode', 'disabled');
+            themeToggleBtn.textContent = '🌙';
+        }
+    });
+</script>
+
+</body>
+</html>
