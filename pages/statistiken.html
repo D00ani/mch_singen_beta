@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiken & Erfolge - Motorsportclub Singen Hohentwiel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <button class="hamburger-btn" id="open-menu">☰</button>
+        <div class="header-text">
+            <h1>Motorsportclub Singen Hohentwiel</h1>
+            <p>DMV Mitglied - Motorsport aus Leidenschaft</p>
+        </div>
+        
+        <div class="social-header">
+            <span class="social-text">Folgt uns auf Social Media:</span>
+            <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+            </a>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <h1>Statistiken & Erfolge</h1>
+        <p>Ein Rückblick auf die großartigen Leistungen unserer Fahrerinnen und Fahrer. Wir sind stolz auf unsere Vereinsgeschichte!</p>
+
+        <h2>Platzierungen der Saison 2026</h2>
+        
+        <div class="charts-wrapper" style="max-width: 1000px; margin: 0 auto 40px auto;">
+            
+            <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; border-top: 4px solid #cc1824;"> 
+                <h3 style="margin-top: 0; color: #cc1824; text-align: center; margin-bottom: 15px;">Dieses Jahr (Bisher)</h3>
+                <div style="position: relative; height: 350px; width: 100%;">
+                    <canvas id="chartCurrent"></canvas>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                
+                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-red);">
+                    <h3 style="margin-top: 0; color: var(--primary-red); text-align: center; margin-bottom: 15px;">Gesamte Platzierungen (Seit 2016)</h3>
+                    <div style="position: relative; height: 250px; width: 100%;">
+                        <canvas id="chartGesamt"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid #750209;"> 
+                    <h3 style="margin-top: 0; color: #750209; text-align: center; margin-bottom: 15px;">Saison 2025</h3>
+                    <div style="position: relative; height: 250px; width: 100%;">
+                        <canvas id="chart2025"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <p>Unsere Top-Platzierungen im Bodensee Kart Cup (BKC) und bei den Trial-Meisterschaften:</p>
+        
+        <div class="table-responsive">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Fahrer/in</th>
+                        <th>Klasse</th>
+                        <th>Veranstaltung</th>
+                        <th>Platzierung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>15. Mai 2025</td><td>Max Mustermann</td><td>K1</td><td>BKC Lauf 3 (Singen)</td><td><strong>1. Platz</strong></td></tr>
+                    <tr><td>28. Juni 2025</td><td>Lisa Müller</td><td>K3</td><td>BKC Lauf 5 (Steißlingen)</td><td><strong>1. Platz</strong></td></tr>
+                    <tr><td>12. August 2025</td><td>Jan Schmidt</td><td>Trial Jugend</td><td>Süddeutsche Meisterschaft</td><td>2. Platz</td></tr>
+                </tbody>
+            </table>
+        </div> 
+
+        <h2>Die Wanderpokal-Sieger (Jugend)</h2>
+        <p>Jedes Jahr wird der MCH-Wanderpokal an den Fahrer oder die Fahrerin mit der besten Gesamtleistung verliehen. Hier ist unsere "Hall of Fame":</p>
+
+        <div class="table-responsive">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Jahr</th>
+                        <th>Gewinner/in</th>
+                        <th>Klasse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2025</td><td>Elena T.</td><td>1c</td></tr>
+                    <tr><td>2024</td><td>Noah H.</td><td>1d</td></tr>
+                    <tr><td>2023</td><td>Moritz N.</td><td>1c</td></tr>
+                    <tr><td>2022</td><td>Leon H.</td><td>1a</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <h2>Die Wanderpokal-Sieger (Erwachsen)</h2>
+        <p>Jedes Jahr wird der MCH-Wanderpokal an den Fahrer oder die Fahrerin mit der besten Gesamtleistung verliehen. Hier ist unsere "Hall of Fame":</p>
+
+        <div class="table-responsive">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Jahr</th>
+                        <th>Gewinner/in</th>
+                        <th>Klasse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2025</td><td>Leon H.</td><td>3</td></tr>
+                    <tr><td>2024</td><td>Maximiliam E.</td><td>3</td></tr>
+                    <tr><td>2023</td><td>Maximilian E.</td><td>3</td></tr>
+                    <tr><td>2022</td><td>Maximilian E.</td><td>3</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    
+
+        <h2>Vereinsbestleistungen</h2>
+        <p>Rekorde, die in die Geschichte des MCH Singen eingegangen sind:</p>
+
+        <div class="record-box">
+            <h3>Schnellste fehlerfreie Runde (Parcours A)</h3>
+            <p><strong>Fahrer:</strong> Felix Hoffmann<br>
+            <strong>Zeit:</strong> 34,12 Sekunden<br>
+            <strong>Aufgestellt am:</strong> 14. September 2019</p>
+        </div>
+        <div class="record-box">
+            <h3>Meiste Wanderpokal Siege in Folge</h3>
+            <p><strong>Fahrerin:</strong> Maximiliam E.<br>
+            <strong>Rekord:</strong> 3 Siege in Folge (2021 - 2024)</p>
+        </div>
+        <div class="record-box">
+            <h3>Jüngster Trial-Meisterschafts-Teilnehmer</h3>
+            <p><strong>Fahrer:</strong> Lukas Klein<br>
+            <strong>Alter:</strong> 7 Jahre und 3 Monate (Saison 2022)</p>
+        </div>
+        <div class="record-box">
+            <h3>Ältester Fahrer des MCH</h3>
+            <p><strong>Fahrer:</strong> Peter Zielke<br>
+            <strong>Alter:</strong> 69</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
+        <p class="designer-credit">Designed by <a href="#">Daniel Krieger</a></p>
+    </footer>
+</div>
+
+<aside id="side-menu">
+    <button class="close-btn" id="close-menu">&times;</button>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="statistiken.html" class="menu_current">Statistiken</a></li>
+            <li><a href="aktuelles.html">Aktuelle News & Downloads</a></li>
+            <li><a href="ueber-uns.html">Über uns</a></li>
+            <li><a href="kartsport.html">Kartsport</a></li>
+            <li><a href="trialsport.html">Trialsport</a></li>
+            <li><a href="termine.html">Termine</a></li>
+            <li><a href="vorstand.html">Vorstand</a></li>
+            <li><a href="kontaktformular.html">Kontaktformular</a></li>
+            <li><a href="sponsoren-links.html">Sponsoren / Links</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="archiv.html">Archiv</a></li>
+            <li><a href="impressum-datenschutz.html">Impressum / Datenschutz</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<script>
+    // --- Menü Logik ---
+    const openMenuBtn = document.getElementById('open-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const sideMenu = document.getElementById('side-menu');
+
+    openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
+    closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+
+    // --- Dark Mode Logik ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        body.classList.add('dark-mode');
+        themeToggleBtn.textContent = '☀️';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('dark-mode', 'enabled');
+            themeToggleBtn.textContent = '☀️';
+        } else {
+            localStorage.setItem('dark-mode', 'disabled');
+            themeToggleBtn.textContent = '🌙';
+        }
+    });
+
+    // --- Diagramm Logik (Chart.js) ---
+    document.addEventListener("DOMContentLoaded", function() {
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
+            plugins: { legend: { display: false } }
+        };
+
+        // 1. DIESES JAHR (Leuchtendes Rot - Groß oben)
+        new Chart(document.getElementById('chartCurrent').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['1. Platz', '2. Platz', '3. Platz'],
+                datasets: [{
+                    data: [0, 0, 0], 
+                    backgroundColor: 'rgba(204, 24, 36, 0.8)', 
+                    borderColor: '#cc1824',
+                    borderWidth: 1, borderRadius: 4
+                }]
+            },
+            options: commonOptions
+        });
+
+        // 2. GESAMTHISTORIE (Standard Rot)
+        new Chart(document.getElementById('chartGesamt').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['1. Platz', '2. Platz', '3. Platz'],
+                datasets: [{
+                    data: [121, 112, 115], 
+                    backgroundColor: 'rgba(158, 11, 21, 0.8)', 
+                    borderColor: '#9e0b15',
+                    borderWidth: 1, borderRadius: 4
+                }]
+            },
+            options: commonOptions
+        });
+
+        // 3. SAISON 2025 (Dunkleres Weinrot)
+        new Chart(document.getElementById('chart2025').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['1. Platz', '2. Platz', '3. Platz'],
+                datasets: [{
+                    data: [14, 12, 23,], 
+                    backgroundColor: 'rgba(117, 2, 9, 0.8)', 
+                    borderColor: '#750209',
+                    borderWidth: 1, borderRadius: 4
+                }]
+            },
+            options: commonOptions
+        });
+    });
+</script>
+
+</body>
+</html>
