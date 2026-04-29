@@ -18,27 +18,53 @@
         
         <div class="social-header">
             <span class="social-text">Folgt uns auf Social Media:</span>
-           <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">🌙</button>
+            <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                 </svg>
             </a>
-            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">🌙</button>
         </div>
     </header>
 
     <main>
         <h1>Herzlich Willkommen</h1>
         
-        <img src="media/mch_pic.jpg" alt="mch_pic" />
+        <img src="media/mch_pic.jpg" alt="mch_pic" style="border-radius:12px; margin-bottom: 20px;" />
+
+        <div class="countdown-wrapper">
+            <h2>Nächstes Rennen startet in:</h2>
+            <div id="countdown" class="countdown-container">
+                <div class="countdown-box">
+                    <span id="days" class="number">00</span>
+                    <span class="label">Tage</span>
+                </div>
+                <span class="colon">:</span>
+                <div class="countdown-box">
+                    <span id="hours" class="number">00</span>
+                    <span class="label">Std.</span>
+                </div>
+                <span class="colon">:</span>
+                <div class="countdown-box">
+                    <span id="minutes" class="number">00</span>
+                    <span class="label">Min.</span>
+                </div>
+                <span class="colon">:</span>
+                <div class="countdown-box">
+                    <span id="seconds" class="number">00</span>
+                    <span class="label">Sek.</span>
+                </div>
+            </div>
+            <p id="countdown-message" style="display:none; font-weight:bold; color: #fff; font-size: 1.5rem;">Das Rennen läuft!</p>
+        </div>
         
         <div class="location-box">
-            <h2>Samstags zwischen 9 Uhr und 13.30 Uhr</h2>
-            <p>Unser Trainingsgelände befindet sich hier:<br>
+            <h2>Komm vorbei – unser Training findet samstags zwischen 9:00 Uhr und 13:30 Uhr statt!</h2>
+            <p>Unser Trainingsgelände findest du hier:<br>
             <strong>Münchriedstraße 10, 78224 Singen (Hohentwiel)</strong></p>
             
             <iframe 
-                src="https://maps.google.com/maps?q=M%C3%BCnchriedstra%C3%9Fe%2010,%2078224%20Singen%20(Hohentwiel)&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.2755255397444!2d8.835334!3d47.75677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a61e31e5f49cd%3A0xc6a8c79218d6e355!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1714415840000!5m2!1sde!2sde" 
                 width="100%" 
                 height="350" 
                 style="border:0; border-radius: 8px; margin-top: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" 
@@ -47,13 +73,13 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
             
-            <a href="https://maps.google.com/?q=Münchriedstraße+10,+78224+Singen+(Hohentwiel)" target="_blank" class="maps-btn">
+            <a href="https://maps.google.com/?q=M%C3%BCnchriedstra%C3%9Fe+10,+78224+Singen" target="_blank" class="maps-btn">
                 📍 Größere Karte öffnen
             </a>
         </div>
 
         <p style="text-align: center; margin-top: 30px;">
-            Fragen, Anregungen, Kritik? Nehmen Sie mit uns <a href="pages/kontaktformular.html">Kontakt</a> auf.
+            Du hast Fragen, Ideen oder Kritik? Schreib uns einfach! Hier geht's direkt zum <a href="pages/kontakt.html">Kontaktformular</a>.
         </p>
     </main>
 
@@ -67,19 +93,17 @@
     <button class="close-btn" id="close-menu">×</button>
     <nav>
         <ul>
-            <li><a href="index.html" class="menu_current">Home</a></li>
-            <li><a href="pages/statistiken.html">Statistiken</a></li>
-            <li><a href="pages/aktuelles.html">Aktuelle News & Downloads</a></li>
+            <li><a href="index.html" class="menu_current">Startseite</a></li>
+            <li><a href="pages/aktuelles.html">Aktuelle News & Termine</a></li>
             <li><a href="pages/ueber-uns.html">Über uns</a></li>
             <li><a href="pages/kartsport.html">Kartsport</a></li>
             <li><a href="pages/trialsport.html">Trialsport</a></li>
-            <li><a href="pages/termine.html">Termine</a></li>
+            <li><a href="pages/statistiken.html">Statistiken</a></li>
             <li><a href="pages/vorstand.html">Vorstand</a></li>
-            <li><a href="pages/kontaktformular.html">Kontaktformular</a></li>
-            <li><a href="pages/sponsoren-links.html">Sponsoren / Links</a></li>
-            <li><a href="pages/kontakt.html">Kontakt</a></li>
+            <li><a href="pages/sponsoren-links.html">Sponsoren & Links</a></li>
+            <li><a href="pages/kontakt.html">Kontakt & Kontaktformular</a></li>
             <li><a href="pages/archiv.html">Archiv</a></li>
-            <li><a href="pages/impressum-datenschutz.html">Impressum / Datenschutz</a></li>
+            <li><a href="pages/impressum-datenschutz.html">Impressum & Datenschutz</a></li>
         </ul>
     </nav>
     <form class="search-form" action="search/index.html" method="get">
@@ -114,6 +138,31 @@
             themeToggleBtn.textContent = '🌙';
         }
     });
+
+    // --- LIVE COUNTDOWN SCRIPT ---
+    // Hier das Datum für das nächste Rennen einstellen
+    const raceDate = new Date("May 15, 2026 09:00:00").getTime();
+
+    const countdownFunction = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = raceDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.getElementById("countdown").style.display = "none";
+            document.getElementById("countdown-message").style.display = "block";
+        }
+    }, 1000);
 </script>
 
 </body>
