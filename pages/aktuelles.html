@@ -116,6 +116,9 @@
                     <button onclick="ladeUndGeneriereICS(2)" class="action-btn">
                         <span class="news-icon">📅</span> Kalender Gruppe 2
                     </button>
+                    <button onclick="ladeRenntermineICS()" class="action-btn" style="background: rgba(220, 39, 67, 0.08); color: #c41e3a;">
+                        <span class="news-icon">🏆</span> Renntermine speichern
+                    </button>
                 </div>
                 
             </div>
@@ -289,6 +292,105 @@
         } catch (error) {
             console.error(error);
             alert("Fehler beim Laden der Trainingsdaten! Bitte stelle sicher, dass die Datei 'trainingstermine.txt' im Ordner 'additional' liegt.");
+        }
+    }
+
+    // Übersetzer für die englischen Monate aus der timer.txt
+    const engMonateMap = {
+        "January": "01", "February": "02", "March": "03", "April": "04",
+        "May": "05", "June": "06", "July": "07", "August": "08",
+        "September": "09", "October": "10", "November": "11", "December": "12"
+    };
+
+    async function ladeRenntermineICS() {
+        try {
+            // Lade die timer.txt aus dem additional Ordner (wird auch vom Countdown genutzt)
+            const response = await fetch('../additional/timer.txt');
+            
+            if (!response.ok) {
+                throw new Error("Konnte timer.txt nicht laden");
+            }
+            
+            const data = await response.text();
+            let icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MCH Singen//Rennen//DE\nCALSCALE:GREGORIAN\n";
+            
+            const zeilen = data.split('\n');
+            
+            for(let zeile of zeilen) {
+                let line = zeile.trim();
+                if(line !== "") {
+                    // Format: 15;May;2026;09:00;MCH;Singen
+                    let parts = line.split(';');
+                    if(parts.length >= 4) {
+                        let day = parts[0].trim().padStart(2, '0');
+                        let monthName = parts[1].trim();
+                        let year = parts[2].trim();
+                        let timeStr = parts[3].trim(); 
+                        
+                        // Monat umwandeln (versucht zuerst Englisch, dann Deutsch als Fallback)
+                        let month = engMonateMap[monthName] || monateMap[monthName];
+                        if (!month) continue; 
+                        
+                        // Zeit formatieren (z.B. "09:00" -> "090000")
+                        let timeFormat = timeStr.replace(":", "") + "00";
+                        if(timeFormat.length === 5) timeFormat = "0" + timeFormat; 
+                        
+                        // Endzeit berechnen (Wir schlagen pauschal 5 Stunden für den Renntag drauf)
+                        let stunde = parseInt(timeFormat.substring(0, 2));
+                        let endStunde = Math.min(stunde + 5, 23); // Blockt ab 23 Uhr, um Fehler zu vermeiden
+                        let endTimeFormat = String(endStunde).padStart(2, '0') + timeFormat.substring(2);
+                        
+                        // Verein und Stadt auslesen (falls vorhanden)
+                        let kuerzel = parts.length > 4 ? parts[4].trim() : "";
+                        let stadt = parts.length > 5 ? parts[5].trim() : "";
+                        
+                        let eventName = "Renntag 🏁";
+                        if (kuerzel !== "" || stadt !== "") {
+                            eventName += " beim " + kuerzel + " " + stadt;
+                        }
+                        
+                        let datumFormat = `${year}${month}${day}`;
+                        
+                        icsData += `BEGIN:VEVENT\n`;
+                        icsData += `UID:rennen-${datumFormat}T${timeFormat}@mch-singen.de\n`;
+                        icsData += `DTSTART;TZID=Europe/Berlin:${datumFormat}T${timeFormat}\n`;
+                        icsData += `DTEND;TZID=Europe/Berlin:${datumFormat}T${endTimeFormat}\n`;
+                        icsData += `SUMMARY:${eventName}\n`;
+                        if (stadt !== "") icsData += `LOCATION:${stadt}\n`;
+                        icsData += `END:VEVENT\n`;
+                    }
+                }
+            }
+            
+            icsData += "END:VCALENDAR";
+            
+            // Smarter Export für Apple, Android und PC (genau wie beim Training)
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            const fileName = "MCH_Renntermine.ics";
+
+            if (isIOS) {
+                const uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
+                window.location.href = uri;
+            } else {
+                const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                if (isAndroid) {
+                    setTimeout(() => {
+                        alert("✅ Renntermine heruntergeladen!\n\nZiehe deine Benachrichtigungsleiste nach unten und tippe auf die Datei 'MCH_Renntermine.ics', um sie in deinen Kalender zu importieren.");
+                    }, 800);
+                }
+            }
+            
+        } catch (error) {
+            console.error(error);
+            alert("Fehler beim Laden der Renndaten! Bitte stelle sicher, dass die Datei 'timer.txt' im Ordner 'additional' liegt.");
         }
     }
 </script>
