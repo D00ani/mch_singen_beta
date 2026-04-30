@@ -258,26 +258,24 @@
             // 4. Kalenderdatei abschließen
             icsData += "END:VCALENDAR";
             
-            // 5. Datei an Kalender-App übergeben (Web Share API) oder herunterladen
+            // 5. KUGELSICHERE DOWNLOAD-METHODE (Data-URI)
             const fileName = `MCH_Training_Gruppe_${zielGruppe}.ics`;
-            const file = new File([icsData], fileName, { type: 'text/calendar' });
+            const uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
+            
+            const link = document.createElement('a');
+            link.href = uri;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-            // Prüft, ob es ein Handy ist und das Teilen-Menü unterstützt
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                navigator.share({
-                    files: [file],
-                    title: `Trainingstermine Gruppe ${zielGruppe}`,
-                }).catch(error => {
-                    console.log('Teilen abgebrochen oder fehlgeschlagen', error);
-                });
-            } else {
-                // Fallback für Desktop-PCs: Ganz normaler Download
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(file);
-                link.download = fileName;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+            // 6. Hinweis für Handy-Nutzer (besonders Samsung)
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) {
+                // Ein kleiner Delay, damit der Download erst startet
+                setTimeout(() => {
+                    alert("✅ Termine heruntergeladen!\n\nTipp: Falls sich der Kalender nicht automatisch öffnet, ziehe einfach deine Benachrichtigungsleiste von oben nach unten und tippe auf die heruntergeladene Datei.");
+                }, 800);
             }
             
         } catch (error) {
