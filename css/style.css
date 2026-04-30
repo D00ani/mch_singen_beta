@@ -763,11 +763,11 @@ body.dark-mode .member-role {
    9. RESPONSIVE DESIGN (SMARTPHONES)
    ========================================= */
 
+/* =========================================
+   9. RESPONSIVE DESIGN (SMARTPHONES)
+   ========================================= */
+
 @media (max-width: 768px) {
-    body { 
-        padding: 10px; 
-    }
-    
     header { 
         position: static; 
         padding: 15px 15px 15px 70px; 
@@ -834,35 +834,69 @@ body.dark-mode .member-role {
     .social-text { 
         display: none; 
     }
-    /* Timer auf Handys extrem kompakt machen */
-    
-    /* Timer auf Handys (mit Abkürzungen haben wir jetzt mehr Platz!) */
-    .countdown-wrapper { 
-        padding: 20px 10px; 
-        width: 100%; /* Zwingt die blaue Box, die volle Breite zu nutzen */
-    } 
-    .countdown-wrapper h2 { 
-        font-size: 1.1rem; 
+
+    /* --- Aktualisiertes Timer-Mobile-Layout (ROBUSTER & ZENTRIERTER) --- */
+
+    .countdown-wrapper {
+        padding: 15px 10px; /* Oben/Unten 15, Links/Rechts 10 */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Zentriert alles innerhalb des blauen Kastens */
     }
-    .number { 
-        font-size: 1.8rem; /* Die Zahlen dürfen jetzt wieder größer sein! */
+
+    .countdown-wrapper h2 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
     }
-    .label { 
-        font-size: 0.6rem; 
-        letter-spacing: 0; /* Das Quetschen der Buchstaben kommt weg */
+
+    .countdown-container {
+        gap: 6px; /* Der eigentliche Abstand "zwischen drinnen" */
+        justify-content: center; /* Zentriert die Zahlenblöcke */
+        width: 100%;
+        text-align: center;
     }
-    .colon { 
-        font-size: 1.5rem; 
-        margin-bottom: 12px; 
-        margin-left: 0; 
-        margin-right: 0; 
+
+    .countdown-box {
+        min-width: 40px; /* Macht die Blöcke schmaler für besseren Fit */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    .countdown-container { 
-        gap: 8px; /* Wieder schöne Abstände zwischen den Zahlen */
+
+    .number {
+        font-size: 1.4rem; /* Minimal kleinere Zahl für besseren Fit */
+        margin: 0;
+        line-height: 1.1;
     }
-    .countdown-box { 
-        min-width: 45px; 
+
+    .label {
+        font-size: 0.5rem;
+        letter-spacing: 0px; /* Kein Quetschen mehr nötig */
+        text-transform: uppercase;
+        color: #fff;
+        margin-top: 2px;
+        width: 100%; /* Erzwingt Breitenanpassung an die Zahl */
     }
+
+    .colon {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+        margin-bottom: 10px; /* Damit der Doppelpunkt vertikal mit den Zahlen harmoniert */
+        margin-left: -1px; /* Minimales Zusammenziehen */
+        margin-right: -1px;
+        display: flex;
+        align-items: flex-end; /* Doppelpunkt richtet sich unten aus */
+        justify-content: center;
+    }
+
+    /* Damit die Boxen im Dark-Mode nicht springen */
+    body.dark-mode .countdown-wrapper {
+        color: #fff;
+    }
+}
 /* =========================================
    COUNTDOWN TIMER
    ========================================= */
@@ -924,4 +958,5 @@ body.dark-mode .member-role {
 
 body.dark-mode .countdown-wrapper {
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
 }
