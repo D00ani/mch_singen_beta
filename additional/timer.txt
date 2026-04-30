@@ -1,8 +1,7 @@
-01;May;2026;07:33
-22;May;2026;10:30
-05;June;2026;08:00
-12;July;2026;09:15
-02;August;2026;09:00
-20;August;2026;11:00
-10;September;2026;09:00
-04;October;2026;09:30
+07;June;2026;09:00;AC;Engen
+14;June;2026;09:00;MSG;Salemertal
+05;July;2026;09:00;MCH;Singen
+12;July;2026;09:00;MSC;Steißlingen
+26;July;2026;09:00;MCH;Singen
+20;September;2026;09:00;AC;Singen
+27;September;2026;09:00;AC;Singen
