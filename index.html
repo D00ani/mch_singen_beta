@@ -144,9 +144,8 @@
         }
     });
 
-    // --- INTELLIGENTER LIVE COUNTDOWN SCRIPT (via timer.txt) ---
+    // --- INTELLIGENTER LIVE COUNTDOWN SCRIPT (via additional/timer.txt) ---
     
-    // 1. Die Datei timer.txt laden
     fetch('additional/timer.txt')
         .then(response => {
             if (!response.ok) {
@@ -158,25 +157,20 @@
             const lines = data.split('\n');
             const raceDates = [];
             
-            // 2. Den "Übersetzer" für dein Format: 15;May;2026;09:00
+            // Format: 15;May;2026;09:00
             for(let i = 0; i < lines.length; i++) {
                 let line = lines[i].trim();
                 if(line !== "") {
-                    // Zerschneidet die Zeile an jedem Semikolon
                     let parts = line.split(';');
-                    
-                    // Prüft, ob es wirklich 4 Teile gibt (Tag, Monat, Jahr, Uhrzeit)
                     if(parts.length >= 4) {
                         let day = parts[0].trim();
                         let month = parts[1].trim();
                         let year = parts[2].trim();
                         let time = parts[3].trim();
                         
-                        // Setzt es so zusammen, dass der Browser rechnen kann ("May 15, 2026 09:00")
                         let validDateString = `${month} ${day}, ${year} ${time}`;
                         let parsedDate = new Date(validDateString).getTime();
                         
-                        // Nur speichern, wenn kein Fehler beim Datum aufgetreten ist
                         if(!isNaN(parsedDate)) {
                             raceDates.push(parsedDate);
                         }
@@ -184,22 +178,35 @@
                 }
             }
 
-            // 3. Timer Logik
+            // NEUE LOGIK: Findet das nächste Rennen ODER das Rennen von "heute"
             function getNextRaceDate() {
                 const now = new Date().getTime();
+                const nowDateObj = new Date(now);
+                
                 raceDates.sort((a, b) => a - b);
                 
                 for (let i = 0; i < raceDates.length; i++) {
-                    if (raceDates[i] - now > 0) {
-                        return raceDates[i];
+                    const raceTime = raceDates[i];
+                    const raceDateObj = new Date(raceTime);
+                    
+                    // Prüfen, ob das Rennen am exakt gleichen Tag (heute) ist
+                    const isSameDay = nowDateObj.getFullYear() === raceDateObj.getFullYear() && 
+                                      nowDateObj.getMonth() === raceDateObj.getMonth() && 
+                                      nowDateObj.getDate() === raceDateObj.getDate();
+                    
+                    // Wenn das Rennen in der Zukunft liegt ODER heute stattfindet, wähle es aus
+                    if (raceTime > now || isSameDay) {
+                        return raceTime;
                     }
                 }
                 return null;
             }
 
-            let targetDate = getNextRaceDate();
-
             const countdownFunction = setInterval(function() {
+                // Bei jedem Takt (jede Sekunde) schauen, welches Datum wir anvisieren.
+                // Dadurch springt der Timer um exakt Mitternacht automatisch um!
+                let targetDate = getNextRaceDate();
+
                 if (!targetDate) {
                     clearInterval(countdownFunction);
                     document.getElementById("countdown").style.display = "none";
@@ -211,30 +218,26 @@
                 const now = new Date().getTime();
                 const distance = targetDate - now;
 
-                if (distance < 0) {
-                    targetDate = getNextRaceDate();
+                // NEU: Wenn das Rennen HEUTE ist und die Uhrzeit erreicht wurde
+                if (distance <= 0) {
+                    document.getElementById("countdown").style.display = "none";
+                    document.getElementById("countdown-message").innerHTML = "HEUTE IST RENNTAG! 🏁🏎️";
+                    document.getElementById("countdown-message").style.display = "block";
+                } else {
+                    // Normaler Countdown für alle Rennen, die noch in der Zukunft liegen
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+                    document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+                    document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+                    document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
                     
-                    if(!targetDate) {
-                       clearInterval(countdownFunction);
-                       document.getElementById("countdown").style.display = "none";
-                       document.getElementById("countdown-message").innerHTML = "Saison beendet!";
-                       document.getElementById("countdown-message").style.display = "block";
-                    }
-                    return; 
+                    document.getElementById("countdown").style.display = "flex";
+                    document.getElementById("countdown-message").style.display = "none";
                 }
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-                document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-                document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-                document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
-                
-                document.getElementById("countdown").style.display = "flex";
-                document.getElementById("countdown-message").style.display = "none";
 
             }, 1000);
         })
