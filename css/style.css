@@ -760,11 +760,77 @@ body.dark-mode .member-role {
 }
 
 /* =========================================
-   9. RESPONSIVE DESIGN (SMARTPHONES)
+   COUNTDOWN TIMER (DESKTOP)
    ========================================= */
 
+.countdown-wrapper {
+    background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+    color: #fff;
+    padding: 30px 20px; 
+    border-radius: 12px;
+    text-align: center;
+    margin: 0 auto 40px auto; 
+    max-width: 600px; 
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.countdown-wrapper h2 {
+    color: #fff;
+    margin-top: 0;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 1.2rem; 
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; 
+}
+
+.countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.number {
+    font-size: 2.5rem; 
+    font-weight: 300;
+    line-height: 1;
+    font-family: monospace; 
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+.colon {
+    font-size: 2rem; 
+    font-weight: 300;
+    margin-bottom: 20px; 
+    opacity: 0.7;
+}
+
+body.dark-mode .countdown-wrapper {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+#countdown-message {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
 /* =========================================
-   9. RESPONSIVE DESIGN (SMARTPHONES)
+   9. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
    ========================================= */
 
 @media (max-width: 768px) {
@@ -835,14 +901,14 @@ body.dark-mode .member-role {
         display: none; 
     }
 
-    /* --- Aktualisiertes Timer-Mobile-Layout (ROBUSTER & ZENTRIERTER) --- */
+    /* --- Aktualisiertes Timer-Mobile-Layout --- */
 
     .countdown-wrapper {
-        padding: 15px 10px; /* Oben/Unten 15, Links/Rechts 10 */
+        padding: 15px 10px;
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Zentriert alles innerhalb des blauen Kastens */
+        align-items: center;
     }
 
     .countdown-wrapper h2 {
@@ -851,14 +917,14 @@ body.dark-mode .member-role {
     }
 
     .countdown-container {
-        gap: 4px; /* Der eigentliche Abstand "zwischen drinnen" */
-        justify-content: center; /* Zentriert die Zahlenblöcke */
+        gap: 6px; 
+        justify-content: center; 
         width: 100%;
         text-align: center;
     }
 
     .countdown-box {
-        min-width: 30px; /* Macht die Blöcke schmaler für besseren Fit */
+        min-width: 40px; 
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -866,29 +932,29 @@ body.dark-mode .member-role {
     }
 
     .number {
-        font-size: 1.4rem; /* Minimal kleinere Zahl für besseren Fit */
+        font-size: 1.5rem; /* <-- Jetzt gehorcht das Handy wieder deinen Werten! */
         margin: 0;
         line-height: 1.1;
     }
 
     .label {
         font-size: 0.5rem;
-        letter-spacing: 0px; /* Kein Quetschen mehr nötig */
+        letter-spacing: 0px; 
         text-transform: uppercase;
         color: #fff;
         margin-top: 2px;
-        width: 100%; /* Erzwingt Breitenanpassung an die Zahl */
+        width: 100%; 
     }
 
     .colon {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         color: rgba(255, 255, 255, 0.7);
         margin: 0;
-        margin-bottom: 10px; /* Damit der Doppelpunkt vertikal mit den Zahlen harmoniert */
-        margin-left: -1px; /* Minimales Zusammenziehen */
+        margin-bottom: 10px; 
+        margin-left: -1px; 
         margin-right: -1px;
         display: flex;
-        align-items: flex-end; /* Doppelpunkt richtet sich unten aus */
+        align-items: flex-end; 
         justify-content: center;
     }
 
@@ -896,72 +962,4 @@ body.dark-mode .member-role {
     body.dark-mode .countdown-wrapper {
         color: #fff;
     }
-}
-/* =========================================
-   COUNTDOWN TIMER
-   ========================================= */
-
-.countdown-wrapper {
-    background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
-    color: #fff;
-    padding: 30px 20px; /* Etwas mehr Luft nach oben und unten */
-    border-radius: 12px;
-    text-align: center;
-    margin: 0 auto 40px auto; /* Perfekt in der Mitte platziert */
-    max-width: 600px; /* Exakt die gleiche Breite wie das Bild! */
-    width: 100%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-
-.countdown-wrapper h2 {
-    color: #fff;
-    margin-top: 0;
-    border: none;
-    margin-bottom: 15px;
-    font-size: 1.2rem; /* Überschrift etwas kleiner */
-}
-
-.countdown-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px; /* Abstände zwischen den Zahlen verringert */
-}
-
-.countdown-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 60px;
-}
-
-.number {
-    font-size: 2.5rem; /* Zahlen auf dem Desktop kleiner (vorher 3.5rem) */
-    font-weight: 300;
-    line-height: 1;
-    font-family: monospace; 
-}
-
-.label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 5px;
-    opacity: 0.9;
-}
-
-.colon {
-    font-size: 2rem; /* Doppelpunkte kleiner */
-    font-weight: 300;
-    margin-bottom: 20px; 
-    opacity: 0.7;
-}
-
-body.dark-mode .countdown-wrapper {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-}
-#countdown-message {
-    font-size: 1.8rem; /* Macht den Renntag-Text schön groß */
-    margin-top: 10px;
-    letter-spacing: 0.5px;
 }
