@@ -851,14 +851,14 @@ body.dark-mode .member-role {
     }
 
     .countdown-container {
-        gap: 6px; /* Der eigentliche Abstand "zwischen drinnen" */
+        gap: 4px; /* Der eigentliche Abstand "zwischen drinnen" */
         justify-content: center; /* Zentriert die Zahlenblöcke */
         width: 100%;
         text-align: center;
     }
 
     .countdown-box {
-        min-width: 40px; /* Macht die Blöcke schmaler für besseren Fit */
+        min-width: 30px; /* Macht die Blöcke schmaler für besseren Fit */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -904,11 +904,12 @@ body.dark-mode .member-role {
 .countdown-wrapper {
     background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
     color: #fff;
-    padding: 20px; /* Weniger Innenabstand */
+    padding: 30px 20px; /* Etwas mehr Luft nach oben und unten */
     border-radius: 12px;
     text-align: center;
-    margin: 0 auto 30px auto; /* Zentriert die Box und macht Abstand nach unten */
-    max-width: 500px; /* Macht den Timer auf dem Desktop deutlich kompakter */
+    margin: 0 auto 40px auto; /* Perfekt in der Mitte platziert */
+    max-width: 600px; /* Exakt die gleiche Breite wie das Bild! */
+    width: 100%;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
@@ -959,4 +960,8 @@ body.dark-mode .member-role {
 body.dark-mode .countdown-wrapper {
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
+#countdown-message {
+    font-size: 1.8rem; /* Macht den Renntag-Text schön groß */
+    margin-top: 10px;
+    letter-spacing: 0.5px;
 }
