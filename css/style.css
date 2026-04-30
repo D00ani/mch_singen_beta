@@ -963,3 +963,46 @@ body.dark-mode .countdown-wrapper {
         color: #fff;
     }
 }
+/* =========================================
+   10. ACTION BUTTONS (Kalender, PDF Export)
+   ========================================= */
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Bricht um, falls der Platz auf kleinen Handys nicht reicht */
+    margin-top: 15px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 0.85rem; /* Kompakte Größe */
+    padding: 10px 15px;
+    background: rgba(0, 51, 160, 0.05); /* Dezenter blauer Hintergrund */
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+}
+
+.action-btn:hover {
+    background: var(--primary-blue);
+    color: #fff !important;
+}
+
+/* Dark Mode Anpassung für die Action Buttons */
+body.dark-mode .action-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #74a3ff;
+}
+
+body.dark-mode .action-btn:hover {
+    background: var(--primary-blue);
+    color: #fff !important;
+}
