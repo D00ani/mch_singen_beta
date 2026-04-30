@@ -36,8 +36,8 @@
         
         <div class="charts-wrapper" style="max-width: 1000px; margin: 0 auto 40px auto;">
             
-            <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; border-top: 4px solid #cc1824;"> 
-                <h3 style="margin-top: 0; color: #cc1824; text-align: center; margin-bottom: 15px;">Dieses Jahr (Bisher)</h3>
+            <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; border-top: 4px solid var(--primary-blue);"> 
+                <h3 style="margin-top: 0; color: var(--primary-blue); text-align: center; margin-bottom: 15px;">Dieses Jahr (Bisher)</h3>
                 <div style="position: relative; height: 350px; width: 100%;">
                     <canvas id="chartCurrent"></canvas>
                 </div>
@@ -45,21 +45,22 @@
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
                 
-                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-red);">
-                    <h3 style="margin-top: 0; color: var(--primary-red); text-align: center; margin-bottom: 15px;">Gesamte Platzierungen (Seit 2016)</h3>
+                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--dark-blue);">
+                    <h3 style="margin-top: 0; color: var(--dark-blue); text-align: center; margin-bottom: 15px;">Gesamte Platzierungen (Seit 2016)</h3>
                     <div style="position: relative; height: 250px; width: 100%;">
                         <canvas id="chartGesamt"></canvas>
                     </div>
                 </div>
 
-                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid #750209;"> 
-                    <h3 style="margin-top: 0; color: #750209; text-align: center; margin-bottom: 15px;">Saison 2025</h3>
+                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid #4285F4;"> 
+                    <h3 style="margin-top: 0; color: #4285F4; text-align: center; margin-bottom: 15px;">Saison 2025</h3>
                     <div style="position: relative; height: 250px; width: 100%;">
                         <canvas id="chart2025"></canvas>
                     </div>
                 </div>
 
             </div>
+        </div>
         </div>
 
         <p>Unsere Top-Platzierungen im Bodensee Kart Cup (BKC) und bei den Trial-Meisterschaften:</p>
@@ -151,7 +152,7 @@
 
     <footer>
         <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
-        <p class="designer-credit">Designed by <a href="#">Daniel Krieger</a></p>
+        <p class="designer-credit">Created by <a href="#">Daniel Krieger</a></p>
     </footer>
 </div>
 
@@ -204,6 +205,7 @@
     });
 
     // --- Diagramm Logik (Chart.js) ---
+    // --- Diagramm Logik (Chart.js) ---
     document.addEventListener("DOMContentLoaded", function() {
         const commonOptions = {
             responsive: true,
@@ -212,45 +214,45 @@
             plugins: { legend: { display: false } }
         };
 
-        // 1. DIESES JAHR (Leuchtendes Rot - Groß oben)
+        // 1. DIESES JAHR (MCH Blau)
         new Chart(document.getElementById('chartCurrent').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['1. Platz', '2. Platz', '3. Platz'],
                 datasets: [{
                     data: [0, 0, 0], 
-                    backgroundColor: 'rgba(204, 24, 36, 0.8)', 
-                    borderColor: '#cc1824',
+                    backgroundColor: 'rgba(0, 51, 160, 0.8)', 
+                    borderColor: '#0033a0',
                     borderWidth: 1, borderRadius: 4
                 }]
             },
             options: commonOptions
         });
 
-        // 2. GESAMTHISTORIE (Standard Rot)
+        // 2. GESAMTHISTORIE (Dunkelblau)
         new Chart(document.getElementById('chartGesamt').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['1. Platz', '2. Platz', '3. Platz'],
                 datasets: [{
                     data: [121, 112, 115], 
-                    backgroundColor: 'rgba(158, 11, 21, 0.8)', 
-                    borderColor: '#9e0b15',
+                    backgroundColor: 'rgba(0, 27, 94, 0.8)', 
+                    borderColor: '#001b5e',
                     borderWidth: 1, borderRadius: 4
                 }]
             },
             options: commonOptions
         });
 
-        // 3. SAISON 2025 (Dunkleres Weinrot)
+        // 3. SAISON 2025 (Helleres Akzent-Blau)
         new Chart(document.getElementById('chart2025').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['1. Platz', '2. Platz', '3. Platz'],
                 datasets: [{
-                    data: [14, 12, 23,], 
-                    backgroundColor: 'rgba(117, 2, 9, 0.8)', 
-                    borderColor: '#750209',
+                    data: [14, 12, 23], 
+                    backgroundColor: 'rgba(66, 133, 244, 0.8)', 
+                    borderColor: '#4285F4',
                     borderWidth: 1, borderRadius: 4
                 }]
             },
