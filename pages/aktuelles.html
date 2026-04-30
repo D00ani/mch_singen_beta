@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aktuelles - Motorsportclub Singen Hohentwiel</title>
     <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- Kleines Extra-CSS, um die Buttons nebeneinander anzuordnen -->
+    <style>
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap; /* Bricht um, falls der Platz auf kleinen Handys nicht reicht */
+            margin-top: 15px;
+        }
+        
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.85rem; /* Etwas kleiner für besseren Fit */
+            padding: 10px 15px;
+            background: rgba(0, 51, 160, 0.05);
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-blue);
+            color: #fff !important;
+        }
+        
+        /* Dark Mode Anpassung für die neuen Buttons */
+        body.dark-mode .action-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: #74a3ff;
+        }
+        body.dark-mode .action-btn:hover {
+            background: var(--primary-blue);
+            color: #fff !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -38,7 +80,7 @@
                     <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Check hier die neuesten Ergebnisse der Saison 2025 im Bodensee Kart Cup.</p>
                 </div>
                 <a href="../media/bkc_wertung/bkcgesamtwertung_2025.pdf" target="_blank" class="news-link">
-                    <span class="news-icon">📄</span> Wertung herunterladen (PDF)
+                    <span class="news-icon">📄</span> Wertung (PDF)
                 </a>
             </div>
 
@@ -49,7 +91,7 @@
                     <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Die aktuellsten Ergebnisse der Saison 2026 aus dem Trialsport.</p>
                 </div>
                 <a href="../media/bkc_wertung/trialgesamtwertung_2026.pdf" target="_blank" class="news-link">
-                    <span class="news-icon">📄</span> Wertung herunterladen (PDF)
+                    <span class="news-icon">📄</span> Wertung (PDF)
                 </a>
             </div>
         </div> 
@@ -62,9 +104,20 @@
                     <h3>BKC Termine (Kart)</h3>
                     <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Alle Renntermine und Austragungsorte des Bodensee Kart Cups auf einen Blick.</p>
                 </div>
-                <a href="../media/termine/trainingstermine2026.pdf" target="_blank" class="news-link">
-                    <span class="news-icon">🏁</span> Terminkalender (PDF)
-                </a>
+                
+                <!-- HIER SIND DIE NEUEN BUTTONS SAUBER NEBENEINANDER -->
+                <div class="button-group">
+                    <a href="../media/termine/trainingstermine2026.pdf" target="_blank" class="action-btn">
+                        <span class="news-icon">🏁</span> Termine (PDF)
+                    </a>
+                    <button onclick="ladeUndGeneriereICS(1)" class="action-btn">
+                        <span class="news-icon">📅</span> Kalender Gruppe 1
+                    </button>
+                    <button onclick="ladeUndGeneriereICS(2)" class="action-btn">
+                        <span class="news-icon">📅</span> Kalender Gruppe 2
+                    </button>
+                </div>
+                
             </div>
 
             <div class="news-card">
@@ -73,7 +126,7 @@
                     <h3>Trialsport Termine</h3>
                     <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Die offiziellen Termine für unsere Trial-Wettbewerbe und Meisterschaftsläufe.</p>
                 </div>
-                <a href="../media/termine/termine_trial_2026.pdf" target="_blank" class="news-link">
+                <a href="../media/termine/termine_trial_2026.pdf" target="_blank" class="news-link" style="margin-top: auto;">
                     <span class="news-icon">🏍️</span> Trial-Plan (PDF)
                 </a>
             </div>
@@ -81,7 +134,7 @@
     </main>
     <footer>
         <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
-        <p class="designer-credit">Designed by <a href="#">Daniel Krieger</a></p>
+        <p class="designer-credit">Created by <a href="#">Daniel Krieger</a></p>
     </footer>
 </div>
 
@@ -130,6 +183,90 @@
             themeToggleBtn.textContent = '🌙';
         }
     });
+</script>
+
+<script>
+    // Ein Übersetzer für die deutschen Monatsnamen aus deiner Textdatei
+    const monateMap = {
+        "Januar": "01", "Februar": "02", "März": "03", "April": "04",
+        "Mai": "05", "Juni": "06", "Juli": "07", "August": "08",
+        "September": "09", "Oktober": "10", "November": "11", "Dezember": "12"
+    };
+
+    async function ladeUndGeneriereICS(zielGruppe) {
+        try {
+            // Lade die Textdatei aus dem Ordner
+            const response = await fetch('../additional/trainingstermine.txt');
+            
+            if (!response.ok) {
+                throw new Error("Konnte Datei nicht laden");
+            }
+            
+            const data = await response.text();
+            
+            let icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MCH Singen//Training//DE\nCALSCALE:GREGORIAN\n";
+            
+            const zeilen = data.split('\n');
+            
+            for(let zeile of zeilen) {
+                const spalten = zeile.split('\t');
+                if (spalten.length < 3) continue; 
+                
+                const datumString = spalten[0].trim();
+                
+                if (!datumString.startsWith("Samstag")) continue; 
+                
+                const datumMatch = datumString.match(/(\d{1,2})\.\s+([A-Za-zäöüß]+)\s+(\d{4})/);
+                if (!datumMatch) continue;
+                
+                const tag = datumMatch[1].padStart(2, '0');
+                const monat = monateMap[datumMatch[2]];
+                const jahr = datumMatch[3];
+                const datumFormat = `${jahr}${monat}${tag}`;
+                
+                const spalteFrueh = spalten[1].trim(); 
+                const spalteSpaet = spalten.length > 2 ? spalten[2].trim() : ""; 
+                
+                let startTime = null;
+                let endTime = null;
+                
+                if (spalteFrueh.includes("1/2") || spalteFrueh.includes("Alle")) {
+                    startTime = "090000";
+                    endTime = "133000";
+                } else if (spalteFrueh === String(zielGruppe)) {
+                    startTime = "090000";
+                    endTime = "113000";
+                } else if (spalteSpaet === String(zielGruppe)) {
+                    startTime = "113000";
+                    endTime = "133000";
+                }
+                
+                if (startTime && endTime) {
+                    icsData += `BEGIN:VEVENT\n`;
+                    icsData += `UID:training-${zielGruppe}-${datumFormat}T${startTime}@mch-singen.de\n`;
+                    icsData += `DTSTART;TZID=Europe/Berlin:${datumFormat}T${startTime}\n`;
+                    icsData += `DTEND;TZID=Europe/Berlin:${datumFormat}T${endTime}\n`;
+                    icsData += `SUMMARY:MCH Singen - Training (Gruppe ${zielGruppe})\n`;
+                    icsData += `LOCATION:Münchriedstraße 10\\, 78224 Singen\n`;
+                    icsData += `END:VEVENT\n`;
+                }
+            }
+            
+            icsData += "END:VCALENDAR";
+            
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `MCH_Training_Gruppe_${zielGruppe}.ics`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+        } catch (error) {
+            console.error(error);
+            alert("Fehler beim Laden der Trainingsdaten! Bitte stelle sicher, dass die Datei 'trainingstermine.txt' im Ordner 'additional' liegt und online erreichbar ist.");
+        }
+    }
 </script>
 
 </body>
