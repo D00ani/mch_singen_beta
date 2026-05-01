@@ -84,78 +84,79 @@
 
     // --- DIE NEUE, INTELLIGENTE SUCH-LOGIK ---
     
+    // 1. Das Ultra-Inhaltsverzeichnis (Fuzzy Search mit extrem vielen Buzzwords)
     const websiteSeiten = [
         { 
             url: '../index.html', 
             titel: 'Startseite', 
             beschreibung: 'Willkommen beim Motorsportclub Singen. Alle Infos zum Verein, Karte und Live-Countdown.',
-            keywords: 'startseite home willkommen verein club motorsport motorsportclub mch singen hohentwiel hegau bodensee mitgliedschaft mitglied werden beitreten info informationen start anfahrt adresse standort karte google maps wo münchriedstraße timer countdown nächstes rennen heute live sigen hohentwil bodenseekreis' 
+            keywords: 'startseite home homepage willkommen begrüßung verein club motorsport motorsportclub mch singen hohentwiel hegau bodensee bodenseekreis radolfzell konstanz mitgliedschaft mitglied werden beitreten anmeldung info informationen start anfahrt adresse standort karte google maps navigation route wo münchriedstraße timer countdown nächstes rennen heute live sigen hohentwil vereinsgelände gelände platz öffnungszeiten' 
         },
         { 
             url: 'aktuelles.html', 
             titel: 'Aktuelle News & Termine', 
             beschreibung: 'Lade dir Trainingspläne, Renntermine und aktuelle Wertungen herunter.',
-            keywords: 'aktuell news neuigkeiten termine kalender kalenderdatei ics apple google outlook training trainingsplan samstag uhrzeit wann rennen wertung ergebnis download pdf speichern handy liste plan traning tränig kallender termin bkc trial smartphone' 
+            keywords: 'aktuell news neuigkeiten termine kalender kalenderdatei ics apple google outlook training trainingsplan samstag uhrzeit wann rennen wertung ergebnis download pdf speichern handy liste plan traning tränig kallender termin bkc trial smartphone importieren kalendereintrag dates veranstaltungen event updates neu' 
         },
         { 
             url: 'ueber-uns.html', 
             titel: 'Über uns', 
             beschreibung: 'Erfahre mehr über die Geschichte, Philosophie und Werte des MCH Singen.',
-            keywords: 'über uns philosophie geschichte historie werte gemeinschaft vereinzelben vereinsleben dmv deutscher motorsport verband tradition leitbild wer wir sind info mitgliedsbeitrag beitrag satzung ziele zielsetzung' 
+            keywords: 'über uns philosophie geschichte historie werte gemeinschaft vereinsleben dmv deutscher motorsport verband tradition leitbild wer wir sind info mitgliedsbeitrag beitrag satzung ziele zielsetzung ehrenamt zusammenhalt familie jugendarbeit gründung entstehung chronik' 
         },
         { 
             url: 'kartsport.html', 
             titel: 'Kartsport', 
             beschreibung: 'Alles rund um den Jugendkart-Slalom und unsere Kartsport-Abteilung.',
-            keywords: 'kart kartsport rennkart jugendkart slalom rennen bkc bodensee kart cup meisterschaft schnell gas bremse helm reifen asphalt fahrer motorsport jugend gruppe altersklasse kard cart karts renen rennstrecke alemannenring' 
+            keywords: 'kart kartsport rennkart jugendkart slalom rennen bkc bodensee kart cup meisterschaft schnell gas bremse helm reifen asphalt fahrer motorsport jugend gruppe altersklasse kard cart karts renen rennstrecke alemannenring jugendkartslalom pylone hütchen motor ps geschwindigkeit rennfahrer' 
         },
         { 
             url: 'trialsport.html', 
             titel: 'Trialsport', 
             beschreibung: 'Motorrad-Beherrschung pur. Infos zu unserer Trial-Abteilung.',
-            keywords: 'trial trialsport motorrad mopped moped balance geschicklichkeit sektion hindernis punkte fehler fehlerfrei meisterschaft süddeutsche fahrer jugend trialer offroad steine gelände trail triel motorad wettbewerb' 
+            keywords: 'trial trialsport motorrad mopped moped balance geschicklichkeit sektion hindernis punkte fehler fehlerfrei meisterschaft süddeutsche fahrer jugend trialer offroad steine gelände trail triel motorad wettbewerb maschine zweirad stufen fahrtechnik gleichgewicht' 
         },
         { 
             url: 'statistiken.html', 
             titel: 'Statistiken & Erfolge', 
             beschreibung: 'Platzierungen, Wanderpokale und historische Vereinsbestleistungen.',
-            keywords: 'statistik erfolge ergebnisse platzierung tabelle pokal wanderpokal sieger meister rekorde bestleistung hall of fame historie vergleich gewinner erster platz gold silber bronze auswertung rangliste punktestand' 
+            keywords: 'statistik erfolge ergebnisse platzierung tabelle pokal wanderpokal sieger meister rekorde bestleistung hall of fame historie vergleich gewinner erster platz gold silber bronze auswertung rangliste punktestand champion vereinsmeister podest treppchen' 
         },
         { 
             url: 'vorstand.html', 
             titel: 'Vorstand', 
             beschreibung: 'Lerne unser Team kennen – die Ansprechpartner des MCH Singen.',
-            keywords: 'vorstand team chef präsident leitung ansprechpartner wer leute kontakt vizepräsident kassierer schriftführer sportleiter jugendleiter beisitzer gremium ämter amt funktionäre verantwortliche' 
+            keywords: 'vorstand team chef präsident leitung ansprechpartner wer leute kontakt vizepräsident kassierer schriftführer sportleiter jugendleiter beisitzer gremium ämter amt funktionäre verantwortliche abteilungsleiter ansprechpersonen leiter' 
         },
         { 
             url: 'sponsoren-links.html', 
             titel: 'Sponsoren & Links', 
             beschreibung: 'Unsere Unterstützer, befreundete Vereine und nützliche Links.',
-            keywords: 'sponsoren sponsor partner unterstützer geldgeber werbung links freunde netzwerk befreundete vereine danke dankeschön förderer firmen unternehmen randegger huk coburg' 
+            keywords: 'sponsoren sponsor partner unterstützer geldgeber werbung links freunde netzwerk befreundete vereine danke dankeschön förderer firmen unternehmen spende spender randegger huk coburg daeschle däschle schlegel sparkasse herby bonarek rbr alicke casa de espana sta kanuclub rcsf ac engen widerholdschützen steißlingen' 
         },
         { 
             url: 'kontakt.html', 
             titel: 'Kontaktformular', 
             beschreibung: 'Schreibe uns eine Nachricht oder finde unsere Kontaktdaten.',
-            keywords: 'kontakt schreiben nachricht email telefon anrufen formular frage hilfe erreichbarkeit adresse postanschrift briefkasten fragen melden support whatsapp' 
+            keywords: 'kontakt schreiben nachricht email e-mail mail meil telefon anrufen formular frage hilfe erreichbarkeit adresse postanschrift briefkasten fragen melden support whatsapp hallo anfrage brief nummer handynummer' 
         },
         { 
             url: 'archiv.html', 
             titel: 'Ergebnis-Archiv', 
             beschreibung: 'Historische Ergebnisse, Wertungen und Berichte vergangener Jahre.',
-            keywords: 'archiv früher vergangenheit historie geschichte alte ergebnisse vergangen saison jahre rückblick dokumente alte pläne 2016 2017 2018 2019 2020 2021 2022 2023 2024 vergangenheit alt' 
+            keywords: 'archiv früher vergangenheit historie geschichte alte ergebnisse vergangen saison jahre rückblick dokumente alte pläne 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 alt aufzeichnungen vergangenheiten fundgrube' 
         },
         { 
             url: 'impressum-datenschutz.html#impressum', 
             titel: 'Impressum', 
             beschreibung: 'Rechtliche Angaben und Pflichtinformationen zum Verein.',
-            keywords: 'impressum impress haftung rechtliches kontaktadresse gesetz regeln agb bestimmungen vereinsregister amtsgericht steuernummer inhaber betreiber website' 
+            keywords: 'impressum impress haftung rechtliches kontaktadresse gesetz regeln agb bestimmungen vereinsregister amtsgericht steuernummer inhaber betreiber website paragraph disclaimer recht' 
         },
         { 
             url: 'impressum-datenschutz.html#datenschutz', 
             titel: 'Datenschutzerklärung (DSGVO)', 
             beschreibung: 'Alle Informationen zur Verarbeitung deiner Daten und zum Datenschutz.',
-            keywords: 'datenschutz dsgvo privacy daten recht privat datenschutzgrundverordnung richtlinie sicherheit cookies tracking dsgwo dsgo datenschmutz privatsphäre' 
+            keywords: 'datenschutz dsgvo privacy daten recht privat datenschutzgrundverordnung richtlinie sicherheit cookies tracking dsgwo dsgo datenschmutz privatsphäre löschung datenverarbeitung google analytics speicherung' 
         }
     ];
 
