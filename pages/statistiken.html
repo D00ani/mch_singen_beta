@@ -260,6 +260,49 @@
         });
     });
 </script>
+<script>
+    // --- DATENSCHUTZ-SKRIPT: Namen in Tabellen automatisch abkürzen ---
+    document.addEventListener("DOMContentLoaded", function() {
+        // Sucht alle Tabellen auf der Seite
+        const tables = document.querySelectorAll('.stats-table');
+
+        tables.forEach(table => {
+            let nameColumnIndex = -1;
+            
+            // 1. Schaut in der Kopfzeile nach, wo die Namen stehen
+            const headers = table.querySelectorAll('thead th');
+            headers.forEach((th, index) => {
+                const headerText = th.textContent.trim().toLowerCase();
+                // Sucht nach Spalten mit dem Titel "fahrer/in" oder "gewinner/in"
+                if (headerText === 'fahrer/in' || headerText === 'gewinner/in') {
+                    nameColumnIndex = index;
+                }
+            });
+
+            // 2. Wenn eine Namens-Spalte gefunden wurde, gehe alle Zeilen durch
+            if (nameColumnIndex !== -1) {
+                const rows = table.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length > nameColumnIndex) {
+                        let fullName = cells[nameColumnIndex].textContent.trim();
+                        
+                        // Prüft, ob der Name ein Leerzeichen hat und noch NICHT abgekürzt ist
+                        if (fullName.includes(" ") && !fullName.endsWith(".")) {
+                            let nameParts = fullName.split(" ");
+                            let lastName = nameParts.pop(); // Nimmt das letzte Wort (Nachname) weg
+                            let firstName = nameParts.join(" "); // Der Rest ist der Vorname
+                            
+                            // Baut den Namen neu zusammen: Vorname + 1. Buchstabe vom Nachnamen + Punkt
+                            cells[nameColumnIndex].textContent = firstName + " " + lastName.charAt(0) + ".";
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
