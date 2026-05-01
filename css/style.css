@@ -1006,3 +1006,147 @@ body.dark-mode .action-btn:hover {
     background: var(--primary-blue);
     color: #fff !important;
 }
+
+/* =========================================
+   11. SUCHE & ERGEBNISSE
+   ========================================= */
+
+/* Der neue Such-Button im Header */
+.search-header-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 12px;
+    width: 45px;
+    height: 45px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.search-header-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Das Design der Suchergebnisse */
+.search-results { margin-top: 30px; }
+
+.result-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.result-item h3 { margin-top: 0; margin-bottom: 10px; }
+
+.result-item a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.result-item p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+#search-query-display {
+    color: var(--primary-blue);
+    font-style: italic;
+}
+
+/* Dark Mode für die Suche */
+body.dark-mode .result-item {
+    background: #1e1e1e;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border-color: #333;
+}
+body.dark-mode .result-item a { color: #74a3ff; }
+
+/* =========================================
+   HANDY-ANPASSUNGEN FÜR DEN NEUEN BUTTON
+   ========================================= */
+@media (max-width: 768px) {
+    .search-header-btn {
+        order: -2; /* Zwingt die Lupe ganz nach oben, ÜBER den Dark Mode Button! */
+    }
+    
+    .insta-btn, .theme-toggle-btn, .search-header-btn {
+        width: 35px !important; 
+        height: 35px !important;
+        font-size: 0.9rem !important;
+    }
+}
+/* =========================================
+   12. GROSSE SUCHLEISTE (suche.html)
+   ========================================= */
+.main-search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.main-search-box input {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    background: #f9f9f9;
+    color: var(--text-main);
+    transition: border-color 0.3s;
+}
+
+.main-search-box input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+.main-search-box button {
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.main-search-box button:hover {
+    background: var(--dark-blue);
+}
+
+/* Dark Mode Anpassung */
+body.dark-mode .main-search-box input {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #fff;
+}
+
+body.dark-mode .main-search-box input:focus {
+    border-color: #74a3ff;
+}
+
+/* Auf kleinen Handys Suchfeld und Button untereinander stapeln */
+@media (max-width: 768px) {
+    .main-search-box {
+        flex-direction: column;
+    }
+    .main-search-box button {
+        width: 100%;
+    }
+}
