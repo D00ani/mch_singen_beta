@@ -1,7 +1,7 @@
-07;June;2026;09:00;AC;Engen
-14;June;2026;09:00;MSG;Salemertal
-05;July;2026;09:00;MCH;Singen
-12;July;2026;09:00;MSC;Steißlingen
-26;July;2026;09:00;MCH;Singen
-20;September;2026;09:00;AC;Singen
-27;September;2026;09:00;AC;Singen
+07;June;2026;09:00;AC;Engen;https://maps.app.goo.gl/aUnnexHkVk5SySza6
+14;June;2026;09:00;MSG;Salemertal;https://maps.app.goo.gl/fHg1h7Gsjbomixuo6
+05;July;2026;09:00;MCH;Singen;https://maps.app.goo.gl/6XPEY7VjdMwcb7KN8
+12;July;2026;09:00;MSC;Steißlingen;https://maps.app.goo.gl/2S4dx5ZM1jy8kBtR6
+26;July;2026;09:00;MCH;Singen;https://maps.app.goo.gl/6XPEY7VjdMwcb7KN8
+20;September;2026;09:00;AC;Singen;https://maps.app.goo.gl/KwhkrBTtwZZVutny9
+27;September;2026;09:00;AC;Singen;https://maps.app.goo.gl/KwhkrBTtwZZVutny9

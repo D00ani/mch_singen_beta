@@ -915,8 +915,8 @@ table.stats-table tr:hover td { background-color: #f9f9f9; }
     margin-top: 10px;
     letter-spacing: 0.5px;
 }
-/* Macht das Logo und den Text klickbar, ohne das Layout zu zerstören */
-.home-link {
+/* Macht das Logo und den Text klickbar */
+.logo-link, .text-link {
     display: contents; 
     text-decoration: none; 
     color: inherit; 

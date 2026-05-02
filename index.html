@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="container">
+
     <header>
         <button class="hamburger-btn" id="open-menu">☰</button>
         
@@ -130,7 +130,8 @@
 
 
 </body>
-</html><script>
+</html>
+<script>
     // --- SIDEBAR LOGIC ---
     const openMenuBtn = document.getElementById('open-menu');
     const closeMenuBtn = document.getElementById('close-menu');
@@ -170,9 +171,8 @@
         })
         .then(data => {
             const lines = data.split('\n');
-            const raceDates = []; // Hier speichern wir jetzt Pakete (Objekte)
+            const raceDates = []; 
             
-            // Format: 15;May;2026;09:00;MCH;Singen
             for(let i = 0; i < lines.length; i++) {
                 let line = lines[i].trim();
                 if(line !== "") {
@@ -182,31 +182,31 @@
                         let month = parts[1].trim();
                         let year = parts[2].trim();
                         let time = parts[3].trim();
-                        // Neu: Kürzel und Stadt auslesen (falls vorhanden)
+                        
                         let kuerzel = parts.length > 4 ? parts[4].trim() : "";
                         let stadt = parts.length > 5 ? parts[5].trim() : "";
+                        // NEU: Den Link auslesen (falls vorhanden)
+                        let mapLink = parts.length > 6 ? parts[6].trim() : "";
                         
                         let validDateString = `${month} ${day}, ${year} ${time}`;
                         let parsedDate = new Date(validDateString).getTime();
                         
                         if(!isNaN(parsedDate)) {
-                            // Speichere das Datum UND die Vereinsdaten zusammen ab
                             raceDates.push({
                                 timestamp: parsedDate,
                                 verein: kuerzel,
-                                ort: stadt
+                                ort: stadt,
+                                link: mapLink // NEU: Link speichern
                             });
                         }
                     }
                 }
             }
 
-            // NEUE LOGIK: Findet das nächste Rennen (als ganzes Paket)
             function getNextRace() {
                 const now = new Date().getTime();
                 const nowDateObj = new Date(now);
                 
-                // Nach Datum sortieren
                 raceDates.sort((a, b) => a.timestamp - b.timestamp);
                 
                 for (let i = 0; i < raceDates.length; i++) {
@@ -218,7 +218,7 @@
                                       nowDateObj.getDate() === raceDateObj.getDate();
                     
                     if (race.timestamp > now || isSameDay) {
-                        return race; // Gibt das ganze Paket mit Datum, Kürzel und Stadt zurück
+                        return race; 
                     }
                 }
                 return null;
@@ -240,22 +240,33 @@
                 const now = new Date().getTime();
                 const distance = targetRace.timestamp - now;
                 
-                // Bastelt den Text für den Verein zusammen (z.B. " beim MCH Singen")
+                // --- NEUE TEXT- UND LINK-LOGIK ---
                 let vereinsText = "";
+                let vereinsTextUpper = ""; 
+                
                 if (targetRace.verein !== "" || targetRace.ort !== "") {
-                    vereinsText = " beim " + targetRace.verein + " " + targetRace.ort;
+                    let vereinName = targetRace.verein + " " + targetRace.ort;
+                    
+                    if (targetRace.link !== "") {
+                        // Mit Link: Anklickbar, mit Unterstrich und in einem leuchtenden Gelb/Orange-Ton (#ffcc00)
+                        vereinsText = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName + "</a>";
+                        vereinsTextUpper = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName.toUpperCase() + "</a>";
+                    } else {
+                        // Ohne Link: Bleibt weißer Text wie bisher
+                        vereinsText = " beim " + vereinName;
+                        vereinsTextUpper = " beim " + vereinName.toUpperCase();
+                    }
                 }
 
-                // Wenn das Rennen HEUTE ist und die Uhrzeit erreicht wurde
+                // Wenn das Rennen HEUTE ist
                 if (distance <= 0) {
-                    if(headingElement) headingElement.style.display = "none"; // Versteckt das "Startet in:"
+                    if(headingElement) headingElement.style.display = "none"; 
                     document.getElementById("countdown").style.display = "none";
                     
-                    // Zeigt die dicke Renntag-Nachricht an (Großgeschrieben!)
-                    document.getElementById("countdown-message").innerHTML = "HEUTE IST RENNTAG" + vereinsText.toUpperCase() + "! 🏁🏎️";
+                    // Zeigt die dicke Renntag-Nachricht an, inklusive klickbarem Link
+                    document.getElementById("countdown-message").innerHTML = "HEUTE IST RENNTAG" + vereinsTextUpper + "! 🏁🏎️";
                     document.getElementById("countdown-message").style.display = "block";
                 } else {
-                    // Normaler Countdown + Angepasste Überschrift
                     if(headingElement) {
                         headingElement.style.display = "block";
                         headingElement.innerHTML = "Nächstes Rennen" + vereinsText + " startet in:";
