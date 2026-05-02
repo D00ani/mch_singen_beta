@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 :root {
-    /* NEU: Die neuen Vereinsfarben in tiefem Blau */
+    /* Die Vereinsfarben in tiefem Blau */
     --primary-blue: #0033a0; /* Ein sattes Royalblau */
     --dark-blue: #001b5e;    /* Ein sehr dunkles Navyblau für Verläufe */
     
@@ -39,14 +39,13 @@ body {
 }
 
 /* =========================================
-   2. HEADER BEREICH (STICKY)
+   2. HEADER BEREICH (STICKY) & LOGO
    ========================================= */
 
 header {
     position: sticky;
     top: 0;
     z-index: 900;
-    /* NEU: Der Blau-Verlauf */
     background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
     color: #fff;
     padding: 15px 25px; 
@@ -56,6 +55,14 @@ header {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.header-logo {
+    height: 60px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    margin-right: 10px;
 }
 
 .header-text h1 {
@@ -90,7 +97,7 @@ header {
 }
 
 /* =========================================
-   3. SOCIAL MEDIA & DARK MODE BUTTONS
+   3. HEADER-BUTTONS (SOCIAL, THEME, SUCHE)
    ========================================= */
 
 .social-header {
@@ -107,6 +114,7 @@ header {
     opacity: 0.9;
 }
 
+/* Instagram Button */
 .insta-btn {
     display: flex;
     align-items: center;
@@ -131,7 +139,9 @@ header {
     height: 24px;
 }
 
-.theme-toggle-btn {
+/* Dark Mode Toggle & Such-Lupe (gleicher Style) */
+.theme-toggle-btn,
+.search-header-btn {
     background: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 12px;
@@ -143,98 +153,18 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.theme-toggle-btn:hover {
+.theme-toggle-btn:hover,
+.search-header-btn:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: scale(1.1);
 }
 
 /* =========================================
-   4. DARK MODE STYLES
-   ========================================= */
-
-body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
-}
-
-body.dark-mode .container,
-body.dark-mode .news-card,
-body.dark-mode .trainer-card,
-body.dark-mode .chart-container,
-body.dark-mode .archive-year summary,
-body.dark-mode .archive-content,
-body.dark-mode .location-box,
-body.dark-mode .table-responsive,
-body.dark-mode table.stats-table,
-body.dark-mode .record-box {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    border-color: #333;
-}
-
-body.dark-mode table.stats-table tr:hover td { 
-    background-color: #2a2a2a; 
-}
-
-body.dark-mode table.stats-table td { 
-    border-bottom: 1px solid #333; 
-    color: #e0e0e0; 
-}
-
-body.dark-mode .record-box { 
-    background: #1e1e1e; 
-}
-
-/* Rahmenlinien im Dark Mode anpassen */
-body.dark-mode .news-card,
-body.dark-mode .trainer-card,
-body.dark-mode .location-box,
-body.dark-mode .record-box {
-    border-top: 4px solid var(--primary-blue);
-}
-
-body.dark-mode .archive-year {
-    border-left: 4px solid var(--primary-blue);
-}
-
-body.dark-mode h1, 
-body.dark-mode h2, 
-body.dark-mode h3, 
-body.dark-mode .trainer-name, 
-body.dark-mode .news-card h3 { 
-    color: #ffffff; 
-}
-
-body.dark-mode p, 
-body.dark-mode .news-date { 
-    color: #a0a0a0; 
-    background-color: transparent; 
-}
-
-/* Links im Dark Mode auf Hellblau angepasst */
-body.dark-mode .news-link, 
-body.dark-mode .archive-content ul li a {
-    background: rgba(255, 255, 255, 0.05);
-    color: #74a3ff; 
-}
-
-body.dark-mode .news-link:hover, 
-body.dark-mode .archive-content ul li a:hover {
-    background: var(--primary-blue);
-    color: #fff !important;
-}
-
-body.dark-mode footer { 
-    background: #1a1a1a; 
-    border-top: 1px solid #333; 
-}
-
-/* =========================================
-   5. SEITENMENÜ (ASIDE / NAV)
+   4. SEITENMENÜ (ASIDE / NAV)
    ========================================= */
 
 aside {
@@ -272,17 +202,9 @@ aside.open {
     color: var(--primary-blue); 
 }
 
-nav { 
-    clear: both; 
-}
-
-nav ul { 
-    list-style: none; 
-}
-
-nav ul li { 
-    margin-bottom: 8px; 
-}
+nav { clear: both; }
+nav ul { list-style: none; }
+nav ul li { margin-bottom: 8px; }
 
 nav ul li a {
     color: #fff;
@@ -302,6 +224,7 @@ nav ul li a.menu_current {
     transform: translateX(5px);
 }
 
+/* Suchleiste im Menü */
 .search-form {
     margin-top: 40px;
     border-top: 1px solid rgba(255,255,255,0.1);
@@ -337,7 +260,7 @@ nav ul li a.menu_current {
 }
 
 /* =========================================
-   6. HAUPTINHALT & TYPOGRAFIE
+   5. HAUPTINHALT & TYPOGRAFIE
    ========================================= */
 
 main { 
@@ -386,7 +309,7 @@ main img {
 }
 
 /* =========================================
-   7. FOOTER
+   6. FOOTER
    ========================================= */
 
 footer { 
@@ -419,14 +342,11 @@ footer {
     text-decoration: underline;
 }
 
-body.dark-mode .designer-credit {
-    color: #888;
-}
-
 /* =========================================
-   8. MODULE (Boxen, Galerien, Tabellen)
+   7. MODULE: KARTEN, TABELLEN & BOXEN
    ========================================= */
 
+/* Standort-Box */
 .location-box { 
     background: #fff; 
     border-left: 4px solid var(--primary-blue); 
@@ -460,6 +380,7 @@ body.dark-mode .designer-credit {
     box-shadow: 0 6px 15px rgba(66, 133, 244, 0.4); 
 }
 
+/* Sponsoren */
 .sponsor-gallery { 
     display: flex; 
     flex-wrap: wrap; 
@@ -469,14 +390,8 @@ body.dark-mode .designer-credit {
     align-items: center; 
 }
 
-.sponsor-gallery a { 
-    display: block; 
-    transition: transform 0.3s; 
-}
-
-.sponsor-gallery a:hover { 
-    transform: scale(1.08); 
-}
+.sponsor-gallery a { display: block; transition: transform 0.3s; }
+.sponsor-gallery a:hover { transform: scale(1.08); }
 
 .sponsor-gallery img { 
     max-width: 180px; 
@@ -488,6 +403,7 @@ body.dark-mode .designer-credit {
     padding: 10px; 
 }
 
+/* Statistiken & Tabellen */
 .table-responsive { 
     width: 100%; 
     overflow-x: auto; 
@@ -521,13 +437,8 @@ table.stats-table td {
     color: var(--text-main); 
 }
 
-table.stats-table tr:last-child td { 
-    border-bottom: none; 
-}
-
-table.stats-table tr:hover td { 
-    background-color: #f9f9f9; 
-}
+table.stats-table tr:last-child td { border-bottom: none; }
+table.stats-table tr:hover td { background-color: #f9f9f9; }
 
 .record-box { 
     background: linear-gradient(135deg, #fff, #f4f5f8); 
@@ -544,6 +455,7 @@ table.stats-table tr:hover td {
     color: var(--primary-blue); 
 }
 
+/* Aktuelles / News Grid */
 .news-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
@@ -595,7 +507,6 @@ table.stats-table tr:hover td {
     font-size: 0.95rem; 
     margin-top: auto; 
     padding: 10px; 
-    /* Leicht blau eingefärbter Hintergrund */
     background: rgba(0, 51, 160, 0.05); 
     border-radius: 8px; 
     transition: background 0.2s; 
@@ -606,10 +517,9 @@ table.stats-table tr:hover td {
     color: #fff !important; 
 }
 
-.news-icon { 
-    font-size: 1.2rem; 
-}
+.news-icon { font-size: 1.2rem; }
 
+/* Trainer & Über uns */
 .trainer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -641,9 +551,7 @@ table.stats-table tr:hover td {
     background-color: #eee;
 }
 
-.trainer-info {
-    padding: 25px 20px;
-}
+.trainer-info { padding: 25px 20px; }
 
 .trainer-name {
     font-size: 1.4rem;
@@ -658,18 +566,23 @@ table.stats-table tr:hover td {
     line-height: 1.4;
 }
 
-.trainer-quote::before {
-    content: '„';
+.trainer-quote::before, .trainer-quote::after {
     font-size: 1.4rem;
     color: var(--primary-blue);
 }
+.trainer-quote::before { content: '„'; }
+.trainer-quote::after { content: '“'; }
 
-.trainer-quote::after {
-    content: '“';
-    font-size: 1.4rem;
+.member-role {
+    font-weight: 600;
     color: var(--primary-blue);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
 }
 
+/* Archiv */
 .archive-year { 
     background: #fff; 
     border-radius: 8px; 
@@ -692,13 +605,8 @@ table.stats-table tr:hover td {
     transition: background-color 0.3s ease; 
 }
 
-.archive-year summary::-webkit-details-marker { 
-    display: none; 
-}
-
-.archive-year summary:hover { 
-    background-color: #fcfcfc; 
-}
+.archive-year summary::-webkit-details-marker { display: none; }
+.archive-year summary:hover { background-color: #fcfcfc; }
 
 .archive-year summary::after { 
     content: '+'; 
@@ -723,9 +631,7 @@ table.stats-table tr:hover td {
     padding-top: 15px; 
 }
 
-.archive-content ul li { 
-    margin-bottom: 10px; 
-}
+.archive-content ul li { margin-bottom: 10px; }
 
 .archive-content ul li a { 
     display: flex; 
@@ -746,21 +652,112 @@ table.stats-table tr:hover td {
     transform: translateX(5px); 
 }
 
-.member-role {
-    font-weight: 600;
-    color: var(--primary-blue);
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 5px;
+/* =========================================
+   8. MODULE: BUTTONS & SUCH-SEITE (suche.html)
+   ========================================= */
+
+/* Action-Buttons (PDF, ICS Kalender) */
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; 
+    margin-top: 15px;
 }
 
-body.dark-mode .member-role {
-    color: #74a3ff;
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 0.85rem; 
+    padding: 10px 15px;
+    background: rgba(0, 51, 160, 0.05); 
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+}
+
+.action-btn:hover {
+    background: var(--primary-blue);
+    color: #fff !important;
+}
+
+/* Die große Suchleiste auf suche.html */
+.main-search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.main-search-box input {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    background: #f9f9f9;
+    color: var(--text-main);
+    transition: border-color 0.3s;
+}
+
+.main-search-box input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+.main-search-box button {
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.main-search-box button:hover {
+    background: var(--dark-blue);
+}
+
+/* Ergebnisse der Suche */
+.search-results { margin-top: 30px; }
+
+.result-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.result-item h3 { margin-top: 0; margin-bottom: 10px; }
+.result-item a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.result-item p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+#search-query-display {
+    color: var(--primary-blue);
+    font-style: italic;
 }
 
 /* =========================================
-   COUNTDOWN TIMER (DESKTOP)
+   9. MODULE: COUNTDOWN TIMER (STARTSEITE)
    ========================================= */
 
 .countdown-wrapper {
@@ -819,10 +816,6 @@ body.dark-mode .member-role {
     opacity: 0.7;
 }
 
-body.dark-mode .countdown-wrapper {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-}
-
 #countdown-message {
     font-size: 1.8rem;
     margin-top: 10px;
@@ -830,15 +823,107 @@ body.dark-mode .countdown-wrapper {
 }
 
 /* =========================================
-   9. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
+   10. DARK MODE (ALLE ANPASSUNGEN)
+   ========================================= */
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Backgrounds & Container */
+body.dark-mode .container,
+body.dark-mode .news-card,
+body.dark-mode .trainer-card,
+body.dark-mode .chart-container,
+body.dark-mode .archive-year summary,
+body.dark-mode .archive-content,
+body.dark-mode .location-box,
+body.dark-mode .table-responsive,
+body.dark-mode table.stats-table,
+body.dark-mode .record-box,
+body.dark-mode .result-item {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border-color: #333;
+}
+
+/* Typography & Links */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode .trainer-name, 
+body.dark-mode .news-card h3 { 
+    color: #ffffff; 
+}
+
+body.dark-mode p, 
+body.dark-mode .news-date { 
+    color: #a0a0a0; 
+    background-color: transparent; 
+}
+
+body.dark-mode .news-link, 
+body.dark-mode .archive-content ul li a,
+body.dark-mode .action-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #74a3ff; 
+}
+
+body.dark-mode .news-link:hover, 
+body.dark-mode .archive-content ul li a:hover,
+body.dark-mode .action-btn:hover {
+    background: var(--primary-blue);
+    color: #fff !important;
+}
+
+body.dark-mode .result-item a,
+body.dark-mode .member-role { 
+    color: #74a3ff; 
+}
+
+/* Borders & Accents */
+body.dark-mode .news-card,
+body.dark-mode .trainer-card,
+body.dark-mode .location-box,
+body.dark-mode .record-box {
+    border-top: 4px solid var(--primary-blue);
+}
+
+body.dark-mode .archive-year {
+    border-left: 4px solid var(--primary-blue);
+}
+
+/* Tables */
+body.dark-mode table.stats-table tr:hover td { background-color: #2a2a2a; }
+body.dark-mode table.stats-table td { border-bottom: 1px solid #333; color: #e0e0e0; }
+
+/* Suchleiste groß */
+body.dark-mode .main-search-box input {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #fff;
+}
+body.dark-mode .main-search-box input:focus { border-color: #74a3ff; }
+
+/* Sonstiges */
+body.dark-mode .countdown-wrapper { color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+body.dark-mode footer { background: #1a1a1a; border-top: 1px solid #333; }
+body.dark-mode .designer-credit { color: #888; }
+
+/* =========================================
+   11. RESPONSIVE DESIGN (SMARTPHONES)
    ========================================= */
 
 @media (max-width: 768px) {
+    /* Header-Fix für das Überlappungs-Problem (Bild image_a63958.png) */
     header { 
         position: static; 
-        padding: 15px 15px 15px 70px; 
+        padding: 15px 15px 15px 75px; /* Mehr Platz links für den Hamburger */
         gap: 10px; 
-        flex-direction: row; 
+        flex-direction: row; /* Elemente grundsätzlich nebeneinander */
+        flex-wrap: wrap; /* Erlaubt das Umbrechen in eine neue Zeile */
         text-align: left; 
     }
     
@@ -854,299 +939,71 @@ body.dark-mode .countdown-wrapper {
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     
-    .header-text {
-        flex: 1;
-        min-width: 0;
+    .header-logo {
+        height: 40px;
+        margin-right: 5px;
     }
     
+    .header-text {
+        flex: 1; /* Nimmt den restlichen Platz in der ersten Zeile ein */
+        min-width: 150px; 
+    }
+    
+    /* WICHTIG: Der Titel darf nicht mehr abgeschnitten werden (...) */
     .header-text h1 { 
-        font-size: 1.15rem; 
+        font-size: 1.1rem; /* Schriftgröße deutlich reduzieren */
         line-height: 1.2;
         margin-bottom: 3px;
+        white-space: normal; /* Text MUSS umbrechen dürfen */
+        overflow: visible; /* Nichts darf versteckt werden */
+        width: auto;
     }
     
     .header-text p { 
         font-size: 0.8rem; 
+        opacity: 0.8;
     }
     
+    /* NEU: Zwingt die Icons (Social Header) in eine neue Zeile DARUNTER */
     .social-header {
-        flex-direction: column; 
-        gap: 6px;
+        width: 100%; /* Nimmt die volle Breite ein -> Neue Zeile */
+        flex-direction: row; 
+        justify-content: flex-start; /* Icons linksbündig unter dem Text */
+        margin-top: 10px; /* Abstand zum Text oben */
+        gap: 15px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1); /* Leichte Trennlinie */
     }
     
-    .theme-toggle-btn {
-        order: -1; 
-    }
+    .social-text { display: none; } /* 'Folgt uns' Text ausblenden */
     
-    .insta-btn, .theme-toggle-btn {
-        width: 35px; 
-        height: 35px;
-        font-size: 0.9rem;
-    }
-    
-    .insta-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-    
-    main { 
-        padding: 25px 20px; 
-    }
-    
-    .sponsor-gallery { 
-        justify-content: center; 
-    }
-    
-    .social-text { 
-        display: none; 
-    }
-
-    /* --- Aktualisiertes Timer-Mobile-Layout --- */
-
-    .countdown-wrapper {
-        padding: 15px 10px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .countdown-wrapper h2 {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-    }
-
-    .countdown-container {
-        gap: 6px; 
-        justify-content: center; 
-        width: 100%;
-        text-align: center;
-    }
-
-    .countdown-box {
-        min-width: 40px; 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .number {
-        font-size: 1.5rem; /* <-- Jetzt gehorcht das Handy wieder deinen Werten! */
-        margin: 0;
-        line-height: 1.1;
-    }
-
-    .label {
-        font-size: 0.5rem;
-        letter-spacing: 0px; 
-        text-transform: uppercase;
-        color: #fff;
-        margin-top: 2px;
-        width: 100%; 
-    }
-
-    .colon {
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.7);
-        margin: 0;
-        margin-bottom: 10px; 
-        margin-left: -1px; 
-        margin-right: -1px;
-        display: flex;
-        align-items: flex-end; 
-        justify-content: center;
-    }
-
-    /* Damit die Boxen im Dark-Mode nicht springen */
-    body.dark-mode .countdown-wrapper {
-        color: #fff;
-    }
-}
-/* =========================================
-   10. ACTION BUTTONS (Kalender, PDF Export)
-   ========================================= */
-
-.button-group {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap; /* Bricht um, falls der Platz auf kleinen Handys nicht reicht */
-    margin-top: 15px;
-}
-
-.action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: var(--primary-blue);
-    font-weight: 700;
-    font-size: 0.85rem; /* Kompakte Größe */
-    padding: 10px 15px;
-    background: rgba(0, 51, 160, 0.05); /* Dezenter blauer Hintergrund */
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    font-family: inherit;
-}
-
-.action-btn:hover {
-    background: var(--primary-blue);
-    color: #fff !important;
-}
-
-/* Dark Mode Anpassung für die Action Buttons */
-body.dark-mode .action-btn {
-    background: rgba(255, 255, 255, 0.05);
-    color: #74a3ff;
-}
-
-body.dark-mode .action-btn:hover {
-    background: var(--primary-blue);
-    color: #fff !important;
-}
-
-/* =========================================
-   11. SUCHE & ERGEBNISSE
-   ========================================= */
-
-/* Der neue Such-Button im Header */
-.search-header-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 12px;
-    width: 45px;
-    height: 45px;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.search-header-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
-
-/* Das Design der Suchergebnisse */
-.search-results { margin-top: 30px; }
-
-.result-item {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    border-left: 4px solid var(--primary-blue);
-}
-
-.result-item h3 { margin-top: 0; margin-bottom: 10px; }
-
-.result-item a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.result-item p {
-    margin: 0;
-    color: var(--text-light);
-    font-size: 0.95rem;
-}
-
-#search-query-display {
-    color: var(--primary-blue);
-    font-style: italic;
-}
-
-/* Dark Mode für die Suche */
-body.dark-mode .result-item {
-    background: #1e1e1e;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    border-color: #333;
-}
-body.dark-mode .result-item a { color: #74a3ff; }
-
-/* =========================================
-   HANDY-ANPASSUNGEN FÜR DEN NEUEN BUTTON
-   ========================================= */
-@media (max-width: 768px) {
-    .search-header-btn {
-        order: -2; /* Zwingt die Lupe ganz nach oben, ÜBER den Dark Mode Button! */
-    }
+    /* Icons für touch etwas anpassen */
+    .search-header-btn { order: -2; }
+    .theme-toggle-btn { order: -1; }
     
     .insta-btn, .theme-toggle-btn, .search-header-btn {
-        width: 35px !important; 
-        height: 35px !important;
-        font-size: 0.9rem !important;
+        width: 38px !important; 
+        height: 38px !important;
+        font-size: 1rem !important;
     }
-}
-/* =========================================
-   12. GROSSE SUCHLEISTE (suche.html)
-   ========================================= */
-.main-search-box {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
-    margin-top: 20px;
-}
+    
+    .insta-btn svg { width: 18px; height: 18px; }
+    
+    /* Restliche Handy-Anpassungen (unverändert) */
+    main { padding: 25px 20px; }
+    .sponsor-gallery { justify-content: center; }
+    
+    .countdown-wrapper { padding: 15px 10px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .countdown-wrapper h2 { font-size: 1.1rem; margin-bottom: 10px; }
+    .countdown-container { gap: 6px; justify-content: center; width: 100%; text-align: center; }
+    .countdown-box { min-width: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .number { font-size: 1.5rem; margin: 0; line-height: 1.1; }
+    .label { font-size: 0.5rem; letter-spacing: 0px; text-transform: uppercase; color: #fff; margin-top: 2px; width: 100%; }
+    .colon { font-size: 1.2rem; color: rgba(255, 255, 255, 0.7); margin: 0; margin-bottom: 10px; margin-left: -1px; margin-right: -1px; display: flex; align-items: flex-end; justify-content: center; }
 
-.main-search-box input {
-    flex: 1;
-    padding: 15px;
-    font-size: 1.1rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-family: inherit;
-    background: #f9f9f9;
-    color: var(--text-main);
-    transition: border-color 0.3s;
-}
-
-.main-search-box input:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-}
-
-.main-search-box button {
-    padding: 15px 25px;
-    font-size: 1.1rem;
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.main-search-box button:hover {
-    background: var(--dark-blue);
-}
-
-/* Dark Mode Anpassung */
-body.dark-mode .main-search-box input {
-    background: #2a2a2a;
-    border-color: #444;
-    color: #fff;
-}
-
-body.dark-mode .main-search-box input:focus {
-    border-color: #74a3ff;
-}
-
-/* Auf kleinen Handys Suchfeld und Button untereinander stapeln */
-@media (max-width: 768px) {
-    .main-search-box {
-        flex-direction: column;
-    }
-    .main-search-box button {
-        width: 100%;
-    }
+    .button-group { flex-direction: column; width: 100%; }
+    .action-btn { width: 100%; justify-content: center; }
+    
+    .main-search-box { flex-direction: column; }
+    .main-search-box button { width: 100%; }
 }
