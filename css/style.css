@@ -1020,17 +1020,22 @@ body.dark-mode .designer-credit { color: #888; }
    11. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
    ========================================= */
 
+/* =========================================
+   11. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
+   ========================================= */
+
 @media (max-width: 768px) {
     header { 
         position: relative; 
-        padding: 20px 15px 20px 20px; 
+        padding: 20px 15px 25px 20px; 
         display: flex;
-        flex-direction: column; /* Stapelt die Elemente untereinander */
+        flex-direction: column; 
         align-items: flex-start;
         text-align: left; 
+        /* BUGFIX 1: Zwingt den blauen Hintergrund, hoch genug für alle 3 Buttons zu sein! */
+        min-height: 240px; 
     }
     
-    /* Der Hamburger-Button bleibt oben links fixiert */
     .hamburger-btn {
         position: fixed;
         top: 20px;
@@ -1042,13 +1047,25 @@ body.dark-mode .designer-credit { color: #888; }
         border-radius: 50%;
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
-    
-    /* 1. DER TEXT: Rutscht nach oben (mit Platz für den Button) */
-    .header-text {
-        order: 1; /* Zwingt den Text an die erste Stelle im Stapel */
-        margin-top: 40px; /* Schafft Platz, damit der Button nichts überdeckt */
+
+    /* BUGFIX 2: Macht die Links zu soliden Blöcken, um den "display: contents" Fehler zu umgehen */
+    .home-link {
+        display: block;
         width: 100%;
-        padding-right: 50px; /* Platz für die Knöpfe rechts */
+    }
+
+    /* ==============================================
+       1. DER TEXT (Ist der ZWEITE Link im HTML)
+       ============================================== */
+    .home-link:nth-of-type(2) {
+        order: 1; 
+        margin-top: 55px; /* Startet exakt unter dem Hamburger-Button (kein Überlappen mehr!) */
+    }
+    
+    .header-text {
+        width: 100%;
+        padding-right: 65px; /* Viel Platz für die rechten Buttons lassen */
+        margin: 0; 
     }
     
     .header-text h1 { 
@@ -1062,15 +1079,20 @@ body.dark-mode .designer-credit { color: #888; }
     .header-text p { 
         font-size: 0.85rem; 
         opacity: 0.8;
+        margin: 0;
     }
 
-    /* 2. DAS LOGO: Jetzt direkt UNTER der Schrift */
+    /* ==============================================
+       2. DAS LOGO (Ist der ERSTE Link im HTML)
+       ============================================== */
+    .home-link:nth-of-type(1) {
+        order: 2; 
+        margin-top: -5x; /* Sauberer Abstand unter dem Text */
+    }
+
     .header-logo {
-        order: 2; /* Zwingt das Logo an die zweite Stelle */
-        margin-top: -5px; 
-        margin-left: 0;
-        height: 42px; 
-        margin-bottom: 20px;
+        height: 45px; 
+        margin: 0; 
     }
     
     /* ==============================================
@@ -1078,7 +1100,7 @@ body.dark-mode .designer-credit { color: #888; }
        ============================================== */
     .social-header {
         position: absolute; 
-        top: 60px; /* Bleibt wie gewünscht auf 120px Höhe */
+        top: 75px; /* Startet jetzt perfekt auf gleicher Höhe mit dem Text */
         right: 15px;
         width: auto;
         display: flex;
@@ -1091,19 +1113,22 @@ body.dark-mode .designer-credit { color: #888; }
     
     .social-text { display: none; }
     
-    .search-header-btn { order: 1; }  
-    .theme-toggle-btn  { order: 2; }  
-    .insta-btn         { order: 3; }  
+    .search-header-btn { order: 1; margin: 0; }  
+    .theme-toggle-btn  { order: 2; margin: 0; }  
+    .insta-btn         { order: 3; margin: 0; }  
     
     .insta-btn, .theme-toggle-btn, .search-header-btn {
         width: 42px !important; 
         height: 42px !important;
         font-size: 1.1rem !important;
+        border-radius: 10px;
     }
     
     .insta-btn svg { width: 20px; height: 20px; }
     
-    /* Restliche Handy-Anpassungen (Timer, Buttons etc.) */
+    /* ==============================================
+       RESTLICHE HANDY-ANPASSUNGEN
+       ============================================== */
     main { padding: 25px 20px; }
     .sponsor-gallery { justify-content: center; }
     
