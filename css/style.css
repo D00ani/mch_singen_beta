@@ -23,19 +23,20 @@
 
 body {
     font-family: 'Inter', system-ui, sans-serif;
-    line-height: 1.6;
+    line-height: 1.5; /* Etwas engerer Zeilenabstand */
     color: var(--text-main);
     background-color: var(--bg-color);
-    padding: 20px;
+    padding: 10px; /* Weniger Rand um die gesamte Seite */
     overflow-x: hidden;
+    font-size: 0.95rem; /* Basis-Schriftgröße leicht reduziert */
 }
 
 .container {
-    max-width: 90vw;
+    max-width: 85vw; /* Etwas schmaler für bessere Lesbarkeit auf breiten Monitoren */
     margin: 0 auto;
     background: #fff;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-    border-radius: 12px;
+    border-radius: 8px;
 }
 
 /* =========================================
@@ -48,41 +49,55 @@ header {
     z-index: 900;
     background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
     color: #fff;
-    padding: 15px 25px; 
+    padding: 8px 20px; /* PC: Sehr schmaler Rand für mehr Platz! */
     display: flex;
     align-items: center; 
-    gap: 20px; 
+    gap: 15px; 
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
+.home-link {
+    display: contents; 
+    text-decoration: none; 
+    color: inherit; 
+}
+
 .header-logo {
-    height: 60px;
+    height: 42px; /* PC: Deutlich kompakter */
     width: auto;
-    border-radius: 8px;
+    border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    margin-right: 10px;
+    margin-right: 5px;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .header-text h1 {
-    font-size: 2.2rem;
+    font-size: 1.35rem; /* PC: Überschrift auf eine schlanke Größe reduziert */
     font-weight: 700;
     letter-spacing: -0.5px;
-    margin-bottom: 5px;
+    margin: 0; /* Nimmt unnötige Abstände weg */
+    line-height: 1.1;
 }
 
 .header-text p {
-    font-size: 1.05rem;
+    font-size: 0.8rem; 
     font-weight: 300;
     opacity: 0.9;
+    margin: 2px 0 0 0;
 }
 
 .hamburger-btn {
     background: transparent;
     color: white;         
     border: none;
-    font-size: 30px;
+    font-size: 24px; /* PC: Icon dezent verkleinert */
     cursor: pointer;
     padding: 0;
     display: flex;
@@ -104,28 +119,51 @@ header {
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px; 
 }
+
+/* NEU: Wir sortieren die Buttons für den PC um! */
+.search-header-btn { order: 1; }
+.theme-toggle-btn { order: 2; margin-right: 25px; } /* Extra Abstand vor dem Text */
+.social-text { order: 3; }
+.insta-btn { order: 4; }
 
 .social-text {
     color: #fff;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.8rem; /* PC: Text verkleinert */
     opacity: 0.9;
+    margin-right: 2px;
 }
 
-/* Instagram Button */
-.insta-btn {
+/* Buttons extrem kompakt und edel */
+.insta-btn, .theme-toggle-btn, .search-header-btn {
+    width: 34px; /* PC: Schön kompakte Quadrate */
+    height: 34px; 
+    font-size: 1rem;
+    border-radius: 8px; /* Etwas weniger rund, passend zur Größe */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.theme-toggle-btn, .search-header-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.theme-toggle-btn:hover, .search-header-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.insta-btn {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     color: white;
-    border-radius: 12px;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .insta-btn:hover {
@@ -135,32 +173,8 @@ header {
 
 .insta-btn svg {
     fill: white;
-    width: 24px;
-    height: 24px;
-}
-
-/* Dark Mode Toggle & Such-Lupe (gleicher Style) */
-.theme-toggle-btn,
-.search-header-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 12px;
-    width: 45px;
-    height: 45px;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.theme-toggle-btn:hover,
-.search-header-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
+    width: 16px; /* Icon an Button-Größe angepasst */
+    height: 16px; 
 }
 
 /* =========================================
@@ -267,24 +281,82 @@ main {
     padding: 40px 40px; 
 }
 
+/* =========================================
+   1. GRUNDLAGEN & VARIABLEN
+   ========================================= */
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5; /* Etwas engerer Zeilenabstand */
+    color: var(--text-main);
+    background-color: var(--bg-color);
+    padding: 10px; /* Weniger Rand um die gesamte Seite */
+    overflow-x: hidden;
+    font-size: 0.95rem; /* Basis-Schriftgröße leicht reduziert */
+}
+
+.container {
+    max-width: 85vw; /* Etwas schmaler für bessere Lesbarkeit auf breiten Monitoren */
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+    border-radius: 8px;
+}
+
+/* =========================================
+   5. HAUPTINHALT & TYPOGRAFIE
+   ========================================= */
+main { 
+    padding: 20px 40px; /* Weniger vertikaler Abstand */
+}
+
 main h1 { 
     color: var(--primary-blue); 
     border-bottom: 2px solid #eee; 
-    padding-bottom: 15px; 
-    margin-bottom: 25px; 
+    padding-bottom: 10px; 
+    margin-bottom: 15px; 
+    font-size: 1.8rem; /* Kleiner als vorher */
     font-weight: 700; 
 }
 
 main h2 { 
-    margin-top: 30px; 
-    margin-bottom: 15px; 
+    margin-top: 20px; 
+    margin-bottom: 10px; 
+    font-size: 1.4rem; /* Kleiner als vorher */
     color: var(--text-main); 
-    font-weight: 600; 
 }
 
 main p { 
-    margin-bottom: 20px; 
-    font-size: 1.05rem; 
+    margin-bottom: 12px; /* Weniger Platz zwischen Absätzen */
+    font-size: 0.95rem; 
+}
+
+/* =========================================
+   7. MODULE: KARTEN, TABELLEN & BOXEN
+   ========================================= */
+
+/* News & Trainer Grids enger zusammen */
+.news-grid, .trainer-grid { 
+    gap: 15px; 
+    margin-top: 15px; 
+}
+
+.news-card, .trainer-card { 
+    padding: 15px; /* Kompakterer Inhalt in den Karten */
+}
+
+.trainer-img {
+    height: 250px; /* Bilder etwas kleiner, damit mehr Trainer in eine Zeile passen */
+}
+
+.location-box { 
+    padding: 15px 20px; 
+    margin: 20px 0; 
+}
+
+/* Sponsoren-Logos etwas kleiner */
+.sponsor-gallery img { 
+    max-width: 140px; 
+    padding: 8px; 
 }
 
 main a { 
@@ -340,6 +412,28 @@ footer {
     color: var(--primary-blue);
     opacity: 1;
     text-decoration: underline;
+}
+.footer-logo {
+    height: 35px; /* Schön klein und dezent */
+    width: auto;
+    margin-bottom: 15px;
+    opacity: 0.6; /* Leicht transparent, damit es nicht "knallt" */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    filter: grayscale(20%); /* Optional: Etwas entsättigt für einen edlen Look */
+}
+
+.footer-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* Dark Mode Anpassung für das Footer-Logo */
+body.dark-mode .footer-logo {
+    opacity: 0.5;
+}
+body.dark-mode .footer-logo:hover {
+    opacity: 0.9;
 }
 
 /* =========================================
@@ -821,6 +915,12 @@ table.stats-table tr:hover td { background-color: #f9f9f9; }
     margin-top: 10px;
     letter-spacing: 0.5px;
 }
+/* Macht das Logo und den Text klickbar, ohne das Layout zu zerstören */
+.home-link {
+    display: contents; 
+    text-decoration: none; 
+    color: inherit; 
+}
 
 /* =========================================
    10. DARK MODE (ALLE ANPASSUNGEN)
@@ -913,20 +1013,24 @@ body.dark-mode footer { background: #1a1a1a; border-top: 1px solid #333; }
 body.dark-mode .designer-credit { color: #888; }
 
 /* =========================================
-   11. RESPONSIVE DESIGN (SMARTPHONES)
+   11. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
+   ========================================= */
+
+/* =========================================
+   11. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
    ========================================= */
 
 @media (max-width: 768px) {
-    /* Header-Fix für das Überlappungs-Problem (Bild image_a63958.png) */
     header { 
-        position: static; 
-        padding: 15px 15px 15px 75px; /* Mehr Platz links für den Hamburger */
-        gap: 10px; 
-        flex-direction: row; /* Elemente grundsätzlich nebeneinander */
-        flex-wrap: wrap; /* Erlaubt das Umbrechen in eine neue Zeile */
+        position: relative; 
+        padding: 20px 15px 20px 20px; 
+        display: flex;
+        flex-direction: column; /* Stapelt die Elemente untereinander */
+        align-items: flex-start;
         text-align: left; 
     }
     
+    /* Der Hamburger-Button bleibt oben links fixiert */
     .hamburger-btn {
         position: fixed;
         top: 20px;
@@ -939,57 +1043,67 @@ body.dark-mode .designer-credit { color: #888; }
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     
-    .header-logo {
-        height: 40px;
-        margin-right: 5px;
-    }
-    
+    /* 1. DER TEXT: Rutscht nach oben (mit Platz für den Button) */
     .header-text {
-        flex: 1; /* Nimmt den restlichen Platz in der ersten Zeile ein */
-        min-width: 150px; 
+        order: 1; /* Zwingt den Text an die erste Stelle im Stapel */
+        margin-top: 40px; /* Schafft Platz, damit der Button nichts überdeckt */
+        width: 100%;
+        padding-right: 50px; /* Platz für die Knöpfe rechts */
     }
     
-    /* WICHTIG: Der Titel darf nicht mehr abgeschnitten werden (...) */
     .header-text h1 { 
-        font-size: 1.1rem; /* Schriftgröße deutlich reduzieren */
+        font-size: 1.15rem; 
         line-height: 1.2;
-        margin-bottom: 3px;
-        white-space: normal; /* Text MUSS umbrechen dürfen */
-        overflow: visible; /* Nichts darf versteckt werden */
-        width: auto;
+        margin-bottom: 5px;
+        white-space: normal; 
+        word-break: break-word;
     }
     
     .header-text p { 
-        font-size: 0.8rem; 
+        font-size: 0.85rem; 
         opacity: 0.8;
     }
-    
-    /* NEU: Zwingt die Icons (Social Header) in eine neue Zeile DARUNTER */
-    .social-header {
-        width: 100%; /* Nimmt die volle Breite ein -> Neue Zeile */
-        flex-direction: row; 
-        justify-content: flex-start; /* Icons linksbündig unter dem Text */
-        margin-top: 10px; /* Abstand zum Text oben */
-        gap: 15px;
-        padding-top: 10px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1); /* Leichte Trennlinie */
+
+    /* 2. DAS LOGO: Jetzt direkt UNTER der Schrift */
+    .header-logo {
+        order: 2; /* Zwingt das Logo an die zweite Stelle */
+        margin-top: -5px; 
+        margin-left: 0;
+        height: 42px; 
+        margin-bottom: 20px;
     }
     
-    .social-text { display: none; } /* 'Folgt uns' Text ausblenden */
+    /* ==============================================
+       DIE RECHTE SPALTE (Suche, DarkMode, Insta) 
+       ============================================== */
+    .social-header {
+        position: absolute; 
+        top: 60px; /* Bleibt wie gewünscht auf 120px Höhe */
+        right: 15px;
+        width: auto;
+        display: flex;
+        flex-direction: column; 
+        gap: 12px; 
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
     
-    /* Icons für touch etwas anpassen */
-    .search-header-btn { order: -2; }
-    .theme-toggle-btn { order: -1; }
+    .social-text { display: none; }
+    
+    .search-header-btn { order: 1; }  
+    .theme-toggle-btn  { order: 2; }  
+    .insta-btn         { order: 3; }  
     
     .insta-btn, .theme-toggle-btn, .search-header-btn {
-        width: 38px !important; 
-        height: 38px !important;
-        font-size: 1rem !important;
+        width: 42px !important; 
+        height: 42px !important;
+        font-size: 1.1rem !important;
     }
     
-    .insta-btn svg { width: 18px; height: 18px; }
+    .insta-btn svg { width: 20px; height: 20px; }
     
-    /* Restliche Handy-Anpassungen (unverändert) */
+    /* Restliche Handy-Anpassungen (Timer, Buttons etc.) */
     main { padding: 25px 20px; }
     .sponsor-gallery { justify-content: center; }
     
