@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motorsportclub Singen Hohentwiel</title>
     <link rel="stylesheet" href="css/style.css">
+    
+    <script defer type="text/javascript" src="js/klaro-config.js"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/klaro/dist/klaro.js"></script>
 </head>
 <body>
-
 
     <header>
         <button class="hamburger-btn" id="open-menu">☰</button>
@@ -23,16 +25,15 @@
                 <p>DMV Mitglied - Motorsport aus Leidenschaft</p>
             </div>
         </a>
-        
         <div class="social-header">
             <span class="social-text">Folgt uns auf Social Media:</span>
             <a href="pages/suche.html" class="search-header-btn" title="Suchen">🔍</a>
-            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">🌙</button>
             <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                 </svg>
             </a>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">🌙</button>
         </div>
     </header>
 
@@ -72,17 +73,16 @@
             <p>Unser Trainingsgelände findest du hier:<br>
             <strong>Münchriedstraße 10, 78224 Singen (Hohentwiel)</strong></p>
             
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.2755255397444!2d8.835334!3d47.75677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a61e31e5f49cd%3A0xc6a8c79218d6e355!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1714415840000!5m2!1sde!2sde" 
-                width="100%" 
-                height="350" 
-                style="border:0; border-radius: 8px; margin-top: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+            <div class="maps-placeholder" id="map-placeholder">
+                <div class="maps-placeholder-content">
+                    <span style="font-size: 3.5rem; display: block; margin-bottom: 10px;">🗺️</span>
+                    <h3 style="color: var(--primary-blue); margin-bottom: 10px; font-size: 1.5rem;">Interaktive Karte entsperren</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-light); margin: 0 auto 25px auto; line-height: 1.6;">Wir möchten dir gerne unseren genauen Standort zeigen. Um deine Daten (gemäß DSGVO) zu schützen, wird die Karte von Google Maps erst geladen, wenn du zustimmst.</p>
+                    <button id="load-map-btn" class="maps-load-btn" style="background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue)); color: #fff; border: none; padding: 12px 25px; border-radius: 8px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: transform 0.3s ease;">Karte laden & anzeigen</button>
+                </div>
+            </div>
             
-            <a href="https://maps.google.com/?q=M%C3%BCnchriedstra%C3%9Fe+10,+78224+Singen" target="_blank" class="maps-btn">
+            <a href="https://www.google.com/maps/search/?api=1&query=Münchriedstraße+10,+78224+Singen+(Hohentwiel)" target="_blank" class="maps-btn">
                 📍 Größere Karte öffnen
             </a>
         </div>
@@ -93,205 +93,205 @@
     </main>
 
     <footer>
-    <img src="media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
-    
-    <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
-    <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr">Daniel Krieger</a></p>
-</footer>
-</div>
+        <img src="media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
+        <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr">Daniel Krieger</a></p>
+    </footer>
 
-<aside id="side-menu">
-    <button class="close-btn" id="close-menu">×</button>
-    <nav>
-        <ul>
-            <li><a href="index.html" class="menu_current">Startseite</a></li>
-            <li><a href="pages/aktuelles.html">Aktuelle News & Termine</a></li>
-            <li><a href="pages/ueber-uns.html">Über uns</a></li>
-            <li><a href="pages/kartsport.html">Kartsport</a></li>
-            <li><a href="pages/trialsport.html">Trialsport</a></li>
-            <li><a href="pages/statistiken.html">Statistiken</a></li>
-            <li><a href="pages/vorstand.html">Vorstand</a></li>
-            <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link">MCH Vereins-Shop</a></li>
-            <li><a href="pages/sponsoren-links.html">Sponsoren & Links</a></li>
-            <li><a href="pages/kontakt.html">Kontakt & Kontaktformular</a></li>
-            <li><a href="pages/archiv.html">Archiv</a></li>
-            <li><a href="pages/impressum-datenschutz.html">Impressum & Datenschutz</a></li>
-        </ul>
-        <div class="search-form">
-            <form action="pages/suche.html" method="GET">
-                <input type="text" name="q" placeholder="Suchbegriff eingeben..." required>
-                <button type="submit">Suchen</button>
-            </form>
-        </div>
-        
-    </nav>
-</aside>
+    <aside id="side-menu">
+        <button class="close-btn" id="close-menu">×</button>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="menu_current">Startseite</a></li>
+                <li><a href="pages/aktuelles.html">Aktuelle News & Termine</a></li>
+                <li><a href="pages/ueber-uns.html">Über uns</a></li>
+                <li><a href="pages/kartsport.html">Kartsport</a></li>
+                <li><a href="pages/trialsport.html">Trialsport</a></li>
+                <li><a href="pages/statistiken.html">Statistiken</a></li>
+                <li><a href="pages/vorstand.html">Vorstand</a></li>
+                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link">MCH Vereins-Shop</a></li>
+                <li><a href="pages/sponsoren-links.html">Sponsoren & Links</a></li>
+                <li><a href="pages/kontakt.html">Kontakt & Kontaktformular</a></li>
+                <li><a href="pages/archiv.html">Archiv</a></li>
+                <li><a href="pages/impressum-datenschutz.html">Impressum & Datenschutz</a></li>
+            </ul>
+            <div class="search-form">
+                <form action="pages/suche.html" method="GET">
+                    <input type="text" name="q" placeholder="Suchbegriff eingeben..." required>
+                    <button type="submit">Suchen</button>
+                </form>
+            </div>
+        </nav>
+    </aside>
 
-
-
-</body>
-</html>
-<script>
-    // --- SIDEBAR LOGIC ---
-    const openMenuBtn = document.getElementById('open-menu');
-    const closeMenuBtn = document.getElementById('close-menu');
-    const sideMenu = document.getElementById('side-menu');
-
-    openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
-    closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
-
-    // --- THEME TOGGLE LOGIC ---
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    if (localStorage.getItem('dark-mode') === 'enabled') {
-        body.classList.add('dark-mode');
-        themeToggleBtn.textContent = '☀️';
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('dark-mode', 'enabled');
-            themeToggleBtn.textContent = '☀️';
-        } else {
-            localStorage.setItem('dark-mode', 'disabled');
-            themeToggleBtn.textContent = '🌙';
-        }
-    });
-
-    // --- INTELLIGENTER LIVE COUNTDOWN SCRIPT (via additional/timer.txt) ---
-    
-    fetch('additional/timer.txt')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Netzwerkantwort war nicht ok");
-            }
-            return response.text();
-        })
-        .then(data => {
-            const lines = data.split('\n');
-            const raceDates = []; 
+    <script>
+        // --- 1. GOOGLE MAPS LOADER (Zwei-Klick Lösung) ---
+        document.getElementById('load-map-btn').addEventListener('click', function() {
+            const mapContainer = document.getElementById('map-placeholder');
+            mapContainer.style.border = "none";
+            mapContainer.style.background = "transparent";
+            mapContainer.style.minHeight = "auto";
+            mapContainer.style.padding = "0";
             
-            for(let i = 0; i < lines.length; i++) {
-                let line = lines[i].trim();
-                if(line !== "") {
-                    let parts = line.split(';');
-                    if(parts.length >= 4) {
-                        let day = parts[0].trim();
-                        let month = parts[1].trim();
-                        let year = parts[2].trim();
-                        let time = parts[3].trim();
-                        
-                        let kuerzel = parts.length > 4 ? parts[4].trim() : "";
-                        let stadt = parts.length > 5 ? parts[5].trim() : "";
-                        // NEU: Den Link auslesen (falls vorhanden)
-                        let mapLink = parts.length > 6 ? parts[6].trim() : "";
-                        
-                        let validDateString = `${month} ${day}, ${year} ${time}`;
-                        let parsedDate = new Date(validDateString).getTime();
-                        
-                        if(!isNaN(parsedDate)) {
-                            raceDates.push({
-                                timestamp: parsedDate,
-                                verein: kuerzel,
-                                ort: stadt,
-                                link: mapLink // NEU: Link speichern
-                            });
+            // Fügt die echte Google-Maps Karte ein
+            mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.2057766060424!2d8.847116711626017!3d47.75806657106093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a613d526786c5%3A0x6b63c7b80a22a571!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1715000000000!5m2!1sde!2sde" width="100%" height="350" style="border:0; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+        });
+
+        // --- 2. SIDEBAR LOGIC ---
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const sideMenu = document.getElementById('side-menu');
+
+        openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
+        closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+
+        // --- 3. THEME TOGGLE LOGIC ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            body.classList.add('dark-mode');
+            themeToggleBtn.textContent = '☀️';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode', 'enabled');
+                themeToggleBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('dark-mode', 'disabled');
+                themeToggleBtn.textContent = '🌙';
+            }
+        });
+
+        // --- 4. INTELLIGENTER LIVE COUNTDOWN SCRIPT ---
+        fetch('additional/timer.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Netzwerkantwort war nicht ok");
+                }
+                return response.text();
+            })
+            .then(data => {
+                const lines = data.split('\n');
+                const raceDates = []; 
+                
+                for(let i = 0; i < lines.length; i++) {
+                    let line = lines[i].trim();
+                    if(line !== "") {
+                        let parts = line.split(';');
+                        if(parts.length >= 4) {
+                            let day = parts[0].trim();
+                            let month = parts[1].trim();
+                            let year = parts[2].trim();
+                            let time = parts[3].trim();
+                            
+                            let kuerzel = parts.length > 4 ? parts[4].trim() : "";
+                            let stadt = parts.length > 5 ? parts[5].trim() : "";
+                            let mapLink = parts.length > 6 ? parts[6].trim() : "";
+                            
+                            let validDateString = `${month} ${day}, ${year} ${time}`;
+                            let parsedDate = new Date(validDateString).getTime();
+                            
+                            if(!isNaN(parsedDate)) {
+                                raceDates.push({
+                                    timestamp: parsedDate,
+                                    verein: kuerzel,
+                                    ort: stadt,
+                                    link: mapLink
+                                });
+                            }
                         }
                     }
                 }
-            }
 
-            function getNextRace() {
-                const now = new Date().getTime();
-                const nowDateObj = new Date(now);
-                
-                raceDates.sort((a, b) => a.timestamp - b.timestamp);
-                
-                for (let i = 0; i < raceDates.length; i++) {
-                    const race = raceDates[i];
-                    const raceDateObj = new Date(race.timestamp);
+                function getNextRace() {
+                    const now = new Date().getTime();
+                    const nowDateObj = new Date(now);
                     
-                    const isSameDay = nowDateObj.getFullYear() === raceDateObj.getFullYear() && 
-                                      nowDateObj.getMonth() === raceDateObj.getMonth() && 
-                                      nowDateObj.getDate() === raceDateObj.getDate();
+                    raceDates.sort((a, b) => a.timestamp - b.timestamp);
                     
-                    if (race.timestamp > now || isSameDay) {
-                        return race; 
+                    for (let i = 0; i < raceDates.length; i++) {
+                        const race = raceDates[i];
+                        const raceDateObj = new Date(race.timestamp);
+                        
+                        const isSameDay = nowDateObj.getFullYear() === raceDateObj.getFullYear() && 
+                                          nowDateObj.getMonth() === raceDateObj.getMonth() && 
+                                          nowDateObj.getDate() === raceDateObj.getDate();
+                        
+                        if (race.timestamp > now || isSameDay) {
+                            return race; 
+                        }
                     }
-                }
-                return null;
-            }
-
-            const countdownFunction = setInterval(function() {
-                let targetRace = getNextRace();
-                let headingElement = document.querySelector(".countdown-wrapper h2");
-
-                if (!targetRace) {
-                    clearInterval(countdownFunction);
-                    document.getElementById("countdown").style.display = "none";
-                    document.getElementById("countdown-message").innerHTML = "Saison beendet!";
-                    document.getElementById("countdown-message").style.display = "block";
-                    if(headingElement) headingElement.style.display = "none";
-                    return;
+                    return null;
                 }
 
-                const now = new Date().getTime();
-                const distance = targetRace.timestamp - now;
-                
-                // --- NEUE TEXT- UND LINK-LOGIK ---
-                let vereinsText = "";
-                let vereinsTextUpper = ""; 
-                
-                if (targetRace.verein !== "" || targetRace.ort !== "") {
-                    let vereinName = targetRace.verein + " " + targetRace.ort;
+                const countdownFunction = setInterval(function() {
+                    let targetRace = getNextRace();
+                    let headingElement = document.querySelector(".countdown-wrapper h2");
+
+                    if (!targetRace) {
+                        clearInterval(countdownFunction);
+                        document.getElementById("countdown").style.display = "none";
+                        document.getElementById("countdown-message").innerHTML = "Saison beendet!";
+                        document.getElementById("countdown-message").style.display = "block";
+                        if(headingElement) headingElement.style.display = "none";
+                        return;
+                    }
+
+                    const now = new Date().getTime();
+                    const distance = targetRace.timestamp - now;
                     
-                    if (targetRace.link !== "") {
-                        // Mit Link: Anklickbar, mit Unterstrich und in einem leuchtenden Gelb/Orange-Ton (#ffcc00)
-                        vereinsText = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName + "</a>";
-                        vereinsTextUpper = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName.toUpperCase() + "</a>";
+                    let vereinsText = "";
+                    let vereinsTextUpper = ""; 
+                    
+                    if (targetRace.verein !== "" || targetRace.ort !== "") {
+                        let vereinName = targetRace.verein + " " + targetRace.ort;
+                        
+                        if (targetRace.link !== "") {
+                            vereinsText = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName + "</a>";
+                            vereinsTextUpper = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName.toUpperCase() + "</a>";
+                        } else {
+                            vereinsText = " beim " + vereinName;
+                            vereinsTextUpper = " beim " + vereinName.toUpperCase();
+                        }
+                    }
+
+                    if (distance <= 0) {
+                        if(headingElement) headingElement.style.display = "none"; 
+                        document.getElementById("countdown").style.display = "none";
+                        
+                        document.getElementById("countdown-message").innerHTML = "HEUTE IST RENNTAG" + vereinsTextUpper + "! 🏁🏎️";
+                        document.getElementById("countdown-message").style.display = "block";
                     } else {
-                        // Ohne Link: Bleibt weißer Text wie bisher
-                        vereinsText = " beim " + vereinName;
-                        vereinsTextUpper = " beim " + vereinName.toUpperCase();
+                        if(headingElement) {
+                            headingElement.style.display = "block";
+                            headingElement.innerHTML = "Nächstes Rennen" + vereinsText + " startet in:";
+                        }
+
+                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+                        document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+                        document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+                        document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+                        
+                        document.getElementById("countdown").style.display = "flex";
+                        document.getElementById("countdown-message").style.display = "none";
                     }
-                }
 
-                // Wenn das Rennen HEUTE ist
-                if (distance <= 0) {
-                    if(headingElement) headingElement.style.display = "none"; 
-                    document.getElementById("countdown").style.display = "none";
-                    
-                    // Zeigt die dicke Renntag-Nachricht an, inklusive klickbarem Link
-                    document.getElementById("countdown-message").innerHTML = "HEUTE IST RENNTAG" + vereinsTextUpper + "! 🏁🏎️";
-                    document.getElementById("countdown-message").style.display = "block";
-                } else {
-                    if(headingElement) {
-                        headingElement.style.display = "block";
-                        headingElement.innerHTML = "Nächstes Rennen" + vereinsText + " startet in:";
-                    }
-
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                    document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-                    document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-                    document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-                    document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
-                    
-                    document.getElementById("countdown").style.display = "flex";
-                    document.getElementById("countdown-message").style.display = "none";
-                }
-
-            }, 1000);
-        })
-        .catch(error => {
-            console.error("Fehler beim Laden der timer.txt:", error);
-            document.getElementById("countdown-message").innerHTML = "Keine Rennen geplant.";
-            document.getElementById("countdown").style.display = "none";
-            document.getElementById("countdown-message").style.display = "block";
-        });
-</script>
+                }, 1000);
+            })
+            .catch(error => {
+                console.error("Fehler beim Laden der timer.txt:", error);
+                document.getElementById("countdown-message").innerHTML = "Keine Rennen geplant.";
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("countdown-message").style.display = "block";
+            });
+    </script>
+</body>
+</html>
