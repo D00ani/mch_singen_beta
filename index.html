@@ -126,42 +126,37 @@
 
     <script>
         // --- 1. GOOGLE MAPS LOADER (Zwei-Klick & Auto-Klaro Lösung) ---
-        // --- 1. GOOGLE MAPS LOADER (Zwei-Klick & Auto-Klaro Lösung) ---
-    
-    // Wir machen die Funktion global verfügbar (window.), damit Klaro sie findet
-    window.loadGoogleMap = function() {
-        const mapContainer = document.getElementById('map-placeholder');
-        // Falls die Karte schon geladen ist oder der Container fehlt, nichts tun
-        if (!mapContainer || mapContainer.innerHTML.includes('iframe')) return;
+        window.loadGoogleMap = function() {
+            const mapContainer = document.getElementById('map-placeholder');
+            if (!mapContainer || mapContainer.innerHTML.includes('iframe')) return;
 
-        mapContainer.style.border = "none";
-        mapContainer.style.background = "transparent";
-        mapContainer.style.minHeight = "auto";
-        mapContainer.style.padding = "0";
-        
-        // DER ECHTE LINK für Münchriedstraße 10, Singen
-        const mapsUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.236687483758!2d8.82650337678945!3d47.7477174780516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a613619555555%3A0x6b4718428591823c!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1715000000000!5m2!1sde!2sde";
+            mapContainer.style.border = "none";
+            mapContainer.style.background = "transparent";
+            mapContainer.style.minHeight = "auto";
+            mapContainer.style.padding = "0";
+            
+            // DER ECHTE LINK für Münchriedstraße 10, Singen
+            const mapsUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.236687483758!2d8.82650337678945!3d47.7477174780516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a613619555555%3A0x6b4718428591823c!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1715000000000!5m2!1sde!2sde";
 
-        mapContainer.innerHTML = `<iframe src="${mapsUrl}" width="100%" height="350" style="border:0; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
-    };
+            mapContainer.innerHTML = `<iframe src="${mapsUrl}" width="100%" height="350" style="border:0; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+        };
 
-    // Manueller Klick auf den Button im Platzhalter
-    document.getElementById('load-map-btn').addEventListener('click', function() {
-        if (typeof klaro !== 'undefined') {
-            const manager = klaro.getManager();
-            // Speichert die Zustimmung in Klaro
-            manager.updateService('googleMaps', true);
-            manager.saveAndApply();
-        }
-        window.loadGoogleMap();
-    });
-
-    // WICHTIG: Falls Cookies schon akzeptiert waren, Karte beim Laden der Seite direkt starten
-    window.addEventListener('load', function() {
-        if (typeof klaro !== 'undefined' && klaro.getManager().getConsent('googleMaps')) {
+        // Manueller Klick auf den Button im Platzhalter
+        document.getElementById('load-map-btn').addEventListener('click', function() {
+            if (typeof klaro !== 'undefined') {
+                const manager = klaro.getManager();
+                manager.updateService('googleMaps', true);
+                manager.saveAndApply();
+            }
             window.loadGoogleMap();
-        }
-    });
+        });
+
+        // WICHTIG: Falls Cookies schon akzeptiert waren, Karte beim Laden der Seite direkt starten
+        window.addEventListener('load', function() {
+            if (typeof klaro !== 'undefined' && klaro.getManager().getConsent('googleMaps')) {
+                window.loadGoogleMap();
+            }
+        });
 
         // --- 2. SIDEBAR LOGIC ---
         const openMenuBtn = document.getElementById('open-menu');
@@ -318,6 +313,15 @@
                 document.getElementById("countdown").style.display = "none";
                 document.getElementById("countdown-message").style.display = "block";
             });
+
+        // --- 5. KLARO BRUTE-FORCE RELOAD ---
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) {
+                setTimeout(function() {
+                    window.location.reload(true);
+                }, 400);
+            }
+        });
     </script>
 </body>
 </html>
