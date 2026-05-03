@@ -4,6 +4,15 @@ var klaroConfig = {
     lang: 'de',
     default: false,
     acceptAll: true,
+    
+    // NEU: Diese globale Funktion wird ausgeführt, nachdem der Nutzer gespeichert hat
+    callback: function(manager, service) {
+        // Wenn der Nutzer die Einstellungen für Google Maps geändert hat, laden wir die Seite neu
+        if (service === 'googleMaps') {
+            location.reload();
+        }
+    },
+
     translations: {
         de: {
             consentModal: {
@@ -30,7 +39,7 @@ var klaroConfig = {
             default: false,
             title: 'Google Maps',
             purposes: ['functional'],
-            // Erklärt Klaro, dass es beim Akzeptieren die Karte laden soll
+            // Falls die Zustimmung erteilt wird, wird beim nächsten Laden die Karte sofort angezeigt
             onAccept: (status) => {
                 if (status === true && typeof window.loadGoogleMap === 'function') {
                     window.loadGoogleMap();
