@@ -30,10 +30,10 @@ var klaroConfig = {
             default: false,
             title: 'Google Maps',
             purposes: ['functional'],
-            // NEU: Diese Funktion wird von Klaro automatisch aufgerufen
+            // Erklärt Klaro, dass es beim Akzeptieren die Karte laden soll
             onAccept: (status) => {
-                if (status === true && typeof loadGoogleMap === 'function') {
-                    loadGoogleMap();
+                if (status === true && typeof window.loadGoogleMap === 'function') {
+                    window.loadGoogleMap();
                 }
             }
         }
