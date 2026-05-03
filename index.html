@@ -82,7 +82,7 @@
                 </div>
             </div>
             
-            <a href="https://www.google.com/maps/search/?api=1&query=Münchriedstraße+10,+78224+Singen+(Hohentwiel)" target="_blank" class="maps-btn">
+            <a href="https://maps.app.goo.gl/yLzY7kE4Kz5X8Y8Z6" target="_blank" class="maps-btn">
                 📍 Größere Karte öffnen
             </a>
         </div>
@@ -135,23 +135,32 @@
             mapContainer.style.minHeight = "auto";
             mapContainer.style.padding = "0";
             
-            // DER ECHTE LINK für Münchriedstraße 10, Singen
-            const mapsUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.236687483758!2d8.82650337678945!3d47.7477174780516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a613619555555%3A0x6b4718428591823c!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1715000000000!5m2!1sde!2sde";
+            // ECHTER LINK für Münchriedstraße 10, Singen
+            const mapsUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.9682224794824!2d8.814323677028448!3d47.78010897120619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a6136d8d9f109%3A0x6739665809228834!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1714732100000!5m2!1sde!2sde";
 
             mapContainer.innerHTML = `<iframe src="${mapsUrl}" width="100%" height="350" style="border:0; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
         };
 
-        // Manueller Klick auf den Button im Platzhalter
+        // Manueller Klick auf den Button im Platzhalter: Akzeptiert auch die Cookies!
         document.getElementById('load-map-btn').addEventListener('click', function() {
             if (typeof klaro !== 'undefined') {
-                const manager = klaro.getManager();
-                manager.updateService('googleMaps', true);
-                manager.saveAndApply();
+                try {
+                    let manager = klaro.getManager();
+                    // Setzt die Zustimmung für Google Maps auf TRUE
+                    if (manager.updateConsent) manager.updateConsent('googleMaps', true);
+                    else manager.updateService('googleMaps', true);
+                    
+                    // Speichert die Auswahl dauerhaft
+                    if (manager.saveAndApplyConsents) manager.saveAndApplyConsents();
+                    else manager.saveAndApply();
+                } catch(e) {
+                    console.log("Klaro konnte nicht automatisch aktualisiert werden.");
+                }
             }
             window.loadGoogleMap();
         });
 
-        // WICHTIG: Falls Cookies schon akzeptiert waren, Karte beim Laden der Seite direkt starten
+        // Prüft beim Laden, ob Cookies bereits akzeptiert wurden
         window.addEventListener('load', function() {
             if (typeof klaro !== 'undefined' && klaro.getManager().getConsent('googleMaps')) {
                 window.loadGoogleMap();
@@ -189,40 +198,22 @@
         // --- 4. INTELLIGENTER LIVE COUNTDOWN SCRIPT ---
         fetch('additional/timer.txt')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("Netzwerkantwort war nicht ok");
-                }
+                if (!response.ok) throw new Error("Fehler");
                 return response.text();
             })
             .then(data => {
                 const lines = data.split('\n');
                 const raceDates = []; 
-                
                 for(let i = 0; i < lines.length; i++) {
                     let line = lines[i].trim();
                     if(line !== "") {
                         let parts = line.split(';');
                         if(parts.length >= 4) {
-                            let day = parts[0].trim();
-                            let month = parts[1].trim();
-                            let year = parts[2].trim();
-                            let time = parts[3].trim();
-                            
-                            let kuerzel = parts.length > 4 ? parts[4].trim() : "";
-                            let stadt = parts.length > 5 ? parts[5].trim() : "";
-                            let mapLink = parts.length > 6 ? parts[6].trim() : "";
-                            
+                            let day = parts[0].trim(), month = parts[1].trim(), year = parts[2].trim(), time = parts[3].trim();
+                            let kuerzel = parts.length > 4 ? parts[4].trim() : "", stadt = parts.length > 5 ? parts[5].trim() : "", mapLink = parts.length > 6 ? parts[6].trim() : "";
                             let validDateString = `${month} ${day}, ${year} ${time}`;
                             let parsedDate = new Date(validDateString).getTime();
-                            
-                            if(!isNaN(parsedDate)) {
-                                raceDates.push({
-                                    timestamp: parsedDate,
-                                    verein: kuerzel,
-                                    ort: stadt,
-                                    link: mapLink
-                                });
-                            }
+                            if(!isNaN(parsedDate)) raceDates.push({ timestamp: parsedDate, verein: kuerzel, ort: stadt, link: mapLink });
                         }
                     }
                 }
@@ -230,30 +221,19 @@
                 function getNextRace() {
                     const now = new Date().getTime();
                     const nowDateObj = new Date(now);
-                    
                     raceDates.sort((a, b) => a.timestamp - b.timestamp);
-                    
-                    for (let i = 0; i < raceDates.length; i++) {
-                        const race = raceDates[i];
+                    for (let race of raceDates) {
                         const raceDateObj = new Date(race.timestamp);
-                        
-                        const isSameDay = nowDateObj.getFullYear() === raceDateObj.getFullYear() && 
-                                          nowDateObj.getMonth() === raceDateObj.getMonth() && 
-                                          nowDateObj.getDate() === raceDateObj.getDate();
-                        
-                        if (race.timestamp > now || isSameDay) {
-                            return race; 
-                        }
+                        const isSameDay = nowDateObj.getFullYear() === raceDateObj.getFullYear() && nowDateObj.getMonth() === raceDateObj.getMonth() && nowDateObj.getDate() === raceDateObj.getDate();
+                        if (race.timestamp > now || isSameDay) return race; 
                     }
                     return null;
                 }
 
-                const countdownFunction = setInterval(function() {
+                setInterval(function() {
                     let targetRace = getNextRace();
                     let headingElement = document.querySelector(".countdown-wrapper h2");
-
                     if (!targetRace) {
-                        clearInterval(countdownFunction);
                         document.getElementById("countdown").style.display = "none";
                         document.getElementById("countdown-message").innerHTML = "Saison beendet!";
                         document.getElementById("countdown-message").style.display = "block";
@@ -261,65 +241,33 @@
                         return;
                     }
 
-                    const now = new Date().getTime();
-                    const distance = targetRace.timestamp - now;
-                    
-                    let vereinsText = "";
-                    let vereinsTextUpper = ""; 
-                    
-                    if (targetRace.verein !== "" || targetRace.ort !== "") {
-                        let vereinName = targetRace.verein + " " + targetRace.ort;
-                        
-                        if (targetRace.link !== "") {
-                            vereinsText = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName + "</a>";
-                            vereinsTextUpper = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName.toUpperCase() + "</a>";
-                        } else {
-                            vereinsText = " beim " + vereinName;
-                            vereinsTextUpper = " beim " + vereinName.toUpperCase();
-                        }
-                    }
+                    const now = new Date().getTime(), distance = targetRace.timestamp - now;
+                    let vereinsText = "", vereinName = targetRace.verein + " " + targetRace.ort;
+                    if (targetRace.link !== "") vereinsText = " beim <a href='" + targetRace.link + "' target='_blank' style='color: #ffcc00; text-decoration: underline;'>" + vereinName + "</a>";
+                    else vereinsText = " beim " + vereinName;
 
                     if (distance <= 0) {
                         if(headingElement) headingElement.style.display = "none"; 
                         document.getElementById("countdown").style.display = "none";
-                        
-                        document.getElementById("countdown-message").innerHTML = "HEUTE IST RENNTAG" + vereinsTextUpper + "! 🏁🏎️";
+                        document.getElementById("countdown-message").innerHTML = "HEUTE IST RENNTAG" + vereinsText.toUpperCase() + "! 🏁🏎️";
                         document.getElementById("countdown-message").style.display = "block";
                     } else {
-                        if(headingElement) {
-                            headingElement.style.display = "block";
-                            headingElement.innerHTML = "Nächstes Rennen" + vereinsText + " startet in:";
-                        }
-
-                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                        document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-                        document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-                        document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-                        document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
-                        
+                        if(headingElement) { headingElement.style.display = "block"; headingElement.innerHTML = "Nächstes Rennen" + vereinsText + " startet in:"; }
+                        const d = Math.floor(distance / 86400000), h = Math.floor((distance % 86400000) / 3600000), m = Math.floor((distance % 3600000) / 60000), s = Math.floor((distance % 60000) / 1000);
+                        document.getElementById("days").innerHTML = d < 10 ? "0"+d : d;
+                        document.getElementById("hours").innerHTML = h < 10 ? "0"+h : h;
+                        document.getElementById("minutes").innerHTML = m < 10 ? "0"+m : m;
+                        document.getElementById("seconds").innerHTML = s < 10 ? "0"+s : s;
                         document.getElementById("countdown").style.display = "flex";
                         document.getElementById("countdown-message").style.display = "none";
                     }
-
                 }, 1000);
-            })
-            .catch(error => {
-                console.error("Fehler beim Laden der timer.txt:", error);
-                document.getElementById("countdown-message").innerHTML = "Keine Rennen geplant.";
-                document.getElementById("countdown").style.display = "none";
-                document.getElementById("countdown-message").style.display = "block";
             });
 
         // --- 5. KLARO BRUTE-FORCE RELOAD ---
         document.addEventListener('click', function(e) {
             if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) {
-                setTimeout(function() {
-                    window.location.reload(true);
-                }, 400);
+                setTimeout(() => { window.location.reload(true); }, 400);
             }
         });
     </script>
