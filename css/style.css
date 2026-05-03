@@ -1212,3 +1212,87 @@ body.dark-mode .maps-placeholder {
 body.dark-mode .maps-placeholder-content p {
     color: #bbb;
 }
+/* =========================================
+   13. KLARO COOKIE BANNER DESIGN (MCH STYLE)
+   ========================================= */
+
+/* Der Hintergrund des kleinen Banners unten */
+.klaro .cookie-notice {
+    background-color: var(--dark-blue) !important;
+    color: #fff !important;
+    border-top: 4px solid var(--primary-blue) !important;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3) !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+/* Der Text im Banner */
+.klaro .cookie-notice .cn-body .cn-text {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+}
+
+/* Der "Einstellungen anpassen" Link */
+.klaro .cookie-notice .cn-body .cn-learn-more {
+    color: #ff9800 !important; /* Schickes Orange als Akzent */
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+.klaro .cookie-notice .cn-body .cn-learn-more:hover {
+    text-decoration: underline !important;
+}
+
+/* Der "Alles akzeptieren" Button */
+.klaro .cn-button.cm-btn-success,
+.klaro .cm-btn.cm-btn-success {
+    background: linear-gradient(135deg, var(--primary-blue), #002277) !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Der "Ablehnen" Button */
+.klaro .cn-button.cm-btn-danger, 
+.klaro .cn-button.cm-btn-decline,
+.klaro .cm-btn.cm-btn-danger {
+    background: #555 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Hover Effekte für die Buttons */
+.klaro .cn-button:hover,
+.klaro .cm-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+}
+
+/* Das große Einstellungs-Fenster (falls man auf "Einstellungen" klickt) */
+.klaro .cookie-modal .cm-modal {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+.klaro .cookie-modal .cm-modal .cm-header {
+    background-color: var(--dark-blue) !important;
+    border-bottom: 4px solid var(--primary-blue) !important;
+}
+
+.klaro .cookie-modal .cm-modal .cm-header h1 {
+    color: #fff !important;
+}
+
+/* Darkmode Anpassungen für das Einstellungsfenster */
+body.dark-mode .klaro .cookie-modal .cm-modal .cm-body {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+}
+body.dark-mode .klaro .cookie-modal .cm-modal .cm-footer {
+    background-color: #121212 !important;
+    border-top: 1px solid #333 !important;
+}
