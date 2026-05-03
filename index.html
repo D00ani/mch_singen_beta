@@ -126,16 +126,30 @@
 
     <script>
         // --- 1. GOOGLE MAPS LOADER (Zwei-Klick Lösung) ---
-        document.getElementById('load-map-btn').addEventListener('click', function() {
-            const mapContainer = document.getElementById('map-placeholder');
-            mapContainer.style.border = "none";
-            mapContainer.style.background = "transparent";
-            mapContainer.style.minHeight = "auto";
-            mapContainer.style.padding = "0";
-            
-            // Fügt die echte Google-Maps Karte ein
-            mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.2057766060424!2d8.847116711626017!3d47.75806657106093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a613d526786c5%3A0x6b63c7b80a22a571!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1715000000000!5m2!1sde!2sde" width="100%" height="350" style="border:0; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
-        });
+        function loadGoogleMap() {
+        const mapContainer = document.getElementById('map-placeholder');
+        // Falls die Karte schon geladen ist (z.B. durch manuellen Klick), machen wir nichts
+        if (!mapContainer || mapContainer.innerHTML.includes('iframe')) return;
+
+        mapContainer.style.border = "none";
+        mapContainer.style.background = "transparent";
+        mapContainer.style.minHeight = "auto";
+        mapContainer.style.padding = "0";
+        
+        // Die echte Google-Maps Karte einfügen
+        mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.2536830784964!2d8.81598467713437!3d47.74739197120358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a63336eb42813%3A0xf64f33066d953934!2zTcO8bmNocmllZHN0cmHDn2UgMTAsIDc4MjI0IFNpbmdlbiAoSG9oZW50d2llbCk!5e0!3m2!1sde!2sde!4v1714710000000!5m2!1sde!2sde" width="100%" height="350" style="border:0; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+    }
+
+    // Manueller Klick auf den Button im Platzhalter
+    document.getElementById('load-map-btn').addEventListener('click', function() {
+        // 1. Der Karte in Klaro! zustimmen (damit das Banner verschwindet und die Wahl gespeichert wird)
+        if (typeof klaro !== 'undefined') {
+            klaro.getManager().updateService('googleMaps', true);
+            klaro.getManager().saveAndApply();
+        }
+        // 2. Karte sofort laden
+        loadGoogleMap();
+    });
 
         // --- 2. SIDEBAR LOGIC ---
         const openMenuBtn = document.getElementById('open-menu');
