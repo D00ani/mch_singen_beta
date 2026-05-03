@@ -1,5 +1,4 @@
 // js/klaro-config.js
-
 var klaroConfig = {
     elementID: 'klaro',
     lang: 'de',
@@ -9,19 +8,16 @@ var klaroConfig = {
         de: {
             consentModal: {
                 title: 'Datenschutz & Cookies',
-                description: 'Wir nutzen auf dieser Website externe Dienste (wie Google Maps), um dir zusätzliche Funktionen anzubieten. Du kannst hier selbst entscheiden, was du zulassen möchtest.',
+                description: 'Wir nutzen auf dieser Website externe Dienste (wie Google Maps), um dir zusätzliche Funktionen anzubieten.',
             },
-            // NEU: Der Text für das kleine Banner unten
             consentNotice: {
-                description: 'Wir nutzen Cookies und externe Dienste (wie Google Maps), um unsere Webseite optimal für dich zu gestalten.',
+                description: 'Wir nutzen Cookies und Google Maps, um unsere Webseite optimal für dich zu gestalten.',
                 learnMore: 'Einstellungen anpassen',
             },
-            // NEU: Beschriftung der Buttons
             ok: 'Alles akzeptieren',
             decline: 'Ablehnen',
-            
             googleMaps: {
-                description: 'Ermöglicht die Anzeige von interaktiven Karten direkt auf der Website.',
+                description: 'Anzeige von interaktiven Karten.',
             },
             purposes: {
                 functional: 'Funktionale Dienste',
@@ -33,7 +29,13 @@ var klaroConfig = {
             name: 'googleMaps',
             default: false,
             title: 'Google Maps',
-            purposes: ['functional']
+            purposes: ['functional'],
+            // NEU: Diese Funktion wird von Klaro automatisch aufgerufen
+            onAccept: (status) => {
+                if (status === true && typeof loadGoogleMap === 'function') {
+                    loadGoogleMap();
+                }
+            }
         }
     ]
 };
