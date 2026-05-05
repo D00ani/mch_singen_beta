@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
     <header>
         <button class="hamburger-btn" id="open-menu">☰</button>
         
@@ -34,10 +33,26 @@
             <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">🌙</button>
         </div>
     </header>
+    
     <main>
-        <h1>Aktuelle News & Termine</h1>
-        <p>Hier findest du die neuesten Ergebnisse und alle wichtigen Daten für die aktuelle Saison. Lade dir die Pläne einfach bequem als PDF herunter und bleib immer auf dem neuesten Stand!</p>
-
+        <h2>Sommerferienprogramm 2026</h2>
+        
+        <div class="news-grid">
+            <!-- Gelb hervorgehobene Karte -->
+            <div class="news-card" style="background-color: #fffbe6; border: 2px solid #ffcc00;">
+                <div>
+                    <span class="news-date" style="color: #d4a000; font-weight: bold;">08.09. - 09.09.2026</span>
+                    <h3 style="color: #000;">Kurzausschreibung</h3>
+                    <p style="font-size: 0.9rem; color: #444; margin-bottom: 15px;">Hier findest du alle Infos zum Sommerferienprogramm!</p>
+                </div>
+                
+                <div class="button-group">
+                    <a href="../media/termine/sommerferienprogramm.pdf" target="_blank" class="action-btn" style="background-color: #ffcc00; color: #000; border: none;">
+                        <span class="news-icon">🏁</span> Kurzausschreibung (PDF)
+                    </a>
+                </div>
+            </div>
+        </div>
         <h2>Aktuelle Wertungen</h2>
         <div class="news-grid">
             <div class="news-card">
@@ -101,246 +116,245 @@
             </div>
         </div>
     </main>
-    <footer>
-    <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
     
-    <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
-    <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr">Daniel Krieger</a></p>
-</footer>
-</div>
+    <footer>
+        <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
+        <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr">Daniel Krieger</a></p>
+    </footer>
 
-<aside id="side-menu">
-    <button class="close-btn" id="close-menu">&times;</button>
-    <nav>
-        <ul>
-            <li><a href="../index.html">Startseite</a></li>
-            <li><a href="aktuelles.html">Aktuelle News & Termine</a></li>
-            <li><a href="ueber-uns.html">Über uns</a></li>
-            <li><a href="kartsport.html">Kartsport</a></li>
-            <li><a href="trialsport.html">Trialsport</a></li>
-            <li><a href="statistiken.html">Statistiken</a></li>
-            <li><a href="vorstand.html">Vorstand</a></li>
-            <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link">MCH Vereins-Shop</a></li>
-            <li><a href="sponsoren-links.html">Sponsoren & Links</a></li>
-             <li><a href="geschichte.html" class="menu_current">Geschichte des MCH</a></li>
-            <li><a href="kontakt.html">Kontakt & Kontaktformular</a></li>
-            <li><a href="archiv.html">Archiv</a></li>
-            <li><a href="impressum-datenschutz.html">Impressum & Datenschutz</a></li>
-        </ul>
-    </nav>
-</aside>
+    <aside id="side-menu">
+        <button class="close-btn" id="close-menu">&times;</button>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Startseite</a></li>
+                <li><a href="aktuelles.html" class="menu_current">Aktuelle News & Termine</a></li>
+                <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="kartsport.html">Kartsport</a></li>
+                <li><a href="trialsport.html">Trialsport</a></li>
+                <li><a href="statistiken.html">Statistiken</a></li>
+                <li><a href="vorstand.html">Vorstand</a></li>
+                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link">MCH Vereins-Shop</a></li>
+                <li><a href="sponsoren-links.html">Sponsoren & Links</a></li>
+                <li><a href="geschichte.html">Geschichte des MCH</a></li>
+                <li><a href="kontakt.html">Kontakt & Kontaktformular</a></li>
+                <li><a href="archiv.html">Archiv</a></li>
+                <li><a href="impressum-datenschutz.html">Impressum & Datenschutz</a></li>
+            </ul>
+        </nav>
+    </aside>
 
-<script>
-    const openMenuBtn = document.getElementById('open-menu');
-    const closeMenuBtn = document.getElementById('close-menu');
-    const sideMenu = document.getElementById('side-menu');
+    <script>
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const sideMenu = document.getElementById('side-menu');
 
-    openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
-    closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+        openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
+        closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
 
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
 
-    if (localStorage.getItem('dark-mode') === 'enabled') {
-        body.classList.add('dark-mode');
-        themeToggleBtn.textContent = '☀️';
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('dark-mode', 'enabled');
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            body.classList.add('dark-mode');
             themeToggleBtn.textContent = '☀️';
-        } else {
-            localStorage.setItem('dark-mode', 'disabled');
-            themeToggleBtn.textContent = '🌙';
         }
-    });
-</script>
 
-<script>
-    const monateMap = {
-        "Januar": "01", "Februar": "02", "März": "03", "April": "04",
-        "Mai": "05", "Juni": "06", "Juli": "07", "August": "08",
-        "September": "09", "Oktober": "10", "November": "11", "Dezember": "12"
-    };
-
-    async function ladeUndGeneriereICS(zielGruppe) {
-        try {
-            const response = await fetch('../additional/trainingstermine.txt');
-            
-            if (!response.ok) {
-                throw new Error("Konnte Datei nicht laden");
-            }
-            
-            const data = await response.text();
-            let icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MCH Singen//Training//DE\nCALSCALE:GREGORIAN\n";
-            const zeilen = data.split('\n');
-            
-            for(let zeile of zeilen) {
-                const spalten = zeile.split('\t');
-                if (spalten.length < 3) continue; 
-                
-                const datumString = spalten[0].trim();
-                if (!datumString.startsWith("Samstag")) continue; 
-                
-                const datumMatch = datumString.match(/(\d{1,2})\.\s+([A-Za-zäöüß]+)\s+(\d{4})/);
-                if (!datumMatch) continue;
-                
-                const tag = datumMatch[1].padStart(2, '0');
-                const monat = monateMap[datumMatch[2]];
-                const jahr = datumMatch[3];
-                const datumFormat = `${jahr}${monat}${tag}`;
-                
-                const spalteFrueh = spalten[1].trim(); 
-                const spalteSpaet = spalten.length > 2 ? spalten[2].trim() : ""; 
-                
-                let startTime = null;
-                let endTime = null;
-                
-                if (spalteFrueh.includes("1/2") || spalteFrueh.includes("Alle")) {
-                    startTime = "090000";
-                    endTime = "133000";
-                } else if (spalteFrueh === String(zielGruppe)) {
-                    startTime = "090000";
-                    endTime = "113000";
-                } else if (spalteSpaet === String(zielGruppe)) {
-                    startTime = "113000";
-                    endTime = "133000";
-                }
-                
-                if (startTime && endTime) {
-                    icsData += `BEGIN:VEVENT\n`;
-                    icsData += `UID:training-${zielGruppe}-${datumFormat}T${startTime}@mch-singen.de\n`;
-                    icsData += `DTSTART;TZID=Europe/Berlin:${datumFormat}T${startTime}\n`;
-                    icsData += `DTEND;TZID=Europe/Berlin:${datumFormat}T${endTime}\n`;
-                    icsData += `SUMMARY:MCH Singen - Training (Gruppe ${zielGruppe})\n`;
-                    icsData += `LOCATION:Münchriedstraße 10\\, 78224 Singen\n`;
-                    icsData += `END:VEVENT\n`;
-                }
-            }
-            
-            icsData += "END:VCALENDAR";
-            
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            const isAndroid = /Android/i.test(navigator.userAgent);
-            const fileName = `MCH_Training_Gruppe_${zielGruppe}.ics`;
-
-            if (isIOS) {
-                const uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
-                window.location.href = uri;
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode', 'enabled');
+                themeToggleBtn.textContent = '☀️';
             } else {
-                const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = fileName;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                localStorage.setItem('dark-mode', 'disabled');
+                themeToggleBtn.textContent = '🌙';
+            }
+        });
+    </script>
 
-                if (isAndroid) {
-                    setTimeout(() => {
-                        alert("✅ Termine heruntergeladen!\n\nZiehe deine Benachrichtigungsleiste nach unten und tippe auf die Datei 'MCH_Training_Gruppe_" + zielGruppe + ".ics', um sie in deinen Kalender zu importieren.");
-                    }, 800);
+    <script>
+        const monateMap = {
+            "Januar": "01", "Februar": "02", "März": "03", "April": "04",
+            "Mai": "05", "Juni": "06", "Juli": "07", "August": "08",
+            "September": "09", "Oktober": "10", "November": "11", "Dezember": "12"
+        };
+
+        async function ladeUndGeneriereICS(zielGruppe) {
+            try {
+                const response = await fetch('../additional/trainingstermine.txt');
+                
+                if (!response.ok) {
+                    throw new Error("Konnte Datei nicht laden");
                 }
-            }
-            
-        } catch (error) {
-            console.error(error);
-            alert("Fehler beim Laden der Trainingsdaten! Bitte stelle sicher, dass die Datei 'trainingstermine.txt' im Ordner 'additional' liegt.");
-        }
-    }
-
-    const engMonateMap = {
-        "January": "01", "February": "02", "March": "03", "April": "04",
-        "May": "05", "June": "06", "July": "07", "August": "08",
-        "September": "09", "October": "10", "November": "11", "December": "12"
-    };
-
-    async function ladeRenntermineICS() {
-        try {
-            const response = await fetch('../additional/timer.txt');
-            
-            if (!response.ok) {
-                throw new Error("Konnte timer.txt nicht laden");
-            }
-            
-            const data = await response.text();
-            let icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MCH Singen//Rennen//DE\nCALSCALE:GREGORIAN\n";
-            
-            const zeilen = data.split('\n');
-            
-            for(let zeile of zeilen) {
-                let line = zeile.trim();
-                if(line !== "") {
-                    let parts = line.split(';');
-                    if(parts.length >= 4) {
-                        let day = parts[0].trim().padStart(2, '0');
-                        let monthName = parts[1].trim();
-                        let year = parts[2].trim();
-                        let timeStr = parts[3].trim(); 
-                        
-                        let month = engMonateMap[monthName] || monateMap[monthName];
-                        if (!month) continue; 
-                        
-                        let timeFormat = timeStr.replace(":", "") + "00";
-                        if(timeFormat.length === 5) timeFormat = "0" + timeFormat; 
-                        
-                        let stunde = parseInt(timeFormat.substring(0, 2));
-                        let endStunde = Math.min(stunde + 5, 23); 
-                        let endTimeFormat = String(endStunde).padStart(2, '0') + timeFormat.substring(2);
-                        
-                        let kuerzel = parts.length > 4 ? parts[4].trim() : "";
-                        let stadt = parts.length > 5 ? parts[5].trim() : "";
-                        
-                        let eventName = "Renntag 🏁";
-                        if (kuerzel !== "" || stadt !== "") {
-                            eventName += " beim " + kuerzel + " " + stadt;
-                        }
-                        
-                        let datumFormat = `${year}${month}${day}`;
-                        
+                
+                const data = await response.text();
+                let icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MCH Singen//Training//DE\nCALSCALE:GREGORIAN\n";
+                const zeilen = data.split('\n');
+                
+                for(let zeile of zeilen) {
+                    const spalten = zeile.split('\t');
+                    if (spalten.length < 3) continue; 
+                    
+                    const datumString = spalten[0].trim();
+                    if (!datumString.startsWith("Samstag")) continue; 
+                    
+                    const datumMatch = datumString.match(/(\d{1,2})\.\s+([A-Za-zäöüß]+)\s+(\d{4})/);
+                    if (!datumMatch) continue;
+                    
+                    const tag = datumMatch[1].padStart(2, '0');
+                    const monat = monateMap[datumMatch[2]];
+                    const jahr = datumMatch[3];
+                    const datumFormat = `${jahr}${monat}${tag}`;
+                    
+                    const spalteFrueh = spalten[1].trim(); 
+                    const spalteSpaet = spalten.length > 2 ? spalten[2].trim() : ""; 
+                    
+                    let startTime = null;
+                    let endTime = null;
+                    
+                    if (spalteFrueh.includes("1/2") || spalteFrueh.includes("Alle")) {
+                        startTime = "090000";
+                        endTime = "133000";
+                    } else if (spalteFrueh === String(zielGruppe)) {
+                        startTime = "090000";
+                        endTime = "113000";
+                    } else if (spalteSpaet === String(zielGruppe)) {
+                        startTime = "113000";
+                        endTime = "133000";
+                    }
+                    
+                    if (startTime && endTime) {
                         icsData += `BEGIN:VEVENT\n`;
-                        icsData += `UID:rennen-${datumFormat}T${timeFormat}@mch-singen.de\n`;
-                        icsData += `DTSTART;TZID=Europe/Berlin:${datumFormat}T${timeFormat}\n`;
-                        icsData += `DTEND;TZID=Europe/Berlin:${datumFormat}T${endTimeFormat}\n`;
-                        icsData += `SUMMARY:${eventName}\n`;
-                        if (stadt !== "") icsData += `LOCATION:${stadt}\n`;
+                        icsData += `UID:training-${zielGruppe}-${datumFormat}T${startTime}@mch-singen.de\n`;
+                        icsData += `DTSTART;TZID=Europe/Berlin:${datumFormat}T${startTime}\n`;
+                        icsData += `DTEND;TZID=Europe/Berlin:${datumFormat}T${endTime}\n`;
+                        icsData += `SUMMARY:MCH Singen - Training (Gruppe ${zielGruppe})\n`;
+                        icsData += `LOCATION:Münchriedstraße 10\\, 78224 Singen\n`;
                         icsData += `END:VEVENT\n`;
                     }
                 }
-            }
-            
-            icsData += "END:VCALENDAR";
-            
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            const isAndroid = /Android/i.test(navigator.userAgent);
-            const fileName = "MCH_Renntermine.ics";
+                
+                icsData += "END:VCALENDAR";
+                
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                const fileName = `MCH_Training_Gruppe_${zielGruppe}.ics`;
 
-            if (isIOS) {
-                const uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
-                window.location.href = uri;
-            } else {
-                const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = fileName;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                if (isIOS) {
+                    const uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
+                    window.location.href = uri;
+                } else {
+                    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = fileName;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
 
-                if (isAndroid) {
-                    setTimeout(() => {
-                        alert("✅ Renntermine heruntergeladen!\n\nZiehe deine Benachrichtigungsleiste nach unten und tippe auf die Datei 'MCH_Renntermine.ics', um sie in deinen Kalender zu importieren.");
-                    }, 800);
+                    if (isAndroid) {
+                        setTimeout(() => {
+                            alert("✅ Termine heruntergeladen!\n\nZiehe deine Benachrichtigungsleiste nach unten und tippe auf die Datei 'MCH_Training_Gruppe_" + zielGruppe + ".ics', um sie in deinen Kalender zu importieren.");
+                        }, 800);
+                    }
                 }
+                
+            } catch (error) {
+                console.error(error);
+                alert("Fehler beim Laden der Trainingsdaten! Bitte stelle sicher, dass die Datei 'trainingstermine.txt' im Ordner 'additional' liegt.");
             }
-            
-        } catch (error) {
-            console.error(error);
-            alert("Fehler beim Laden der Renndaten! Bitte stelle sicher, dass die Datei 'timer.txt' im Ordner 'additional' liegt.");
         }
-    }
-</script>
+
+        const engMonateMap = {
+            "January": "01", "February": "02", "March": "03", "April": "04",
+            "May": "05", "June": "06", "July": "07", "August": "08",
+            "September": "09", "October": "10", "November": "11", "December": "12"
+        };
+
+        async function ladeRenntermineICS() {
+            try {
+                const response = await fetch('../additional/timer.txt');
+                
+                if (!response.ok) {
+                    throw new Error("Konnte timer.txt nicht laden");
+                }
+                
+                const data = await response.text();
+                let icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MCH Singen//Rennen//DE\nCALSCALE:GREGORIAN\n";
+                
+                const zeilen = data.split('\n');
+                
+                for(let zeile of zeilen) {
+                    let line = zeile.trim();
+                    if(line !== "") {
+                        let parts = line.split(';');
+                        if(parts.length >= 4) {
+                            let day = parts[0].trim().padStart(2, '0');
+                            let monthName = parts[1].trim();
+                            let year = parts[2].trim();
+                            let timeStr = parts[3].trim(); 
+                            
+                            let month = engMonateMap[monthName] || monateMap[monthName];
+                            if (!month) continue; 
+                            
+                            let timeFormat = timeStr.replace(":", "") + "00";
+                            if(timeFormat.length === 5) timeFormat = "0" + timeFormat; 
+                            
+                            let stunde = parseInt(timeFormat.substring(0, 2));
+                            let endStunde = Math.min(stunde + 5, 23); 
+                            let endTimeFormat = String(endStunde).padStart(2, '0') + timeFormat.substring(2);
+                            
+                            let kuerzel = parts.length > 4 ? parts[4].trim() : "";
+                            let stadt = parts.length > 5 ? parts[5].trim() : "";
+                            
+                            let eventName = "Renntag 🏁";
+                            if (kuerzel !== "" || stadt !== "") {
+                                eventName += " beim " + kuerzel + " " + stadt;
+                            }
+                            
+                            let datumFormat = `${year}${month}${day}`;
+                            
+                            icsData += `BEGIN:VEVENT\n`;
+                            icsData += `UID:rennen-${datumFormat}T${timeFormat}@mch-singen.de\n`;
+                            icsData += `DTSTART;TZID=Europe/Berlin:${datumFormat}T${timeFormat}\n`;
+                            icsData += `DTEND;TZID=Europe/Berlin:${datumFormat}T${endTimeFormat}\n`;
+                            icsData += `SUMMARY:${eventName}\n`;
+                            if (stadt !== "") icsData += `LOCATION:${stadt}\n`;
+                            icsData += `END:VEVENT\n`;
+                        }
+                    }
+                }
+                
+                icsData += "END:VCALENDAR";
+                
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                const fileName = "MCH_Renntermine.ics";
+
+                if (isIOS) {
+                    const uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsData);
+                    window.location.href = uri;
+                } else {
+                    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = fileName;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    if (isAndroid) {
+                        setTimeout(() => {
+                            alert("✅ Renntermine heruntergeladen!\n\nZiehe deine Benachrichtigungsleiste nach unten und tippe auf die Datei 'MCH_Renntermine.ics', um sie in deinen Kalender zu importieren.");
+                        }, 800);
+                    }
+                }
+                
+            } catch (error) {
+                console.error(error);
+                alert("Fehler beim Laden der Renndaten! Bitte stelle sicher, dass die Datei 'timer.txt' im Ordner 'additional' liegt.");
+            }
+        }
+    </script>
 </body>
 </html>
