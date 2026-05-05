@@ -186,14 +186,17 @@ aside {
     top: 0;
     left: -320px;
     width: 320px;
-    height: 100vh;
+    height: 100%; /* Fallback für alte Browser */
+    height: 100dvh; /* Die moderne und sichere Lösung für Handys! */
     background: var(--menu-bg);
     color: #fff;
-    padding: 30px 20px;
+    /* Unten haben wir aus den 30px jetzt 100px Platz gemacht, damit nichts verdeckt wird */
+    padding: 30px 20px 100px 20px; 
     box-shadow: 5px 0 20px rgba(0,0,0,0.4);
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Zwingt iPhones zu weichem, flüssigem Scrollen */
 }
 
 aside.open { 
