@@ -49,7 +49,8 @@ header {
     z-index: 900;
     background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
     color: #fff;
-    padding: 8px 20px; /* PC: Sehr schmaler Rand für mehr Platz! */
+    /* HIER IST DIE ÄNDERUNG: 25px Abstand oben und unten (vorher waren es 8px) */
+    padding: 25px 30px; 
     display: flex;
     align-items: center; 
     gap: 15px; 
@@ -65,7 +66,8 @@ header {
 }
 
 .header-logo {
-    height: 42px; /* PC: Deutlich kompakter */
+    /* HIER IST DIE ÄNDERUNG: Logo etwas größer (60px statt 42px), damit es zum hohen Header passt */
+    height: 60px; 
     width: auto;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -79,18 +81,19 @@ header {
 }
 
 .header-text h1 {
-    font-size: 1.35rem; /* PC: Überschrift auf eine schlanke Größe reduziert */
+    /* HIER IST DIE ÄNDERUNG: Schrift etwas größer (1.6rem statt 1.35rem) */
+    font-size: 1.6rem; 
     font-weight: 700;
     letter-spacing: -0.5px;
-    margin: 0; /* Nimmt unnötige Abstände weg */
+    margin: 0; 
     line-height: 1.1;
 }
 
 .header-text p {
-    font-size: 0.8rem; 
+    font-size: 0.9rem; /* Auch der Untertitel einen Hauch größer */
     font-weight: 300;
     opacity: 0.9;
-    margin: 2px 0 0 0;
+    margin: 4px 0 0 0;
 }
 
 .hamburger-btn {
@@ -154,21 +157,28 @@ header {
     color: white;
     border: none;
     cursor: pointer;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem; /* Hier kannst du die Größe des Icons steuern */
+    transition: all 0.3s ease;
 }
 
-.theme-toggle-btn:hover, .search-header-btn:hover {
+/* Alle drei Buttons bekommen das exakt gleiche Flat-Design */
+.theme-toggle-btn, .search-header-btn, .insta-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Gleicher Hover-Effekt für alle drei Buttons */
+.theme-toggle-btn:hover, .search-header-btn:hover, .insta-btn:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: scale(1.1);
-}
-
-.insta-btn {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: white;
-}
-
-.insta-btn:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
 }
 
 .insta-btn svg {
@@ -1015,13 +1025,6 @@ body.dark-mode .countdown-wrapper { color: #fff; box-shadow: 0 4px 15px rgba(0,0
 body.dark-mode footer { background: #1a1a1a; border-top: 1px solid #333; }
 body.dark-mode .designer-credit { color: #888; }
 
-/* =========================================
-   11. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
-   ========================================= */
-
-/* =========================================
-   11. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
-   ========================================= */
 
 /* =========================================
    11. RESPONSIVE DESIGN (SMARTPHONES) - WICHTIG: GANZ AM ENDE!
@@ -1149,6 +1152,15 @@ body.dark-mode .designer-credit { color: #888; }
     .main-search-box { flex-direction: column; }
     .main-search-box button { width: 100%; }
 }
+
+    /* Verhindert, dass Handys die Icons "verschlucken" und den Klick blockieren */
+.hamburger-btn i, 
+.theme-toggle-btn i, 
+.search-header-btn i, 
+.insta-btn i {
+    pointer-events: none; 
+}
+
 /* =========================================
    12. GOOGLE MAPS PLATZHALTER (DATENSCHUTZ)
    ========================================= */
