@@ -14,7 +14,9 @@
 <body>
 
     <header>
-        <button class="hamburger-btn" id="open-menu">☰</button>
+        <button class="hamburger-btn" id="open-menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         
         <a href="index.html" class="home-link">
             <img src="media/sonstige/mch.jpg" alt="MCH Logo" class="header-logo">
@@ -34,8 +36,7 @@
             </a>
             
             <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">
-                <i class="fa-solid fa-moon"></i>
-            </button>
+                </button>
             
             <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
                 <i class="fa-brands fa-instagram"></i>
@@ -105,24 +106,23 @@
     </footer>
 
     <aside id="side-menu">
-        <button class="close-btn" id="close-menu">×</button>
+        <button class="close-btn" id="close-menu">&times;</button>
         <nav>
             <ul>
-                <li><a href="index.html" class="menu_current">Startseite</a></li>
-                <li><a href="pages/aktuelles.html">Aktuelle News & Termine</a></li>
-                <li><a href="pages/ueber-uns.html">Über uns</a></li>
-                <li><a href="pages/kartsport.html">Kartsport</a></li>
-                <li><a href="pages/trialsport.html">Trialsport</a></li>
-                <li><a href="pages/statistiken.html">Statistiken</a></li>
-                <li><a href="pages/vorstand.html">Vorstand</a></li>
-                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link">MCH Vereins-Shop</a></li>
-                <li><a href="pages/sponsoren-links.html">Sponsoren & Links</a></li>
-                <li><a href="pages/geschichte.html">Geschichte des MCH</a></li>
-                <li><a href="pages/kontakt.html">Kontakt & Kontaktformular</a></li>
-                <li><a href="pages/archiv.html">Archiv</a></li>
-                <li><a href="pages/impressum-datenschutz.html">Impressum & Datenschutz</a></li>
+                <li><a href="index.html" class="menu_current"><i class="fa-solid fa-house" style="width: 25px;"></i> Startseite</a></li>
+                <li><a href="pages/aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelle News & Termine</a></li>
+                <li><a href="pages/ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Über uns</a></li>
+                <li><a href="pages/kartsport.html"><i class="fa-solid fa-flag-checkered" style="width: 25px;"></i> Kartsport</a></li>
+                <li><a href="pages/trialsport.html"><i class="fa-solid fa-motorcycle" style="width: 25px;"></i> Trialsport</a></li>
+                <li><a href="pages/statistiken.html"><i class="fa-solid fa-chart-line" style="width: 25px;"></i> Statistiken</a></li>
+                <li><a href="pages/vorstand.html"><i class="fa-solid fa-user-tie" style="width: 25px;"></i> Vorstand</a></li>
+                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Vereins-Shop</a></li>
+                <li><a href="pages/sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren & Links</a></li>
+                <li><a href="pages/geschichte.html"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte des MCH</a></li>
+                <li><a href="pages/kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt & Formular</a></li>
+                <li><a href="pages/archiv.html"><i class="fa-solid fa-box-archive" style="width: 25px;"></i> Archiv</a></li>
+                <li><a href="pages/impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum & Datenschutz</a></li>
             </ul>
-            
         </nav>
     </aside>
 
@@ -137,22 +137,18 @@
             mapContainer.style.minHeight = "auto";
             mapContainer.style.padding = "0";
             
-            // ECHTER LINK für Münchriedstraße 10, Singen
             const mapsUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.9682224794824!2d8.814323677028448!3d47.78010897120619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a6136d8d9f109%3A0x6739665809228834!2sM%C3%BCnchriedstra%C3%9Fe%2010%2C%2078224%20Singen%20(Hohentwiel)!5e0!3m2!1sde!2sde!4v1714732100000!5m2!1sde!2sde";
 
             mapContainer.innerHTML = `<iframe src="${mapsUrl}" width="100%" height="350" style="border:0; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
         };
 
-        // Manueller Klick auf den Button im Platzhalter: Akzeptiert auch die Cookies!
         document.getElementById('load-map-btn').addEventListener('click', function() {
             if (typeof klaro !== 'undefined') {
                 try {
                     let manager = klaro.getManager();
-                    // Setzt die Zustimmung für Google Maps auf TRUE
                     if (manager.updateConsent) manager.updateConsent('googleMaps', true);
                     else manager.updateService('googleMaps', true);
                     
-                    // Speichert die Auswahl dauerhaft
                     if (manager.saveAndApplyConsents) manager.saveAndApplyConsents();
                     else manager.saveAndApply();
                 } catch(e) {
@@ -162,7 +158,6 @@
             window.loadGoogleMap();
         });
 
-        // Prüft beim Laden, ob Cookies bereits akzeptiert wurden
         window.addEventListener('load', function() {
             if (typeof klaro !== 'undefined' && klaro.getManager().getConsent('googleMaps')) {
                 window.loadGoogleMap();
@@ -174,40 +169,50 @@
         const closeMenuBtn = document.getElementById('close-menu');
         const sideMenu = document.getElementById('side-menu');
 
-        openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
-        closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+        if (openMenuBtn && closeMenuBtn && sideMenu) {
+            openMenuBtn.addEventListener('click', (e) => {
+                sideMenu.classList.add('open');
+                e.stopPropagation(); 
+            });
+            closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+            
+            document.addEventListener('click', (event) => {
+                if (sideMenu.classList.contains('open') && !sideMenu.contains(event.target)) {
+                    sideMenu.classList.remove('open');
+                }
+            });
+        }
 
-        // --- 3. THEME TOGGLE LOGIC ---
         // --- 3. THEME TOGGLE LOGIC ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         const body = document.body;
 
-        // Funktion zum Setzen des richtigen Icons
         function updateThemeIcon() {
-            if (body.classList.contains('dark-mode')) {
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            } else {
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            if (themeToggleBtn) {
+                if (body.classList.contains('dark-mode')) {
+                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                } else {
+                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                }
             }
         }
 
-        // Beim Laden der Seite: Modus prüfen
         if (localStorage.getItem('dark-mode') === 'enabled') {
             body.classList.add('dark-mode');
         }
-        updateThemeIcon(); // Icon beim Start richtig setzen
+        updateThemeIcon(); 
 
-        // Klick-Event
-        themeToggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode', 'enabled');
-            } else {
-                localStorage.setItem('dark-mode', 'disabled');
-            }
-            updateThemeIcon(); // Icon nach Klick wechseln
-        });
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('dark-mode', 'enabled');
+                } else {
+                    localStorage.setItem('dark-mode', 'disabled');
+                }
+                updateThemeIcon();
+            });
+        }
 
         // --- 4. INTELLIGENTER LIVE COUNTDOWN SCRIPT ---
         fetch('additional/timer.txt')

@@ -8,10 +8,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
 </head>
 <body>
-
 
     <header>
         <button class="hamburger-btn" id="open-menu">
@@ -34,312 +32,307 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </a>
             <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">
-                <!-- Icon wird per JavaScript geladen -->
-            </button>
+                </button>
             <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
                 <i class="fa-brands fa-instagram"></i>
             </a>
         </div>
     </header>
 
-    <main>
-        <h1>Statistiken & Erfolge</h1>
-        <p>Ein Rückblick auf die großartigen Leistungen unserer Fahrerinnen und Fahrer. Wir sind stolz auf unsere Vereinsgeschichte!</p>
+    <div class="container">
+        <main>
+            <h1><i class="fa-solid fa-chart-line" style="margin-right: 10px;"></i> Statistiken & Erfolge</h1>
+            <p>Ein Rückblick auf die großartigen Leistungen unserer Fahrerinnen und Fahrer. Wir sind stolz auf unsere Vereinsgeschichte!</p>
 
-        <h2>Platzierungen der Saison 2026</h2>
-        
-        <div class="charts-wrapper" style="max-width: 1000px; margin: 0 auto 40px auto;">
+            <h2><i class="fa-solid fa-ranking-star" style="color: var(--primary-blue); margin-right: 10px;"></i> Hier siehst du die gesamten Platzierungen der Saison und der Vergangenheit.</h2>
             
-            <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; border-top: 4px solid var(--primary-blue);"> 
-                <h3 style="margin-top: 0; color: var(--primary-blue); text-align: center; margin-bottom: 15px;">Dieses Jahr (Bisher)</h3>
-                <div style="position: relative; height: 350px; width: 100%;">
-                    <canvas id="chartCurrent"></canvas>
-                </div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+            <div class="charts-wrapper" style="max-width: 1000px; margin: 0 auto 40px auto;">
                 
-                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--dark-blue);">
-                    <h3 style="margin-top: 0; color: var(--dark-blue); text-align: center; margin-bottom: 15px;">Gesamte Platzierungen (Seit 2016)</h3>
-                    <div style="position: relative; height: 250px; width: 100%;">
-                        <canvas id="chartGesamt"></canvas>
+                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; border-top: 4px solid var(--primary-blue);"> 
+                    <h3 style="margin-top: 0; color: var(--primary-blue); text-align: center; margin-bottom: 15px;">Dieses Jahr (Bisher)</h3>
+                    <div style="position: relative; height: 350px; width: 100%;">
+                        <canvas id="chartCurrent"></canvas>
                     </div>
                 </div>
-
-                <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid #4285F4;"> 
-                    <h3 style="margin-top: 0; color: #4285F4; text-align: center; margin-bottom: 15px;">Saison 2025</h3>
-                    <div style="position: relative; height: 250px; width: 100%;">
-                        <canvas id="chart2025"></canvas>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                    
+                    <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--dark-blue);">
+                        <h3 style="margin-top: 0; color: var(--dark-blue); text-align: center; margin-bottom: 15px;">Gesamte Platzierungen (Seit 2016)</h3>
+                        <div style="position: relative; height: 250px; width: 100%;">
+                            <canvas id="chartGesamt"></canvas>
+                        </div>
                     </div>
-                </div>
 
+                    <div class="chart-container" style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid #4285F4;"> 
+                        <h3 style="margin-top: 0; color: #4285F4; text-align: center; margin-bottom: 15px;">Saison 2025</h3>
+                        <div style="position: relative; height: 250px; width: 100%;">
+                            <canvas id="chart2025"></canvas>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
-        </div>
 
-        <p>Unsere Top-Platzierungen im Bodensee Kart Cup (BKC) und bei den Trial-Meisterschaften:</p>
-        
-        <div class="table-responsive">
-            <table class="stats-table">
-                <thead>
-                    <tr>
-                        <th>Datum</th>
-                        <th>Fahrer/in</th>
-                        <th>Klasse</th>
-                        <th>Veranstaltung</th>
-                        <th>Platzierung</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>15. Mai 2025</td><td>Max Mustermann</td><td>K1</td><td>BKC Lauf 3 (Singen)</td><td><strong>1. Platz</strong></td></tr>
-                    <tr><td>28. Juni 2025</td><td>Lisa Müller</td><td>K3</td><td>BKC Lauf 5 (Steißlingen)</td><td><strong>1. Platz</strong></td></tr>
-                    <tr><td>12. August 2025</td><td>Jan Schmidt</td><td>Trial Jugend</td><td>Süddeutsche Meisterschaft</td><td>2. Platz</td></tr>
-                </tbody>
-            </table>
-        </div> 
-
-        <h2>Die Wanderpokal-Sieger (Jugend)</h2>
-        <p>Jedes Jahr wird der MCH-Wanderpokal an den Fahrer oder die Fahrerin mit der besten Gesamtleistung verliehen. Hier ist unsere "Hall of Fame":</p>
-
-        <div class="table-responsive">
-            <table class="stats-table">
-                <thead>
-                    <tr>
-                        <th>Jahr</th>
-                        <th>Gewinner/in</th>
-                        <th>Klasse</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>2025</td><td>Elena T.</td><td>1c</td></tr>
-                    <tr><td>2024</td><td>Noah H.</td><td>1d</td></tr>
-                    <tr><td>2023</td><td>Moritz N.</td><td>1c</td></tr>
-                    <tr><td>2022</td><td>Leon H.</td><td>1a</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-
-        <h2>Die Wanderpokal-Sieger (Erwachsen)</h2>
-        <p>Jedes Jahr wird der MCH-Wanderpokal an den Fahrer oder die Fahrerin mit der besten Gesamtleistung verliehen. Hier ist unsere "Hall of Fame":</p>
-
-        <div class="table-responsive">
-            <table class="stats-table">
-                <thead>
-                    <tr>
-                        <th>Jahr</th>
-                        <th>Gewinner/in</th>
-                        <th>Klasse</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>2025</td><td>Leon H.</td><td>3</td></tr>
-                    <tr><td>2024</td><td>Maximiliam E.</td><td>3</td></tr>
-                    <tr><td>2023</td><td>Maximilian E.</td><td>3</td></tr>
-                    <tr><td>2022</td><td>Maximilian E.</td><td>3</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-
-    
-
-        <h2>Vereinsbestleistungen</h2>
-        <p>Rekorde, die in die Geschichte des MCH Singen eingegangen sind:</p>
-
-        <div class="record-box">
-            <h3>Meiste Wanderpokal Siege in Folge</h3>
-            <p><strong>Fahrerin:</strong> Maximiliam E.<br>
-            <strong>Rekord:</strong> 3 Siege in Folge (2021 - 2024)</p>
-        </div>
-        <div class="record-box">
-            <h3>Jüngster Trial-Meisterschafts-Teilnehmer</h3>
-            <p><strong>Fahrer:</strong> Lukas Klein<br>
-            <strong>Alter:</strong> 7 Jahre und 3 Monate (Saison 2022)</p>
-        </div>
-        <div class="record-box">
-            <h3>Ältester Fahrer des MCH</h3>
-            <p><strong>Fahrer:</strong> Peter Z.<br>
-            <strong>Geboren im Jahr</strong> 1970</p>
-        </div>
-    </main>
-
-    <footer>
-    <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
-    
-    <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
-    <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr/">Daniel Krieger</a></p>
-</footer>
-</div>
-
-<aside id="side-menu">
-    <button class="close-btn" id="close-menu">&times;</button>
-    <nav>
-        <ul>
-            <li><a href="../index.html">Startseite</a></li>
-            <li><a href="aktuelles.html">Aktuelle News & Termine</a></li>
-            <li><a href="ueber-uns.html">Über uns</a></li>
-            <li><a href="kartsport.html">Kartsport</a></li>
-            <li><a href="trialsport.html">Trialsport</a></li>
-            <li><a href="statistiken.html">Statistiken</a></li>
-            <li><a href="vorstand.html">Vorstand</a></li>
-             <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link">MCH Vereins-Shop</a></li>
-            <li><a href="sponsoren-links.html">Sponsoren & Links</a></li>
-            <li><a href="geschichte.html">Geschichte des MCH</a></li>
-            <li><a href="kontakt.html">Kontakt & Kontaktformular</a></li>
-            <li><a href="archiv.html">Archiv</a></li>
-            <li><a href="impressum-datenschutz.html">Impressum & Datenschutz</a></li>
-        </ul>
-    </nav>
-</aside>
-
-<script>
-
-    // --- 1. SIDEBAR LOGIC (Hamburger Menü) ---
-    const openMenuBtn = document.getElementById('open-menu');
-    const closeMenuBtn = document.getElementById('close-menu');
-    const sideMenu = document.getElementById('side-menu');
-
-    // Sicherheitsabfrage: Nur ausführen, wenn die Buttons auch auf der Seite sind
-    if (openMenuBtn && closeMenuBtn && sideMenu) {
-        openMenuBtn.addEventListener('click', () => sideMenu.classList.add('open'));
-        closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
-    }
-
-    // --- 2. THEME TOGGLE LOGIC (Dark Mode & FontAwesome Icons) ---
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Funktion zum Setzen des richtigen Icons
-    function updateThemeIcon() {
-        if (themeToggleBtn) {
-            if (body.classList.contains('dark-mode')) {
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            } else {
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-            }
-        }
-    }
-
-    // Beim Laden der Seite: Modus prüfen
-    if (localStorage.getItem('dark-mode') === 'enabled') {
-        body.classList.add('dark-mode');
-    }
-    updateThemeIcon(); // Icon beim Start richtig setzen
-
-    // Klick-Event für den Button
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+            <h2><i class="fa-solid fa-medal" style="color: #FFD700; margin-right: 10px;"></i> Unsere Top-Platzierungen</h2>
+            <p>Im Bodensee Kart Cup (BKC) und bei den Trial-Meisterschaften:</p>
             
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode', 'enabled');
-            } else {
-                localStorage.setItem('dark-mode', 'disabled');
-            }
-            updateThemeIcon(); // Icon nach Klick sofort wechseln
-        });
-    }
+            <div class="table-responsive">
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Fahrer/in</th>
+                            <th>Klasse</th>
+                            <th>Veranstaltung</th>
+                            <th>Platzierung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>15. Mai 2025</td><td>Max Mustermann</td><td>K1</td><td>BKC Lauf 3 (Singen)</td><td><strong>1. Platz</strong></td></tr>
+                        <tr><td>28. Juni 2025</td><td>Lisa Müller</td><td>K3</td><td>BKC Lauf 5 (Steißlingen)</td><td><strong>1. Platz</strong></td></tr>
+                        <tr><td>12. August 2025</td><td>Jan Schmidt</td><td>Trial Jugend</td><td>Süddeutsche Meisterschaft</td><td>2. Platz</td></tr>
+                    </tbody>
+                </table>
+            </div> 
 
-    // --- Diagramm Logik (Chart.js) ---
-    // --- Diagramm Logik (Chart.js) ---
-    document.addEventListener("DOMContentLoaded", function() {
-        const commonOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
-            plugins: { legend: { display: false } }
-        };
+            <h2><i class="fa-solid fa-trophy" style="color: #FFD700; margin-right: 10px;"></i> Die Wanderpokal-Sieger (Jugend)</h2>
+            <p>Jedes Jahr wird der MCH-Wanderpokal an den Fahrer oder die Fahrerin mit der besten Gesamtleistung verliehen. Hier ist unsere "Hall of Fame":</p>
 
-        // 1. DIESES JAHR (MCH Blau)
-        new Chart(document.getElementById('chartCurrent').getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['1. Platz', '2. Platz', '3. Platz'],
-                datasets: [{
-                    data: [0, 0, 0], 
-                    backgroundColor: 'rgba(0, 51, 160, 0.8)', 
-                    borderColor: '#0033a0',
-                    borderWidth: 1, borderRadius: 4
-                }]
-            },
-            options: commonOptions
-        });
+            <div class="table-responsive">
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Jahr</th>
+                            <th>Gewinner/in</th>
+                            <th>Klasse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2025</td><td>Elena T.</td><td>1c</td></tr>
+                        <tr><td>2024</td><td>Noah H.</td><td>1d</td></tr>
+                        <tr><td>2023</td><td>Moritz N.</td><td>1c</td></tr>
+                        <tr><td>2022</td><td>Leon H.</td><td>1a</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
-        // 2. GESAMTHISTORIE (Dunkelblau)
-        new Chart(document.getElementById('chartGesamt').getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['1. Platz', '2. Platz', '3. Platz'],
-                datasets: [{
-                    data: [121, 112, 115], 
-                    backgroundColor: 'rgba(0, 27, 94, 0.8)', 
-                    borderColor: '#001b5e',
-                    borderWidth: 1, borderRadius: 4
-                }]
-            },
-            options: commonOptions
-        });
+            <h2><i class="fa-solid fa-trophy" style="color: #C0C0C0; margin-right: 10px;"></i> Die Wanderpokal-Sieger (Erwachsen)</h2>
+            <p>Jedes Jahr wird der MCH-Wanderpokal an den Fahrer oder die Fahrerin mit der besten Gesamtleistung verliehen. Hier ist unsere "Hall of Fame":</p>
 
-        // 3. SAISON 2025 (Helleres Akzent-Blau)
-        new Chart(document.getElementById('chart2025').getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['1. Platz', '2. Platz', '3. Platz'],
-                datasets: [{
-                    data: [14, 12, 23], 
-                    backgroundColor: 'rgba(66, 133, 244, 0.8)', 
-                    borderColor: '#4285F4',
-                    borderWidth: 1, borderRadius: 4
-                }]
-            },
-            options: commonOptions
-        });
-    });
-</script>
-<script>
-    // --- DATENSCHUTZ-SKRIPT: Namen in Tabellen automatisch abkürzen ---
-    document.addEventListener("DOMContentLoaded", function() {
-        // Sucht alle Tabellen auf der Seite
-        const tables = document.querySelectorAll('.stats-table');
+            <div class="table-responsive">
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Jahr</th>
+                            <th>Gewinner/in</th>
+                            <th>Klasse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2025</td><td>Leon H.</td><td>3</td></tr>
+                        <tr><td>2024</td><td>Maximiliam E.</td><td>3</td></tr>
+                        <tr><td>2023</td><td>Maximilian E.</td><td>3</td></tr>
+                        <tr><td>2022</td><td>Maximilian E.</td><td>3</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
-        tables.forEach(table => {
-            let nameColumnIndex = -1;
+            <h2><i class="fa-solid fa-award" style="margin-right: 10px;"></i> Vereinsbestleistungen</h2>
+            <p>Rekorde, die in die Geschichte des MCH Singen eingegangen sind:</p>
+
+            <div class="record-box">
+                <h3><i class="fa-solid fa-crown" style="color: #FFD700; margin-right: 10px;"></i> Meiste Wanderpokal Siege in Folge</h3>
+                <p><strong>Fahrer/in:</strong> Maximiliam E.<br>
+                <strong>Rekord:</strong> 3 Siege in Folge (2021 - 2024)</p>
+            </div>
             
-            // 1. Schaut in der Kopfzeile nach, wo die Namen stehen
-            const headers = table.querySelectorAll('thead th');
-            headers.forEach((th, index) => {
-                const headerText = th.textContent.trim().toLowerCase();
-                // Sucht nach Spalten mit dem Titel "fahrer/in" oder "gewinner/in"
-                if (headerText === 'fahrer/in' || headerText === 'gewinner/in') {
-                    nameColumnIndex = index;
+            <div class="record-box">
+                <h3><i class="fa-solid fa-motorcycle" style="color: #4CAF50; margin-right: 10px;"></i> Jüngster Trial-Meisterschafts-Teilnehmer</h3>
+                <p><strong>Fahrer:</strong> Lukas Klein<br>
+                <strong>Alter:</strong> 7 Jahre und 3 Monate (Saison 2022)</p>
+            </div>
+            
+            <div class="record-box">
+                <h3><i class="fa-solid fa-star" style="color: #FF9800; margin-right: 10px;"></i> Ältester Fahrer des MCH</h3>
+                <p><strong>Fahrer:</strong> Peter Z.<br>
+                <strong>Geboren im Jahr:</strong> 1970</p>
+            </div>
+        </main>
+
+        <footer>
+            <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
+            <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
+            <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr/">Daniel Krieger</a></p>
+        </footer>
+    </div>
+
+    <aside id="side-menu">
+        <button class="close-btn" id="close-menu">&times;</button>
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house" style="width: 25px;"></i> Startseite</a></li>
+                <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelle News & Termine</a></li>
+                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Über uns</a></li>
+                <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" style="width: 25px;"></i> Kartsport</a></li>
+                <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" style="width: 25px;"></i> Trialsport</a></li>
+                <li><a href="statistiken.html" class="menu_current"><i class="fa-solid fa-chart-line" style="width: 25px;"></i> Statistiken</a></li>
+                <li><a href="vorstand.html"><i class="fa-solid fa-user-tie" style="width: 25px;"></i> Vorstand</a></li>
+                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Vereins-Shop</a></li>
+                <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren & Links</a></li>
+                <li><a href="geschichte.html"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte des MCH</a></li>
+                <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt & Formular</a></li>
+                <li><a href="archiv.html"><i class="fa-solid fa-box-archive" style="width: 25px;"></i> Archiv</a></li>
+                <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum & Datenschutz</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <script>
+        // --- 1. SIDEBAR LOGIC (Hamburger Menü) ---
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const sideMenu = document.getElementById('side-menu');
+
+        if (openMenuBtn && closeMenuBtn && sideMenu) {
+            openMenuBtn.addEventListener('click', (e) => {
+                sideMenu.classList.add('open');
+                e.stopPropagation();
+            });
+            closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+            
+            document.addEventListener('click', (event) => {
+                if (sideMenu.classList.contains('open') && !sideMenu.contains(event.target)) {
+                    sideMenu.classList.remove('open');
                 }
             });
+        }
 
-            // 2. Wenn eine Namens-Spalte gefunden wurde, gehe alle Zeilen durch
-            if (nameColumnIndex !== -1) {
-                const rows = table.querySelectorAll('tbody tr');
+        // --- 2. THEME TOGGLE LOGIC (Dark Mode & FontAwesome Icons) ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        function updateThemeIcon() {
+            if (themeToggleBtn) {
+                if (body.classList.contains('dark-mode')) {
+                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                } else {
+                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                }
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            body.classList.add('dark-mode');
+        }
+        updateThemeIcon();
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
                 
-                rows.forEach(row => {
-                    const cells = row.querySelectorAll('td');
-                    if (cells.length > nameColumnIndex) {
-                        let fullName = cells[nameColumnIndex].textContent.trim();
-                        
-                        // Prüft, ob der Name ein Leerzeichen hat und noch NICHT abgekürzt ist
-                        if (fullName.includes(" ") && !fullName.endsWith(".")) {
-                            let nameParts = fullName.split(" ");
-                            let lastName = nameParts.pop(); // Nimmt das letzte Wort (Nachname) weg
-                            let firstName = nameParts.join(" "); // Der Rest ist der Vorname
-                            
-                            // Baut den Namen neu zusammen: Vorname + 1. Buchstabe vom Nachnamen + Punkt
-                            cells[nameColumnIndex].textContent = firstName + " " + lastName.charAt(0) + ".";
-                        }
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('dark-mode', 'enabled');
+                } else {
+                    localStorage.setItem('dark-mode', 'disabled');
+                }
+                updateThemeIcon();
+            });
+        }
+
+        // --- Diagramm Logik (Chart.js) ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
+                plugins: { legend: { display: false } }
+            };
+
+            // 1. DIESES JAHR (MCH Blau)
+            new Chart(document.getElementById('chartCurrent').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['1. Platz', '2. Platz', '3. Platz'],
+                    datasets: [{
+                        data: [0, 0, 0], 
+                        backgroundColor: 'rgba(0, 51, 160, 0.8)', 
+                        borderColor: '#0033a0',
+                        borderWidth: 1, borderRadius: 4
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // 2. GESAMTHISTORIE (Dunkelblau)
+            new Chart(document.getElementById('chartGesamt').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['1. Platz', '2. Platz', '3. Platz'],
+                    datasets: [{
+                        data: [121, 112, 115], 
+                        backgroundColor: 'rgba(0, 27, 94, 0.8)', 
+                        borderColor: '#001b5e',
+                        borderWidth: 1, borderRadius: 4
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // 3. SAISON 2025 (Helleres Akzent-Blau)
+            new Chart(document.getElementById('chart2025').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['1. Platz', '2. Platz', '3. Platz'],
+                    datasets: [{
+                        data: [14, 12, 23], 
+                        backgroundColor: 'rgba(66, 133, 244, 0.8)', 
+                        borderColor: '#4285F4',
+                        borderWidth: 1, borderRadius: 4
+                    }]
+                },
+                options: commonOptions
+            });
+        });
+    </script>
+    
+    <script>
+        // --- DATENSCHUTZ-SKRIPT: Namen in Tabellen automatisch abkürzen ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const tables = document.querySelectorAll('.stats-table');
+
+            tables.forEach(table => {
+                let nameColumnIndex = -1;
+                
+                const headers = table.querySelectorAll('thead th');
+                headers.forEach((th, index) => {
+                    const headerText = th.textContent.trim().toLowerCase();
+                    if (headerText === 'fahrer/in' || headerText === 'gewinner/in') {
+                        nameColumnIndex = index;
                     }
                 });
-            }
+
+                if (nameColumnIndex !== -1) {
+                    const rows = table.querySelectorAll('tbody tr');
+                    
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length > nameColumnIndex) {
+                            let fullName = cells[nameColumnIndex].textContent.trim();
+                            
+                            if (fullName.includes(" ") && !fullName.endsWith(".")) {
+                                let nameParts = fullName.split(" ");
+                                let lastName = nameParts.pop(); 
+                                let firstName = nameParts.join(" "); 
+                                
+                                cells[nameColumnIndex].textContent = firstName + " " + lastName.charAt(0) + ".";
+                            }
+                        }
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>
