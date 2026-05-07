@@ -31,190 +31,219 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </a>
             <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">
-                <!-- Icon wird per JavaScript geladen -->
-            </button>
+                </button>
             <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
                 <i class="fa-brands fa-instagram"></i>
             </a>
         </div>
     </header>
     
-    <div class="container">
-        <main>
-            <h1><i class="fa-solid fa-newspaper" style="margin-right: 10px; color: var(--primary-blue);"></i> Aktuelle News & Termine</h1>
-            <p>Hier findest du die neuesten Ergebnisse und alle wichtigen Daten für die aktuelle Saison. Lade dir die Pläne und Dateien einfach bequem als PDF herunter und bleib immer auf dem neuesten Stand!</p>
+    <main>
+        <h1><i class="fa-solid fa-newspaper" style="margin-right: 10px; color: var(--primary-blue);"></i> Aktuelle News & Termine</h1>
+        <p>Hier findest du die neuesten Ergebnisse und alle wichtigen Daten für die aktuelle Saison. Lade dir die Pläne einfach bequem herunter!</p>
 
-            <h2><i class="fa-solid fa-sun" style="color: #ff9800; margin-right: 10px;"></i> Sommerferienprogramm 2026</h2>
-            <div class="news-grid">
-                <div class="news-card" style="background-color: #fffbe6; border: 2px solid #ffcc00;">
-                    <div>
-                        <span class="news-date" style="color: #d4a000; font-weight: bold;">08.09. - 09.09.2026</span>
-                        <h3 style="color: #000;">Kurzausschreibung</h3>
-                        <p style="font-size: 0.9rem; color: #444; margin-bottom: 15px;">Hier findest du alle Infos zum Sommerferienprogramm!</p>
-                    </div>
-                    
-                    <div class="button-group">
-                        <a href="../media/termine/sommerferienprogramm.pdf" target="_blank" class="action-btn" style="background-color: #ffcc00; color: #000; border: none;">
-                            <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Kurzausschreibung (PDF)
-                        </a>
-                    </div>
+        <h2><i class="fa-solid fa-sun" style="color: #ff9800; margin-right: 10px;"></i> Sommerferienprogramm 2026</h2>
+        <div class="news-grid">
+            <div class="news-card" style="background-color: #fffbe6; border: 2px solid #ffcc00;">
+                <div>
+                    <span class="news-date" style="color: #d4a000; font-weight: bold;">08.09. - 09.09.2026</span>
+                    <h3 style="color: #000;">Kurzausschreibung</h3>
+                    <p style="font-size: 0.9rem; color: #444; margin-bottom: 15px;">Hier findest du alle Infos zum Sommerferienprogramm!</p>
                 </div>
-            </div>
-
-            <h2><i class="fa-solid fa-ranking-star" style="color: var(--primary-blue); margin-right: 10px;"></i> Aktuelle Wertungen</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div>
-                        <span class="news-date">21.09.2025</span>
-                        <h3>Aktuelle BKC-Wertung</h3>
-                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Check hier die neuesten Ergebnisse der Saison 2025 im Bodensee Kart Cup.</p>
-                    </div>
-                    <a href="../media/bkc_wertung/bkcgesamtwertung_2025.pdf" target="_blank" class="news-link">
-                        <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
-                    </a>
-                </div>
-
-                <div class="news-card">
-                    <div>
-                        <span class="news-date">21.04.2026</span>
-                        <h3>Aktuelle Trial-Wertung</h3>
-                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Die aktuellsten Ergebnisse der Saison 2026 aus dem Trialsport.</p>
-                    </div>
-                    <a href="../media/bkc_wertung/trialgesamtwertung_2026.pdf" target="_blank" class="news-link">
-                        <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
-                    </a>
-                </div>
-            </div> 
-
-            <h2><i class="fa-solid fa-calendar-days" style="color: var(--primary-blue); margin-right: 10px;"></i> Termine 2025/2026</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div>
-                        <span class="news-date">Saison 2026 (Wöchentlich)</span>
-                        <h3>BKC Termine (Kart)</h3>
-                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Alle Renntermine und Austragungsorte des Bodensee Kart Cups auf einen Blick.</p>
-                    </div>
-                    
-                    <div class="button-group">
-                        <a href="../media/termine/trainingstermine2026.pdf" target="_blank" class="action-btn">
-                            <span class="news-icon"><i class="fa-solid fa-flag-checkered"></i></span> Termine (PDF)
-                        </a>
-                        <button onclick="ladeUndGeneriereICS(1)" class="action-btn">
-                            <span class="news-icon"><i class="fa-regular fa-calendar-plus"></i></span> Kalender Gruppe 1
-                        </button>
-                        <button onclick="ladeUndGeneriereICS(2)" class="action-btn">
-                            <span class="news-icon"><i class="fa-regular fa-calendar-plus"></i></span> Kalender Gruppe 2
-                        </button>
-                        <button onclick="ladeRenntermineICS()" class="action-btn">
-                            <span class="news-icon"><i class="fa-solid fa-trophy"></i></span> Renntermine speichern
-                        </button>
-                    </div>
-                    
-                </div>
-
-                <div class="news-card">
-                    <div>
-                        <span class="news-date">Saison 2026 Termine</span>
-                        <h3>Trialsport Termine</h3>
-                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Die offiziellen Termine für unsere Trial-Wettbewerbe und Meisterschaftsläufe.</p>
-                    </div>
-                    <a href="../media/termine/termine_trial_2026.pdf" target="_blank" class="news-link" style="margin-top: auto;">
-                        <span class="news-icon"><i class="fa-solid fa-person-biking-mountain" style="color: #e6683c;"></i></span> Trial-Plan (PDF)
+                <div class="button-group">
+                    <a href="../media/termine/sommerferienprogramm.pdf" target="_blank" class="action-btn" style="background-color: #ffcc00; color: #000; border: none;">
+                        <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Kurzausschreibung (PDF)
                     </a>
                 </div>
             </div>
-        </main>
-        
-        <footer>
-            <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
-            <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
-            <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr">Daniel Krieger</a></p>
-        </footer>
-    </div>
+        </div>
 
-    <!-- HIER IST DAS NEUE MENÜ MIT ICONS -->
+        <h2><i class="fa-solid fa-ranking-star" style="color: var(--primary-blue); margin-right: 10px;"></i> Aktuelle Wertungen</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div>
+                    <span class="news-date">Saison 2025</span>
+                    <h3>Aktuelle BKC-Wertung</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Check hier die neuesten Ergebnisse im Bodensee Kart Cup.</p>
+                </div>
+                <a href="../media/bkc_wertung/bkcgesamtwertung_2025.pdf" target="_blank" class="news-link">
+                    <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
+                </a>
+            </div>
+
+            <div class="news-card">
+                <div>
+                    <span class="news-date">Saison 2026</span>
+                    <h3>Aktuelle Trial-Wertung</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Die aktuellsten Ergebnisse aus dem Trialsport.</p>
+                </div>
+                <a href="../media/bkc_wertung/trialgesamtwertung_2026.pdf" target="_blank" class="news-link">
+                    <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
+                </a>
+            </div>
+        </div> 
+
+        <h2><i class="fa-solid fa-calendar-days" style="color: var(--primary-blue); margin-right: 10px;"></i> Termine 2025/2026</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div>
+                    <span class="news-date">Saison 2026</span>
+                    <h3>BKC Termine (Kart)</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Trainings- und Renntermine für die Kart-Abteilung.</p>
+                </div>
+                <div class="button-group">
+                    <a href="../media/termine/trainingstermine2026.pdf" target="_blank" class="action-btn">
+                        <span class="news-icon"><i class="fa-solid fa-flag-checkered"></i></span> Termine (PDF)
+                    </a>
+                    <button onclick="ladeUndGeneriereICS(1)" class="action-btn">
+                        <span class="news-icon"><i class="fa-regular fa-calendar-plus"></i></span> Kalender Gruppe 1
+                    </button>
+                    <button onclick="ladeUndGeneriereICS(2)" class="action-btn">
+                        <span class="news-icon"><i class="fa-regular fa-calendar-plus"></i></span> Kalender Gruppe 2
+                    </button>
+                    <button onclick="ladeRenntermineICS()" class="action-btn">
+                        <span class="news-icon"><i class="fa-solid fa-trophy"></i></span> Renntermine speichern
+                    </button>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div>
+                    <span class="news-date">Saison 2026</span>
+                    <h3>Trialsport Termine</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Offizielle Meisterschaftsläufe im Trial.</p>
+                </div>
+                <a href="../media/termine/termine_trial_2026.pdf" target="_blank" class="news-link" style="margin-top: auto;">
+                    <span class="news-icon"><i class="fa-solid fa-motorcycle" style="color: #e6683c;"></i></span> Trial-Plan (PDF)
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
+        <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr">Daniel Krieger</a></p>
+    </footer>
+
     <aside id="side-menu">
-    <button class="close-btn" id="close-menu">&times;</button>
-    <nav>
-        <ul>
-            <li><a href="../index.html"><i class="fa-solid fa-house" style="width: 25px;"></i> Startseite</a></li>
-            <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelle News & Termine</a></li>
-            <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Über uns</a></li>
-            <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" style="width: 25px;"></i> Kartsport</a></li>
-            <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" style="width: 25px;"></i> Trialsport</a></li>
-            <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" style="width: 25px;"></i> Statistiken</a></li>
-            <li><a href="vorstand.html"><i class="fa-solid fa-user-tie" style="width: 25px;"></i> Vorstand</a></li>
-            <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Vereins-Shop</a></li>
-            <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren & Links</a></li>
-            <li><a href="geschichte.html"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte des MCH</a></li>
-            <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt & Formular</a></li>
-            <li><a href="archiv.html"><i class="fa-solid fa-box-archive" style="width: 25px;"></i> Archiv</a></li>
-            <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum & Datenschutz</a></li>
-        </ul>
-    </nav>
-</aside>
+        <button class="close-btn" id="close-menu">×</button>
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house" style="width: 25px;"></i> Startseite</a></li>
+                <li><a href="aktuelles.html" class="menu_current"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelle News & Termine</a></li>
+                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Über uns</a></li>
+                <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" style="width: 25px;"></i> Kartsport</a></li>
+                <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" style="width: 25px;"></i> Trialsport</a></li>
+                <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" style="width: 25px;"></i> Statistiken</a></li>
+                <li><a href="vorstand.html"><i class="fa-solid fa-user-tie" style="width: 25px;"></i> Vorstand</a></li>
+                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Shop</a></li>
+                <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren & Links</a></li>
+                <li><a href="geschichte.html"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte</a></li>
+                <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt</a></li>
+                <li><a href="archiv.html"><i class="fa-solid fa-box-archive" style="width: 25px;"></i> Archiv</a></li>
+                <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum</a></li>
+            </ul>
+        </nav>
+    </aside>
 
-  <script>
-    // --- 1. SIDEBAR LOGIC (Hamburger Menü) ---
-    const openMenuBtn = document.getElementById('open-menu');
-    const closeMenuBtn = document.getElementById('close-menu');
-    const sideMenu = document.getElementById('side-menu');
+    <script>
+        // --- 1. SIDEBAR LOGIC ---
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const sideMenu = document.getElementById('side-menu');
 
-    if (openMenuBtn && closeMenuBtn && sideMenu) {
-        // Menü öffnen
-        openMenuBtn.addEventListener('click', (e) => {
-            sideMenu.classList.add('open');
-            e.stopPropagation(); // Verhindert, dass der Klick direkt an den document-Listener weitergeht
-        });
-        
-        // Menü schließen (X-Button)
-        closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
-        
-        // NEU: Menü schließen, wenn man außerhalb klickt!
-        document.addEventListener('click', (event) => {
-            if (sideMenu.classList.contains('open') && !sideMenu.contains(event.target)) {
-                sideMenu.classList.remove('open');
-            }
-        });
-    }
+        if (openMenuBtn && closeMenuBtn && sideMenu) {
+            openMenuBtn.addEventListener('click', (e) => {
+                sideMenu.classList.add('open');
+                e.stopPropagation();
+            });
+            closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+            document.addEventListener('click', (event) => {
+                if (sideMenu.classList.contains('open') && !sideMenu.contains(event.target)) {
+                    sideMenu.classList.remove('open');
+                }
+            });
+        }
 
-    // --- 2. THEME TOGGLE LOGIC (Dark Mode & FontAwesome Icons) ---
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
+        // --- 2. THEME TOGGLE LOGIC ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
 
-    function updateThemeIcon() {
-        if (themeToggleBtn) {
-            if (body.classList.contains('dark-mode')) {
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            } else {
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        function updateThemeIcon() {
+            if (themeToggleBtn) {
+                themeToggleBtn.innerHTML = body.classList.contains('dark-mode') ? 
+                    '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
             }
         }
-    }
 
-    if (localStorage.getItem('dark-mode') === 'enabled') {
-        body.classList.add('dark-mode');
-    }
-    updateThemeIcon();
+        if (localStorage.getItem('dark-mode') === 'enabled') body.classList.add('dark-mode');
+        updateThemeIcon();
 
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode', 'enabled');
-            } else {
-                localStorage.setItem('dark-mode', 'disabled');
-            }
-            updateThemeIcon();
-        });
-    }
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+                updateThemeIcon();
+            });
+        }
 
-
-        // ICS Kalender Logik (Gekürzt für die Übersichtlichkeit)
+        // --- 3. KALENDER LOGIK (ICS GENERIERUNG) ---
         const monateMap = { "Januar": "01", "Februar": "02", "März": "03", "April": "04", "Mai": "05", "Juni": "06", "Juli": "07", "August": "08", "September": "09", "Oktober": "10", "November": "11", "Dezember": "12" };
-        async function ladeUndGeneriereICS(zielGruppe) { /* Dein bestehender ICS Code */ }
-        const engMonateMap = { "January": "01", "February": "02", "March": "03", "April": "04", "May": "05", "June": "06", "July": "07", "August": "08", "September": "09", "October": "10", "November": "11", "December": "12" };
-        async function ladeRenntermineICS() { /* Dein bestehender ICS Code */ }
+
+        async function ladeUndGeneriereICS(zielGruppe) {
+            try {
+                // Pfad angepasst: ../additional/
+                const res = await fetch('../additional/trainingstermine2026.txt');
+                const data = await res.text();
+                const zeilen = data.split('\n');
+                let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MCH Singen//DE\nCALSCALE:GREGORIAN\n";
+
+                zeilen.forEach(zeile => {
+                    if (zeile.trim() === "") return;
+                    const p = zeile.split(';');
+                    if (p.length < 5) return;
+                    
+                    const tag = p[0].trim().padStart(2, '0'), monat = monateMap[p[1].trim()], jahr = p[2].trim(), zeit = p[3].trim(), gruppe = p[4].trim();
+                    
+                    if (gruppe == zielGruppe || gruppe == "3") {
+                        const start = zeit.split('-')[0].trim().replace(':', '');
+                        icsContent += `BEGIN:VEVENT\nSUMMARY:MCH Training Gruppe ${gruppe}\nDTSTART:${jahr}${monat}${tag}T${start}00\nDTEND:${jahr}${monat}${tag}T133000\nLOCATION:Münchriedstraße 10, Singen\nEND:VEVENT\n`;
+                    }
+                });
+
+                icsContent += "END:VCALENDAR";
+                downloadFile(icsContent, `MCH_Training_Gruppe_${zielGruppe}.ics`);
+            } catch (e) { alert("Fehler beim Laden der Termine."); }
+        }
+
+        async function ladeRenntermineICS() {
+            try {
+                const res = await fetch('../additional/timer.txt');
+                const data = await res.text();
+                const zeilen = data.split('\n');
+                let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//MCH Singen//DE\n";
+
+                zeilen.forEach(zeile => {
+                    if (zeile.trim() === "") return;
+                    const p = zeile.split(';');
+                    if (p.length < 4) return;
+                    const tag = p[0].trim().padStart(2, '0'), monat = monateMap[p[1].trim()], jahr = p[2].trim(), zeit = p[3].trim().replace(':', ''), ort = p[5] || "Unbekannt";
+                    icsContent += `BEGIN:VEVENT\nSUMMARY:MCH Rennen ${ort}\nDTSTART:${jahr}${monat}${tag}T${zeit}00\nLOCATION:${ort}\nEND:VEVENT\n`;
+                });
+
+                icsContent += "END:VCALENDAR";
+                downloadFile(icsContent, "MCH_Renntermine.ics");
+            } catch (e) { alert("Fehler beim Laden der Renntermine."); }
+        }
+
+        function downloadFile(content, fileName) {
+            const blob = new Blob([content], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        }
     </script>
 </body>
 </html>
