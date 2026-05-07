@@ -7,6 +7,32 @@
     <title>Impressum & Datenschutz - Motorsportclub Singen Hohentwiel</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* NEU: Das Design für die Impressums-Box (Hell & Dunkel) */
+        .impressum-box {
+            background: #fff; 
+            padding: 25px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            border-left: 4px solid var(--primary-blue); 
+            margin-bottom: 40px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        body.dark-mode .impressum-box {
+            background: #1e1e1e;
+            border-left-color: var(--dark-blue);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        body.dark-mode .impressum-box h3 {
+            color: #fff;
+        }
+        
+        body.dark-mode .impressum-box p {
+            color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
 
@@ -40,7 +66,8 @@
 
         <main>
             <h1><i class="fa-solid fa-scale-balanced" style="margin-right: 10px; color: var(--primary-blue);"></i> Impressum</h1>
-            <div style="background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-left: 4px solid var(--primary-blue); margin-bottom: 40px;">
+            
+            <div class="impressum-box">
                 <h3 style="margin-top:0;">Angaben gemäß § 5 TMG</h3>
                 <p>
                     <strong>Motorsportclub Hohentwiel</strong><br>
