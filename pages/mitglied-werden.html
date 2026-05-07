@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="icon" type="image/jpeg" href="../media/sonstige/mch.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitglied werden - Motorsportclub Singen Hohentwiel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script defer type="text/javascript" src="../js/klaro-config.js"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/klaro/dist/klaro.js"></script>
+
+    <style>
+        /* Spezielles Design für die Preis-Boxen */
+        .price-box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-blue);
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+        body.dark-mode .price-box { 
+            background: #1e1e1e; 
+            border-top-color: var(--dark-blue); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .price-row { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 12px 0; 
+            border-bottom: 1px solid #eee; 
+        }
+        .price-row:last-child { border-bottom: none; }
+        body.dark-mode .price-row { border-bottom-color: #333; }
+        
+        .price-title { font-weight: 600; color: var(--text-main); }
+        .price-value { font-weight: bold; color: var(--primary-blue); }
+        body.dark-mode .price-title { color: #e0e0e0; }
+        body.dark-mode .price-value { color: #4285F4; }
+
+        .note-box { 
+            background: #fffbe6; 
+            padding: 15px; 
+            border-radius: 8px; 
+            border-left: 4px solid #ffcc00; 
+            margin-bottom: 25px; 
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        body.dark-mode .note-box { background: #332b00; color: #fff; }
+
+        /* Grid für die 3 Spalten */
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .download-section {
+            text-align: center; 
+            margin-top: 50px; 
+            padding: 40px; 
+            border: 2px dashed #ccc; 
+            border-radius: 12px;
+            background: rgba(0,0,0,0.02);
+        }
+        body.dark-mode .download-section { background: rgba(255,255,255,0.02); border-color: #444; }
+    </style>
+</head>
+<body>
+
+     <header>
+        <button class="hamburger-btn" id="open-menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        
+        <a href="../index.html" class="home-link">
+            <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="header-logo">
+        </a>
+        
+        <a href="../index.html" class="home-link">
+            <div class="header-text">
+                <h1>Motorsportclub Singen Hohentwiel</h1>
+                <p>DMV Mitglied - Motorsport aus Leidenschaft</p>
+            </div>
+        </a>
+        <div class="social-header">
+            <span class="social-text">Folgt uns auf Social Media:</span>
+            <a href="suche.html" class="search-header-btn" title="Suchen">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">
+            </button>
+            <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+    </header>
+    <main>
+        <h1><i class="fa-solid fa-user-plus" style="margin-right: 10px; color: var(--primary-blue);"></i> Mitglied werden & Gebühren</h1>
+        <p>Hier findest du eine Übersicht über alle Beiträge und Gebühren des MCH Singen. Wir freuen uns über jedes neue Gesicht!</p>
+
+        <div class="membership-grid">
+            
+            <div>
+                <h2><i class="fa-solid fa-id-card" style="color: var(--primary-blue); margin-right: 10px;"></i> Jahresbeiträge</h2>
+                <div class="price-box">
+                    <div class="price-row">
+                        <span class="price-title">Allgemeiner Beitrag</span>
+                        <span class="price-value">30,00 € / Jahr</span>
+                    </div>
+                </div>
+                <div class="note-box">
+                    <i class="fa-solid fa-circle-info"></i> <strong>Wichtig bei Minderjährigen:</strong><br>
+                    Bei der Anmeldung von Minderjährigen muss zusätzlich mindestens ein Elternteil als Vereinsmitglied beitreten.
+                </div>
+            </div>
+
+            <div>
+                <h2><i class="fa-solid fa-stopwatch" style="color: var(--primary-blue); margin-right: 10px;"></i> Training & Sprit</h2>
+                <div class="price-box">
+                    <div class="price-row">
+                        <span class="price-title">Kart (Erwachsene)</span>
+                        <span class="price-value">4,00 €</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-title">Kart (Kinder)</span>
+                        <span class="price-value">3,00 €</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-title">Probetraining</span>
+                        <span class="price-value">15,00 €</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2><i class="fa-solid fa-flag-checkered" style="color: var(--primary-blue); margin-right: 10px;"></i> Renngebühren</h2>
+                <div class="price-box">
+                    <div class="price-row">
+                        <span class="price-title">Kart Rennen (Erwachsene)</span>
+                        <span class="price-value">12,00 €</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-title">Kart Rennen (Kinder)</span>
+                        <span class="price-value">10,00 €</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-title">Trial Rennen</span>
+                        <span class="price-value">--,-- €</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-light); font-style: italic;">* Gebühren pro Rennveranstaltung.</p>
+            </div>
+
+        </div>
+
+        <div class="download-section">
+            <h2 style="margin-top: 0;"><i class="fa-solid fa-file-signature"></i> Jetzt anmelden</h2>
+            <p>Einfach den Mitgliedsantrag herunterladen, ausfüllen und beim nächsten Training abgeben.</p>
+            <a href="../media/sonstige/anmeldeformular.pdf" target="_blank" class="action-btn" style="display: inline-flex; width: auto; padding: 15px 30px; margin-top: 10px;">
+                <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Mitgliedsantrag (PDF)
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. | <a href="#" onclick="return klaro.show();">Cookies</a></p>
+    </footer>
+
+    <aside id="side-menu">
+        <button class="close-btn" id="close-menu">×</button>
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house" style="width: 25px;"></i> Startseite</a></li>
+                <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelles</a></li>
+                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Über uns</a></li>
+                <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" style="width: 25px;"></i> Kartsport</a></li>
+                <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" style="width: 25px;"></i> Trialsport</a></li>
+                <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" style="width: 25px;"></i> Statistiken</a></li>
+                <li><a href="vorstand.html"><i class="fa-solid fa-user-tie" style="width: 25px;"></i> Vorstand</a></li>
+                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Shop</a></li>
+                <li><a href="mitglied-werden.html" class="menu_current"><i class="fa-solid fa-user-plus" style="width: 25px;"></i> Mitglied werden</a></li>
+                <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren</a></li>
+                <li><a href="geschichte.html"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte</a></li>
+                <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt</a></li>
+                <li><a href="archiv.html"><i class="fa-solid fa-box-archive" style="width: 25px;"></i> Archiv</a></li>
+                <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <script>
+        // --- SIDEBAR LOGIC ---
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const sideMenu = document.getElementById('side-menu');
+
+        if (openMenuBtn && closeMenuBtn && sideMenu) {
+            openMenuBtn.addEventListener('click', (e) => {
+                sideMenu.classList.add('open');
+                e.stopPropagation();
+            });
+            closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
+            document.addEventListener('click', (event) => {
+                if (sideMenu.classList.contains('open') && !sideMenu.contains(event.target)) {
+                    sideMenu.classList.remove('open');
+                }
+            });
+        }
+
+        // --- THEME TOGGLE LOGIC ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        function updateThemeIcon() {
+            if (themeToggleBtn) {
+                themeToggleBtn.innerHTML = body.classList.contains('dark-mode') ? 
+                    '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') body.classList.add('dark-mode');
+        updateThemeIcon();
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+                updateThemeIcon();
+            });
+        }
+
+        // --- COOKIE RELOAD ---
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) {
+                setTimeout(() => { window.location.reload(true); }, 400);
+            }
+        });
+    </script>
+</body>
+</html>
