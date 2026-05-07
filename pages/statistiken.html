@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer type="text/javascript" src="../js/klaro-config.js"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/klaro/dist/klaro.js"></script>
     <style>
         /* NEU: Design für die Diagramm-Boxen (Hell & Dunkel) */
         .chart-box {
@@ -203,13 +205,13 @@
             <div class="record-box">
                 <h3><i class="fa-solid fa-star" style="color: #FF9800; margin-right: 10px;"></i> Ältester Fahrer des MCH</h3>
                 <p><strong>Fahrer:</strong> Peter Z.<br>
-                <strong>Geboren im Jahr:</strong> 1970</p>
+                <strong>Geboren im Jahr:</strong> 1956</p>
             </div>
         </main>
 
         <footer>
             <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
-            <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten.</p>
+            <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
             <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr/">Daniel Krieger</a></p>
         </footer>
 
@@ -377,6 +379,12 @@
                     });
                 }
             });
+        });
+        // --- KLARO BRUTE-FORCE RELOAD ---
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) {
+                setTimeout(() => { window.location.reload(true); }, 400);
+            }
         });
     </script>
 
