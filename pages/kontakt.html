@@ -183,6 +183,13 @@
 
                     <label for="message">Deine Nachricht:</label>
                     <textarea id="message" name="Nachricht" rows="4" placeholder="Was möchtest du uns mitteilen?" required></textarea>
+                    
+                    <div style="margin-top: 15px; margin-bottom: 20px; font-size: 0.9rem; color: var(--text-main); display: flex; align-items: flex-start; gap: 10px;">
+                    <input type="checkbox" id="datenschutz-check" name="datenschutz" required style="margin-top: 3px; cursor: pointer;">
+                    <label for="datenschutz-check" style="margin-top: 0; font-weight: normal; font-size: 0.9rem;">
+                    Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden. Weitere Informationen findest du in unserer <a href="impressum-datenschutz.html" style="color: var(--primary-blue); text-decoration: underline;">Datenschutzerklärung</a>.
+                    </label>
+                    </div>
 
                     <button type="submit"><i class="fa-solid fa-paper-plane"></i> Nachricht senden</button>
                 </form>
