@@ -1311,3 +1311,65 @@ body.dark-mode .klaro .cookie-modal .cm-modal .cm-footer {
     background-color: #121212 !important;
     border-top: 1px solid #333 !important;
 }
+/* ==========================================================================
+   14. Zusatz-Styles für Unterseiten (Kontakt, Mitgliedschaft, Statistiken)
+   ========================================================================== */
+
+/* 1. Kontaktformular & Erfolgs-Box */
+.contact-form { 
+    display: flex; 
+    flex-direction: column; 
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-blue);
+    width: 100%;
+}
+body.dark-mode .contact-form { background: #1e1e1e; border-color: #333; border-top: 4px solid var(--dark-blue); }
+.contact-form label { margin-top: 15px; font-weight: 600; color: var(--text-main); }
+body.dark-mode .contact-form label { color: #e0e0e0; }
+.contact-form input, .contact-form textarea { padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; background: #fafafa; color: #333; }
+body.dark-mode .contact-form input, body.dark-mode .contact-form textarea { background: #2a2a2a; border: 1px solid #444; color: #fff; }
+.contact-form button { margin-top: 25px; padding: 12px; background-color: var(--primary-blue); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 1.05rem; font-weight: 600; transition: all 0.3s ease; }
+.contact-form button:hover:not(:disabled) { background-color: var(--dark-blue); transform: translateY(-2px); }
+
+.success-box { display: none; background: #e8f5e9; padding: 40px 30px; border-radius: 12px; border-top: 4px solid #4CAF50; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); animation: fadeIn 0.5s ease; }
+body.dark-mode .success-box { background: #1b3320; border-top-color: #66bb6a; }
+.success-box h2 { color: #2e7d32; }
+body.dark-mode .success-box h2 { color: #81c784; }
+
+/* 2. Preis- & Info-Boxen (Mitgliedschaft & Impressum) */
+.price-box, .impressum-box, .chart-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-blue);
+    margin-bottom: 25px;
+    transition: background-color 0.3s ease;
+}
+.impressum-box { border-top: none; border-left: 4px solid var(--primary-blue); }
+body.dark-mode .price-box, body.dark-mode .impressum-box, body.dark-mode .chart-box { background: #1e1e1e; border-top-color: var(--dark-blue); border-left-color: var(--dark-blue); }
+
+.price-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
+body.dark-mode .price-row { border-bottom-color: #333; }
+.note-box { background: #fffbe6; padding: 15px; border-radius: 8px; border-left: 4px solid #ffcc00; margin-bottom: 25px; font-size: 0.9rem; }
+body.dark-mode .note-box { background: #332b00; color: #fff; }
+
+/* 3. Statistiken & Meilensteine */
+.milestone-wrapper { display: flex; flex-wrap: wrap; gap: 20px; margin: 30px 0 50px 0; justify-content: center; }
+.milestone-box { background: #fff; padding: 30px 20px; border-radius: 12px; text-align: center; flex: 1; min-width: 150px; border-bottom: 4px solid var(--primary-blue); transition: all 0.3s ease; }
+body.dark-mode .milestone-box { background: #1e1e1e; border-bottom-color: var(--dark-blue); }
+.milestone-number { font-size: 3.5rem; font-weight: 900; color: var(--primary-blue); }
+body.dark-mode .milestone-number { color: #4285F4; }
+
+/* 4. FAQ Akkordeon */
+.faq-item { background: #fff; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--primary-blue); overflow: hidden; }
+body.dark-mode .faq-item { background: #1e1e1e; }
+.faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; }
+.faq-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease; padding: 0 20px; background: #fafafa; }
+.faq-item.active .faq-answer { max-height: 500px; padding: 20px; border-top: 1px solid #eee; }
+body.dark-mode .faq-answer { background: #252525; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
