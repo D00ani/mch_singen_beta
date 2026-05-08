@@ -9,6 +9,98 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script defer type="text/javascript" src="../js/klaro-config.js"></script>
     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/klaro/dist/klaro.js"></script>
+
+    <style>
+        /* ==========================================================================
+           Geschichte & Timeline Spezial-Styles (NUR für diese Seite)
+           ========================================================================== */
+        .history-section {
+            margin-bottom: 50px;
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 25px;
+            position: relative;
+        }
+        body.dark-mode .history-section { border-left-color: var(--dark-blue); }
+
+        .history-section h2 { margin-top: 0; color: var(--primary-blue); display: flex; align-items: center; gap: 10px; }
+        body.dark-mode .history-section h2 { color: #4285F4; }
+
+        /* --- NEU: Semantische Fotorahmen für Bilder/Platzhalter --- */
+        .history-img-frame {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px; /* Wirkt wie ein Passepartout */
+            margin: 25px auto;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            display: block;
+            max-width: 650px; /* Begrenzt die Breite auf großen Bildschirmen */
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+        }
+        .history-img-frame:hover {
+            transform: translateY(-3px) rotate(1deg); /* Kleiner spielerischer Effekt */
+        }
+
+        .history-img-frame img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .history-img-frame figcaption {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            padding-top: 12px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* Spezial-Style für PLATZHALTER-RAHMEN (Orange/Gestrichelt) */
+        .history-img-frame.placeholder-frame {
+            border: 2px dashed #ff9800; /* Auffällige orange gestrichelte Linie */
+            background: #fffbe6; /* Leicht gelblicher Hintergrund */
+        }
+
+        .history-img-frame.placeholder-frame figcaption {
+            color: #856404;
+            font-weight: 600;
+        }
+
+        /* Dark Mode Anpassungen für die Rahmen */
+        body.dark-mode .history-img-frame {
+            background: #1e1e1e;
+            border-color: #333;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        body.dark-mode .history-img-frame figcaption {
+            color: #aaa;
+        }
+        body.dark-mode .history-img-frame.placeholder-frame {
+            background: #332b00; /* Dunklerer Gelbton */
+            border-color: #ff9800;
+        }
+        body.dark-mode .history-img-frame.placeholder-frame figcaption {
+            color: #ffc107;
+        }
+
+        /* Liste der durchgeführten Events */
+        .event-list {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-blue);
+        }
+        body.dark-mode .event-list { background: #1e1e1e; border-top-color: var(--dark-blue); }
+        .event-list ul { list-style-type: none; padding-left: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .event-list li { padding-left: 30px; position: relative; font-weight: 500; color: var(--text-main); }
+        body.dark-mode .event-list li { color: #e0e0e0; }
+        .event-list li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--primary-blue); position: absolute; left: 0; font-size: 1.1rem; }
+        body.dark-mode .event-list li::before { color: #4285F4; }
+    </style>
 </head>
 <body>
 
@@ -39,100 +131,124 @@
             </a>
         </div>
     </header>
+    <main>
+        <h1><i class="fa-solid fa-book-open" style="margin-right: 10px; color: var(--primary-blue);"></i> Die Geschichte des MCH</h1>
+        <p style="font-size: 1.1rem; margin-bottom: 45px;">Von den Anfängen im "Deutschen Hof" bis hin zum Arena-Trial – eine Reise durch Jahrzehnte der Leidenschaft für den Motorsport im Hegau und am Bodensee.</p>
 
-        <main>
-            <h1><i class="fa-solid fa-book-open" style="margin-right: 10px; color: var(--primary-blue);"></i> Geschichte des MCH</h1>
-            
-            <p>Der Motorsportclub Hohentwiel e.V. (MCH Singen) blickt auf eine lange Tradition zurück. Gegründet im Jahr 1954, hat sich der Verein von Anfang an der Förderung des Motorsports in der Region Hegau und Bodensee verschrieben.</p>
-            
-            <p>Während in den Anfangsjahren verschiedenste Motorsportarten im Fokus standen, hat sich der Verein im Laufe der Jahrzehnte spezialisiert. Heute liegt unser Hauptaugenmerk auf der aktiven Jugendarbeit im <strong>Kartslalom</strong> sowie der anspruchsvollen Disziplin des <strong>Trialsports</strong>.</p>
-            
-            <p>Wir sind stolzes Mitglied im Deutschen Motorsport Verband (DMV) und richten regelmäßig eigene Turniere und Meisterschaftsläufe aus.</p>
-        </main>
+        <div class="history-section">
+            <h2><i class="fa-solid fa-flag"></i> 1954: Die Gründung</h2>
+            <p>Als Anfang der 50er Jahre das Motorrad als Fahrzeug immer mehr in Gebrauch kam und Fahrten unternommen wurden, traf man dabei landauf, landab auf ebenso begeisterte Motorradfreunde, die sich in Vereinen oder Clubs zusammengeschlossen hatten. Da fassten sich auch in Singen einige Begeisterte ein Herz und gründeten am <strong>29. Januar 1954</strong> in der damaligen Gaststätte "DEUTSCHER HOF" einen Motorsportclub, den sie nach dem Hausberg der Stadt "Hohentwiel" nannten.</p>
+        </div>
 
-        <footer>
-            <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
-            <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
-            <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr/">Daniel Krieger</a></p>
-        </footer>
+        <figure class="history-img-frame placeholder-frame">
+            <img src="../media/sonstige/image.jpg" alt="MCH Historisches Foto Platzhalter">
+            <figcaption>[Foto einfügen: Gründungsmitglied oder Gaststätte 'Deutscher Hof' 1954]</figcaption>
+        </figure>
 
+        <div class="history-section">
+            <h2><i class="fa-solid fa-motorcycle"></i> Die wilden 60er und 70er Jahre</h2>
+            <p>Ende der 50er-, Anfang der 60er-Jahre machte eine Sportart von sich reden, die heute in unserer Gegend kaum noch ausgetragen wird: das Go-Kart Rennen. Neben Motorrad-Straßenrennen brachten auch Orientierungs- sowie Geschicklichkeitsfahren mit dem Auto großes Interesse am Sportgeschehen.</p>
+            <p>Mitglieder des MCH stiegen ebenfalls auf Rennmaschinen und stellten mit <strong>Toni Schiller</strong> einen Deutschen Meister und Vizemeister im Straßenzuverlässigkeitsfahren. <strong>Mathias Ehinger</strong> wurde Yamaha Cup Sieger. <strong>Norbert Rückert, Walter Schoch und Rainer Kuballa</strong> waren bei Rennen in Augsburg, Hockenheim oder auf dem Nürburgring immer bei denen dabei, welche den Ton angaben!</p>
+            <p>Erfolgreich war auch Formel-3-Pilot <strong>Heinz Schärle</strong>. Er fuhr einen 3. Platz in der Deutschen Formel-3-Meisterschaft im Jahre 1977 heraus. <strong>Peter Derber</strong> wurde sogar 3-maliger Europameister im Auto-Cross auf einem Porsche Carrera.</p>
+        </div>
+
+        <figure class="history-img-frame placeholder-frame">
+            <img src="../media/sonstige/image.jpg" alt="MCH Historisches Foto Platzhalter">
+            <figcaption>[Foto einfügen: Historische Rennmaschine, Toni Schiller oder Heinz Schärle im Formel-3]</figcaption>
+        </figure>
+
+        <div class="history-section">
+            <h2><i class="fa-solid fa-mountain"></i> 1975: Das Aufleben des Trialsports</h2>
+            <p>Im Jahr 1975 waren es Motorsportler wie Gerhard Prutscher, Klaus Moser, Rolf Rossburg und Klaus Jäckle, die den Trial-Sport wieder aufleben ließen. Auch jüngere Nachwuchsfahrer wie Armin und Daniel Prutscher, Heiko Hespeler und Jochen Isak konnten sich für diesen Sport begeistern und diesen auch heute noch aktiv betreiben.</p>
+            <p>Seit 1988 haben die Trial-Sportler des MCH an <strong>ca. 300 Läufen zur Deutschen Meisterschaft</strong> und ca. 180 Läufen zur Süddeutschen Meisterschaft mit großem Erfolg teilgenommen.</p>
+        </div>
+
+        <div class="history-section">
+            <h2><i class="fa-solid fa-house-chimney"></i> 1979: Der eigene Clubraum & Events</h2>
+            <p>1979 erfüllte sich für den MCH ein lang gehegter Wunsch. In Eigenleistung und mit Eigenmitteln konnten wir einen Clubraum in einem städtischen Gebäude herrichten und ausstatten.</p>
+            
+            <p>Seit der Gründung des Vereins im Jahr 1954 wurden unzählige Veranstaltungen durchgeführt, darunter viele Fuchsjagden und Bildersuchfahrten. Eine stolze Bilanz unserer bisherigen Ausrichtungen:</p>
+            
+            <div class="event-list">
+                <ul>
+                    <li>31 Altersheimausfahrten</li>
+                    <li>17 Motorrad Treffen</li>
+                    <li>16 Motorrad Trials</li>
+                    <li>Über 10 Go-Kart Slaloms</li>
+                    <li>5 Motorsport Ausstellungen</li>
+                    <li>4 Fahrrad Trials</li>
+                    <li>3 Brems- und Beschleunigungsprüfungen</li>
+                    <li>2 Go-Kart Rennen</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h2><i class="fa-solid fa-flag-checkered"></i> Die Ära des Alemannenrings & der DTM</h2>
+            <p>Als vorläufiger Höhepunkt in der Vereinsgeschichte folgten in den Jahren 1980 und 1981 zwei Straßenrennen um die Deutsche Motorrad-Meisterschaft, welche im Singener Industriegebiet stattfanden (der spätere <strong>Alemannenring</strong>).</p>
+            <p>In den Jahren 1990 bis 1997 betreute der MCH Singen zudem die DTM und STW Läufe in Singen und Lahr als professionelles Boxenpersonal.</p>
+        </div>
+
+        <figure class="history-img-frame placeholder-frame">
+            <img src="../media/sonstige/image.jpg" alt="MCH Historisches Foto Platzhalter">
+            <figcaption>[Foto einfügen: Action am Alemannenring oder DTM-Betreuung]</figcaption>
+        </figure>
+
+        <div class="history-section">
+            <h2><i class="fa-solid fa-stopwatch"></i> 1996 bis Heute: Kartsport & Arena-Trial</h2>
+            <p>1996 wurde eine Jedermann-Kart-Gruppe ins Leben gerufen, die bereits im darauf folgenden Jahr Meisterschaftsstatus erhielt und bis heute mit großem Erfolg an den Läufen um den Bodensee-Kart-Cup (BKC) nimmt.</p>
+            <p>Um an alte sportliche Traditionen anzuknüpfen, hat der Verein mit dem <strong>Arena-Trial</strong> im Jahre 2008 im Hardtstadion des ESV Südstern Singen einen weiteren spektakulären Höhepunkt in der jüngeren Vereinsgeschichte geschaffen.</p>
+        </div>
+    </main>
+
+    <footer>
+        <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
+        <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr/">Daniel Krieger</a></p>
+    </footer>
 
     <aside id="side-menu">
-        <button class="close-btn" id="close-menu">&times;</button>
+        <button class="close-btn" id="close-menu">×</button>
         <nav>
             <ul>
                 <li><a href="../index.html"><i class="fa-solid fa-house" style="width: 25px;"></i> Startseite</a></li>
-                <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelle News & Termine</a></li>
-                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Über uns</a></li>
+                <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelles</a></li>
+                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Verein & Team</a></li>
                 <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" style="width: 25px;"></i> Kartsport</a></li>
                 <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" style="width: 25px;"></i> Trialsport</a></li>
                 <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" style="width: 25px;"></i> Statistiken</a></li>
-                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Vereins-Shop</a></li>
+                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Shop</a></li>
                 <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" style="width: 25px;"></i> Mitglied werden</a></li>
-                <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren & Links</a></li>
-                <li><a href="geschichte.html" class="menu_current"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte des MCH</a></li>
                 <li><a href="faq.html"><i class="fa-solid fa-circle-question" style="width: 25px;"></i> FAQ</a></li>
-                <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt & Formular</a></li>
+                <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren</a></li>
+                <li><a href="geschichte.html" class="menu_current"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte</a></li>
+                <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt</a></li>
                 <li><a href="archiv.html"><i class="fa-solid fa-box-archive" style="width: 25px;"></i> Archiv</a></li>
-                <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum & Datenschutz</a></li>
+                <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum</a></li>
             </ul>
         </nav>
     </aside>
 
     <script>
+        // --- 1. SIDEBAR & THEME LOGIC ---
         const openMenuBtn = document.getElementById('open-menu');
         const closeMenuBtn = document.getElementById('close-menu');
         const sideMenu = document.getElementById('side-menu');
-
         if (openMenuBtn && closeMenuBtn && sideMenu) {
-            openMenuBtn.addEventListener('click', (e) => {
-                sideMenu.classList.add('open');
-                e.stopPropagation();
-            });
+            openMenuBtn.addEventListener('click', (e) => { sideMenu.classList.add('open'); e.stopPropagation(); });
             closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
-            
-            document.addEventListener('click', (event) => {
-                if (sideMenu.classList.contains('open') && !sideMenu.contains(event.target)) {
-                    sideMenu.classList.remove('open');
-                }
-            });
+            document.addEventListener('click', (e) => { if (sideMenu.classList.contains('open') && !sideMenu.contains(e.target)) sideMenu.classList.remove('open'); });
         }
-
+        
         const themeToggleBtn = document.getElementById('theme-toggle');
         const body = document.body;
-
-        function updateThemeIcon() {
-            if (themeToggleBtn) {
-                if (body.classList.contains('dark-mode')) {
-                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-                } else {
-                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-                }
-            }
-        }
-
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-            body.classList.add('dark-mode');
-        }
+        function updateThemeIcon() { if (themeToggleBtn) themeToggleBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>'; }
+        if (localStorage.getItem('dark-mode') === 'enabled') body.classList.add('dark-mode');
         updateThemeIcon();
-
         if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                if (body.classList.contains('dark-mode')) {
-                    localStorage.setItem('dark-mode', 'enabled');
-                } else {
-                    localStorage.setItem('dark-mode', 'disabled');
-                }
-                updateThemeIcon();
-            });
+            themeToggleBtn.addEventListener('click', () => { body.classList.toggle('dark-mode'); localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled'); updateThemeIcon(); });
         }
-        // --- KLARO BRUTE-FORCE RELOAD ---
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) {
-                setTimeout(() => { window.location.reload(true); }, 400);
-            }
-        });
+        document.addEventListener('click', (e) => { if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) setTimeout(() => { window.location.reload(true); }, 400); });
     </script>
 </body>
 </html>
