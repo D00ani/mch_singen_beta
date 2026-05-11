@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <link rel="icon" type="image/jpeg" href="../media/sonstige/mch.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suche - Motorsportclub Singen Hohentwiel</title>
@@ -31,126 +32,92 @@
             <a href="suche.html" class="search-header-btn" title="Suchen">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </a>
-            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten">
-                </button>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Dark Mode umschalten"></button>
             <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn" title="Folgt uns auf Instagram!">
                 <i class="fa-brands fa-instagram"></i>
             </a>
         </div>
     </header>
-        <main>
-            <h1><i class="fa-solid fa-magnifying-glass" style="margin-right: 10px; color: var(--primary-blue);"></i> Webseite durchsuchen</h1>
-            
-            <form action="suche.html" method="GET" class="main-search-box">
-                <input type="text" name="q" id="main-search-input" placeholder="Suchbegriff eingeben (z.B. Training, Vorstand, Termine...)" required>
-                <button type="submit">Suchen</button>
-            </form>
 
-            <p id="search-info" style="display: none;">Ergebnisse für: <strong id="search-query-display">...</strong></p>
+    <main>
+        <h1><i class="fa-solid fa-magnifying-glass" style="margin-right: 10px; color: var(--primary-blue);"></i> Webseite durchsuchen</h1>
+        
+        <form action="suche.html" method="GET" class="main-search-box">
+            <input type="text" name="q" id="main-search-input" placeholder="Suchbegriff eingeben (z.B. Kosten, Alter, Termine...)" required>
+            <button type="submit">Suchen</button>
+        </form>
 
-            <div class="search-results" id="results-container">
-                </div>
-        </main>
+        <p id="search-info" style="display: none; margin-top: 20px;">Ergebnisse für: <strong id="search-query-display">...</strong></p>
 
-        <footer>
-            <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
-            <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
-            <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr/">Daniel Krieger</a></p>
-        </footer>
+        <div class="search-results" id="results-container">
+        </div>
+    </main>
 
+    <footer>
+        <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. Alle Rechte vorbehalten. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
+        <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr/">Daniel Krieger</a></p>
+    </footer>
 
     <aside id="side-menu">
         <button class="close-btn" id="close-menu">&times;</button>
         <nav>
             <ul>
                 <li><a href="../index.html"><i class="fa-solid fa-house" style="width: 25px;"></i> Startseite</a></li>
-                <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelle News & Termine</a></li>
-                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Über uns</a></li>
+                <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelles</a></li>
+                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Verein & Team</a></li>
                 <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" style="width: 25px;"></i> Kartsport</a></li>
                 <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" style="width: 25px;"></i> Trialsport</a></li>
                 <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" style="width: 25px;"></i> Statistiken</a></li>
-                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank" class="shop-menu-link"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Vereins-Shop</a></li>
-                 <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" style="width: 25px;"></i> Mitglied werden</a></li>
-                <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren & Links</a></li>
-                <li><a href="geschichte.html"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte des MCH</a></li>
-                 <li><a href="faq.html"><i class="fa-solid fa-circle-question" style="width: 25px;"></i> FAQ</a></li>
-                <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt & Formular</a></li>
+                <li><a href="https://mch-singen.teamkleidung24.de/" target="_blank"><i class="fa-solid fa-cart-shopping" style="width: 25px;"></i> MCH Shop</a></li>
+                <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" style="width: 25px;"></i> Mitglied werden</a></li>
+                <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren</a></li>
+                <li><a href="geschichte.html"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte</a></li>
+                <li><a href="faq.html"><i class="fa-solid fa-circle-question" style="width: 25px;"></i> FAQ</a></li>
+                <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt</a></li>
                 <li><a href="archiv.html"><i class="fa-solid fa-box-archive" style="width: 25px;"></i> Archiv</a></li>
-                <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum & Datenschutz</a></li>
+                <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum</a></li>
             </ul>
         </nav>
     </aside>
 
     <script>
-        // --- 1. SIDEBAR LOGIC (Hamburger Menü mit Klick-Schließen) ---
+        // --- 1. SIDEBAR & THEME LOGIC ---
         const openMenuBtn = document.getElementById('open-menu');
         const closeMenuBtn = document.getElementById('close-menu');
         const sideMenu = document.getElementById('side-menu');
-
         if (openMenuBtn && closeMenuBtn && sideMenu) {
-            openMenuBtn.addEventListener('click', (e) => {
-                sideMenu.classList.add('open');
-                e.stopPropagation();
-            });
+            openMenuBtn.addEventListener('click', (e) => { sideMenu.classList.add('open'); e.stopPropagation(); });
             closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
-            
-            document.addEventListener('click', (event) => {
-                if (sideMenu.classList.contains('open') && !sideMenu.contains(event.target)) {
-                    sideMenu.classList.remove('open');
-                }
-            });
+            document.addEventListener('click', (e) => { if (sideMenu.classList.contains('open') && !sideMenu.contains(e.target)) sideMenu.classList.remove('open'); });
         }
-
-        // --- 2. THEME TOGGLE LOGIC (Dark Mode & FontAwesome Icons) ---
+        
         const themeToggleBtn = document.getElementById('theme-toggle');
         const body = document.body;
-
-        function updateThemeIcon() {
-            if (themeToggleBtn) {
-                if (body.classList.contains('dark-mode')) {
-                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-                } else {
-                    themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-                }
-            }
-        }
-
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-            body.classList.add('dark-mode');
-        }
+        function updateThemeIcon() { if (themeToggleBtn) themeToggleBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>'; }
+        if (localStorage.getItem('dark-mode') === 'enabled') body.classList.add('dark-mode');
         updateThemeIcon();
-
         if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                if (body.classList.contains('dark-mode')) {
-                    localStorage.setItem('dark-mode', 'enabled');
-                } else {
-                    localStorage.setItem('dark-mode', 'disabled');
-                }
-                updateThemeIcon();
-            });
+            themeToggleBtn.addEventListener('click', () => { body.classList.toggle('dark-mode'); localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled'); updateThemeIcon(); });
         }
+        document.addEventListener('click', (e) => { if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) setTimeout(() => { window.location.reload(true); }, 400); });
 
-        // --- 3. DIE NEUE, INTELLIGENTE SUCH-LOGIK ---
+        // --- 2. INTELLIGENTE SUCH-LOGIK (Erweitert) ---
         const websiteSeiten = [
-            { url: '../index.html', 
-            titel: 'Startseite',
-             beschreibung: 'Willkommen beim Motorsportclub Singen. Alle Infos zum Verein, Karte und Live-Countdown.', 
-             keywords: 'startseite home homepage willkommen begrüßung verein club motorsport motorsportclub mch singen hohentwiel hegau bodensee bodenseekreis radolfzell konstanz mitgliedschaft mitglied werden beitreten anmeldung info informationen start anfahrt adresse standort karte google maps navigation route wo münchriedstraße timer countdown nächstes rennen heute live sigen hohentwil vereinsgelände gelände platz öffnungszeiten'
-             },
-            { url: 'aktuelles.html', titel: 'Aktuelle News & Termine', beschreibung: 'Lade dir Trainingspläne, Renntermine und aktuelle Wertungen herunter.', keywords: 'aktuell news neuigkeiten termine kalender kalenderdatei ics apple google outlook training trainingsplan samstag uhrzeit wann rennen wertung ergebnis download pdf speichern handy liste plan traning tränig kallender termin bkc trial smartphone importieren kalendereintrag dates veranstaltungen event updates neu renntage' },
-            { url: 'ueber-uns.html', titel: 'Über uns', beschreibung: 'Erfahre mehr über die Geschichte, Philosophie und Werte des MCH Singen.', keywords: 'über uns philosophie geschichte historie werte gemeinschaft vereinsleben dmv deutscher motorsport verband tradition leitbild wer wir sind info mitgliedsbeitrag beitrag satzung ziele zielsetzung ehrenamt zusammenhalt familie jugendarbeit gründung entstehung chronik daniel leon max andi thorsten' },
-            { url: 'kartsport.html', titel: 'Kartsport', beschreibung: 'Alles rund um den Jugendkart-Slalom und unsere Kartsport-Abteilung.', keywords: 'kart kartsport rennkart jugendkart slalom rennen bkc bodensee kart cup meisterschaft schnell gas bremse helm reifen asphalt fahrer motorsport jugend gruppe altersklasse kard cart karts renen rennstrecke alemannenring jugendkartslalom pylone hütchen motor ps geschwindigkeit rennfahrer' },
-            { url: 'trialsport.html', titel: 'Trialsport', beschreibung: 'Motorrad-Beherrschung pur. Infos zu unserer Trial-Abteilung.', keywords: 'trial trialsport motorrad mopped moped balance geschicklichkeit sektion hindernis punkte fehler fehlerfrei meisterschaft süddeutsche fahrer jugend trialer offroad steine gelände trail triel motorad wettbewerb maschine zweirad stufen fahrtechnik gleichgewicht' },
-            { url: 'statistiken.html', titel: 'Statistiken & Erfolge', beschreibung: 'Platzierungen, Wanderpokale und historische Vereinsbestleistungen.', keywords: 'statistik erfolge ergebnisse platzierung tabelle pokal wanderpokal sieger meister rekorde bestleistung hall of fame historie vergleich gewinner erster platz gold silber bronze auswertung rangliste punktestand champion vereinsmeister podest treppchen' },
-            { url: 'vorstand.html', titel: 'Vorstand', beschreibung: 'Lerne unser Team kennen – die Ansprechpartner des MCH Singen.', keywords: 'vorstand team chef präsident leitung ansprechpartner wer leute kontakt vizepräsident kassierer schriftführer sportleiter jugendleiter beisitzer gremium ämter amt funktionäre verantwortliche abteilungsleiter ansprechpersonen leiter' },
-            { url: 'sponsoren-links.html', titel: 'Sponsoren & Links', beschreibung: 'Unsere Unterstützer, befreundete Vereine und nützliche Links.', keywords: 'sponsoren sponsor partner unterstützer geldgeber werbung links freunde netzwerk befreundete vereine danke dankeschön förderer firmen unternehmen spende spender randegger huk coburg daeschle däschle schlegel sparkasse herby bonarek rbr alicke casa de espana sta kanuclub rcsf ac engen widerholdschützen steißlingen' },
-            { url: 'kontakt.html', titel: 'Kontaktformular', beschreibung: 'Schreibe uns eine Nachricht oder finde unsere Kontaktdaten.', keywords: 'kontakt schreiben nachricht email e-mail mail meil telefon anrufen formular frage hilfe erreichbarkeit adresse postanschrift briefkasten fragen melden support whatsapp hallo anfrage brief nummer handynummer' },
-            { url: 'archiv.html', titel: 'Ergebnis-Archiv', beschreibung: 'Historische Ergebnisse, Wertungen und Berichte vergangener Jahre.', keywords: 'archiv früher vergangenheit historie geschichte alte ergebnisse vergangen saison jahre rückblick dokumente alte pläne 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 alt aufzeichnungen vergangenheiten fundgrube' },
-            { url: 'impressum-datenschutz.html#impressum', titel: 'Impressum', beschreibung: 'Rechtliche Angaben und Pflichtinformationen zum Verein.', keywords: 'impressum impress haftung rechtliches kontaktadresse gesetz regeln agb bestimmungen vereinsregister amtsgericht steuernummer inhaber betreiber website paragraph disclaimer recht' },
-            { url: 'impressum-datenschutz.html#datenschutz', titel: 'Datenschutzerklärung (DSGVO)', beschreibung: 'Alle Informationen zur Verarbeitung deiner Daten und zum Datenschutz.', keywords: 'datenschutz dsgvo privacy daten recht privat datenschutzgrundverordnung richtlinie sicherheit cookies tracking dsgwo dsgo datenschmutz privatsphäre löschung datenverarbeitung google analytics speicherung' },
-            { url: 'https://mch-singen.teamkleidung24.de', titel : 'Shop', beschreibung: 'Hier kommst du zu unserem Vereins-Shop', keywords: 'shop t-shirt tshirt pulli puli klamotte klamotten hoodie shirt anzug kleidung bekleidung vereinskleidung teamkleidung fanartikel merch merchandise kaufen bestellen jacke hose cap kappe mütze pullover sweatshirt polo poloshirt kapuzenpullover jogginghose trainingsanzug outfit kollektion ausstattung' }
+            { url: '../index.html', titel: 'Startseite', beschreibung: 'Willkommen beim Motorsportclub Singen. Alle Infos zum Verein, Karte und Live-Countdown.', keywords: 'startseite home homepage willkommen begrüßung verein club motorsport motorsportclub mch singen hohentwiel hegau bodensee bodenseekreis radolfzell konstanz mitgliedschaft anfahrt adresse standort karte google maps navigation route wo münchriedstraße timer countdown live öffnungszeiten' },
+            { url: 'aktuelles.html', titel: 'Aktuelle News & Termine', beschreibung: 'Lade dir Trainingspläne, Renntermine und aktuelle Wertungen herunter.', keywords: 'aktuell news neuigkeiten termine kalender kalenderdatei ics apple google outlook training trainingsplan samstag uhrzeit wann rennen wertung ergebnis download pdf liste plan veranstaltungen event updates' },
+            { url: 'ueber-uns.html', titel: 'Verein & Team', beschreibung: 'Erfahre mehr über unsere Philosophie, den Vorstand und unsere Trainer.', keywords: 'über uns philosophie geschichte historie werte gemeinschaft vereinsleben dmv tradition leitbild wer wir sind vorstand präsident kassierer leitung team trainer betina jochen isak alex brandenburg andi leon thorsten max daniel ansprechpartner' },
+            { url: 'kartsport.html', titel: 'Kartsport', beschreibung: 'Alles rund um den Jugendkart-Slalom und unsere Kartsport-Abteilung.', keywords: 'kart kartsport rennkart jugendkart slalom rennen bkc bodensee kart cup meisterschaft schnell gas bremse helm reifen asphalt fahrer jugend kard cart karts rennstrecke motor ps geschwindigkeit rennfahrer' },
+            { url: 'trialsport.html', titel: 'Trialsport', beschreibung: 'Motorrad-Beherrschung pur. Infos zu unserer Trial-Abteilung.', keywords: 'trial trialsport motorrad mopped moped balance geschicklichkeit sektion hindernis punkte fehler meisterschaft süddeutsche fahrer jugend trialer offroad steine gelände trail triel wettbewerb zweirad fahrtechnik' },
+            { url: 'statistiken.html', titel: 'Statistiken & Erfolge', beschreibung: 'Platzierungen, Wanderpokale und historische Vereinsbestleistungen.', keywords: 'statistik erfolge ergebnisse platzierung tabelle pokal wanderpokal sieger meister rekorde bestleistung hall of fame historie vergleich gewinner erster platz gold silber bronze rangliste punktestand vereinsmeister podest' },
+            { url: 'mitglied-werden.html', titel: 'Mitglied werden & Gebühren', beschreibung: 'Übersicht der Jahresbeiträge, Trainingskosten und Anmeldeformular.', keywords: 'mitglied mitgliedschaft beitreten anmelden anmeldung formular antrag pdf preise kosten geld beitrag jahresbeitrag gebühr gebühren renngebühren dmv kinder jugendliche erwachsene passiv aktiv probetraining' },
+            { url: 'faq.html', titel: 'FAQ - Häufige Fragen', beschreibung: 'Antworten zu Alter, Ausrüstung, Probetraining und Saison.', keywords: 'faq fragen antworten häufig probetraining alter ab wann jahre ausrüstung helm schuhe handschuhe regen wetter nass saison dauer karts ps leistung mach 1 unterschied' },
+            { url: 'sponsoren-links.html', titel: 'Sponsoren & Links', beschreibung: 'Unsere Unterstützer, befreundete Vereine und nützliche Links.', keywords: 'sponsoren sponsor partner unterstützer geldgeber werbung links freunde netzwerk vereine danke förderer firmen spende sparkasse huk coburg randegger herby' },
+            { url: 'geschichte.html', titel: 'Geschichte des MCH', beschreibung: 'Von den Anfängen im "Deutschen Hof" bis heute.', keywords: 'geschichte historie früher vergangenheit alte gründung 1954 entstehung chronik deutscher hof alemannenring dtm stw dtm-betreuung arena-trial' },
+            { url: 'kontakt.html', titel: 'Kontaktformular', beschreibung: 'Schreibe uns eine Nachricht oder finde unsere Kontaktdaten.', keywords: 'kontakt schreiben nachricht email e-mail mail telefon anrufen formular frage hilfe erreichbarkeit adresse postanschrift briefkasten support anfrage nummer handynummer' },
+            { url: 'archiv.html', titel: 'Ergebnis-Archiv', beschreibung: 'Historische Ergebnisse, Wertungen und Berichte vergangener Jahre.', keywords: 'archiv früher vergangenheit historie alte ergebnisse vergangen saison jahre rückblick dokumente 2022 2023 2024 alt aufzeichnungen' },
+            { url: 'impressum-datenschutz.html', titel: 'Impressum & Datenschutz', beschreibung: 'Rechtliche Angaben und Informationen zur Datenverarbeitung (DSGVO).', keywords: 'impressum haftung rechtliches gesetz regeln agb datenschutz dsgvo privacy daten privatsphäre cookies tracking sicherheit' },
+            { url: 'https://mch-singen.teamkleidung24.de', titel: 'MCH Vereins-Shop', beschreibung: 'Hier kommst du zu unserem Shop für Teamkleidung.', keywords: 'shop t-shirt tshirt pulli hoodie shirt kleidung bekleidung vereinskleidung teamkleidung fanartikel merch merchandise kaufen bestellen jacke mütze' }
         ];
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -166,6 +133,7 @@
             
             const treffer = websiteSeiten.filter(seite => {
                 const textToSearch = (seite.titel + " " + seite.beschreibung + " " + seite.keywords).toLowerCase();
+                // Prüft, ob ALLE eingegebenen Wörter im Text vorkommen
                 return searchTerms.every(term => textToSearch.includes(term));
             });
 
@@ -174,25 +142,18 @@
                     let targetAttr = seite.url.startsWith('http') ? 'target="_blank"' : '';
                     
                     resultsContainer.innerHTML += `
-                        <div class="result-item">
-                            <h3><a href="${seite.url}" ${targetAttr}>${seite.titel}</a></h3>
-                            <p>${seite.beschreibung}</p>
+                        <div class="result-item" style="background: #fff; padding: 20px; margin-bottom: 15px; border-radius: 8px; border-left: 4px solid var(--primary-blue); box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <h3 style="margin-top: 0; margin-bottom: 5px;"><a href="${seite.url}" ${targetAttr} style="color: var(--primary-blue); text-decoration: none;">${seite.titel}</a></h3>
+                            <p style="margin: 0; color: #555;">${seite.beschreibung}</p>
                         </div>
                     `;
                 });
             } else {
-                resultsContainer.innerHTML = `<p>Leider haben wir zu "<strong>${rawSearch}</strong>" nichts gefunden. Versuche es mit einem anderen Begriff (z.B. "Training", "DSGVO" oder "Vorstand").</p>`;
+                resultsContainer.innerHTML = `<p style="padding: 20px; background: #fffbe6; border-left: 4px solid #ffcc00; border-radius: 8px;">Leider haben wir zu "<strong>${rawSearch}</strong>" nichts gefunden. Versuche es mit einem anderen Begriff (z.B. "Training", "Kosten" oder "Vorstand").</p>`;
             }
         } else {
             resultsContainer.innerHTML = '<p style="font-size: 1.1rem; color: var(--text-main);">Bitte gib oben einen Suchbegriff ein und klicke auf "Suchen".</p>';
         }
-        // --- KLARO BRUTE-FORCE RELOAD ---
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) {
-                setTimeout(() => { window.location.reload(true); }, 400);
-            }
-        });
     </script>
-
 </body>
 </html>
