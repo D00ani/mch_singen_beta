@@ -136,6 +136,39 @@
                 setTimeout(() => { window.location.reload(true); }, 400);
             }
         });
+        // --- SWIPE GESTURE LOGIC (Seitenleiste per Wisch öffnen/schließen) ---
+        let touchstartX = 0;
+        let touchstartY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchstartX = e.changedTouches[0].screenX;
+            touchstartY = e.changedTouches[0].screenY;
+        }, {passive: true});
+
+        document.addEventListener('touchend', (e) => {
+            let touchendX = e.changedTouches[0].screenX;
+            let touchendY = e.changedTouches[0].screenY;
+            
+            let deltaX = touchendX - touchstartX;
+            let deltaY = Math.abs(touchendY - touchstartY); 
+            
+            // Nur auslösen, wenn es kein vertikales Scrollen war
+            if (deltaY < 50) {
+                // ÖFFNEN: Wisch von Links nach Rechts
+                // "touchstartX < 80" bedeutet: Der Finger MUSS ganz links am Rand ansetzen (rote Linie!)
+                if (deltaX > 60 && touchstartX < 100) {
+                    if (sideMenu && !sideMenu.classList.contains('open')) {
+                        sideMenu.classList.add('open');
+                    }
+                }
+                // SCHLIESSEN: Wisch von Rechts nach Links
+                else if (deltaX < -60) {
+                    if (sideMenu && sideMenu.classList.contains('open')) {
+                        sideMenu.classList.remove('open');
+                    }
+                }
+            }
+        }, {passive: true});
     </script>
 
 </body>

@@ -310,7 +310,7 @@
             if (deltaY < 50) {
                 // ÖFFNEN: Wisch von Links nach Rechts
                 // "touchstartX < 80" bedeutet: Der Finger MUSS ganz links am Rand ansetzen (rote Linie!)
-                if (deltaX > 60 && touchstartX < 80) {
+                if (deltaX > 60 && touchstartX < 100) {
                     if (sideMenu && !sideMenu.classList.contains('open')) {
                         sideMenu.classList.add('open');
                     }
