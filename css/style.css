@@ -1373,3 +1373,52 @@ body.dark-mode .faq-item { background: #1e1e1e; }
 body.dark-mode .faq-answer { background: #252525; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ==========================================================================
+   15. Geschichte & Timeline Styles
+   ========================================================================== */
+.history-section {
+    margin-bottom: 40px;
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 25px;
+    position: relative;
+}
+body.dark-mode .history-section { border-left-color: var(--dark-blue); }
+
+.history-section h2 { margin-top: 0; color: var(--primary-blue); display: flex; align-items: center; }
+body.dark-mode .history-section h2 { color: #4285F4; }
+
+/* Platzhalter für historische Bilder */
+.history-img-box {
+    background: #f8f9fa;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    color: #888;
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+body.dark-mode .history-img-box { background: #2a2a2a; border-color: #444; color: #aaa; }
+.history-img-box i { font-size: 2.5rem; margin-bottom: 10px; color: #ccc; }
+body.dark-mode .history-img-box i { color: #555; }
+
+/* Liste der durchgeführten Events */
+.event-list {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 25px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-blue);
+}
+body.dark-mode .event-list { background: #1e1e1e; border-top-color: var(--dark-blue); }
+.event-list ul { list-style-type: none; padding-left: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+.event-list li { padding-left: 30px; position: relative; font-weight: 500; }
+body.dark-mode .event-list li { color: #e0e0e0; }
+.event-list li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--primary-blue); position: absolute; left: 0; font-size: 1.1rem; }
+body.dark-mode .event-list li::before { color: #4285F4; }

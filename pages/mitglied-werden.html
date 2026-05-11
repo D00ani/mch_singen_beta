@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitglied werden - Motorsportclub Singen Hohentwiel</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/all.min.css">
     
     <script defer type="text/javascript" src="../js/klaro-config.js"></script>
-    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/klaro/dist/klaro.js"></script>
+    <script defer type="text/javascript" src="../js/klaro.js"></script>
 
     <style>
         /* Spezielles Design für die Preis-Boxen */
@@ -51,6 +51,23 @@
             line-height: 1.4;
         }
         body.dark-mode .note-box { background: #332b00; color: #fff; }
+
+        /* NEU: Highlight-Box für das Vereins-Versprechen */
+        .philosophy-box {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: var(--text-main);
+        }
+        body.dark-mode .philosophy-box {
+            background: #112233;
+            border-left-color: #4285F4;
+            color: #e0e0e0;
+        }
 
         /* Grid für die 3 Spalten */
         .membership-grid {
@@ -102,7 +119,11 @@
     </header>
     <main>
         <h1><i class="fa-solid fa-user-plus" style="margin-right: 10px; color: var(--primary-blue);"></i> Mitglied werden & Gebühren</h1>
-        <p>Hier findest du eine Übersicht über alle Beiträge und Gebühren des MCH Singen. Wir freuen uns über jedes neue Gesicht!</p>
+        
+        <div class="philosophy-box">
+            <i class="fa-solid fa-hand-holding-heart" style="color: var(--primary-blue); font-size: 1.2rem; margin-right: 10px;"></i>
+            <strong>Unser Versprechen:</strong> Wir bemühen uns, alle Mitgliedsbeiträge und Trainingsgebühren so gering wie möglich zu halten. Wir arbeiten ehrenamtlich und unser oberstes Ziel ist es, den Motorsport für jeden erschwinglich und zugänglich zu machen! Wir freuen uns über jedes neue Gesicht.
+        </div>
 
         <div class="membership-grid">
             
@@ -110,13 +131,27 @@
                 <h2><i class="fa-solid fa-id-card" style="color: var(--primary-blue); margin-right: 10px;"></i> Jahresbeiträge</h2>
                 <div class="price-box">
                     <div class="price-row">
-                        <span class="price-title">Allgemeiner Beitrag</span>
-                        <span class="price-value"> 30,00 € / Jahr</span>
+                        <span class="price-title">Kinder (unter 12 Jahre)</span>
+                        <span class="price-value">5,00 €</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-title">Jugendliche (12-18 Jahre)</span>
+                        <span class="price-value">10,00 €</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-title">Erwachsene (ab 18 Jahre)</span>
+                        <span class="price-value">15,00 €</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-title">Elternteil (Passiv/Aktiv)</span>
+                        <span class="price-value">15,00 €</span>
                     </div>
                 </div>
                 <div class="note-box">
                     <i class="fa-solid fa-circle-info"></i> <strong>Wichtig bei Minderjährigen:</strong><br>
-                    Bei der Anmeldung von Minderjährigen muss zusätzlich mindestens ein Elternteil als Vereinsmitglied beitreten.
+                    Bei der Anmeldung von Minderjährigen muss zusätzlich mindestens ein Elternteil als Vereinsmitglied beitreten.<br><br>
+                    <i class="fa-solid fa-triangle-exclamation" style="color: #ff9800;"></i> <strong>DMV-Mitgliedschaft:</strong><br>
+                    Jeder Fahrer, der aktiv fährt, muss zwingend zusätzlich eine Mitgliedschaft im DMV (Deutscher Motorsport Verband) abschließen. Die genauen Tarife (z. B. spezielle Familien- oder Jugendbeiträge) findest du auf der <a href="https://www.dmv-motorsport.de/seite/766883/mitgliedschaften-leistungen.html" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">offiziellen Beitrags-Seite des DMV</a>.
                 </div>
             </div>
 
@@ -136,7 +171,7 @@
                         <span class="price-value">15,00 €</span>
                     </div>
                     <div class="price-row">
-                        <span class="price-title">Trail (Erwachsene)</span>
+                        <span class="price-title">Trial (Erwachsene)</span>
                         <span class="price-value">--,00 €</span>
                     </div>
                     <div class="price-row">
@@ -188,7 +223,7 @@
             <ul>
                 <li><a href="../index.html"><i class="fa-solid fa-house" style="width: 25px;"></i> Startseite</a></li>
                 <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width: 25px;"></i> Aktuelles</a></li>
-                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Über uns</a></li>
+                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width: 25px;"></i> Verein & Team</a></li>
                 <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" style="width: 25px;"></i> Kartsport</a></li>
                 <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" style="width: 25px;"></i> Trialsport</a></li>
                 <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" style="width: 25px;"></i> Statistiken</a></li>
@@ -196,7 +231,7 @@
                 <li><a href="mitglied-werden.html" class="menu_current"><i class="fa-solid fa-user-plus" style="width: 25px;"></i> Mitglied werden</a></li>
                 <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" style="width: 25px;"></i> Sponsoren</a></li>
                 <li><a href="geschichte.html"><i class="fa-solid fa-book-open" style="width: 25px;"></i> Geschichte</a></li>
-                 <li><a href="faq.html"><i class="fa-solid fa-circle-question" style="width: 25px;"></i> FAQ</a></li>
+                <li><a href="faq.html"><i class="fa-solid fa-circle-question" style="width: 25px;"></i> FAQ</a></li>
                 <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width: 25px;"></i> Kontakt</a></li>
                 <li><a href="archiv.html"><i class="fa-solid fa-box-archive" style="width: 25px;"></i> Archiv</a></li>
                 <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width: 25px;"></i> Impressum</a></li>
