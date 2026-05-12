@@ -9,97 +9,10 @@
     <link rel="stylesheet" href="../css/all.min.css">
     <script defer type="text/javascript" src="../js/klaro-config.js"></script>
     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/klaro/dist/klaro.js"></script>
+    <script defer type="text/javascript" src="../js/main.js"></script>
 
     <style>
-        /* ==========================================================================
-           Geschichte & Timeline Spezial-Styles (NUR für diese Seite)
-           ========================================================================== */
-        .history-section {
-            margin-bottom: 50px;
-            border-left: 4px solid var(--primary-blue);
-            padding-left: 25px;
-            position: relative;
-        }
-        body.dark-mode .history-section { border-left-color: var(--dark-blue); }
 
-        .history-section h2 { margin-top: 0; color: var(--primary-blue); display: flex; align-items: center; gap: 10px; }
-        body.dark-mode .history-section h2 { color: #4285F4; }
-
-        /* --- NEU: Semantische Fotorahmen für Bilder/Platzhalter --- */
-        .history-img-frame {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 12px; /* Wirkt wie ein Passepartout */
-            margin: 25px auto;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-            display: block;
-            max-width: 650px; /* Begrenzt die Breite auf großen Bildschirmen */
-            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-        }
-        .history-img-frame:hover {
-            transform: translateY(-3px) rotate(1deg); /* Kleiner spielerischer Effekt */
-        }
-
-        .history-img-frame img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            display: block;
-        }
-
-        .history-img-frame figcaption {
-            font-size: 0.9rem;
-            color: #666;
-            text-align: center;
-            padding-top: 12px;
-            font-style: italic;
-            line-height: 1.4;
-        }
-
-        /* Spezial-Style für PLATZHALTER-RAHMEN (Orange/Gestrichelt) */
-        .history-img-frame.placeholder-frame {
-            border: 2px dashed #ff9800; /* Auffällige orange gestrichelte Linie */
-            background: #fffbe6; /* Leicht gelblicher Hintergrund */
-        }
-
-        .history-img-frame.placeholder-frame figcaption {
-            color: #856404;
-            font-weight: 600;
-        }
-
-        /* Dark Mode Anpassungen für die Rahmen */
-        body.dark-mode .history-img-frame {
-            background: #1e1e1e;
-            border-color: #333;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        }
-        body.dark-mode .history-img-frame figcaption {
-            color: #aaa;
-        }
-        body.dark-mode .history-img-frame.placeholder-frame {
-            background: #332b00; /* Dunklerer Gelbton */
-            border-color: #ff9800;
-        }
-        body.dark-mode .history-img-frame.placeholder-frame figcaption {
-            color: #ffc107;
-        }
-
-        /* Liste der durchgeführten Events */
-        .event-list {
-            background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            margin: 25px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-blue);
-        }
-        body.dark-mode .event-list { background: #1e1e1e; border-top-color: var(--dark-blue); }
-        .event-list ul { list-style-type: none; padding-left: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .event-list li { padding-left: 30px; position: relative; font-weight: 500; color: var(--text-main); }
-        body.dark-mode .event-list li { color: #e0e0e0; }
-        .event-list li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--primary-blue); position: absolute; left: 0; font-size: 1.1rem; }
-        body.dark-mode .event-list li::before { color: #4285F4; }
     </style>
 </head>
 <body>
@@ -232,59 +145,6 @@
     </aside>
 
     <script>
-        // --- 1. SIDEBAR & THEME LOGIC ---
-        const openMenuBtn = document.getElementById('open-menu');
-        const closeMenuBtn = document.getElementById('close-menu');
-        const sideMenu = document.getElementById('side-menu');
-        if (openMenuBtn && closeMenuBtn && sideMenu) {
-            openMenuBtn.addEventListener('click', (e) => { sideMenu.classList.add('open'); e.stopPropagation(); });
-            closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('open'));
-            document.addEventListener('click', (e) => { if (sideMenu.classList.contains('open') && !sideMenu.contains(e.target)) sideMenu.classList.remove('open'); });
-        }
-        
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-        function updateThemeIcon() { if (themeToggleBtn) themeToggleBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>'; }
-        if (localStorage.getItem('dark-mode') === 'enabled') body.classList.add('dark-mode');
-        updateThemeIcon();
-        if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', () => { body.classList.toggle('dark-mode'); localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled'); updateThemeIcon(); });
-        }
-        document.addEventListener('click', (e) => { if (e.target.closest('.cm-btn') || e.target.closest('.cn-button')) setTimeout(() => { window.location.reload(true); }, 400); });
-
-        // --- SWIPE GESTURE LOGIC (Seitenleiste per Wisch öffnen/schließen) ---
-        let touchstartX = 0;
-        let touchstartY = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchstartX = e.changedTouches[0].screenX;
-            touchstartY = e.changedTouches[0].screenY;
-        }, {passive: true});
-
-        document.addEventListener('touchend', (e) => {
-            let touchendX = e.changedTouches[0].screenX;
-            let touchendY = e.changedTouches[0].screenY;
-            
-            let deltaX = touchendX - touchstartX;
-            let deltaY = Math.abs(touchendY - touchstartY); 
-            
-            // Nur auslösen, wenn es kein vertikales Scrollen war
-            if (deltaY < 50) {
-                // ÖFFNEN: Wisch von Links nach Rechts
-                // "touchstartX < 80" bedeutet: Der Finger MUSS ganz links am Rand ansetzen (rote Linie!)
-                if (deltaX > 60 && touchstartX < 100) {
-                    if (sideMenu && !sideMenu.classList.contains('open')) {
-                        sideMenu.classList.add('open');
-                    }
-                }
-                // SCHLIESSEN: Wisch von Rechts nach Links
-                else if (deltaX < -60) {
-                    if (sideMenu && sideMenu.classList.contains('open')) {
-                        sideMenu.classList.remove('open');
-                    }
-                }
-            }
-        }, {passive: true});
     </script>
 </body>
 </html>

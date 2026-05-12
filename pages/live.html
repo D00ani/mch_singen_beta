@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="icon" type="image/jpeg" href="../media/sonstige/mch.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE Timing & Export - MCH Singen</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    
+    <script defer src="../js/klaro-config.js"></script>
+    <script defer src="../js/klaro.js"></script>
+    <script defer type="text/javascript" src="../js/main.js"></script>
+    <script defer type="text/javascript" src="../js/live.js"></script>
+
+
+</head>
+<body>
+
+    <header>
+        <button class="hamburger-btn" id="open-menu"><i class="fa-solid fa-bars"></i></button>
+        <a href="../index.html" class="home-link"><img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="header-logo"></a>
+        <div class="header-text-group">
+            <h1>MCH Live-Timing</h1>
+            <p>Echtzeit-Auswertung</p>
+        </div>
+        <div class="social-header">
+            <button id="theme-toggle" class="theme-toggle-btn"></button>
+            <a href="https://www.instagram.com/mch_singen/" target="_blank" class="insta-btn"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <div class="live-header">
+            <span class="live-dot"></span>
+            <h2 style="margin:0; color: var(--live-red); font-size: 1.1rem;">SESSION LIVE</h2>
+        </div>
+
+        <div class="live-actions">
+            <div class="mode-switch">
+                <button class="mode-btn active" id="btn-rennen" onclick="setMode('rennen')">Rennläufe</button>
+                <button class="mode-btn" id="btn-training" onclick="setMode('training')">Training</button>
+            </div>
+            <button class="excel-btn" onclick="exportToExcel()">
+                <i class="fa-solid fa-file-excel"></i> Ergebnisse exportieren (.xlsx)
+            </button>
+        </div>
+
+        <div class="current-driver-box">
+            <div class="driver-info">
+                <h3>Letzter Zielsieg:</h3>
+                <div id="last-driver-name">Bereit...</div>
+            </div>
+            <div class="driver-info" style="text-align: right;">
+                <h3>Zeit:</h3>
+                <div id="last-driver-time" style="color: var(--success-green);">--:--.---</div>
+            </div>
+        </div>
+
+        <div id="boards-container">
+            </div>
+    </main>
+
+    <footer>
+        <img src="../media/sonstige/mch.jpg" alt="MCH Logo" class="footer-logo">
+        <p>© 2026 Motorsportclub Singen Hohentwiel e.V. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
+        <p class="designer-credit">Created by <a href="https://www.instagram.com/dnl_kr/">Daniel Krieger</a></p>
+    </footer>
+
+    <aside id="side-menu">
+        <button class="close-btn" id="close-menu">×</button>
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house" style="width:25px;"></i> Startseite</a></li>
+                <li><a href="aktuelles.html"><i class="fa-solid fa-calendar-days" style="width:25px;"></i> Aktuelles</a></li>
+                <li><a href="ueber-uns.html"><i class="fa-solid fa-users" style="width:25px;"></i> Verein & Team</a></li>
+                <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" style="width:25px;"></i> Kartsport</a></li>
+                <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" style="width:25px;"></i> Trialsport</a></li>
+                <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" style="width:25px;"></i> Statistiken</a></li>
+                <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" style="width:25px;"></i> Mitglied werden</a></li>
+                <li><a href="faq.html"><i class="fa-solid fa-circle-question" style="width:25px;"></i> FAQ</a></li>
+                <li><a href="geschichte.html"><i class="fa-solid fa-book-open" style="width:25px;"></i> Geschichte</a></li>
+                <li><a href="kontakt.html"><i class="fa-solid fa-envelope" style="width:25px;"></i> Kontakt</a></li>
+                <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" style="width:25px;"></i> Impressum</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <script>
+      
+    </script>
+</body>
+</html>
