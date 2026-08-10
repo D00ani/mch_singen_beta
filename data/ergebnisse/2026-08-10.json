@@ -1,6 +1,6 @@
 {
-  "last_update": "14:39:27",
-  "stand_iso": "2026-08-10T14:39:27+02:00",
+  "last_update": "14:40:09",
+  "stand_iso": "2026-08-10T14:40:09+02:00",
   "datum": "10.08.2026",
   "datum_iso": "2026-08-10",
   "veranstaltung": "Bodensee Kart Cup · MCH Singen e.V.",
@@ -47,6 +47,19 @@
     },
     {
       "klasse": "Klasse 2",
+      "lauf": "Gesamt",
+      "platz": 1,
+      "startnummer": 67,
+      "name": "Dan",
+      "club": "MCH Singen",
+      "zeit_raw": "00:34,64",
+      "fehler": "",
+      "zeit_total": "00:34,64",
+      "diff_first": "",
+      "diff_prev": ""
+    },
+    {
+      "klasse": "Klasse 2",
       "lauf": "1. WL",
       "platz": 1,
       "startnummer": 67,
@@ -55,6 +68,19 @@
       "zeit_raw": "00:08,64",
       "fehler": "",
       "zeit_total": "00:08,64",
+      "diff_first": "",
+      "diff_prev": ""
+    },
+    {
+      "klasse": "Klasse 2",
+      "lauf": "2. WL",
+      "platz": 1,
+      "startnummer": 67,
+      "name": "Dan",
+      "club": "MCH Singen",
+      "zeit_raw": "00:26,00",
+      "fehler": "",
+      "zeit_total": "00:26,00",
       "diff_first": "",
       "diff_prev": ""
     },
