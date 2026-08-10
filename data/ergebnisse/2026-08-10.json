@@ -1,6 +1,6 @@
 {
-  "last_update": "09:12:20",
-  "stand_iso": "2026-08-10T09:12:20+02:00",
+  "last_update": "09:23:36",
+  "stand_iso": "2026-08-10T09:23:36+02:00",
   "datum": "10.08.2026",
   "datum_iso": "2026-08-10",
   "veranstaltung": "Bodensee Kart Cup · MCH Singen e.V.",
@@ -10,14 +10,27 @@
       "klasse": "Klasse 3",
       "lauf": "1. WL",
       "platz": 1,
+      "startnummer": 2,
+      "name": "test",
+      "club": "MCH Singen",
+      "zeit_raw": "00:17,03",
+      "fehler": "(24)",
+      "zeit_total": "00:41,03",
+      "diff_first": "",
+      "diff_prev": ""
+    },
+    {
+      "klasse": "Klasse 3",
+      "lauf": "1. WL",
+      "platz": 2,
       "startnummer": 1,
       "name": "www",
       "club": "AC Singen",
       "zeit_raw": "00:26,21",
       "fehler": "(20)",
       "zeit_total": "00:46,21",
-      "diff_first": "",
-      "diff_prev": ""
+      "diff_first": "+00:05,18",
+      "diff_prev": "+00:05,18"
     }
   ]
 }
