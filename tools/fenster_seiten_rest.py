@@ -18,6 +18,7 @@ from tkinter import messagebox, ttk
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import fenster_bausteine as B
+import ferienprogramm_pflege as fp
 import pflege_hilfen as h
 import trainingstermine_import as tti
 import uebersicht
@@ -570,3 +571,138 @@ class SaisonwechselSeite(AssistentSeite):
          "Statistik-Diagramm, Bilder, Copyright-Jahr und die Bundles neu bauen.",
          "technik"),
     ]
+
+
+# ------------------------------------------------------------------
+# Sommerferienprogramm an- und ausschalten
+# ------------------------------------------------------------------
+
+class FerienprogrammSeite(Seite):
+    titel = "Sommerferienprogramm"
+    untertitel = ("Termine und Anmeldelinks für das jeweilige Jahr - und ein Schalter, "
+                  "der die Seite von „Anmeldung läuft“ auf „Termine folgen“ umstellt.")
+
+    def baue(self):
+        self.knopf("Termine & Links bearbeiten", self.bearbeiten, "haupt")
+        self.knopf("Umschalten", self.umschalten)
+        self.knopf("Neu einlesen", self.aktualisieren)
+
+    # -- Anzeige --------------------------------------------------
+    def aktualisieren(self):
+        self.leeren()
+        try:
+            daten = fp.lies()
+        except (OSError, ValueError) as fehler:
+            B.karte(self.inhalt, self.s, uebersicht.FAELLIG,
+                    "data/ferienprogramm.json ist nicht lesbar", str(fehler))
+            return
+
+        an = daten["aktiv"]
+        B.abschnitt(self.inhalt, self.s, "Aktueller Zustand",
+                    "gilt für die Ferienprogramm-Seite und die Karte unter Aktuelles")
+        B.karte(self.inhalt, self.s,
+                uebersicht.LAGE if an else uebersicht.HINWEIS,
+                "Anmeldung läuft" if an else "Programm ist gelaufen",
+                (f"Auf der Seite stehen die Termine {daten['jahr']} und beide Anmeldeknöpfe."
+                 if an else
+                 f"Auf der Seite steht „Termine {daten['jahr'] + 1} folgen“, "
+                 f"die Anmeldeknöpfe zeigen auf die Portal-Startseiten."),
+                "Auf „Programm gelaufen“ stellen" if an else "Auf „Anmeldung läuft“ stellen",
+                self.umschalten)
+
+        B.abschnitt(self.inhalt, self.s, "Hinterlegte Angaben",
+                    "werden beim Umschalten in beide Seiten geschrieben")
+        for beschriftung, teil in (("Ferienprogramm Singen", daten["singen"]),
+                                   ("Ferienprogramm Rielasingen-Worblingen",
+                                    daten["rielasingen"])):
+            B.karte(self.inhalt, self.s, uebersicht.INFO, beschriftung,
+                    f"{teil['datum'] or 'kein Datum hinterlegt'}\n{teil['link']}")
+        B.karte(self.inhalt, self.s, uebersicht.INFO, "Jahr und Ort",
+                f"{daten['jahr']} · {daten['ort']}")
+
+        fehler = fp.pruefe(daten)
+        if fehler:
+            B.abschnitt(self.inhalt, self.s, "Zu klären", None)
+            for zeile in fehler:
+                B.karte(self.inhalt, self.s, uebersicht.FAELLIG, zeile)
+
+    # -- Aktionen -------------------------------------------------
+    def _felder(self):
+        return [
+            {"schluessel": "jahr", "beschriftung": "Jahr",
+             "hinweis": "Das Jahr, um das es geht. Bei „Programm gelaufen“ zeigt die "
+                        "Seite automatisch das Folgejahr an.",
+             "pruefer": self._jahr_pruefen},
+            {"schluessel": "singen_datum", "beschriftung": "Datum Singen",
+             "hinweis": "So wie es auf der Seite stehen soll, z. B. Sa, 07.08.2027",
+             "pflicht": False},
+            {"schluessel": "singen_link", "beschriftung": "Link Singen",
+             "hinweis": "Anmeldeseite im Portal der Stadt Singen",
+             "pruefer": self._link_pruefen},
+            {"schluessel": "rielasingen_datum", "beschriftung": "Datum Rielasingen",
+             "hinweis": "z. B. So, 08.08.2027", "pflicht": False},
+            {"schluessel": "rielasingen_link", "beschriftung": "Link Rielasingen",
+             "hinweis": "Anmeldeseite im Portal Rielasingen-Worblingen",
+             "pruefer": self._link_pruefen},
+            {"schluessel": "ort", "beschriftung": "Ort"},
+        ]
+
+    @staticmethod
+    def _jahr_pruefen(wert):
+        if not wert.strip().isdigit() or not (2000 <= int(wert) <= 2100):
+            return "Bitte eine Jahreszahl wie 2027 eintragen."
+        return None
+
+    @staticmethod
+    def _link_pruefen(wert):
+        if not wert.strip().startswith("http"):
+            return "Bitte die vollständige Adresse mit https:// eintragen."
+        return None
+
+    def bearbeiten(self):
+        daten = fp.lies()
+        werte = B.frage_formular(
+            self.rahmen, self.s, "Ferienprogramm bearbeiten", self._felder(),
+            {"jahr": str(daten["jahr"]),
+             "singen_datum": daten["singen"]["datum"],
+             "singen_link": daten["singen"]["link"],
+             "rielasingen_datum": daten["rielasingen"]["datum"],
+             "rielasingen_link": daten["rielasingen"]["link"],
+             "ort": daten["ort"]},
+            einleitung="Die Datumsfelder dürfen leer bleiben, solange die Termine noch "
+                       "nicht feststehen — dann muss der Schalter aber auf "
+                       "„Programm gelaufen“ stehen.")
+        if not werte:
+            return
+        werte["jahr"] = int(werte["jahr"])
+        self._schreiben(**werte)
+
+    def umschalten(self):
+        daten = fp.lies()
+        neu = not daten["aktiv"]
+        if neu:
+            probe = dict(daten, aktiv=True)
+            fehlt = fp.pruefe(probe)
+            if fehlt:
+                messagebox.showwarning(
+                    "Angaben fehlen",
+                    "Damit die Anmeldung laufen kann, fehlt noch:\n\n"
+                    + "\n".join("• " + f for f in fehlt)
+                    + "\n\nBitte zuerst „Termine & Links bearbeiten“.")
+                return
+        self._schreiben(aktiv=neu)
+
+    def _schreiben(self, **felder):
+        try:
+            daten, bericht = fp.setze(**felder)
+        except (OSError, ValueError) as fehler:
+            messagebox.showerror("Nicht gespeichert", str(fehler))
+            return
+        self.aktualisieren()
+        self.app.fuss_auffrischen()
+        messagebox.showinfo(
+            "Gespeichert",
+            ("Die Anmeldung läuft jetzt." if daten["aktiv"]
+             else "Die Seite zeigt jetzt „Termine folgen“.")
+            + ("\n\n" + "\n".join(bericht) if bericht
+               else "\n\nDie Seiten standen schon so."))

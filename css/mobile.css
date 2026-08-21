@@ -25,9 +25,8 @@
         padding: 10px 12px 10px 58px;
         min-height: unset;
         height: auto;
-        background: linear-gradient(135deg, rgba(0, 65, 195, 0.98), rgba(0, 18, 72, 0.98));
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+        /* Deckend wie auf dem Desktop, siehe css/header.css. */
+        background: linear-gradient(135deg, #0041c3, #001248);
         box-shadow: 0 5px 24px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.14);
         border-radius: 16px;
         gap: 0;
@@ -253,11 +252,6 @@
     /* =====================
        LIVE / STATISTIKEN
        ===================== */
-    /* Header-Nav auf Mobile ausblenden (Sidebar übernimmt Navigation) */
-    .header-nav {
-        display: none;
-    }
-
     /* CTA-Button auf Mobile ausblenden */
     .header-cta-btn {
         display: none;
@@ -295,3 +289,91 @@
     }
 }
 
+
+/* =============================================
+   TABELLEN AUF SCHMALEN BILDSCHIRMEN
+   =============================================
+   Die vier Tabellen der Seite (Kart-Klassen, Top-Platzierungen, zwei
+   Wanderpokal-Listen) hatten min-width: 550px in einem quer scrollenden
+   Kasten. Auf einem 390er Handy war der Kasten 274 bis 326px breit - man
+   musste also bei JEDER Tabelle seitlich wischen, um die hinteren Spalten
+   zu sehen. Bei der Tabelle "Top-Platzierungen" mit fuenf Spalten war
+   davon nicht einmal die Haelfte sichtbar.
+
+   Unter 700px wird deshalb gestapelt: jede Zeile ist ein Block, jede Zelle
+   eine Zeile aus Spaltenname (links) und Wert (rechts). Die Spaltennamen
+   kommen aus data-spalte, gesetzt in js/main.js Abschnitt 17.
+   ============================================= */
+@media (max-width: 700px) {
+
+    /* Kein Querscrollen mehr noetig - der Kasten darf mitwachsen. */
+    .table-responsive {
+        overflow-x: visible;
+        margin-bottom: 22px;
+    }
+
+    table.stats-table {
+        min-width: 0;
+        display: block;
+    }
+
+    /* Der Kopf bleibt fuer Vorleseprogramme erhalten, ist aber nicht mehr
+       sichtbar - die Beschriftung steht ab hier in jeder Zelle. */
+    table.stats-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    table.stats-table tbody { display: block; }
+
+    table.stats-table tbody tr {
+        display: block;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-soft);
+    }
+
+    table.stats-table tbody tr:last-child { border-bottom: none; }
+
+    table.stats-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        padding: 4px 14px;
+        border-bottom: none;
+        text-align: right;
+        line-height: 1.45;
+    }
+
+    /* Spaltenname vor dem Wert. Fehlt das Attribut (kein JavaScript),
+       bleibt der Wert einfach ohne Beschriftung stehen - die Tabelle ist
+       dann immer noch lesbar, nur knapper. */
+    table.stats-table tbody td::before {
+        content: attr(data-spalte);
+        flex: 0 0 auto;
+        max-width: 45%;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.82rem;
+        color: var(--text-light);
+    }
+
+    /* Der Flaechenton der Erwachsenenklassen sitzt auf den Zellen. Damit
+       der Block nicht gestreift wirkt, uebernimmt ihn die ganze Zeile. */
+    table.stats-table tr.kart-class-adult {
+        background-color: var(--surface-muted);
+        border-radius: 6px;
+    }
+
+    table.stats-table tr.kart-class-adult td { background-color: transparent; }
+
+    /* Beim Stapeln gibt es keine Zeile zum Hervorheben. */
+    table.stats-table tr:hover td { background-color: transparent; }
+}

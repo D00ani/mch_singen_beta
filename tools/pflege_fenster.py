@@ -25,24 +25,62 @@ from tkinter import messagebox, ttk
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-import aenderungsprotokoll
-import fenster_bausteine as B
-import fenster_seiten as S
-import fenster_seiten_inhalte as I
-import fenster_seiten_personen as P
-import fenster_seiten_rest as R
-import fenster_seiten_sponsoren as SP
-import fenster_seiten_statistik as ST
-import fenster_seiten_technik as TE
-import fenster_seiten_texte as T
-import jaehrliches_update
-import pflege_hilfen as h
-import pruefe_seite
-import statusseite
-import update_sitemap
+# Die Fehlerdatei schon HIER festlegen, nicht erst nach den Importen: geht
+# einer der Importe schief, muss die Meldung trotzdem irgendwo landen.
+FEHLERDATEI = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "tools", "letzter-fehler.txt")
+
+
+def _fehler_festhalten(bericht):
+    """Beim Start ueber webseiten-fenster.bat laeuft das Programm ohne
+    Konsole - eine Fehlermeldung waere sonst spurlos weg."""
+    try:
+        with open(FEHLERDATEI, "w", encoding="utf-8") as datei:
+            datei.write(bericht)
+    except OSError:
+        pass
+
+
+def _startfehler_melden(bericht):
+    """Datei schreiben und, wenn moeglich, ein Fenster zeigen."""
+    _fehler_festhalten(bericht)
+    try:
+        notfenster = tk.Tk()
+        notfenster.withdraw()
+        messagebox.showerror(
+            "Fehler beim Start",
+            bericht + "\n\nDieser Text steht auch in:\n" + FEHLERDATEI)
+        notfenster.destroy()
+    except Exception:
+        pass   # ohne funktionierendes Tk bleibt nur die Datei
+
+
+# Die Projekt-Module abgesichert laden. Frueher standen die Importe blank
+# hier - ein Fehler darin (z. B. weil sys.stdout unter pythonw.exe None ist)
+# hat das Programm beendet, BEVOR main() mit seiner Fehlerbehandlung dran
+# war. Beim Doppelklick sah das so aus, als passiere einfach nichts.
+try:
+    import aenderungsprotokoll
+    import fenster_bausteine as B
+    import fenster_seiten as S
+    import fenster_seiten_inhalte as I
+    import fenster_seiten_personen as P
+    import fenster_seiten_rest as R
+    import fenster_seiten_sponsoren as SP
+    import fenster_seiten_statistik as ST
+    import fenster_seiten_technik as TE
+    import fenster_seiten_texte as T
+    import jaehrliches_update
+    import pflege_hilfen as h
+    import pruefe_seite
+    import statusseite
+    import update_sitemap
+except BaseException:
+    _startfehler_melden(traceback.format_exc())
+    raise
 
 ROOT = h.ROOT
-FEHLERDATEI = os.path.join(ROOT, "tools", "letzter-fehler.txt")
 
 # Seiten, die es im Fenster selbst gibt
 SEITEN = {
@@ -63,6 +101,7 @@ SEITEN = {
     "trainingstermine": R.TrainingstermineSeite,
     "rennwochenende":   R.RennwochenendeSeite,
     "saisonwechsel":    R.SaisonwechselSeite,
+    "ferienprogramm":   R.FerienprogrammSeite,
     "verlauf":    R.VerlaufSeite,
 }
 
@@ -85,6 +124,7 @@ MODUL_ZU_SEITE = {
     "trainingstermine_import": "trainingstermine",
     "rennwochenende":    "rennwochenende",
     "saisonwechsel":     "saisonwechsel",
+    "ferienprogramm_pflege": "ferienprogramm",
 }
 
 # Seitenleiste: (Gruppe, [(Beschriftung, Ziel)])
@@ -105,6 +145,7 @@ WERKZEUGE = [
         ("Sponsoren & Links", "#sponsoren"),
         ("Vorstand & Trainer", "#team"),
         ("Fragen & Antworten", "#faq"),
+        ("Sommerferienprogramm", "#ferienprogramm"),
         ("Bilder aufnehmen", "#bilder"),
     ]),
     ("Nachsehen", [
@@ -484,16 +525,6 @@ class VeroeffentlichenFenster:
                                      text="Erneut versuchen")
 
         self.eltern.fuss_auffrischen()
-
-
-def _fehler_festhalten(bericht):
-    """Beim Start ueber webseiten-fenster.bat laeuft das Programm ohne
-    Konsole - eine Fehlermeldung waere sonst spurlos weg."""
-    try:
-        with open(FEHLERDATEI, "w", encoding="utf-8") as datei:
-            datei.write(bericht)
-    except OSError:
-        pass
 
 
 def main():
