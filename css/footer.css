@@ -16,116 +16,19 @@ footer {
     position: relative;
 }
 
-/* ── Simple footer layout (logo + nav + text) ── */
-.footer-logo-link {
-    display: block;
-    width: fit-content;
-    margin: 28px auto 14px auto;
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(255, 204, 0, 0.2);
-}
-
-footer > .footer-logo-link img.footer-logo,
-footer > img.footer-logo {
-    display: block;
-    height: 46px;
-    width: auto;
-    border-radius: 8px;
-    opacity: 0.9;
-    transition: opacity 0.2s;
-    margin: 0 auto;
-}
-
-footer > .footer-logo-link:hover img.footer-logo,
-footer > img.footer-logo:hover {
-    opacity: 1;
-}
-
-/* Club-Name unter Logo */
-.footer-club-name {
-    display: block;
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.75);
-    letter-spacing: 0.5px;
-    margin: 0 0 16px 0;
-}
-
-/* Footer Schnell-Nav */
-.footer-quick-nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    margin: 0 auto 18px auto;
-    padding: 0 20px;
-    list-style: none;
-}
-
-.footer-quick-nav li a {
-    color: rgba(255, 255, 255, 0.72) !important;
-    text-decoration: none !important;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
-}
-
-.footer-quick-nav li a:hover {
-    color: var(--accent) !important;
-}
-
-/* Trennlinie vor Copyright */
-.footer-rule {
-    display: block;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.12);
-    margin: 0 auto 14px auto;
-    max-width: 400px;
-}
-
-footer > p {
-    text-align: center;
-    font-size: 0.82rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.68);
-    margin: 0 0 6px 0;
-    padding: 0 20px;
-}
-
-footer > p a {
-    color: rgba(255, 255, 255, 0.8) !important;
-    transition: color 0.2s;
-}
-
-footer > p a:hover {
-    color: #ffffff !important;
-}
-
-footer > p:last-child {
-    padding-bottom: 22px;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .footer-logo-link {
-        margin: 20px auto 10px auto;
-    }
-    .footer-quick-nav {
-        gap: 4px 14px;
-    }
-    .footer-quick-nav li a {
-        font-size: 0.75rem;
-    }
-}
+/* Die frueher hier stehende "einfache" Fassung (mittiges Logo, Vereinsname,
+   Linkzeile, Copyright) ist entfallen. Sie stand zwar im HTML jeder Seite,
+   wurde aber nie angezeigt: js/main.js hat den Fussbereich beim Laden
+   komplett per innerHTML ueberschrieben. Jetzt gibt es nur noch EINE
+   Fassung - die Spaltenfassung unten - und die steht im Markup. */
 
 /* ── 3-Spalten-Grid ──
    Gleiche Ausrichtung wie Kopfzeile und Inhalt: die dunkle Flaeche geht
    randlos ueber das Fenster, der Inhalt sitzt in der Inhaltsspalte. */
 .footer-inner {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: 1.5fr 1.15fr 0.9fr 0.9fr;
+    gap: 40px;
     padding-top: 52px;
     padding-bottom: 42px;
     padding-inline: max(50px, calc((100% - var(--content-width)) / 2));
@@ -194,6 +97,53 @@ footer > p:last-child {
     color: #e1306c;
 }
 
+/* ── Kontakt- und Trainingsspalte ──
+   Die Trainingszeit stand bisher nirgends im Fussbereich - genau dort
+   sucht man sie aber zuerst. Anschrift, Telefon und Mailadresse bleiben
+   bewusst draussen: sie stehen im Impressum und auf der Kontaktseite,
+   jeder weitere Ort waere eine weitere Stelle, die bei einer Umstellung
+   mitgepflegt werden muss. Der Verweis geht deshalb aufs Formular. */
+.footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 11px;
+    font-size: 0.87rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.footer-contact li i {
+    flex-shrink: 0;
+    width: 14px;
+    margin-top: 0.34em;
+    font-size: 0.76rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-contact a {
+    color: rgba(255, 255, 255, 0.82) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+}
+
+.footer-contact a:hover { color: #fff !important; }
+
+/* Rechtsverweise in der Unterzeile */
+.footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+}
+
 /* ── Spaltenüberschriften ── */
 .footer-heading {
     font-size: 0.66rem !important;
@@ -206,6 +156,11 @@ footer > p:last-child {
     border: none !important;
     padding: 0 !important;
 }
+
+/* Zweite Ueberschrift in derselben Spalte braucht Luft nach oben. Muss
+   NACH .footer-heading stehen: beide Regeln sind !important und gleich
+   spezifisch, es gewinnt also die spaetere. */
+.footer-heading--spaced { margin-top: 26px !important; }
 
 /* ── Link-Listen ── */
 .footer-links {
@@ -277,24 +232,6 @@ footer > p:last-child {
     color: #ffffff !important;
 }
 
-.designer-credit {
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.28) !important;
-    margin: 0 !important;
-    opacity: 1 !important;
-}
-
-.designer-credit a {
-    color: rgba(255, 255, 255, 0.72) !important;
-    text-decoration: none !important;
-    font-weight: 600;
-    transition: color 0.2s;
-}
-
-.designer-credit a:hover {
-    color: var(--accent) !important;
-}
-
 /* ── Mobile ── */
 @media (max-width: 768px) {
     .footer-inner {
@@ -310,34 +247,6 @@ footer > p:last-child {
         text-align: center;
     }
 
-    /* Einfacher Footer (ohne .footer-inner) */
-    footer {
-        padding: 16px 20px 14px;
-        text-align: center;
-    }
-
-    footer > img.footer-logo {
-        height: 32px;
-        width: auto;
-        display: block;
-        margin: 0 auto 8px auto;
-        opacity: 0.85;
-    }
-
-    footer > p {
-        font-size: 0.72rem;
-        line-height: 1.5;
-        margin: 3px 0;
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    footer > p a {
-        color: rgba(255, 255, 255, 0.55) !important;
-    }
-
-    .designer-credit {
-        font-size: 0.68rem !important;
-    }
 }
 
 @media (min-width: 769px) and (max-width: 900px) {

@@ -427,6 +427,28 @@ Dann im Menü wählen:
     zurückverwandelt, es geht also nichts verloren. Verweist ein Link auf
     eine Seite, die es nicht gibt, warnt das Werkzeug sofort.
 
+ 5e) Sommerferienprogramm an- und ausschalten
+    Das Ferienprogramm ist ein paar Wochen im Jahr aktuell und den Rest der
+    Zeit vorbei. Beides stand bisher an vier Stellen im HTML und musste von
+    Hand nachgezogen werden - jetzt hält das Werkzeug alle vier aus einem
+    Datensatz aktuell (data/ferienprogramm.json):
+        pages/sommerferienprogramm.html   Terminkasten, "Auf einen Blick",
+                                          Kasten "Anmeldung"
+        pages/aktuelles.html              die Karte im Abschnitt Ferienprogramm
+    Zwei Zustände:
+        AN   Termine stehen fest, die Knöpfe zeigen auf die Anmeldeseiten
+        AUS  Programm gelaufen, die Seite sagt "Termine <Folgejahr> folgen"
+             und die Knöpfe zeigen auf die Portal-Startseiten
+    Ablauf im neuen Jahr: "Termine & Links bearbeiten" (Jahr, beide Daten,
+    beide Portal-Links), dann "Umschalten" auf AN. Nach dem Programm einmal
+    "Umschalten" auf AUS - mehr ist nicht zu tun.
+    Ohne Termine lässt sich nicht auf AN schalten, das Werkzeug sagt dann,
+    was noch fehlt. Die Links werden immer geprüft, weil sie in beiden
+    Zuständen auf der Seite stehen.
+    Die Blöcke im HTML stehen zwischen <!-- FP:... --> und <!-- /FP:... -->.
+    Von Hand geändert wird das beim nächsten Umschalten überschrieben.
+    Ohne Fenster: python tools/ferienprogramm_pflege.py [--an|--aus]
+
  6) Bilder aufnehmen (WebP + HTML-Block)        -> Abschnitt 7
  6b) Vorschau im Browser
     Startet einen kleinen Webserver auf diesem Rechner und öffnet die Seite
