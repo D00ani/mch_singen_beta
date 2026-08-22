@@ -122,7 +122,10 @@ header > * {
    statt Versalien. Der Name traegt allein, er muss nicht schreien. */
 .header-text .header-title {
     font-family: var(--font-heading);
-    font-size: clamp(0.8rem, 0.45rem + 1.05vw, 1.3rem);
+    /* Untergrenze von 0.8rem auf 0.95rem: bei 390px Breite stand der
+       Vereinsname vorher bei 13px und war damit kleiner als der
+       Fliesstext daneben (16px) - ausgerechnet der Name des Vereins. */
+    font-size: clamp(0.95rem, 0.45rem + 1.05vw, 1.3rem);
     font-weight: 700;
     letter-spacing: -0.01em;
     margin: 0;

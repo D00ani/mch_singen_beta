@@ -249,6 +249,21 @@ nav ul li.nav-section-label {
     color: rgba(255, 255, 255, 0.62);
 }
 
+/* Safari auf dem iPhone zoomt die Seite hinein, sobald man in ein Feld
+   tippt, dessen Schrift kleiner als 16px ist - und zoomt nicht wieder
+   heraus. Auf dem Handy ist das Suchfeld deshalb genau 16px, am Rechner
+   bleibt es klein. Gleiches gilt fuer die Antippflaeche: 36px waren zu
+   wenig. */
+@media (max-width: 768px) {
+    .sidebar-search input {
+        font-size: 16px;
+        padding: 11px 12px;
+        min-height: 44px;
+    }
+
+    .sidebar-search-row button { min-width: 44px; min-height: 44px; }
+}
+
 .sidebar-search input:focus {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(0, 71, 204, 0.7);

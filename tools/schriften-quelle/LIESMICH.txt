@@ -1,0 +1,28 @@
+UNVERAENDERTE FONT-AWESOME-ORIGINALE
+====================================
+
+Diese Dateien sind die vollstaendige Font-Awesome-Auslieferung, so wie sie
+frueher direkt unter css/ und webfonts/ lag. Sie werden von der Webseite
+NICHT geladen - sie sind die Vorlage fuer tools/icons_bauen.py.
+
+Warum das hier liegt
+--------------------
+Die ausgelieferten Dateien unter css/all.min.css und webfonts/fa-*.woff2
+enthalten nur noch die Symbole, die auf der Seite wirklich vorkommen
+(rund 60 von 1970). Das spart pro Seitenaufruf etwa 270 KB.
+
+Damit sich das wiederholen laesst - etwa wenn ein neues Symbol dazukommt -
+muss die vollstaendige Fassung erhalten bleiben. Aus ihr wird jedes Mal neu
+ausgeduennt.
+
+Neu bauen
+---------
+    python tools/icons_bauen.py
+
+Auf den vollen Umfang zurueck
+-----------------------------
+    python tools/icons_bauen.py --alles-zurueck
+
+Beim Aktualisieren von Font Awesome
+-----------------------------------
+Die neuen Originaldateien hier ersetzen, dann icons_bauen.py laufen lassen.

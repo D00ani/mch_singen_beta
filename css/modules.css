@@ -712,10 +712,17 @@ body.dark-mode .news-card--highlight {
 
 .trainer-info { padding: 20px 18px; }
 
+/* Steht auf ueber-uns.html an einem h3 (dort ist jede Person ein Abschnitt),
+   auf trialsport.html an einem p (dort sind es Bildunterschriften, keine
+   Abschnitte). Schrift und Gewicht deshalb hier setzen statt sie vom
+   h3-Grundstil zu erben - sonst saehen die beiden unterschiedlich aus. */
 .trainer-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
     font-size: var(--text-xl);
     color: var(--primary-blue);
     margin: 0 0 10px 0;
+    max-width: none;
     letter-spacing: -0.01em;
 }
 
@@ -1085,9 +1092,20 @@ body.dark-mode .sugg-item {
     box-shadow: var(--shadow-md);
 }
 
-.info-card h3 {
+/* Auf der Trialseite sind die Kartenueberschriften jetzt h2 statt h3 (vorher
+   sprang die Gliederung von h1 direkt auf h3). Damit sich am Aussehen nichts
+   aendert, gilt dieselbe Regel fuer beide - und die Unterlinie, die main h2
+   mitbringt, faellt in der Karte wieder weg. */
+.info-card h3,
+.info-card h2 {
     margin-top: 0;
     color: var(--primary-blue);
+}
+
+.info-card h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: var(--text-lg);
 }
 
 .secondary-btn {

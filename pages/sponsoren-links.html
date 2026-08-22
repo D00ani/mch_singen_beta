@@ -38,6 +38,11 @@
     document.body.classList.add('dark-mode');}catch(e){}})();
     </script>
 
+    <!-- Erste Station fuer Tastatur und Screenreader: ueberspringt Kopfzeile
+         und Navigation. Sichtbar wird der Verweis erst beim Antabben
+         (css/style.css, .skip-link). Stand frueher nur in js/main.js -
+         ohne JavaScript gab es ihn dadurch gar nicht. -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
     <header>
         <div class="logo-container">
             <a href="../index.html">
@@ -109,7 +114,7 @@
         <i class="fa-solid fa-bars"></i>
     </button>
 
-    <main>
+    <main id="main-content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Startseite</a>
             <span class="breadcrumb-sep" aria-hidden="true">/</span>
@@ -246,18 +251,18 @@
                 </a>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Kontakt</h3>
+                <h2 class="footer-heading">Kontakt</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="kontakt.html">Kontaktformular</a></li>
                 </ul>
-                <h3 class="footer-heading footer-heading--spaced">Kart-Training</h3>
+                <h2 class="footer-heading footer-heading--spaced">Kart-Training</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i><span>Samstags 9:00 &ndash; 13:30 Uhr</span></li>
                     <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Münchriedstraße 10<br>78224 Singen (Hohentwiel)</span></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Sport</h3>
+                <h2 class="footer-heading">Sport</h2>
                 <ul class="footer-links">
                     <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
                     <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
@@ -267,7 +272,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Verein</h3>
+                <h2 class="footer-heading">Verein</h2>
                 <ul class="footer-links">
                     <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
                     <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Mitglied werden</a></li>
@@ -298,7 +303,7 @@
         
         <div class="sidebar-search">
             <form action="suche.html" method="GET" class="sidebar-search-row">
-                <input type="text" name="q" placeholder="Seite suchen...">
+                <input type="text" name="q" placeholder="Seite suchen..." aria-label="Seite suchen">
                 <button type="submit" title="Suchen"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

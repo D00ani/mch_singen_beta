@@ -38,6 +38,11 @@
     document.body.classList.add('dark-mode');}catch(e){}})();
     </script>
 
+    <!-- Erste Station fuer Tastatur und Screenreader: ueberspringt Kopfzeile
+         und Navigation. Sichtbar wird der Verweis erst beim Antabben
+         (css/style.css, .skip-link). Stand frueher nur in js/main.js -
+         ohne JavaScript gab es ihn dadurch gar nicht. -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
     <header>
         <div class="logo-container">
             <a href="../index.html">
@@ -109,7 +114,7 @@
         <i class="fa-solid fa-bars"></i>
     </button>
 
-        <main>
+        <main id="main-content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Startseite</a>
             <span class="breadcrumb-sep" aria-hidden="true">/</span>
@@ -135,7 +140,7 @@
                     <div class="gallery-hover-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                 </div>
                 <div class="trainer-info" style="text-align: center;">
-                    <h3 class="trainer-name" style="margin-bottom: 5px;">Fokus & Konzentration</h3>
+                    <p class="trainer-name" style="margin-bottom: 5px;">Fokus &amp; Konzentration</p>
                     <p class="member-role" style="font-size: 0.9rem;">Fehlerfrei durch die Sektion</p>
                 </div>
             </div>
@@ -149,7 +154,7 @@
                     <div class="gallery-hover-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                 </div>
                 <div class="trainer-info" style="text-align: center;">
-                    <h3 class="trainer-name" style="margin-bottom: 5px;">Perfekte Balance</h3>
+                    <p class="trainer-name" style="margin-bottom: 5px;">Perfekte Balance</p>
                     <p class="member-role" style="font-size: 0.9rem;">Körperbeherrschung pur</p>
                 </div>
             </div>
@@ -157,7 +162,7 @@
         </div>
 
         <div class="kart-lightbox" id="kart-lightbox" onclick="closeLightbox()">
-            <button class="kart-lightbox-close" onclick="event.stopPropagation(); closeLightbox()">
+            <button class="kart-lightbox-close" aria-label="Bildansicht schließen" onclick="event.stopPropagation(); closeLightbox()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <img src="" alt="" id="lightbox-img" onclick="event.stopPropagation()">
@@ -166,7 +171,7 @@
         <div class="section-divider"></div>
 
         <section class="info-card" style="margin-bottom: 25px;">
-            <h3>Was macht Trial aus?</h3>
+            <h2>Was macht Trial aus?</h2>
             <p style="margin-bottom: 20px;">Im Gegensatz zum klassischen Rennsport zählen hier völlig andere Werte. Das ist das Profil eines Trial-Fahrers:</p>
             
             <div class="skill-wrapper">
@@ -191,7 +196,7 @@
         </section>
 
         <section class="info-card" style="margin-bottom: 25px;">
-            <h3>Trialtermine & Meisterschaften</h3>
+            <h2>Trialtermine &amp; Meisterschaften</h2>
             <p>Die aktuellen Termine zu Trialsportveranstaltungen, Meisterschaftsläufen und Ergebnissen in unserer Region findest Du immer aktuell auf unserer Partnerseite:</p>
             
             <div style="margin-top: 15px;">
@@ -204,7 +209,7 @@
         <div class="section-divider"></div>
 
         <section class="info-card" style="margin-bottom: 25px;">
-            <h3>Faszination Trialsport</h3>
+            <h2>Faszination Trialsport</h2>
             <p>Du bist beeindruckt von der unglaublichen Körperbeherrschung und möchtest dir das Ganze einmal aus der Nähe ansehen?</p>
             
             <p style="margin-top: 10px; color: var(--text-light);">
@@ -233,18 +238,18 @@
                     </a>
                 </div>
                 <div class="footer-col">
-                    <h3 class="footer-heading">Kontakt</h3>
+                    <h2 class="footer-heading">Kontakt</h2>
                     <ul class="footer-contact">
                         <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="kontakt.html">Kontaktformular</a></li>
                     </ul>
-                    <h3 class="footer-heading footer-heading--spaced">Kart-Training</h3>
+                    <h2 class="footer-heading footer-heading--spaced">Kart-Training</h2>
                     <ul class="footer-contact">
                         <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i><span>Samstags 9:00 &ndash; 13:30 Uhr</span></li>
                         <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Münchriedstraße 10<br>78224 Singen (Hohentwiel)</span></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3 class="footer-heading">Sport</h3>
+                    <h2 class="footer-heading">Sport</h2>
                     <ul class="footer-links">
                         <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
                         <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
@@ -254,7 +259,7 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3 class="footer-heading">Verein</h3>
+                    <h2 class="footer-heading">Verein</h2>
                     <ul class="footer-links">
                         <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
                         <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Mitglied werden</a></li>
@@ -285,7 +290,7 @@
         
         <div class="sidebar-search">
             <form action="suche.html" method="GET" class="sidebar-search-row">
-                <input type="text" name="q" placeholder="Seite suchen...">
+                <input type="text" name="q" placeholder="Seite suchen..." aria-label="Seite suchen">
                 <button type="submit" title="Suchen"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

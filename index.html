@@ -71,6 +71,11 @@
     document.body.classList.add('dark-mode');}catch(e){}})();
     </script>
 
+    <!-- Erste Station fuer Tastatur und Screenreader: ueberspringt Kopfzeile
+         und Navigation. Sichtbar wird der Verweis erst beim Antabben
+         (css/style.css, .skip-link). Stand frueher nur in js/main.js -
+         ohne JavaScript gab es ihn dadurch gar nicht. -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
     <header>
         <div class="logo-container">
             <a href="index.html">
@@ -142,7 +147,7 @@
         <i class="fa-solid fa-bars"></i>
     </button>
 
-    <main>
+    <main id="main-content">
 
         <!-- Live-Hinweis: erscheint nur, wenn die Zeitnahme gerade frische
              Ergebnisse liefert (siehe js/index.js, Abschnitt Live-Timing) -->
@@ -169,7 +174,7 @@
                 <!-- Klon von Bild 3 (am Anfang für rückwärts-Loop) -->
                 <a href="pages/trialsport.html" class="slide" aria-hidden="true" tabindex="-1">
                     <picture>
-                        <source type="image/webp" srcset="media/bilder/trial/trial_abteilung-480.webp 480w, media/bilder/trial/trial_abteilung-800.webp 800w, media/bilder/trial/trial_abteilung-1179.webp 1179w" sizes="(min-width: 900px) 640px, 100vw">
+                        <source type="image/webp" srcset="media/bilder/trial/trial_abteilung-480.webp 480w, media/bilder/trial/trial_abteilung-800.webp 800w, media/bilder/trial/trial_abteilung-1179.webp 1179w" sizes="(min-width: 900px) 640px, 100vw" width="1179" height="663">
                         <img src="media/bilder/trial/trial_abteilung.jpg" alt="Motorrad-Trialsport beim MCH Singen Hohentwiel" width="1179" height="1533" loading="lazy" decoding="async">
                     </picture>
                     <div class="slide-caption-box">
@@ -205,7 +210,7 @@
                 <!-- Bild 3: Trial Abteilung -->
                 <a href="pages/trialsport.html" class="slide">
                     <picture>
-                        <source type="image/webp" srcset="media/bilder/trial/trial_abteilung-480.webp 480w, media/bilder/trial/trial_abteilung-800.webp 800w, media/bilder/trial/trial_abteilung-1179.webp 1179w" sizes="(min-width: 900px) 640px, 100vw">
+                        <source type="image/webp" srcset="media/bilder/trial/trial_abteilung-480.webp 480w, media/bilder/trial/trial_abteilung-800.webp 800w, media/bilder/trial/trial_abteilung-1179.webp 1179w" sizes="(min-width: 900px) 640px, 100vw" width="1179" height="663">
                         <img src="media/bilder/trial/trial_abteilung.jpg" alt="Motorrad-Trialsport beim MCH Singen Hohentwiel" width="1179" height="1533" loading="lazy" decoding="async">
                     </picture>
                     <div class="slide-caption-box">
@@ -423,6 +428,52 @@
             </div>
         </section>
 
+        <div class="section-divider"></div>
+
+        <!-- Sponsorenleiste.
+             Graustufen, damit zehn Logos die Startseite nicht uebernehmen -
+             farbig beim Drueberfahren. Gestaltung: css/index.css, Abschnitt
+             "SPONSORENLEISTE".
+             ACHTUNG: dieselben Logos stehen ausserdem auf
+             pages/sponsoren-links.html. Wer einen Sponsor aufnimmt oder
+             streicht, muss BEIDE Stellen aendern. -->
+        <section class="sponsor-strip" aria-labelledby="sponsor-strip-heading">
+            <h2 id="sponsor-strip-heading" class="sponsor-strip-titel">Unterst&uuml;tzt von</h2>
+            <div class="sponsor-strip-logos reveal">
+                <a class="sponsor-logo" href="https://www.daeschle-singen.de/" target="_blank" rel="noopener noreferrer" title="D&auml;schle">
+                    <img src="media/sponsoren/daeschle.webp" alt="D&auml;schle" width="118" height="80" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://www.randegger.de/" target="_blank" rel="noopener noreferrer" title="Randegger">
+                    <img src="media/sponsoren/randegger.webp" alt="Randegger" width="81" height="110" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://places.thebest100hotels.com/en/generic/getrankehandel-wiesmann/" target="_blank" rel="noopener noreferrer" title="Wiesmann Getr&auml;nkehandel">
+                    <img src="media/sponsoren/wiesmann.webp" alt="Wiesmann Getr&auml;nkehandel" width="97" height="97" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://www.wasserwaermeluft.de/" target="_blank" rel="noopener noreferrer" title="Ruh Haustechnik">
+                    <img src="media/sponsoren/ruh.webp" alt="Ruh Haustechnik" width="97" height="97" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://www.schlegelebeck-arlen.de/" target="_blank" rel="noopener noreferrer" title="Schlegel">
+                    <img src="media/sponsoren/schlegel-400.webp" alt="Schlegel" width="72" height="110" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://www.instagram.com/mo_fashion_singen/" target="_blank" rel="noopener noreferrer" title="Mo-Fashion">
+                    <img src="media/sponsoren/mofashion-400.webp" alt="Mo-Fashion" width="117" height="81" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://www.fahrschule-bonarek.de/" target="_blank" rel="noopener noreferrer" title="Fahrschule Bonarek">
+                    <img src="media/sponsoren/bonarek-400.webp" alt="Fahrschule Bonarek" width="98" height="97" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://www.sparkasse-hegau-bodensee.de/de/home.html" target="_blank" rel="noopener noreferrer" title="Sparkasse Hegau-Bodensee">
+                    <img src="media/sponsoren/sparkasse.webp" alt="Sparkasse Hegau-Bodensee" width="78" height="110" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://kfzwerkstatt.io/7783-kfz-werkstatt-volker-brutsch" target="_blank" rel="noopener noreferrer" title="Herby's Autoteile">
+                    <img src="media/sponsoren/herby-400.webp" alt="Herby's Autoteile" width="112" height="85" loading="lazy" decoding="async">
+                </a>
+                <a class="sponsor-logo" href="https://alicke-rielasingen.de/" target="_blank" rel="noopener noreferrer" title="Alicke Karosserie">
+                    <img src="media/sponsoren/alicke.webp" alt="Alicke Karosserie" width="113" height="84" loading="lazy" decoding="async">
+                </a>
+            </div>
+            <a class="sponsor-strip-mehr" href="pages/sponsoren-links.html">Alle Sponsoren &amp; Partner ansehen</a>
+        </section>
+
     </main>
 
     <footer>
@@ -438,18 +489,18 @@
                 </a>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Kontakt</h3>
+                <h2 class="footer-heading">Kontakt</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="pages/kontakt.html">Kontaktformular</a></li>
                 </ul>
-                <h3 class="footer-heading footer-heading--spaced">Kart-Training</h3>
+                <h2 class="footer-heading footer-heading--spaced">Kart-Training</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i><span>Samstags 9:00 &ndash; 13:30 Uhr</span></li>
                     <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Münchriedstraße 10<br>78224 Singen (Hohentwiel)</span></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Sport</h3>
+                <h2 class="footer-heading">Sport</h2>
                 <ul class="footer-links">
                     <li><a href="pages/kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
                     <li><a href="pages/trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
@@ -459,7 +510,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Verein</h3>
+                <h2 class="footer-heading">Verein</h2>
                 <ul class="footer-links">
                     <li><a href="pages/ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
                     <li><a href="pages/mitglied-werden.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Mitglied werden</a></li>
@@ -490,7 +541,7 @@
         
         <div class="sidebar-search">
             <form action="pages/suche.html" method="GET" class="sidebar-search-row">
-                <input type="text" name="q" placeholder="Seite suchen...">
+                <input type="text" name="q" placeholder="Seite suchen..." aria-label="Seite suchen">
                 <button type="submit" title="Suchen"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

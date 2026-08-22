@@ -175,7 +175,10 @@ body.dark-mode .trainer-img { background-color: #2a2a2a; }
 body.dark-mode .maps-placeholder-content p { color: #bbb; }
 
 body.dark-mode .info-card { background: #1a1c2b; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-body.dark-mode .info-card h3 { color: var(--blue-light); }
+body.dark-mode .info-card h3,
+body.dark-mode .info-card h2 { color: var(--blue-light); }
+/* Titel der Datenschutzerklaerung - fruehere zweite h1 der Seite */
+body.dark-mode .dokument-titel { color: var(--blue-light); }
 body.dark-mode .secondary-btn { color: #74a3ff; border-color: #74a3ff; }
 body.dark-mode .secondary-btn:hover { background: var(--primary-blue); color: #fff !important; border-color: var(--primary-blue); }
 

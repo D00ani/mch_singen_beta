@@ -40,6 +40,11 @@
     document.body.classList.add('dark-mode');}catch(e){}})();
     </script>
 
+    <!-- Erste Station fuer Tastatur und Screenreader: ueberspringt Kopfzeile
+         und Navigation. Sichtbar wird der Verweis erst beim Antabben
+         (css/style.css, .skip-link). Stand frueher nur in js/main.js -
+         ohne JavaScript gab es ihn dadurch gar nicht. -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
     <header>
         <div class="logo-container">
             <a href="../index.html">
@@ -111,7 +116,7 @@
         <i class="fa-solid fa-bars"></i>
     </button>
 
-    <main>
+    <main id="main-content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Startseite</a>
             <span class="breadcrumb-sep" aria-hidden="true">/</span>
@@ -125,81 +130,81 @@
 
         <div class="faq-container">
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-1">
                     <span>Ab welchem Alter darf man bei euch mitmachen?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-1" role="region">
                     Im <a href="kartsport.html">Kartsport</a> können Kinder ab ca. 6 bis 7 Jahren mit dem Training beginnen. Wichtig ist, dass sie die Pedale sicher erreichen können. Im <a href="trialsport.html">Trialsport</a> ist der Einstieg oft schon ab 6 Jahren möglich. Allerdings wird ein eigenes Trial Motorrad benötigt.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-2">
                     <span>Brauche ich eine eigene Ausrüstung?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-2" role="region">
                     Wir stellen vereinseigene Karts zur Verfügung. Feste Schuhe und lange Kleidung sind Pflicht. Ein eigener Helm und Handschuhe sind aus hygienischen Gründen sinnvoll, für die erste Schnupperstunde haben wir auch <strong>Leihhelme</strong> vor Ort.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-3">
                     <span>Wie läuft ein Probetraining ab?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-3" role="region">
                     Ein Probetraining beim Kart kostet einmalig 15,00 €. Unsere Trainer zeigen dir die Grundlagen und du darfst deine ersten Runden drehen. Leider können wir dies aus <strong>Versicherungsgründen</strong> nicht günstiger anbieten. Bitte melde dich unbedingt vorher über unser <a href="kontakt.html">Kontaktformular</a> an!
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-4">
                     <span>Was kostet die Mitgliedschaft im Verein?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-4" role="region">
                     Der allgemeine Jahresbeitrag liegt zwischen 5,00€ bis 15,00 € je nach Alter. Beachte bitte, dass bei Minderjährigen zusätzlich mindestens ein Elternteil als Vereinsmitglied beitreten muss und das eine DMV-Mitgliedschaft vorhanden sein muss. Details findest du auf der Seite <a href="mitglied-werden.html">"Mitglied werden"</a>.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-5">
                     <span>Wie lange geht die Saison bei euch?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-5" role="region">
                     Da wir im Freien trainieren, beginnt unsere Saison, sobald es warm genug ist meistens <strong>Anfang April</strong>. Die Saison endet dann in der Regel im <strong>Oktober</strong>, bevor das Wetter zu unbeständig und kalt wird.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-6">
                     <span>Wann und wo wird trainiert?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-6" role="region">
                     Unser Training findet jeden Samstag zwischen 09:00 Uhr und 13:30 Uhr auf unserem Trainingsgelände in der Münchriedstraße 10 in Singen statt.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-7">
                     <span>Findet das Training auch bei Regen statt?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-7" role="region">
                     Ja! Motorsport ist ein Outdoorsport. Das ist <strong>wichtig</strong> für das Fahrgefühl, da auch im Rennen bei Regen beinahe immer auf Slicks gefahren wird. Nur bei extremem Unwetter oder Überflutung wird aus Sicherheitsgründen abgesagt.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-8">
                     <span>Wie viel PS haben die Karts?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-8" role="region">
                     <p style="margin-top: 15px;">Wir fahren im Verein mit professionellen <strong>Mach 1 Slalom Karts</strong> Auf dem Papier dürfen sich unsere beiden Karts mit 5,2 PS bzw. 3,8 KW leistungstechnisch absolut nicht unterscheiden. Wer also am Ende die schnellste Rundenzeit fährt, liegt rein am fahrerischen Können und nicht am Material!</p>
                     <picture>
                         <source type="image/webp" srcset="../media/bilder/kartsport/mach1-kart-480.webp 480w, ../media/bilder/kartsport/mach1-kart-800.webp 800w" sizes="(min-width: 700px) 450px, 100vw">
@@ -210,51 +215,51 @@
 
             <!-- ── Rund um den Trialsport ── -->
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-9">
                     <span>Was genau ist Trialsport?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-9" role="region">
                     Beim <a href="trialsport.html">Trialsport</a> geht es nicht um Höchstgeschwindigkeit, sondern um Fahrzeugbeherrschung. Es gilt, schwierige Sektionen im Gelände fehlerfrei zu durchfahren, <strong>ohne dabei einen Fuß auf den Boden zu setzen</strong>. Gefragt sind Balance, Konzentration und Körperbeherrschung - wer das Trial-Motorrad beherrscht, gewinnt ein Gefühl für Traktion und Gleichgewicht, von dem er auf jedem Motorrad profitiert.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-10">
                     <span>Brauche ich für Trial ein eigenes Motorrad?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-10" role="region">
                     Ja. Anders als im <a href="kartsport.html">Kartsport</a>, wo wir Vereinskarts stellen, trainieren unsere Trial-Fahrer in der Regel mit ihren eigenen Maschinen. Wenn du mit dem Gedanken spielst einzusteigen: komm vorbei, schau zu und sprich uns an - wir geben gerne Tipps, worauf es beim ersten eigenen Trial-Motorrad ankommt.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-11">
                     <span>Kann ich beim Trial einfach mal zuschauen?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-11" role="region">
                     Sehr gerne. Motorsportbegeisterte und Neugierige sind bei unserem Training jederzeit willkommen. Anmelden musst du dich dafür nicht - komm einfach vorbei. Wir tauschen uns gerne aus und beantworten Fragen zum Einstieg.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-12">
                     <span>Wo finden eure Trial-Veranstaltungen statt?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-12" role="region">
                     Unsere Trial-Veranstaltungen finden in <strong>Kleinandelfingen in der Schweiz</strong> statt, in der Regel jeden zweiten Samstag. Der genaue Ort und die nächsten Termine stehen auf der <a href="../index.html#sport-switcher">Startseite</a> im Bereich "Termine und Trainingsorte".
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-antwort-13">
                     <span>Wo finde ich Trial-Termine, Meisterschaftsläufe und Ergebnisse?</span>
                     <i class="fa-solid fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
+                </button>
+                <div class="faq-answer" id="faq-antwort-13" role="region">
                     Die aktuellen Termine zu Trialsportveranstaltungen, Meisterschaftsläufen und Ergebnissen in unserer Region pflegt unsere Partnerseite: <a href="http://www.ortwinsann.de/" target="_blank" rel="noopener noreferrer">ortwinsann.de</a>. Dort ist immer der neueste Stand hinterlegt.
                 </div>
             </div>
@@ -274,18 +279,18 @@
                 </a>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Kontakt</h3>
+                <h2 class="footer-heading">Kontakt</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="kontakt.html">Kontaktformular</a></li>
                 </ul>
-                <h3 class="footer-heading footer-heading--spaced">Kart-Training</h3>
+                <h2 class="footer-heading footer-heading--spaced">Kart-Training</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i><span>Samstags 9:00 &ndash; 13:30 Uhr</span></li>
                     <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Münchriedstraße 10<br>78224 Singen (Hohentwiel)</span></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Sport</h3>
+                <h2 class="footer-heading">Sport</h2>
                 <ul class="footer-links">
                     <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
                     <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
@@ -295,7 +300,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Verein</h3>
+                <h2 class="footer-heading">Verein</h2>
                 <ul class="footer-links">
                     <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
                     <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Mitglied werden</a></li>
@@ -326,7 +331,7 @@
         
         <div class="sidebar-search">
             <form action="suche.html" method="GET" class="sidebar-search-row">
-                <input type="text" name="q" placeholder="Seite suchen...">
+                <input type="text" name="q" placeholder="Seite suchen..." aria-label="Seite suchen">
                 <button type="submit" title="Suchen"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

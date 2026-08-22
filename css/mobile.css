@@ -36,10 +36,10 @@
        Berechnung: border-top(2) + padding(10) + badge-height/2(24) - btn-height/2(18) = 18px */
     .hamburger-btn {
         position: fixed;
-        top: 18px;
-        left: 10px;
-        width: 36px;
-        height: 36px;
+        top: 14px;
+        left: 8px;
+        width: 44px;
+        height: 44px;
         background: rgba(0, 10, 55, 0.65);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
@@ -109,9 +109,12 @@
     .theme-toggle-btn  { order: 2; margin: 0; }
     .insta-btn         { order: 3; margin: 0; }
 
+    /* 34px waren mit dem Daumen zu klein - Richtwert sind 44px
+       (Apple) bzw. 48dp (Google). Das Symbol darin bleibt gleich gross,
+       nur die Trefferflaeche waechst. */
     .insta-btn, .theme-toggle-btn, .search-header-btn {
-        width: 34px !important;
-        height: 34px !important;
+        width: 44px !important;
+        height: 44px !important;
         font-size: 0.95rem !important;
         border-radius: 50px;
     }
@@ -159,20 +162,34 @@
         min-width: 0;
     }
 
+    /* Der volle Name "Motorsport-Club "Hohentwiel" Singen e.V. im DMV"
+       passt auf einem Handy nur bei 0.82rem (13px) in eine Zeile - damit
+       war ausgerechnet der Vereinsname kleiner als der Fliesstext. Statt
+       ihn weiter zu schrumpfen, steht hier jetzt die Kurzform gross und
+       ruhig; genau das passiert unterhalb von 380px schon laenger. Der
+       vollstaendige Name steht weiterhin im Fussbereich, im Impressum und
+       im Seitentitel. Das Original bleibt fuer Vorleseprogramme stehen. */
     .header-text .header-title {
-        font-size: 0.82rem;
+        font-size: 0;
         line-height: 1.2;
         margin-bottom: 1px;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        word-break: normal;
-        hyphens: none;
+        color: transparent;
     }
 
+    .header-text .header-title::after {
+        content: "MCH Singen";
+        display: block;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.01em;
+    }
+
+    /* 0.68rem waren 10.9px - das kleinste auf der ganzen Seite. */
     .header-text p:not(.header-title) {
-        font-size: 0.68rem;
-        letter-spacing: 0.5px;
+        font-size: 0.8rem;
+        letter-spacing: 0.3px;
         margin: 2px 0 0 0;
     }
 
@@ -249,6 +266,29 @@
     .contact-form .form-field input,
     .contact-form .form-field textarea { font-size: 1rem; }
 
+    /* Das Einwilligungs-Haekchen war 13x13px - mit dem Daumen kaum zu
+       treffen, und ohne Haken laesst sich das Formular nicht abschicken.
+       Vergroessert samt Abstand, damit es nicht am Text klebt. */
+    .contact-form input[type="checkbox"],
+    .contact-form .checkbox-row input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        margin-right: 10px;
+        accent-color: var(--primary-blue);
+    }
+
+    /* Knoepfe, die knapp unter dem Richtwert lagen (40 bis 42px). */
+    .action-btn,
+    .footer-social-btn,
+    .maps-btn,
+    .cta-btn,
+    .sport-tab-btn,
+    .maps-load-btn,
+    .kart-lightbox-close { min-height: 44px; }
+
+    .kart-lightbox-close { min-width: 44px; }
+
     /* =====================
        LIVE / STATISTIKEN
        ===================== */
@@ -272,22 +312,9 @@
 
 }
 
-/* =============================================
-   SEHR KLEINE SCREENS: Vereinsname kürzen
-   ============================================= */
-@media (max-width: 380px) {
-    .header-text .header-title {
-        font-size: 0;
-        color: transparent;
-    }
-
-    .header-text .header-title::after {
-        content: "MCH Singen";
-        font-size: 0.78rem;
-        color: #ffffff;
-        display: block;
-    }
-}
+/* Der frueher hier stehende Sonderfall fuer Schirme unter 380px ist
+   entfallen: die Kurzform "MCH Singen" gilt jetzt auf allen Handybreiten
+   (siehe oben), es braucht keine zweite Stufe mehr. */
 
 
 /* =============================================

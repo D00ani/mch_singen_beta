@@ -39,6 +39,11 @@
     document.body.classList.add('dark-mode');}catch(e){}})();
     </script>
 
+    <!-- Erste Station fuer Tastatur und Screenreader: ueberspringt Kopfzeile
+         und Navigation. Sichtbar wird der Verweis erst beim Antabben
+         (css/style.css, .skip-link). Stand frueher nur in js/main.js -
+         ohne JavaScript gab es ihn dadurch gar nicht. -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
     <header>
         <div class="logo-container">
             <a href="../index.html">
@@ -110,7 +115,7 @@
         <i class="fa-solid fa-bars"></i>
     </button>
 
-    <main>
+    <main id="main-content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Startseite</a>
             <span class="breadcrumb-sep" aria-hidden="true">/</span>
@@ -127,16 +132,29 @@
         <p>Derzeit besteht unsere Kartabteilung aus über 20 Kindern und Jugendlichen sowie 5 Erwachsenen und Trainern.</p>
 
         <div style="max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 25px; text-align: center;">
-            <h3>Komm mit auf die Strecke!</h3>
+            <h2>Komm mit auf die Strecke!</h2>
             <p>Schnall dich an und fahr eine virtuelle Runde mit uns über das Trainingsgelände des MCH Singen:</p>
 
             <div class="track-preview-container">
-                <video class="track-video" autoplay loop muted playsinline controls
+                <!-- Das Video wiegt 8,4 MB. Am Rechner laeuft es wie gehabt von
+                     selbst los; auf dem Handy waere das dieselbe Menge ueber
+                     Mobilfunk, ungefragt bei jedem Seitenaufruf. Deshalb steht
+                     die Quelle in data-src und wird erst gesetzt, wenn klar
+                     ist, wo wir sind (js/main.js, Abschnitt 18):
+                       breiter Bildschirm -> laden und automatisch abspielen
+                       Handy             -> Standbild, laedt beim Antippen
+                     Ohne JavaScript greift der <noscript>-Verweis darunter. -->
+                <video class="track-video" loop muted playsinline controls preload="none"
                        width="960" height="540"
+                       data-src="../media/videos/onboard.mp4"
                        poster="../media/bilder/kartsport/onboard-standbild.webp">
-                    <source src="../media/videos/onboard.mp4" type="video/mp4">
                     Dein Browser unterstützt leider keine HTML5-Videos.
                 </video>
+                <noscript>
+                    <p style="margin-top: 10px;">
+                        <a href="../media/videos/onboard.mp4">Onboard-Video ansehen (MP4, 8 MB)</a>
+                    </p>
+                </noscript>
             </div>
         </div>
         
@@ -194,7 +212,7 @@
         </section>
 
         <div class="kart-lightbox" id="kart-lightbox" onclick="closeLightbox()">
-            <button class="kart-lightbox-close" onclick="event.stopPropagation(); closeLightbox()">
+            <button class="kart-lightbox-close" aria-label="Bildansicht schließen" onclick="event.stopPropagation(); closeLightbox()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <img src="" alt="" id="lightbox-img" onclick="event.stopPropagation()">
@@ -275,7 +293,7 @@
             <h3>Offizielles Regelwerk</h3>
             <p>Hier kannst du dir das aktuelle BKC-Regelwerk für die Saison herunterladen:</p>
             
-            <a href="../media/dokumente/regelwerk.pdf" target="_blank" class="action-btn" download>
+            <a href="../media/dokumente/regelwerk.pdf" target="_blank" rel="noopener noreferrer" class="action-btn" download>
                 <i class="fa-solid fa-download" style="margin-right: 8px;"></i> Regelwerk herunterladen (PDF)
             </a>
         </section>
@@ -295,18 +313,18 @@
                 </a>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Kontakt</h3>
+                <h2 class="footer-heading">Kontakt</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="kontakt.html">Kontaktformular</a></li>
                 </ul>
-                <h3 class="footer-heading footer-heading--spaced">Kart-Training</h3>
+                <h2 class="footer-heading footer-heading--spaced">Kart-Training</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i><span>Samstags 9:00 &ndash; 13:30 Uhr</span></li>
                     <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Münchriedstraße 10<br>78224 Singen (Hohentwiel)</span></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Sport</h3>
+                <h2 class="footer-heading">Sport</h2>
                 <ul class="footer-links">
                     <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
                     <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
@@ -316,7 +334,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Verein</h3>
+                <h2 class="footer-heading">Verein</h2>
                 <ul class="footer-links">
                     <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
                     <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Mitglied werden</a></li>
@@ -347,7 +365,7 @@
         
         <div class="sidebar-search">
             <form action="suche.html" method="GET" class="sidebar-search-row">
-                <input type="text" name="q" placeholder="Seite suchen...">
+                <input type="text" name="q" placeholder="Seite suchen..." aria-label="Seite suchen">
                 <button type="submit" title="Suchen"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

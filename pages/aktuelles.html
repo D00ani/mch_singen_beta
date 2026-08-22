@@ -52,6 +52,11 @@
     <!-- =============================================
          HEADER - Logo, Vereinsname, Social/Theme
          ============================================= -->
+    <!-- Erste Station fuer Tastatur und Screenreader: ueberspringt Kopfzeile
+         und Navigation. Sichtbar wird der Verweis erst beim Antabben
+         (css/style.css, .skip-link). Stand frueher nur in js/main.js -
+         ohne JavaScript gab es ihn dadurch gar nicht. -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
     <header>
         <div class="logo-container">
             <a href="../index.html">
@@ -128,7 +133,7 @@
     <!-- =============================================
          HAUPTINHALT
          ============================================= -->
-    <main>
+    <main id="main-content">
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Startseite</a>
             <span class="breadcrumb-sep" aria-hidden="true">/</span>
@@ -165,13 +170,6 @@
             </div>
             <!-- /FP:NEWS -->
         </div>
-                <div class="button-group">
-                    <a href="sommerferienprogramm.html" class="action-btn action-btn--orange">
-                        <span class="news-icon"><i class="fa-solid fa-circle-info"></i></span> Mehr Infos
-                    </a>
-                </div>
-            </div>
-        </div>
 
         <div class="section-divider"></div>
 
@@ -185,7 +183,7 @@
                     <h3>Aktuelle BKC-Wertung</h3>
                     <p class="news-card-desc">Check hier die neuesten Ergebnisse im Bodensee-Kart-Cup.</p>
                 </div>
-                <a href="../media/dokumente/wertungen/bkcgesamtwertung_2026.pdf" target="_blank" class="news-link">
+                <a href="../media/dokumente/wertungen/bkcgesamtwertung_2026.pdf" target="_blank" rel="noopener noreferrer" class="news-link">
                     <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
                 </a>
             </div>
@@ -196,7 +194,7 @@
                     <h3>Aktuelle Trial-Wertung</h3>
                     <p class="news-card-desc">Die aktuellsten Ergebnisse aus dem Trialsport.</p>
                 </div>
-                <a href="../media/dokumente/wertungen/trialgesamtwertung_2026.pdf" target="_blank" class="news-link">
+                <a href="../media/dokumente/wertungen/trialgesamtwertung_2026.pdf" target="_blank" rel="noopener noreferrer" class="news-link">
                     <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
                 </a>
             </div>
@@ -217,7 +215,7 @@
                     <p class="news-card-desc">Trainings- und Renntermine für die Kart-Abteilung.</p>
                 </div>
                 <div class="button-group">
-                    <a href="../media/dokumente/termine/trainingstermine2026.pdf" target="_blank" class="action-btn">
+                    <a href="../media/dokumente/termine/trainingstermine2026.pdf" target="_blank" rel="noopener noreferrer" class="action-btn">
                         <span class="news-icon"><i class="fa-solid fa-flag-checkered"></i></span> Termine (PDF)
                     </a>
                     <button onclick="ladeUndGeneriereICS(1)" class="action-btn">
@@ -241,7 +239,7 @@
                     <p class="news-card-desc">Offizielle Meisterschaftsläufe im Trial.</p>
                 </div>
                 <div class="button-group">
-                    <a href="../media/dokumente/termine/termine_trial_2026.pdf" target="_blank" class="action-btn">
+                    <a href="../media/dokumente/termine/termine_trial_2026.pdf" target="_blank" rel="noopener noreferrer" class="action-btn">
                         <span class="news-icon"><i class="fa-solid fa-motorcycle"></i></span> Trial-Plan (PDF)
                     </a>
                     <button onclick="ladeTrialRenntermineICS()" class="action-btn">
@@ -268,18 +266,18 @@
                 </a>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Kontakt</h3>
+                <h2 class="footer-heading">Kontakt</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="kontakt.html">Kontaktformular</a></li>
                 </ul>
-                <h3 class="footer-heading footer-heading--spaced">Kart-Training</h3>
+                <h2 class="footer-heading footer-heading--spaced">Kart-Training</h2>
                 <ul class="footer-contact">
                     <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i><span>Samstags 9:00 &ndash; 13:30 Uhr</span></li>
                     <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Münchriedstraße 10<br>78224 Singen (Hohentwiel)</span></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Sport</h3>
+                <h2 class="footer-heading">Sport</h2>
                 <ul class="footer-links">
                     <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
                     <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
@@ -289,7 +287,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 class="footer-heading">Verein</h3>
+                <h2 class="footer-heading">Verein</h2>
                 <ul class="footer-links">
                     <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
                     <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Mitglied werden</a></li>
@@ -323,7 +321,7 @@
         
         <div class="sidebar-search">
             <form action="suche.html" method="GET" class="sidebar-search-row">
-                <input type="text" name="q" placeholder="Seite suchen...">
+                <input type="text" name="q" placeholder="Seite suchen..." aria-label="Seite suchen">
                 <button type="submit" title="Suchen"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

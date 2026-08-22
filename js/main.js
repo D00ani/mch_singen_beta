@@ -6,10 +6,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 0. SKIP-LINK (Tastatur/Screenreader: direkt zum Inhalt springen) ---
+    // Der Verweis steht inzwischen im Markup jeder Seite - er ist damit auch
+    // dann da, wenn JavaScript nicht laeuft. Dieses Stueck legt ihn nur noch
+    // an, falls er auf einer Seite fehlt, und haengt keinen zweiten an.
     (function initSkipLink() {
         const main = document.querySelector('main');
         if (!main) return;
         if (!main.id) main.id = 'main-content';
+        if (document.querySelector('.skip-link')) return;
 
         const skipLink = document.createElement('a');
         skipLink.className = 'skip-link';
@@ -512,6 +516,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+    })();
+
+
+    // --- 18. ONBOARD-VIDEO: AM RECHNER VON SELBST, AUF DEM HANDY AUF TIPP ---
+    // Das Video wiegt 8,4 MB. Frueher stand autoplay direkt im Markup, damit
+    // lud es auch am Handy bei jedem Aufruf ueber Mobilfunk. Die Quelle steht
+    // deshalb in data-src und wird hier je nach Geraet gesetzt.
+    (function initOnboardVideo() {
+        const video = document.querySelector('video.track-video[data-src]');
+        if (!video) return;
+
+        function quelleSetzen() {
+            if (video.src) return;
+            video.src = video.dataset.src;
+        }
+
+        // Grosser Bildschirm: laden und losspielen wie bisher.
+        // matchMedia statt Fensterbreite, damit auch ein gedrehtes Tablet
+        // richtig einsortiert wird.
+        if (window.matchMedia('(min-width: 769px)').matches) {
+            video.preload = 'auto';
+            video.autoplay = true;
+            quelleSetzen();
+            // play() kann abgelehnt werden (Energiesparmodus, Datensparmodus).
+            // Dann bleibt einfach das Standbild mit Abspielknopf stehen.
+            const versuch = video.play();
+            if (versuch && typeof versuch.catch === 'function') versuch.catch(() => {});
+            return;
+        }
+
+        // Handy: erst laden, wenn jemand wirklich abspielen will.
+        video.addEventListener('play', quelleSetzen);
+        video.addEventListener('click', quelleSetzen);
     })();
 
 });

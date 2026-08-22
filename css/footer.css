@@ -232,13 +232,33 @@ footer {
     color: #ffffff !important;
 }
 
-/* ── Mobile ── */
+/* ── Mobile ──
+   Untereinander waren die vier Spalten zusammen 1056px hoch - auf einem
+   390er Handy gut zwei Bildschirme, die zu einem Viertel der gesamten
+   Startseite (3922px) wurden. Jetzt zwei Spalten: die beiden kurzen
+   Linklisten stehen nebeneinander, Marke und Kontakt ueber die volle
+   Breite, weil dort Anschrift und Trainingszeit Platz brauchen. */
 @media (max-width: 768px) {
     .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 36px 24px 28px 24px;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 20px;
+        padding: 30px 22px 24px 22px;
     }
+
+    /* Marke und Kontakt ueber beide Spalten, Sport und Verein daneben. */
+    .footer-brand,
+    .footer-col:nth-child(2) {
+        grid-column: 1 / -1;
+    }
+
+    /* Die Vereinsbeschreibung steht wortgleich auf der Startseite unter
+       "Wer wir sind" - im Fussbereich eines Handys ist sie nur Hoehe. */
+    .footer-desc { display: none; }
+
+    .footer-brand .footer-logo { margin-bottom: 10px; }
+    .footer-tagline { margin-bottom: 14px !important; }
+
+    .footer-heading--spaced { margin-top: 18px !important; }
 
     .footer-bottom {
         flex-direction: column;
