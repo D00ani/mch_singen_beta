@@ -52,6 +52,11 @@
     <!-- =============================================
          HEADER - Logo, Vereinsname, Social/Theme
          ============================================= -->
+    <!-- Erste Station fuer Tastatur und Screenreader: ueberspringt Kopfzeile
+         und Navigation. Sichtbar wird der Verweis erst beim Antabben
+         (css/style.css, .skip-link). Stand frueher nur in js/main.js -
+         ohne JavaScript gab es ihn dadurch gar nicht. -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
     <header>
         <div class="logo-container">
             <a href="../index.html">
@@ -81,6 +86,43 @@
                 <i class="fa-brands fa-instagram"></i>
             </a>
         </div>
+
+        <!-- Hauptnavigation (Desktop, ab 900px). Darunter uebernimmt
+             der Menue-Knopf mit dem Seitenmenue. -->
+        <nav class="main-nav" aria-label="Hauptnavigation">
+            <ul class="main-nav-list">
+                <li class="main-nav-item"><a class="main-nav-link" href="../index.html">Startseite</a></li>
+                <li class="main-nav-item has-sub">
+                    <button type="button" class="main-nav-link" aria-expanded="false">Verein <i class="fa-solid fa-chevron-down main-nav-chevron" aria-hidden="true"></i></button>
+                    <ul class="main-nav-sub">
+                        <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
+                        <li><a href="geschichte.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Geschichte des MCH</a></li>
+                        <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Sponsoren &amp; Links</a></li>
+                        <li><a href="faq.html"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Fragen &amp; Antworten</a></li>
+                        <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Impressum &amp; Datenschutz</a></li>
+                    </ul>
+                </li>
+                <li class="main-nav-item has-sub">
+                    <button type="button" class="main-nav-link" aria-expanded="false">Sport <i class="fa-solid fa-chevron-down main-nav-chevron" aria-hidden="true"></i></button>
+                    <ul class="main-nav-sub">
+                        <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
+                        <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
+                        <li><a href="sommerferienprogramm.html"><i class="fa-solid fa-sun" aria-hidden="true"></i> Sommerferienprogramm</a></li>
+                    </ul>
+                </li>
+                <li class="main-nav-item has-sub">
+                    <button type="button" class="main-nav-link" aria-expanded="false">Aktuelles <i class="fa-solid fa-chevron-down main-nav-chevron" aria-hidden="true"></i></button>
+                    <ul class="main-nav-sub">
+                        <li><a href="aktuelles.html"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> News &amp; Termine</a></li>
+                        <li><a href="live.html"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i> Live-Ergebnisse</a></li>
+                        <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Statistiken &amp; Erfolge</a></li>
+                        <li><a href="archiv.html"><i class="fa-solid fa-box-archive" aria-hidden="true"></i> Ergebnis-Archiv</a></li>
+                    </ul>
+                </li>
+                <li class="main-nav-item"><a class="main-nav-link" href="kontakt.html">Kontakt</a></li>
+                <li class="main-nav-item main-nav-item--right"><a class="main-nav-link" href="https://mch-singen.teamkleidung24.de/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> Shop</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hamburger-Button (fixed, via main.js gesteuert) -->
@@ -91,60 +133,57 @@
     <!-- =============================================
          HAUPTINHALT
          ============================================= -->
-    <main>
-        <h1>
-            <i class="fa-solid fa-newspaper heading-icon heading-icon--blue"></i>
-            Aktuelle News &amp; Termine
-        </h1>
-        <p>Hier findest du die neuesten Ergebnisse, News und alle wichtigen Daten für die aktuelle Saison. Lade dir die Pläne einfach bequem herunter!</p>
+    <main id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Startseite</a>
+            <span class="breadcrumb-sep" aria-hidden="true">/</span>
+            <span aria-current="page">News &amp; Termine</span>
+        </nav>
+        <div class="page-head">
+            <p class="page-kicker">Aktuelles</p>
+            <h1>Aktuelle News &amp; Termine</h1>
+            <p class="page-lead">Hier findest du die neuesten Ergebnisse, News und alle wichtigen Daten für die aktuelle Saison. Lade dir die Pläne einfach bequem herunter!</p>
+        </div>
 
         <!-- ---- Sommerferienprogramm ---- -->
-        <h2>
-            <i class="fa-solid fa-sun heading-icon heading-icon--orange"></i>
-            Sommerferienprogramm 2026
-        </h2>
+        <!-- Stand des Ferienprogramms: einmal im Jahr anpassen, zusammen mit
+             pages/sommerferienprogramm.html (dort stehen die Vorlagen). -->
+        <h2>Sommerferienprogramm</h2>
         <div class="news-grid">
+            <!-- FP:NEWS -->
             <div class="news-card news-card--highlight">
                 <div>
-                    <span class="news-date">Sa, 08.08. &amp; So, 09.08.2026</span>
+                    <span class="news-date">Termine 2027 folgen</span>
                     <h3>Ferienprogramme Singen &amp; Rielasingen-Worblingen</h3>
                     <p class="news-card-desc">
-                        Kinder &amp; Jugendliche können bei uns Kart fahren, den Trialsport kennenlernen
-                        und einen echten Motorsportverein erleben - keine Vorkenntnisse nötig!
+                Kinder &amp; Jugendliche können bei uns Kart fahren, den Trialsport kennenlernen
+                und einen echten Motorsportverein erleben - keine Vorkenntnisse nötig!
+                Das Programm 2026 ist gelaufen; die nächsten Termine stehen hier,
+                sobald die Ferienprogramme erscheinen.
                     </p>
                 </div>
                 <div class="button-group">
-                    <a href="sommerferienprogramm.html" class="action-btn action-btn--orange">
-                        <span class="news-icon"><i class="fa-solid fa-circle-info"></i></span> Mehr Infos
-                    </a>
-                    <a href="https://www.unser-ferienprogramm.de/singen/veranstaltung.php?limit=20&id=7102"
-                       target="_blank" class="action-btn action-btn--gold">
-                        <span class="news-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span> Anmeldung Singen (Sa, 08.08.)
-                    </a>
-                    <a href="https://rielasingen-worblingen.ferienprogramm-online.de/"
-                       target="_blank" class="action-btn action-btn--gold">
-                        <span class="news-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span> Anmeldung Rielasingen-Worblingen (So, 09.08.)
-                    </a>
+                <a href="sommerferienprogramm.html" class="action-btn action-btn--orange">
+                    <span class="news-icon"><i class="fa-solid fa-circle-info"></i></span> Mehr Infos
+                </a>
                 </div>
             </div>
+            <!-- /FP:NEWS -->
         </div>
 
         <div class="section-divider"></div>
 
         <!-- ---- Aktuelle Wertungen ---- -->
-        <h2>
-            <i class="fa-solid fa-ranking-star heading-icon heading-icon--blue"></i>
-            Aktuelle Wertungen
-        </h2>
+        <h2>Aktuelle Wertungen</h2>
         <div class="news-grid">
             <div class="news-card">
                 <span class="news-badge news-badge-wertung">Wertung</span>
                 <div>
                     <span class="news-date">Saison 2026</span>
                     <h3>Aktuelle BKC-Wertung</h3>
-                    <p class="news-card-desc">Check hier die neuesten Ergebnisse im Bodensee Kart Cup.</p>
+                    <p class="news-card-desc">Check hier die neuesten Ergebnisse im Bodensee-Kart-Cup.</p>
                 </div>
-                <a href="../media/dokumente/wertungen/bkcgesamtwertung_2026.pdf" target="_blank" class="news-link">
+                <a href="../media/dokumente/wertungen/bkcgesamtwertung_2026.pdf" target="_blank" rel="noopener noreferrer" class="news-link">
                     <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
                 </a>
             </div>
@@ -155,7 +194,7 @@
                     <h3>Aktuelle Trial-Wertung</h3>
                     <p class="news-card-desc">Die aktuellsten Ergebnisse aus dem Trialsport.</p>
                 </div>
-                <a href="../media/dokumente/wertungen/trialgesamtwertung_2026.pdf" target="_blank" class="news-link">
+                <a href="../media/dokumente/wertungen/trialgesamtwertung_2026.pdf" target="_blank" rel="noopener noreferrer" class="news-link">
                     <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
                 </a>
             </div>
@@ -165,10 +204,7 @@
         <div class="section-divider"></div>
 
         <!-- ---- Termine 2025/2026 ---- -->
-        <h2>
-            <i class="fa-solid fa-calendar-days heading-icon heading-icon--blue"></i>
-            Termine 2025/2026
-        </h2>
+        <h2>Termine 2025/2026</h2>
         <div class="news-grid">
             <!-- Kart-Termine -->
             <div class="news-card">
@@ -179,7 +215,7 @@
                     <p class="news-card-desc">Trainings- und Renntermine für die Kart-Abteilung.</p>
                 </div>
                 <div class="button-group">
-                    <a href="../media/dokumente/termine/trainingstermine2026.pdf" target="_blank" class="action-btn">
+                    <a href="../media/dokumente/termine/trainingstermine2026.pdf" target="_blank" rel="noopener noreferrer" class="action-btn">
                         <span class="news-icon"><i class="fa-solid fa-flag-checkered"></i></span> Termine (PDF)
                     </a>
                     <button onclick="ladeUndGeneriereICS(1)" class="action-btn">
@@ -203,7 +239,7 @@
                     <p class="news-card-desc">Offizielle Meisterschaftsläufe im Trial.</p>
                 </div>
                 <div class="button-group">
-                    <a href="../media/dokumente/termine/termine_trial_2026.pdf" target="_blank" class="action-btn">
+                    <a href="../media/dokumente/termine/termine_trial_2026.pdf" target="_blank" rel="noopener noreferrer" class="action-btn">
                         <span class="news-icon"><i class="fa-solid fa-motorcycle"></i></span> Trial-Plan (PDF)
                     </a>
                     <button onclick="ladeTrialRenntermineICS()" class="action-btn">
@@ -218,19 +254,56 @@
          FOOTER - wird per main.js dynamisch ersetzt
          ============================================= -->
     <footer>
-        <a href="../index.html" class="footer-logo-link" title="Zur Startseite">
-            <img src="../media/logos/mch-logo-128.png" alt="MCH Logo" class="footer-logo" width="128" height="128" loading="lazy">
-        </a>
-        <span class="footer-club-name">MCH Singen Motorsportclub "Hohentwiel" e.V. im DMV</span>
-        <ul class="footer-quick-nav">
-            <li><a href="kartsport.html">Kartsport</a></li>
-            <li><a href="trialsport.html">Trialsport</a></li>
-            <li><a href="ueber-uns.html">Über uns</a></li>
-            <li><a href="aktuelles.html">Aktuelles</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
-        </ul>
-        <span class="footer-rule"></span>
-        <p>© 2026 MCH Singen Motorsportclub "Hohentwiel" e.V. im DMV Alle Rechte vorbehalten. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
+        <div class="footer-inner">
+            <div class="footer-col footer-brand">
+                <a href="../index.html" title="Zur Startseite">
+                    <img src="../media/logos/mch-logo-128.png" alt="MCH Logo" class="footer-logo" width="128" height="128" loading="lazy">
+                </a>
+                <p class="footer-tagline">Motorsport aus Leidenschaft</p>
+                <p class="footer-desc">Der Motorsportclub "Hohentwiel" e.V. ist ein gemeinnütziger Verein in Singen - aktiver Kart- und Trialsport für Jung und Alt.</p>
+                <a href="https://www.instagram.com/mch_singen/" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram folgen
+                </a>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-heading">Kontakt</h2>
+                <ul class="footer-contact">
+                    <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="kontakt.html">Kontaktformular</a></li>
+                </ul>
+                <h2 class="footer-heading footer-heading--spaced">Kart-Training</h2>
+                <ul class="footer-contact">
+                    <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i><span>Samstags 9:00 &ndash; 13:30 Uhr</span></li>
+                    <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Münchriedstraße 10<br>78224 Singen (Hohentwiel)</span></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-heading">Sport</h2>
+                <ul class="footer-links">
+                    <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
+                    <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
+                    <li><a href="sommerferienprogramm.html"><i class="fa-solid fa-sun" aria-hidden="true"></i> Ferienprogramm</a></li>
+                    <li><a href="aktuelles.html"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Aktuelles</a></li>
+                    <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Statistiken</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-heading">Verein</h2>
+                <ul class="footer-links">
+                    <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
+                    <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Mitglied werden</a></li>
+                    <li><a href="geschichte.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Geschichte</a></li>
+                    <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Sponsoren</a></li>
+                    <li><a href="faq.html"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Fragen &amp; Antworten</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 MCH Singen Motorsportclub "Hohentwiel" e.V. im DMV</span>
+            <span class="footer-legal">
+                <a href="impressum-datenschutz.html">Impressum &amp; Datenschutz</a>
+                <a href="#" onclick="return klaro.show();">Cookie-Einstellungen</a>
+            </span>
+        </div>
     </footer>
 
     <!-- =============================================
@@ -248,7 +321,7 @@
         
         <div class="sidebar-search">
             <form action="suche.html" method="GET" class="sidebar-search-row">
-                <input type="text" name="q" placeholder="Seite suchen...">
+                <input type="text" name="q" placeholder="Seite suchen..." aria-label="Seite suchen">
                 <button type="submit" title="Suchen"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

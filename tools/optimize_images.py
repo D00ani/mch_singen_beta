@@ -77,7 +77,24 @@ for _n in ["trial1", "trial2"]:
     _img.save(_out, "WEBP", quality=78, method=6)
     results.append((os.path.relpath(_out, ROOT), os.path.getsize(_out) // 1024, _img.size))
 results += webp("media/bilder/ueber-uns/platzhalter.jpg")
-results += webp("media/bilder/kartsport/mach1-kart.png")
+# Das echte Vereinskart (Hochformat 1200x1600). Es hat das fruehere
+# Werksfoto mach1-kart.png abgeloest - das war ein Haendlerbild mit
+# eingebranntem weissem Rahmen und zeigte nicht unser Kart.
+results += webp("media/bilder/kartsport/mach1-kart.jpg", [480, 800])
+
+# --- Fotos vom Gemeinschaftslauf 2026 ---
+# Gehoeren zum Block, den tools/gemeinschaftslauf_entfernen.py wieder
+# ausbaut. Faellt der Ordner weg, werden sie hier uebersprungen.
+import glob as _glob
+# Die vier Galeriebilder brauchen kein 1600er: die Kachel ist rund 390px
+# breit (sizes-Attribut), und die Lightbox nimmt ohnehin das JPG.
+# mannschaft und pokale stehen dagegen breit im Text.
+for _n, _breiten in [("aktion", [480, 800]), ("slalom", [480, 800]),
+                     ("gelaende", [480, 800]), ("fahrerlager", [480, 800]),
+                     ("mannschaft", [480, 800, 1600]), ("pokale", [480, 800, 1600])]:
+    _p = f"media/bilder/gemeinschaftslauf-2026/{_n}.jpg"
+    if os.path.isfile(os.path.join(ROOT, _p)):
+        results += webp(_p, _breiten)
 
 # --- Sponsoren ---
 # Die Sponsorenlogos liegen inzwischen direkt als WebP vor und werden ueber

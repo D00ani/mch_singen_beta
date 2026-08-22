@@ -257,6 +257,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const cdMsgEl = document.getElementById(cdMsg);
         const el = id => document.getElementById(id);
 
+        // Die Ueberschrift stand bisher als "Naechstes Event ... startet in:"
+        // fest im Skript und hat den Text aus dem Markup ueberschrieben - auf
+        // der Trial-Seite wurde aus "Naechster Triallauf" dadurch "Naechstes
+        // Event". Jetzt wird der Wortlaut aus dem Markup uebernommen und nur
+        // der Veranstaltungsname eingesetzt.
+        //   "Naechster Triallauf startet in:"  ->  Anfang | Ende
+        const kopfText = (headEl?.textContent || '').trim();
+        const kopfTeilung = kopfText.match(/^(.*?)(\s*startet in:?\s*)$/i);
+        const kopfAnfang = kopfTeilung ? kopfTeilung[1] : kopfText;
+        const kopfEnde   = kopfTeilung ? kopfTeilung[2] : ' startet in:';
+
+        // Werte aus timer.txt landen per innerHTML in der Seite. Ohne
+        // Maskierung zerlegt ein "&" oder "<" im Vereinsnamen die Ausgabe.
+        const alsText = wert => {
+            const d = document.createElement('div');
+            d.textContent = wert ?? '';
+            return d.innerHTML;
+        };
+
+        // innerHTML nur schreiben, wenn sich der Inhalt wirklich geaendert
+        // hat. Vorher wurde die Ueberschrift jede Sekunde neu gebaut - der
+        // Link darin verschwand dabei mitten im Klick.
+        const setzeHtml = (element, html) => {
+            if (element && element.innerHTML !== html) element.innerHTML = html;
+        };
+
         // Sekundenanzeige (Doppelpunkt + Kaestchen) dieses Countdowns.
         // Sie erscheint erst in den letzten 48 Stunden vor dem Termin: ein
         // sekundengenauer Zaehler auf ein Datum in drei Wochen liest sich wie
@@ -307,20 +333,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const distance = ev.timestamp - now;
             const name     = `${ev.verein} ${ev.ort}`.trim();
             const nameHtml = ev.link
-                ? `<a href="${ev.link}" target="_blank" style="color:#ffcc00;text-decoration:underline;">${name}</a>`
-                : name;
+                ? `<a href="${alsText(ev.link)}" target="_blank" rel="noopener noreferrer" style="color:#ffcc00;text-decoration:underline;">${alsText(name)}</a>`
+                : alsText(name);
 
             if (distance <= 0) {
                 if (headEl)  headEl.style.display = 'none';
                 if (cdBoxEl) cdBoxEl.style.display = 'none';
                 if (cdMsgEl) {
-                    cdMsgEl.innerHTML    = `HEUTE! ${nameHtml} 🏁`;
+                    setzeHtml(cdMsgEl, `HEUTE! ${nameHtml} 🏁`);
                     cdMsgEl.style.display = 'block';
                 }
             } else {
                 if (headEl) {
                     headEl.style.display = 'block';
-                    headEl.innerHTML = `Nächstes Event${name ? ' beim ' + nameHtml : ''} startet in:`;
+                    setzeHtml(headEl,
+                        `${kopfAnfang}${name ? ' beim ' + nameHtml : ''}${kopfEnde}`);
                 }
                 const d = Math.floor(distance / 86400000);
                 const h = Math.floor((distance % 86400000) / 3600000);
@@ -387,10 +414,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. WETTERVORHERSAGE (Open-Meteo)
     // ==========================================
     // Minimale Ein-Zeilen-Vorhersage für den nächsten Samstag in den
-    // Location-Boxen (Kart + Trial). Open-Meteo braucht keinen API-Key
-    // und setzt keine Cookies, daher ohne Consent ladbar (siehe
-    // Datenschutzerklärung, Abschnitt "Wettervorhersage"). Schlägt der
-    // Abruf fehl, bleibt die Leiste einfach ausgeblendet.
+    // Location-Boxen (Kart + Trial).
+    // Open-Meteo setzt keine Cookies und braucht keinen Schlüssel - aber
+    // der Abruf überträgt die IP-Adresse des Besuchers an einen Dritten,
+    // und zwar bevor er irgendetwas angeklickt hat. Deshalb hängt er seit
+    // dem Umbau an derselben Einwilligung wie die Karten (Dienst "wetter"
+    // in js/klaro-config.js). Ohne Zustimmung wird nichts abgerufen; die
+    // Leiste zeigt stattdessen einen Hinweis mit Knopf.
+    // Schlägt der Abruf fehl, bleibt die Leiste einfach ausgeblendet.
     // vonStunde/bisStunde: nur Stundenwerte in diesem Fenster auswerten
     // (Kart-Training Samstags 9:00–13:30 -> volle Stunden 9 bis 13 Uhr).
     // Ohne Fenster werden die Tageswerte (Max/Min) angezeigt.
@@ -415,71 +446,114 @@ document.addEventListener('DOMContentLoaded', () => {
         return ['fa-cloud', 'wechselhaft'];
     }
 
-    weatherLocations.forEach(loc => {
-        const box = document.getElementById(loc.id);
-        if (!box) return;
-        let url = 'https://api.open-meteo.com/v1/forecast'
-            + `?latitude=${loc.lat}&longitude=${loc.lon}`
-            + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
-            + '&timezone=Europe%2FBerlin&forecast_days=7';
-        if (loc.vonStunde != null) {
-            url += '&hourly=temperature_2m,weather_code,precipitation_probability';
-        }
-        fetch(url)
-            .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-            .then(data => {
-                const daily = data && data.daily;
-                if (!daily || !daily.time || !daily.time.length) return;
+    let wetterGeladen = false;
 
-                // Nächsten Samstag suchen (heute zählt mit; 7 Tage
-                // Vorhersage enthalten immer genau einen Samstag)
-                let i = daily.time.findIndex(iso =>
-                    new Date(iso + 'T12:00:00').getDay() === 6);
-                if (i < 0) i = 0;
-                const dayIso = daily.time[i];
+    function ladeWetter() {
+        if (wetterGeladen) return;
+        wetterGeladen = true;
+        weatherLocations.forEach(loc => {
+            const box = document.getElementById(loc.id);
+            if (!box) return;
+            let url = 'https://api.open-meteo.com/v1/forecast'
+                + `?latitude=${loc.lat}&longitude=${loc.lon}`
+                + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
+                + '&timezone=Europe%2FBerlin&forecast_days=7';
+            if (loc.vonStunde != null) {
+                url += '&hourly=temperature_2m,weather_code,precipitation_probability';
+            }
+            fetch(url)
+                .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+                .then(data => {
+                    const daily = data && data.daily;
+                    if (!daily || !daily.time || !daily.time.length) return;
 
-                // Standard: Tageswerte (Max/Min)
-                let code    = daily.weather_code[i];
-                let tempTxt = Math.round(daily.temperature_2m_max[i]) + '° / '
-                            + Math.round(daily.temperature_2m_min[i]) + '°';
-                let rain    = daily.precipitation_probability_max[i] ?? 0;
-                let zeitTxt = '';
+                    // Nächsten Samstag suchen (heute zählt mit; 7 Tage
+                    // Vorhersage enthalten immer genau einen Samstag)
+                    let i = daily.time.findIndex(iso =>
+                        new Date(iso + 'T12:00:00').getDay() === 6);
+                    if (i < 0) i = 0;
+                    const dayIso = daily.time[i];
 
-                // Mit Zeitfenster: nur die Stunden des Trainings auswerten
-                const hourly = data.hourly;
-                if (loc.vonStunde != null && hourly && hourly.time) {
-                    const idx = [];
-                    hourly.time.forEach((t, k) => {
-                        const h = parseInt(t.slice(11, 13), 10);
-                        if (t.slice(0, 10) === dayIso && h >= loc.vonStunde && h <= loc.bisStunde) idx.push(k);
-                    });
-                    if (idx.length) {
-                        const temps = idx.map(k => hourly.temperature_2m[k]);
-                        // Höchster WMO-Code im Fenster ~ "schlechtestes" Wetter
-                        code    = Math.max(...idx.map(k => hourly.weather_code[k]));
-                        rain    = Math.max(...idx.map(k => hourly.precipitation_probability[k] ?? 0));
-                        tempTxt = Math.round(Math.min(...temps)) + '° – '
-                                + Math.round(Math.max(...temps)) + '°';
-                        zeitTxt = ', ' + loc.zeitText;
+                    // Standard: Tageswerte (Max/Min)
+                    let code    = daily.weather_code[i];
+                    let tempTxt = Math.round(daily.temperature_2m_max[i]) + '° / '
+                                + Math.round(daily.temperature_2m_min[i]) + '°';
+                    let rain    = daily.precipitation_probability_max[i] ?? 0;
+                    let zeitTxt = '';
+
+                    // Mit Zeitfenster: nur die Stunden des Trainings auswerten
+                    const hourly = data.hourly;
+                    if (loc.vonStunde != null && hourly && hourly.time) {
+                        const idx = [];
+                        hourly.time.forEach((t, k) => {
+                            const h = parseInt(t.slice(11, 13), 10);
+                            if (t.slice(0, 10) === dayIso && h >= loc.vonStunde && h <= loc.bisStunde) idx.push(k);
+                        });
+                        if (idx.length) {
+                            const temps = idx.map(k => hourly.temperature_2m[k]);
+                            // Höchster WMO-Code im Fenster ~ "schlechtestes" Wetter
+                            code    = Math.max(...idx.map(k => hourly.weather_code[k]));
+                            rain    = Math.max(...idx.map(k => hourly.precipitation_probability[k] ?? 0));
+                            tempTxt = Math.round(Math.min(...temps)) + '° – '
+                                    + Math.round(Math.max(...temps)) + '°';
+                            zeitTxt = ', ' + loc.zeitText;
+                        }
                     }
-                }
 
-                const [icon, text] = weatherInfo(code);
-                const date = new Date(dayIso + 'T12:00:00');
-                // Browser liefern je nach Version "Sa" oder "Sa." -> vereinheitlichen
-                let wd = date.toLocaleDateString('de-DE', { weekday: 'short' });
-                if (!wd.endsWith('.')) wd += '.';
-                const dateTxt = i === 0 ? 'heute'
-                    : wd + ' ' + date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' });
+                    const [icon, text] = weatherInfo(code);
+                    const date = new Date(dayIso + 'T12:00:00');
+                    // Browser liefern je nach Version "Sa" oder "Sa." -> vereinheitlichen
+                    let wd = date.toLocaleDateString('de-DE', { weekday: 'short' });
+                    if (!wd.endsWith('.')) wd += '.';
+                    const dateTxt = i === 0 ? 'heute'
+                        : wd + ' ' + date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' });
 
-                box.innerHTML = `<i class="fa-solid ${icon} weather-icon" aria-hidden="true"></i>`
-                    + `<span class="weather-text"><strong>${loc.label} (${dateTxt}${zeitTxt}):</strong> `
-                    + `${text}, ${tempTxt} · Regenrisiko ${rain} %</span>`;
-                box.title = 'Wetterdaten: open-meteo.com';
-                box.hidden = false;
-            })
-            .catch(() => {});
+                    box.innerHTML = `<i class="fa-solid ${icon} weather-icon" aria-hidden="true"></i>`
+                        + `<span class="weather-text"><strong>${loc.label} (${dateTxt}${zeitTxt}):</strong> `
+                        + `${text}, ${tempTxt} · Regenrisiko ${rain} %</span>`;
+                    box.title = 'Wetterdaten: open-meteo.com';
+                    box.hidden = false;
+                })
+                .catch(() => {});
     });
+    }
+
+    // Nach aussen sichtbar, damit klaro-config.js beim Zustimmen nachladen kann.
+    window.ladeWetter = ladeWetter;
+
+    function wetterErlaubt() {
+        try {
+            return typeof klaro !== 'undefined'
+                && klaro.getManager().getConsent('wetter') === true;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    // Ohne Zustimmung steht in der Leiste ein Hinweis statt der Vorhersage -
+    // sonst waere die Funktion fuer alle, die ablehnen, spurlos verschwunden.
+    function zeigeWetterHinweis() {
+        weatherLocations.forEach(loc => {
+            const box = document.getElementById(loc.id);
+            if (!box || box.dataset.hinweis === 'ja') return;
+            box.dataset.hinweis = 'ja';
+            box.classList.add('weather-strip--hinweis');
+            box.innerHTML = '<i class="fa-solid fa-cloud-sun weather-icon" aria-hidden="true"></i>'
+                + '<span class="weather-text">Wettervorhersage von open-meteo.com &ndash; '
+                + 'wird erst nach deiner Zustimmung geladen.</span>'
+                + '<button type="button" class="weather-laden">Wetter anzeigen</button>';
+            box.querySelector('.weather-laden').addEventListener('click', () => {
+                if (typeof klaro !== 'undefined') klaro.show();
+            });
+            box.hidden = false;
+        });
+    }
+
+    if (wetterErlaubt()) {
+        ladeWetter();
+    } else {
+        zeigeWetterHinweis();
+    }
 
 
     // ==========================================

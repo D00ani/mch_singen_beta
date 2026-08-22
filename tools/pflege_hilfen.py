@@ -11,8 +11,33 @@ import shutil
 import sys
 from datetime import datetime
 
-if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+def _utf8_ausgabe():
+    """Umlaute auch in einer Konsole mit alter Codepage richtig ausgeben.
+
+    Muss jeden Sonderfall abfangen, denn dieses Modul wird von JEDEM
+    Werkzeug importiert - auch vom Pflege-Fenster. Das startet per
+    Doppelklick ueber pythonw.exe, und dort gibt es ueberhaupt keine
+    Konsole: sys.stdout ist dann None. Der frueher hier stehende direkte
+    Zugriff (sys.stdout.encoding) hat deshalb schon beim Import eine
+    AttributeError geworfen - das Fenster ging beim Doppelklick gar nicht
+    erst auf, ohne jede Meldung, weil es ja auch keine Konsole fuer die
+    Fehlermeldung gab.
+    """
+    for strom in (sys.stdout, sys.stderr):
+        if strom is None:
+            continue
+        kodierung = getattr(strom, "encoding", None)
+        if not kodierung or kodierung.lower() in ("utf-8", "utf8"):
+            continue
+        if not hasattr(strom, "reconfigure"):
+            continue
+        try:
+            strom.reconfigure(encoding="utf-8", errors="replace")
+        except (ValueError, OSError):
+            pass
+
+
+_utf8_ausgabe()
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SICHERUNGS_DIR = os.path.join(ROOT, ".pflege-sicherungen")

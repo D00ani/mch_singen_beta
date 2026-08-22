@@ -41,6 +41,11 @@
     document.body.classList.add('dark-mode');}catch(e){}})();
     </script>
 
+    <!-- Erste Station fuer Tastatur und Screenreader: ueberspringt Kopfzeile
+         und Navigation. Sichtbar wird der Verweis erst beim Antabben
+         (css/style.css, .skip-link). Stand frueher nur in js/main.js -
+         ohne JavaScript gab es ihn dadurch gar nicht. -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
    <header>
         <div class="logo-container">
             <a href="../index.html">
@@ -70,27 +75,72 @@
                 <i class="fa-brands fa-instagram"></i>
             </a>
         </div>
+
+        <!-- Hauptnavigation (Desktop, ab 900px). Darunter uebernimmt
+             der Menue-Knopf mit dem Seitenmenue. -->
+        <nav class="main-nav" aria-label="Hauptnavigation">
+            <ul class="main-nav-list">
+                <li class="main-nav-item"><a class="main-nav-link" href="../index.html">Startseite</a></li>
+                <li class="main-nav-item has-sub">
+                    <button type="button" class="main-nav-link" aria-expanded="false">Verein <i class="fa-solid fa-chevron-down main-nav-chevron" aria-hidden="true"></i></button>
+                    <ul class="main-nav-sub">
+                        <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
+                        <li><a href="geschichte.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Geschichte des MCH</a></li>
+                        <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Sponsoren &amp; Links</a></li>
+                        <li><a href="faq.html"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Fragen &amp; Antworten</a></li>
+                        <li><a href="impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Impressum &amp; Datenschutz</a></li>
+                    </ul>
+                </li>
+                <li class="main-nav-item has-sub">
+                    <button type="button" class="main-nav-link" aria-expanded="false">Sport <i class="fa-solid fa-chevron-down main-nav-chevron" aria-hidden="true"></i></button>
+                    <ul class="main-nav-sub">
+                        <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
+                        <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
+                        <li><a href="sommerferienprogramm.html"><i class="fa-solid fa-sun" aria-hidden="true"></i> Sommerferienprogramm</a></li>
+                    </ul>
+                </li>
+                <li class="main-nav-item has-sub">
+                    <button type="button" class="main-nav-link" aria-expanded="false">Aktuelles <i class="fa-solid fa-chevron-down main-nav-chevron" aria-hidden="true"></i></button>
+                    <ul class="main-nav-sub">
+                        <li><a href="aktuelles.html"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> News &amp; Termine</a></li>
+                        <li><a href="live.html"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i> Live-Ergebnisse</a></li>
+                        <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Statistiken &amp; Erfolge</a></li>
+                        <li><a href="archiv.html"><i class="fa-solid fa-box-archive" aria-hidden="true"></i> Ergebnis-Archiv</a></li>
+                    </ul>
+                </li>
+                <li class="main-nav-item"><a class="main-nav-link" href="kontakt.html">Kontakt</a></li>
+                <li class="main-nav-item main-nav-item--right"><a class="main-nav-link" href="https://mch-singen.teamkleidung24.de/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> Shop</a></li>
+            </ul>
+        </nav>
     </header>
     <button class="hamburger-btn" id="open-menu" aria-expanded="false" aria-controls="side-menu" aria-label="Menü öffnen">
         <i class="fa-solid fa-bars"></i>
     </button>
 
-        <main>
-            <h1><i class="fa-solid fa-scale-balanced heading-icon heading-icon--blue"></i> Impressum</h1>
+        <main id="main-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Startseite</a>
+                <span class="breadcrumb-sep" aria-hidden="true">/</span>
+                <span aria-current="page">Impressum &amp; Datenschutz</span>
+            </nav>
+            <div class="page-head">
+                <p class="page-kicker">Rechtliches</p>
+                <h1>Impressum</h1>
+            </div>
             
             <div class="impressum-box">
-                <h3 style="margin-top:0;">Angaben gemäß § 5 TMG</h3>
+                <h2 style="margin-top:0;">Angaben gemäß § 5 TMG</h2>
                 <p>
                     <strong>MCH Singen Motorsportclub "Hohentwiel" e.V. im DMV</strong><br>
                     Kleiststr. 3<br>
                     78239 Rielasingen
                 </p>
-                <h3>Vereinsregister</h3>
+                <h2>Vereinsregister</h2>
                 <p>
                     Registergericht: Amtsgericht Freiburg<br>
                     Registernummer: VR 540095
                 </p>
-                <h3>Kontakt</h3>
+                <h2>Kontakt</h2>
                 <p>
                     Telefon: 07731/2 34 22<br>
                     E-Mail: <a href="mailto:jochen.isak@t-online.de" style="color: var(--primary-blue); text-decoration: none;">jochen.isak@t-online.de</a>
@@ -99,7 +149,7 @@
 
             <div class="section-divider"></div>
 
-            <h1><i class="fa-solid fa-shield-halved heading-icon heading-icon--blue"></i> Datenschutzerklärung</h1>
+            <h2 class="dokument-titel">Datenschutzerklärung</h2>
             <p>Diese Datenschutzerklärung klärt Sie über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend kurz „Daten“) innerhalb unseres Onlineangebotes und der mit ihm verbundenen Webseiten, Funktionen und Inhalte sowie externen Onlinepräsenzen, wie z.B. unser Social Media Profile auf (nachfolgend gemeinsam bezeichnet als „Onlineangebot“). Im Hinblick auf die verwendeten Begrifflichkeiten, wie z.B. „Verarbeitung“ oder „Verantwortlicher“ verweisen wir auf die Definitionen im Art. 4 der Datenschutzgrundverordnung (DSGVO).</p>
 
             <h3>Verantwortlicher</h3>
@@ -170,6 +220,7 @@
             <p>Nach gesetzlichen Vorgaben in Deutschland erfolgt die Aufbewahrung insbesondere für 6 Jahre gemäß § 257 Abs. 1 HGB (Handelsbücher, Inventare, Eröffnungsbilanzen, Jahresabschlüsse, Handelsbriefe, Buchungsbelege, etc.) sowie für 10 Jahre gemäß § 147 Abs. 1 AO (Bücher, Aufzeichnungen, Lageberichte, Buchungsbelege, Handels- und Geschäftsbriefe, Für Besteuerung relevante Unterlagen, etc.).</p>
 
             <h3>Hosting</h3>
+            <p>Diese Website wird bei <strong>GitHub Pages</strong> gehostet. Anbieter ist die GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf unserer Seiten übermittelt Ihr Browser technisch bedingt Daten an GitHub, darunter Ihre IP-Adresse. Grundlage ist unser berechtigtes Interesse an einem sicheren und zuverlässigen Betrieb der Website gem. Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue);">Datenschutzerklärung von GitHub</a>.</p>
             <p>Die von uns in Anspruch genommenen Hosting-Leistungen dienen der Zurverfügungstellung der folgenden Leistungen: Infrastruktur- und Plattformdienstleistungen, Rechenkapazität, Speicherplatz und Datenbankdienste, Sicherheitsleistungen sowie technische Wartungsleistungen, die wir zum Zwecke des Betriebs dieses Onlineangebotes einsetzen.</p>
             <p>Hierbei verarbeiten wir, bzw. unser Hostinganbieter Bestandsdaten, Kontaktdaten, Inhaltsdaten, Vertragsdaten, Nutzungsdaten, Meta- und Kommunikationsdaten von Kunden, Interessenten und Besuchern dieses Onlineangebotes auf Grundlage unserer berechtigten Interessen an einer effizienten und sicheren Zurverfügungstellung dieses Onlineangebotes gem. Art. 6 Abs. 1 lit. f DSGVO i.V.m. Art. 28 DSGVO (Abschluss Auftragsverarbeitungsvertrag).</p>
 
@@ -185,8 +236,8 @@
             <p>Wir löschen die Anfragen, sofern diese nicht mehr erforderlich sind. Wir überprüfen die Erforderlichkeit alle zwei Jahre; Ferner gelten die gesetzlichen Archivierungspflichten.</p>
 
 
-            <p><strong>jsDelivr (Klaro Cookie-Banner & Chart.js)</strong><br>
-            Für unser Cookie-Einwilligungs-Tool "Klaro" sowie für die Anzeige von Diagrammen auf der Statistik-Seite nutzen wir Skripte, die über das CDN jsDelivr (Prospect One, Królewska 65A, 30-081 Kraków, Polen) geladen werden. Weitere Informationen zum Datenschutz bei jsDelivr finden Sie hier: <a href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue);">https://www.jsdelivr.com/privacy-policy-jsdelivr-net</a>.</p>
+            <p><strong>Schriften, Symbole und Skripte</strong><br>
+            Alle Schriftarten (Inter, Outfit, Orbitron), die Symbolschrift Font Awesome, das Cookie-Einwilligungs-Tool "Klaro" und die Diagramm-Bibliothek Chart.js liegen auf unserem eigenen Webspace und werden von dort geladen. Es besteht dabei <strong>keine Verbindung zu externen Anbietern</strong> wie Google Fonts oder einem Content Delivery Network, und es werden keine Daten an Dritte übertragen.</p>
 
             <h3>Kontaktformular (FormSubmit)</h3>
             <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
@@ -194,8 +245,14 @@
             <p>Weitere Informationen zum Datenschutz bei FormSubmit finden Sie unter: <br>
             <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">https://formsubmit.co/privacy.pdf</a></p>
 
+            <h3>Karten (Google Maps)</h3>
+            <p>Auf unserer Startseite bieten wir zur Anfahrt eine interaktive Karte des Dienstes Google Maps an. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</p>
+            <p>Die Karte wird <strong>nicht automatisch geladen</strong>. Sie sehen zunächst nur einen Platzhalter; erst wenn Sie die Karte ausdrücklich freigeben, wird sie von Google nachgeladen. Dabei wird Ihre IP-Adresse an Google übertragen, gegebenenfalls auch an Server in den USA. Rechtsgrundlage ist Ihre Einwilligung gem. Art. 6 Abs. 1 lit. a DSGVO, die Sie jederzeit über die <a href="#" onclick="return klaro.show();">Cookie-Einstellungen</a> widerrufen können.</p>
+            <p>Weitere Informationen zum Datenschutz bei Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue);">https://policies.google.com/privacy</a>.</p>
+
             <h3>Wettervorhersage (Open-Meteo)</h3>
-            <p>Auf unserer Startseite zeigen wir eine Wettervorhersage für unsere Trainings- und Veranstaltungsorte an. Dafür ruft Ihr Browser Daten vom Dienst Open-Meteo (open-meteo.com) ab. Dabei wird technisch bedingt Ihre IP-Adresse übermittelt; es werden jedoch keine Cookies gesetzt und laut Anbieter keine personenbezogenen Daten gespeichert. Die Nutzung erfolgt auf Grundlage unseres berechtigten Interesses an der Bereitstellung nützlicher Informationen für Besucher gem. Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue);">https://open-meteo.com/en/terms</a>.</p>
+            <p>Auf unserer Startseite zeigen wir eine Wettervorhersage für unsere Trainings- und Veranstaltungsorte an. Dafür ruft Ihr Browser Daten vom Dienst Open-Meteo (open-meteo.com) ab. Dabei wird technisch bedingt Ihre IP-Adresse übermittelt; es werden jedoch keine Cookies gesetzt und laut Anbieter keine personenbezogenen Daten gespeichert.</p>
+            <p>Die Vorhersage wird <strong>nicht automatisch geladen</strong>. Ohne Ihre Zustimmung sehen Sie an dieser Stelle nur einen Hinweis; erst wenn Sie den Dienst freigeben, werden Daten abgerufen. Rechtsgrundlage ist Ihre Einwilligung gem. Art. 6 Abs. 1 lit. a DSGVO, die Sie jederzeit über die <a href="#" onclick="return klaro.show();">Cookie-Einstellungen</a> widerrufen können. Weitere Informationen: <a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue);">https://open-meteo.com/en/terms</a>.</p>
 
             <h3>Gestaltung und Umsetzung der Website</h3>
             <p>Konzept, Gestaltung und technische Umsetzung dieser Website:
@@ -205,19 +262,56 @@
         </main>
 
         <footer>
-            <a href="../index.html" class="footer-logo-link" title="Zur Startseite">
-            <img src="../media/logos/mch-logo-128.png" alt="MCH Logo" class="footer-logo" width="128" height="128" loading="lazy">
-        </a>
-        <span class="footer-club-name">MCH Singen Motorsportclub "Hohentwiel" e.V. im DMV</span>
-        <ul class="footer-quick-nav">
-            <li><a href="kartsport.html">Kartsport</a></li>
-            <li><a href="trialsport.html">Trialsport</a></li>
-            <li><a href="ueber-uns.html">Über uns</a></li>
-            <li><a href="aktuelles.html">Aktuelles</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
-        </ul>
-        <span class="footer-rule"></span>
-            <p>© 2026 MCH Singen Motorsportclub "Hohentwiel" e.V. im DMV Alle Rechte vorbehalten. | <a href="#" onclick="return klaro.show();" style="color: var(--text-light); text-decoration: underline;">Cookie-Einstellungen</a></p>
+            <div class="footer-inner">
+                <div class="footer-col footer-brand">
+                    <a href="../index.html" title="Zur Startseite">
+                        <img src="../media/logos/mch-logo-128.png" alt="MCH Logo" class="footer-logo" width="128" height="128" loading="lazy">
+                    </a>
+                    <p class="footer-tagline">Motorsport aus Leidenschaft</p>
+                    <p class="footer-desc">Der Motorsportclub "Hohentwiel" e.V. ist ein gemeinnütziger Verein in Singen - aktiver Kart- und Trialsport für Jung und Alt.</p>
+                    <a href="https://www.instagram.com/mch_singen/" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+                        <i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram folgen
+                    </a>
+                </div>
+                <div class="footer-col">
+                    <h2 class="footer-heading">Kontakt</h2>
+                    <ul class="footer-contact">
+                        <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="kontakt.html">Kontaktformular</a></li>
+                    </ul>
+                    <h2 class="footer-heading footer-heading--spaced">Kart-Training</h2>
+                    <ul class="footer-contact">
+                        <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i><span>Samstags 9:00 &ndash; 13:30 Uhr</span></li>
+                        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Münchriedstraße 10<br>78224 Singen (Hohentwiel)</span></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2 class="footer-heading">Sport</h2>
+                    <ul class="footer-links">
+                        <li><a href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Kartsport</a></li>
+                        <li><a href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Trialsport</a></li>
+                        <li><a href="sommerferienprogramm.html"><i class="fa-solid fa-sun" aria-hidden="true"></i> Ferienprogramm</a></li>
+                        <li><a href="aktuelles.html"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Aktuelles</a></li>
+                        <li><a href="statistiken.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Statistiken</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2 class="footer-heading">Verein</h2>
+                    <ul class="footer-links">
+                        <li><a href="ueber-uns.html"><i class="fa-solid fa-users" aria-hidden="true"></i> Über uns</a></li>
+                        <li><a href="mitglied-werden.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Mitglied werden</a></li>
+                        <li><a href="geschichte.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Geschichte</a></li>
+                        <li><a href="sponsoren-links.html"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Sponsoren</a></li>
+                        <li><a href="faq.html"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Fragen &amp; Antworten</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 MCH Singen Motorsportclub "Hohentwiel" e.V. im DMV</span>
+                <span class="footer-legal">
+                    <a href="impressum-datenschutz.html">Impressum &amp; Datenschutz</a>
+                    <a href="#" onclick="return klaro.show();">Cookie-Einstellungen</a>
+                </span>
+            </div>
         </footer>
 
     <aside id="side-menu">
@@ -232,7 +326,7 @@
         
         <div class="sidebar-search">
             <form action="suche.html" method="GET" class="sidebar-search-row">
-                <input type="text" name="q" placeholder="Seite suchen...">
+                <input type="text" name="q" placeholder="Seite suchen..." aria-label="Seite suchen">
                 <button type="submit" title="Suchen"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

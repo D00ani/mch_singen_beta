@@ -6,10 +6,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 0. SKIP-LINK (Tastatur/Screenreader: direkt zum Inhalt springen) ---
+    // Der Verweis steht inzwischen im Markup jeder Seite - er ist damit auch
+    // dann da, wenn JavaScript nicht laeuft. Dieses Stueck legt ihn nur noch
+    // an, falls er auf einer Seite fehlt, und haengt keinen zweiten an.
     (function initSkipLink() {
         const main = document.querySelector('main');
         if (!main) return;
         if (!main.id) main.id = 'main-content';
+        if (document.querySelector('.skip-link')) return;
 
         const skipLink = document.createElement('a');
         skipLink.className = 'skip-link';
@@ -286,137 +290,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // --- 11. MODERNER FOOTER ---
-    (function initFooter() {
-        const footer = document.querySelector('footer');
-        if (!footer) return;
-        const isSubpage = !!document.querySelector('link[href^="../css"]');
-        const b = isSubpage ? '../' : '';
-        footer.innerHTML = `
-            <div class="footer-inner">
-                <div class="footer-col footer-brand">
-                    <a href="${b}index.html" title="Zur Startseite">
-                        <img src="${b}media/logos/mch-logo-128.png" alt="MCH Logo" class="footer-logo" width="128" height="128" loading="lazy">
-                    </a>
-                    <p class="footer-tagline">Motorsport aus Leidenschaft</p>
-                    <p class="footer-desc">Der Motorsportclub "Hohentwiel" e.V. ist ein gemeinnütziger Verein in Singen - aktiver Kart- und Trialsport für Jung und Alt.</p>
-                    <a href="https://www.instagram.com/mch_singen/" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
-                        <i class="fa-brands fa-instagram"></i> Instagram folgen
-                    </a>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-heading">Sport</h3>
-                    <ul class="footer-links">
-                        <li><a href="${b}pages/kartsport.html"><i class="fa-solid fa-flag-checkered"></i> Kartsport</a></li>
-                        <li><a href="${b}pages/trialsport.html"><i class="fa-solid fa-motorcycle"></i> Trialsport</a></li>
-                        <li><a href="${b}pages/sommerferienprogramm.html"><i class="fa-solid fa-sun"></i> Ferienprogramm</a></li>
-                        <li><a href="${b}pages/aktuelles.html"><i class="fa-solid fa-newspaper"></i> Aktuelles</a></li>
-                        <li><a href="${b}pages/statistiken.html"><i class="fa-solid fa-chart-line"></i> Statistiken</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-heading">Verein & Info</h3>
-                    <ul class="footer-links">
-                        <li><a href="${b}pages/ueber-uns.html"><i class="fa-solid fa-users"></i> Über uns</a></li>
-                        <li><a href="${b}pages/mitglied-werden.html"><i class="fa-solid fa-user-plus"></i> Mitglied werden</a></li>
-                        <li><a href="${b}pages/kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt</a></li>
-                        <li><a href="${b}pages/faq.html"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
-                        <li><a href="${b}pages/impressum-datenschutz.html"><i class="fa-solid fa-scale-balanced"></i> Impressum</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© 2026 Motorsportclub Singen Hohentwiel e.V. | <a href="#" onclick="return klaro.show();">Cookie-Einstellungen</a></span>
-                <!-- Der Gestaltungs-Hinweis steht jetzt im Impressum unter
-                     "Gestaltung und Umsetzung der Website" und nicht mehr in
-                     der Fusszeile jeder einzelnen Seite. -->
-            </div>
-        `;
-    })();
+    // Abschnitt 11 (MODERNER FOOTER) ist entfallen. Er hat den kompletten
+    // Fussbereich per innerHTML neu gebaut - das Markup in den Seiten
+    // wurde dabei jedes Mal verworfen. Jetzt steht der Fussbereich als
+    // echtes Markup in jeder Seite, mit einer zusaetzlichen Spalte fuer
+    // Anschrift, Telefon und Trainingszeit.
 
-    // --- 12. HEADER INLINE NAVIGATION ---
-    (function initHeaderNav() {
-        const header = document.querySelector('header');
-        if (!header) return;
-
-        const isSubpage = !!document.querySelector('link[href^="../css"]');
-        const b = isSubpage ? '../' : '';
-        const path = window.location.pathname.toLowerCase();
-
-        const links = [
-            { href: `${b}index.html`,                      icon: 'fa-house',           label: 'Startseite' },
-            { href: `${b}pages/aktuelles.html`,            icon: 'fa-newspaper',       label: 'Aktuelles' },
-            { href: `${b}pages/kartsport.html`,            icon: 'fa-flag-checkered',  label: 'Kartsport' },
-            { href: `${b}pages/trialsport.html`,           icon: 'fa-motorcycle',      label: 'Trialsport' },
-            { href: `${b}pages/ueber-uns.html`,            icon: 'fa-users',           label: 'Über uns' },
-            { href: `${b}pages/kontakt.html`,              icon: 'fa-envelope',        label: 'Kontakt' },
-        ];
-
-        const nav = document.createElement('nav');
-        nav.className = 'header-nav';
-
-        links.forEach(({ href, icon, label }) => {
-            const a = document.createElement('a');
-            a.href = href;
-            a.innerHTML = `<i class="fa-solid ${icon}"></i><span>${label}</span>`;
-
-            const filename = href.split('/').pop().toLowerCase();
-            const isHome = filename === 'index.html';
-            const isCurrentHome = isHome && (path === '/' || path.endsWith('/index.html') || path.endsWith('/'));
-            const isCurrentPage = !isHome && path.endsWith(filename);
-
-            if (isCurrentHome || isCurrentPage) {
-                a.classList.add('active');
-            }
-
-            nav.appendChild(a);
-        });
-
-        header.appendChild(nav);
-    })();
-
-    // --- 13. BREADCRUMB NAVIGATION ---
-    (function initBreadcrumb() {
-        const isSubpage = !!document.querySelector('link[href^="../css"]');
-        if (!isSubpage) return;
-
-        const pageNames = {
-            'aktuelles.html':               'Aktuelles & Termine',
-            'archiv.html':                  'Archiv',
-            'faq.html':                     'FAQ',
-            'geschichte.html':              'Geschichte',
-            'impressum-datenschutz.html':   'Impressum & Datenschutz',
-            'kartsport.html':               'Kartsport',
-            'kontakt.html':                 'Kontakt',
-            'live.html':                    'Live-Ergebnisse',
-            'mitglied-werden.html':         'Mitglied werden',
-            'sommerferienprogramm.html':    'Sommerferienprogramm',
-            'sponsoren-links.html':         'Sponsoren & Links',
-            'statistiken.html':             'Statistiken',
-            'suche.html':                   'Suche',
-            'trialsport.html':              'Trialsport',
-            'ueber-uns.html':               'Über uns',
-        };
-
-        const filename = window.location.pathname.split('/').pop() || '';
-        const currentName = pageNames[filename];
-        if (!currentName) return;
-
-        const heroCrumb = document.querySelector('.page-hero-breadcrumb');
-        if (heroCrumb) {
-            heroCrumb.innerHTML = `<a href="../index.html"><i class="fa-solid fa-house"></i> Startseite</a><span>›</span>${currentName}`;
-            return;
-        }
-
-        const main = document.querySelector('main');
-        if (!main) return;
-
-        const nav = document.createElement('nav');
-        nav.className = 'breadcrumb';
-        nav.setAttribute('aria-label', 'Breadcrumb');
-        nav.innerHTML = `<a href="../index.html"><i class="fa-solid fa-house"></i> Startseite</a><span class="breadcrumb-sep" aria-hidden="true">›</span><span aria-current="page">${currentName}</span>`;
-        main.insertBefore(nav, main.firstChild);
-    })();
+    // Die frueheren Abschnitte 12 (HEADER INLINE NAVIGATION) und 13
+    // (BREADCRUMB NAVIGATION) sind entfallen. Beide bauten ihr Markup erst
+    // im Browser zusammen: die Navigation als Streifen aus sechs
+    // Versalien-Pillen, der Breadcrumb als erstes Kind von <main>.
+    // Ersetzt durch echtes Markup in den Seiten - die Hauptnavigation
+    // (siehe Abschnitt 16) fuehrt jetzt alle Seiten ueber Aufklappmenues,
+    // und der Breadcrumb steht im Seitenkopf jeder Unterseite. Damit
+    // springt beim Laden nichts mehr nach und beides ist ohne JavaScript da.
 
     // --- 13b. HEADER CTA-BUTTON "MITGLIED WERDEN" ---
     (function initHeaderCTA() {
@@ -506,6 +393,162 @@ document.addEventListener('DOMContentLoaded', () => {
             label.textContent = match.label;
             navList.insertBefore(label, li);
         });
+    })();
+
+    // --- 16. HAUPTNAVIGATION (Desktop-Leiste) ---
+    // Die Leiste wird ab 900px per CSS eingeblendet. Aufgeklappt wird
+    // ohnehin schon per :hover und :focus-within - dieses Stueck ergaenzt
+    // nur das, was CSS nicht kann: Klick-Umschalten (Touchscreen-Notebooks),
+    // Escape zum Schliessen und die Markierung der aktuellen Seite.
+    (function initMainNav() {
+        const nav = document.querySelector('.main-nav');
+        if (!nav) return;
+
+        // -- aktuelle Seite markieren (gleiche Logik wie im Seitenmenue) --
+        const path = window.location.pathname.toLowerCase();
+        const currentFile = path.split('/').pop() || 'index.html';
+
+        nav.querySelectorAll('a[href]').forEach(link => {
+            const href = (link.getAttribute('href') || '').toLowerCase().split('?')[0];
+            if (!href || href.startsWith('http')) return;
+            const hrefFile = href.split('/').pop();
+            if (!hrefFile) return;
+
+            const isHome = hrefFile === 'index.html';
+            const treffer = isHome
+                ? (currentFile === 'index.html' || currentFile === '')
+                : currentFile === hrefFile;
+            if (!treffer) return;
+
+            link.classList.add('is-active');
+            link.setAttribute('aria-current', 'page');
+
+            // Liegt der Treffer in einem Aufklappfeld, bekommt auch der
+            // zugehoerige Reiter die Markierung - sonst zeigt die Leiste
+            // im zugeklappten Zustand nirgends an, wo man ist.
+            const gruppe = link.closest('.main-nav-item');
+            const reiter = gruppe && gruppe.querySelector(':scope > .main-nav-link');
+            if (reiter && reiter !== link) reiter.classList.add('is-active');
+        });
+
+        // -- Aufklappen und Zuklappen per Klick --
+        // Aufgeklappt wird sonst schon per :hover und :focus-within (CSS).
+        // Ein Klick muss deshalb BEIDES uebersteuern koennen, sonst haelt
+        // der Zeiger auf dem Reiter das Feld offen und der Klick wirkt
+        // folgenlos. Dafuer gibt es die Klasse "zu"; sie faellt weg, sobald
+        // der Zeiger den Reiter verlaesst.
+        const gruppen = [...nav.querySelectorAll('.main-nav-item.has-sub')];
+
+        function istOffen(gruppe) {
+            const feld = gruppe.querySelector(':scope > .main-nav-sub');
+            return !!feld && getComputedStyle(feld).visibility === 'visible';
+        }
+
+        function zuklappen(gruppe, merken) {
+            gruppe.classList.remove('open');
+            gruppe.classList.toggle('zu', !!merken);
+            const schalter = gruppe.querySelector(':scope > .main-nav-link');
+            if (schalter) schalter.setAttribute('aria-expanded', 'false');
+        }
+
+        function schliesseAlle(ausser) {
+            gruppen.forEach(g => { if (g !== ausser) zuklappen(g, false); });
+        }
+
+        gruppen.forEach(gruppe => {
+            const schalter = gruppe.querySelector(':scope > .main-nav-link');
+            if (!schalter || schalter.tagName !== 'BUTTON') return;
+
+            schalter.addEventListener('click', () => {
+                if (istOffen(gruppe)) {
+                    zuklappen(gruppe, true);
+                    // Ohne blur() haelt :focus-within das Feld offen.
+                    schalter.blur();
+                } else {
+                    gruppe.classList.remove('zu');
+                    gruppe.classList.add('open');
+                    schalter.setAttribute('aria-expanded', 'true');
+                }
+                schliesseAlle(gruppe);
+            });
+
+            // Verlaesst der Zeiger den Reiter, gilt wieder der Normalfall:
+            // Hover klappt auf, Klick klappt zu.
+            gruppe.addEventListener('mouseleave', () => zuklappen(gruppe, false));
+        });
+
+        // Klick daneben und Escape schliessen wieder.
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.main-nav-item.has-sub')) schliesseAlle(null);
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'Escape') return;
+            const offen = gruppen.find(istOffen);
+            if (!offen) return;
+            const schalter = offen.querySelector(':scope > .main-nav-link');
+            // "zu" merken, weil der Fokus gleich wieder auf den Reiter geht.
+            zuklappen(offen, true);
+            if (schalter) schalter.focus();
+        });
+    })();
+
+
+    // --- 17. TABELLEN AUF DEM HANDY ---
+    // Unter 700px werden die Tabellen zu Bloecken gestapelt (css/mobile.css).
+    // Damit man dann noch weiss, was ein Wert bedeutet, bekommt jede Zelle
+    // die Spaltenueberschrift als data-spalte; das CSS blendet sie davor ein.
+    //
+    // Warum hier und nicht im Markup: tools/statistiken_pflege.py legt neue
+    // Zeilen als schlichtes <td>Wert</td> an und liest sie mit genau diesem
+    // Muster wieder ein. Stuende das Attribut im HTML, wuerde das Werkzeug
+    // die Zeilen nicht mehr finden - und neu angelegte Zeilen haetten die
+    // Beschriftung ohnehin nicht. Zur Laufzeit gesetzt gilt es fuer alle
+    // Zeilen, egal wer sie eingetragen hat.
+    (function initTabellenBeschriftung() {
+        document.querySelectorAll('table.stats-table').forEach(tabelle => {
+            const kopf = [...tabelle.querySelectorAll('thead th')]
+                .map(th => th.textContent.trim());
+            if (!kopf.length) return;
+            tabelle.querySelectorAll('tbody tr').forEach(zeile => {
+                [...zeile.children].forEach((zelle, i) => {
+                    if (kopf[i]) zelle.setAttribute('data-spalte', kopf[i]);
+                });
+            });
+        });
+    })();
+
+
+    // --- 18. ONBOARD-VIDEO: AM RECHNER VON SELBST, AUF DEM HANDY AUF TIPP ---
+    // Das Video wiegt 8,4 MB. Frueher stand autoplay direkt im Markup, damit
+    // lud es auch am Handy bei jedem Aufruf ueber Mobilfunk. Die Quelle steht
+    // deshalb in data-src und wird hier je nach Geraet gesetzt.
+    (function initOnboardVideo() {
+        const video = document.querySelector('video.track-video[data-src]');
+        if (!video) return;
+
+        function quelleSetzen() {
+            if (video.src) return;
+            video.src = video.dataset.src;
+        }
+
+        // Grosser Bildschirm: laden und losspielen wie bisher.
+        // matchMedia statt Fensterbreite, damit auch ein gedrehtes Tablet
+        // richtig einsortiert wird.
+        if (window.matchMedia('(min-width: 769px)').matches) {
+            video.preload = 'auto';
+            video.autoplay = true;
+            quelleSetzen();
+            // play() kann abgelehnt werden (Energiesparmodus, Datensparmodus).
+            // Dann bleibt einfach das Standbild mit Abspielknopf stehen.
+            const versuch = video.play();
+            if (versuch && typeof versuch.catch === 'function') versuch.catch(() => {});
+            return;
+        }
+
+        // Handy: erst laden, wenn jemand wirklich abspielen will.
+        video.addEventListener('play', quelleSetzen);
+        video.addEventListener('click', quelleSetzen);
     })();
 
 });

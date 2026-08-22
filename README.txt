@@ -427,6 +427,52 @@ Dann im Menü wählen:
     zurückverwandelt, es geht also nichts verloren. Verweist ein Link auf
     eine Seite, die es nicht gibt, warnt das Werkzeug sofort.
 
+ 5e) Sommerferienprogramm an- und ausschalten
+    Das Ferienprogramm ist ein paar Wochen im Jahr aktuell und den Rest der
+    Zeit vorbei. Beides stand bisher an vier Stellen im HTML und musste von
+    Hand nachgezogen werden - jetzt hält das Werkzeug alle vier aus einem
+    Datensatz aktuell (data/ferienprogramm.json):
+        pages/sommerferienprogramm.html   Terminkasten, "Auf einen Blick",
+                                          Kasten "Anmeldung"
+        pages/aktuelles.html              die Karte im Abschnitt Ferienprogramm
+    Zwei Zustände:
+        AN   Termine stehen fest, die Knöpfe zeigen auf die Anmeldeseiten
+        AUS  Programm gelaufen, die Seite sagt "Termine <Folgejahr> folgen"
+             und die Knöpfe zeigen auf die Portal-Startseiten
+    Ablauf im neuen Jahr: "Termine & Links bearbeiten" (Jahr, beide Daten,
+    beide Portal-Links), dann "Umschalten" auf AN. Nach dem Programm einmal
+    "Umschalten" auf AUS - mehr ist nicht zu tun.
+    Ohne Termine lässt sich nicht auf AN schalten, das Werkzeug sagt dann,
+    was noch fehlt. Die Links werden immer geprüft, weil sie in beiden
+    Zuständen auf der Seite stehen.
+    Die Blöcke im HTML stehen zwischen <!-- FP:... --> und <!-- /FP:... -->.
+    Von Hand geändert wird das beim nächsten Umschalten überschrieben.
+    Ohne Fenster: python tools/ferienprogramm_pflege.py [--an|--aus]
+
+ 5f) Symbole eindampfen (Font Awesome)
+    Font Awesome bringt 1970 Symbole mit - die Seite benutzt rund 70. Bezahlt
+    wurde bisher trotzdem alles: 310 KB bei JEDEM Seitenaufruf (73 KB CSS und
+    drei Schriftdateien mit zusammen 237 KB). Zum Vergleich: die kompletten
+    Textschriften der Seite wiegen 89 KB.
+        python tools/icons_bauen.py
+    sammelt alle benutzten Symbolnamen ein - aus *.html, js/*.js, tools/*.py
+    und data/*.json - und schreibt aus den Originalen unter
+    tools/schriften-quelle/ verkleinerte Fassungen nach css/ und webfonts/.
+    Ergebnis: 320 KB -> 22 KB, also rund 290 KB weniger je Aufruf.
+        python tools/icons_bauen.py --nur-liste      zeigt nur, was gefunden wurde
+        python tools/icons_bauen.py --alles-zurueck  volle Fassung zurueckholen
+
+    WICHTIG - wenn ein NEUES Symbol dazukommt:
+    Die ausgelieferte Schrift kennt nur die eingesammelten Symbole. Traegst du
+    ueber ein Pflege-Werkzeug (z. B. Sponsoren & Links) ein Symbol ein, das
+    noch nicht dabei ist, bleibt die Stelle auf der Seite LEER - ohne
+    Fehlermeldung. Deshalb:
+      - 'Webseite pruefen' meldet so etwas als "Symbol(e) nicht in der Schrift"
+        und nennt Name und Fundstelle.
+      - Danach einmal  python tools/icons_bauen.py  laufen lassen, fertig.
+    Beim Aktualisieren von Font Awesome die neuen Originaldateien in
+    tools/schriften-quelle/ ersetzen und das Werkzeug erneut starten.
+
  6) Bilder aufnehmen (WebP + HTML-Block)        -> Abschnitt 7
  6b) Vorschau im Browser
     Startet einen kleinen Webserver auf diesem Rechner und öffnet die Seite
@@ -815,4 +861,37 @@ dieselben Dateien. Nacheinander ist völlig unproblematisch.
 TECHNISCHES: Gebaut mit Tkinter, das jedem Python beiliegt - es muss also
 nichts nachinstalliert werden. Die Schrift ist Bahnschrift (die DIN-Schrift,
 liegt jedem Windows bei), die Farben sind die der Webseite aus css/style.css.
+-------------------------------------------------------
+13. SPONSORENLEISTE AUF DER STARTSEITE
+-------------------------------------------------------
+
+Unten auf der Startseite steht eine Leiste mit den Sponsorenlogos in
+Graustufen - farbig werden sie erst, wenn der Zeiger darauf steht.
+
+WO WAS STEHT:
+
+  index.html      Die zehn Logos als Markup, direkt vor </main>.
+                  Suche nach: <section class="sponsor-strip"
+  css/index.css   Die Gestaltung, Abschnitt 8 "SPONSORENLEISTE".
+
+EINEN SPONSOR AUFNEHMEN ODER STREICHEN:
+
+  ACHTUNG - die Logos stehen an ZWEI Stellen:
+    1. index.html          (die Leiste unten auf der Startseite)
+    2. pages/sponsoren-links.html  (die vollstaendige Sponsorenseite)
+  Beide muessen geaendert werden, sonst laufen sie auseinander.
+
+  In index.html einen <a class="sponsor-logo">-Block kopieren und
+  Adresse, Bilddatei, alt-Text, title und die Bildmasse anpassen.
+  Das Logo selbst gehoert nach media/sponsoren/ (als .webp).
+
+NACH EINER AENDERUNG AN css/index.css:
+
+      python tools/build_assets.py
+
+  Ohne diesen Schritt bleibt die Aenderung unsichtbar - die Seite laedt
+  css/index.min.css, nicht css/index.css (siehe Abschnitt 9).
+  Aenderungen NUR an index.html brauchen keinen Build.
+
+
 =======================================================

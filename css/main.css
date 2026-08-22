@@ -8,15 +8,34 @@ main {
 
 /* Kurze Seiten (Suche ohne Treffer, Baustellenseite, 404) endeten bisher
    mitten im Bild: der Fussbereich rutschte nach oben und darunter stand
-   eine grosse leere Flaeche. Der Inhaltsbereich fuellt jetzt mindestens
-   die Fensterhoehe abzueglich Kopf- und Fusszeile.
-   100dvh statt 100vh, damit auf Mobilgeraeten die ein- und ausfahrende
-   Adressleiste das Layout nicht springen laesst. */
-body:not(.page-home) main {
-    min-height: calc(100dvh - 420px);
+   eine grosse leere Flaeche.
+   Hier stand dafuer frueher min-height: calc(100dvh - 420px). Die 420px
+   waren die geschaetzte Summe aus Kopf- und Fusszeile - ein Wert, der bei
+   jeder Aenderung an beiden von Hand nachgezogen werden muss. Gemessen
+   sind es inzwischen 127px Kopf plus 451px Fuss bei 1440px Breite, und
+   der Fussbereich wird schmaler noch hoeher, weil er von vier auf zwei
+   auf eine Spalte umbricht. Eine einzelne Zahl kann das nicht abbilden;
+   auf der Suchseite wurde der Inhaltsbereich dadurch 37px hoeher
+   aufgeblasen als sein Inhalt braucht.
+   Jetzt rechnet das Layout selbst: der Seitenkoerper ist eine Spalte
+   ueber die volle Fensterhoehe, der Inhaltsbereich nimmt den Rest.
+   Kein Zahlenwert mehr, der veralten kann. */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
 }
 
-body:not(.page-home) main {
+body > main {
+    flex: 1 0 auto;
+}
+
+/* Die weisse Inhaltsflaeche gilt fuer ALLE Seiten, auch die Startseite.
+   Vorher war sie mit body:not(.page-home) ausgenommen: unter der Kopfzeile
+   lag auf der Startseite der graue Seitengrund, auf jeder Unterseite eine
+   weisse Flaeche. Beim Wechseln zwischen Start- und Unterseite sprang der
+   Hintergrund dadurch sichtbar um. */
+main {
     background: #fff;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
@@ -32,7 +51,7 @@ body:not(.page-home) main {
     body:not(.page-home) main {
         padding-top: 28px;
         padding-bottom: 32px;
-        padding-left: max(93px, calc((100% - var(--content-width)) / 2));
+        padding-left: max(var(--gutter-left), calc((100% - var(--content-width)) / 2));
         padding-right: max(30px, calc((100% - var(--content-width)) / 2));
     }
 }
@@ -108,7 +127,7 @@ main [style*="text-align:center"] p {
 .event-list li,
 .link-card-grid li,
 .footer-links li,
-.footer-quick-nav li {
+.footer-contact li {
     max-width: none;
 }
 
@@ -131,6 +150,73 @@ main img {
     margin: 20px auto;
     border-radius: 10px;
     box-shadow: var(--shadow-sm);
+}
+
+/* =========================================
+   SEITENKOPF DER UNTERSEITEN
+   =========================================
+   Die Unterseiten begannen bisher hart mit der Ueberschrift auf weisser
+   Flaeche - ohne Breadcrumb, ohne Einordnung. Zusammen mit der Navigation,
+   die nur hinter dem Menue-Knopf lag, wusste man auf keiner Unterseite,
+   wo man sich befindet.
+   Der Seitenkopf ist auf allen Unterseiten gleich aufgebaut:
+   Breadcrumb -> Rubrik -> Ueberschrift -> Einleitungssatz -> Haarlinie.
+   Die Rubriknamen folgen den Gruppen der Hauptnavigation. */
+.page-head {
+    margin-bottom: 30px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+/* Innerhalb des Seitenkopfs traegt die Haarlinie unten den Abschluss -
+   die goldene Linie direkt unter der H1 waere die zweite Trennung in
+   Folge und hat mit der Rubrikmarke daneben um Aufmerksamkeit gerungen. */
+.page-head h1 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.page-kicker {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 9px;
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    max-width: none;
+}
+
+/* Kurzer goldener Balken statt einer durchgehenden goldenen Linie:
+   die Markenfarbe bleibt im Seitenkopf, ohne die Breite zu dominieren. */
+.page-kicker::before {
+    content: '';
+    flex-shrink: 0;
+    width: 22px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+}
+
+.page-lead {
+    margin-top: 13px;
+    margin-bottom: 0;
+    max-width: 68ch;
+    font-size: 1.07rem;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .page-head {
+        margin-bottom: 24px;
+        padding-bottom: 18px;
+    }
+    .page-lead { font-size: 1rem; }
 }
 
 /* --- BREADCRUMB --- */

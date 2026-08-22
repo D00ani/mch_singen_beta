@@ -11,22 +11,27 @@ var klaroConfig = {
         if (service === 'googleMaps') {
             location.reload();
         }
+        // Wetter braucht kein Neuladen: index.js holt die Vorhersage direkt
+        // nach (siehe onAccept beim Dienst "wetter").
     },
 
     translations: {
         de: {
             consentModal: {
                 title: 'Datenschutz & Cookies',
-                description: 'Wir nutzen auf dieser Website externe Dienste (wie Google Maps), um dir zusätzliche Funktionen anzubieten.',
+                description: 'Wir nutzen auf dieser Website zwei externe Dienste: Google Maps für die Anfahrtskarten und Open-Meteo für die Wettervorhersage. Beide werden erst geladen, wenn du zustimmst.',
             },
             consentNotice: {
-                description: 'Wir nutzen Cookies und Google Maps, um unsere Webseite optimal für dich zu gestalten.',
+                description: 'Wir nutzen Google Maps für die Anfahrt und Open-Meteo für die Wettervorhersage. Beides lädt erst mit deiner Zustimmung.',
                 learnMore: 'Einstellungen anpassen',
             },
             ok: 'Alles akzeptieren',
             decline: 'Ablehnen',
             googleMaps: {
                 description: 'Anzeige von interaktiven Karten.',
+            },
+            wetter: {
+                description: 'Wettervorhersage für Trainings- und Veranstaltungsorte.',
             },
             purposes: {
                 functional: 'Funktionale Dienste',
@@ -43,6 +48,22 @@ var klaroConfig = {
             onAccept: (status) => {
                 if (status === true && typeof window.loadGoogleMap === 'function') {
                     window.loadGoogleMap();
+                }
+            }
+        },
+        {
+            // Wettervorhersage der Startseite. Open-Meteo setzt keine Cookies
+            // und braucht keinen Schluessel - der Abruf uebertraegt aber die
+            // IP-Adresse des Besuchers an einen Dritten. Deshalb steht er
+            // hier und laeuft nicht mehr ungefragt beim Seitenaufruf.
+            name: 'wetter',
+            default: false,
+            title: 'Wettervorhersage (Open-Meteo)',
+            purposes: ['functional'],
+            // Kein Neuladen noetig: js/index.js holt die Vorhersage sofort nach.
+            onAccept: (status) => {
+                if (status === true && typeof window.ladeWetter === 'function') {
+                    window.ladeWetter();
                 }
             }
         }

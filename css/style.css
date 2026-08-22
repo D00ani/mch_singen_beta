@@ -48,6 +48,14 @@
        640px breit wird - die native Breite von mch_pic.jpg. */
     --content-width: 1200px;
 
+    /* Linker Seitenrand von Kopfzeile, Inhalt und Fussbereich.
+       Unterhalb von 900px muss der fixierte Menue-Knopf hineinpassen (93px),
+       ab 900px uebernimmt die Hauptnavigation und der Knopf ist ausgeblendet -
+       dann darf der Rand auf das normale Mass zurueck. Header, main und die
+       Startseiten-Sektionen benutzen alle DIESE Variable, damit die linke
+       Kante beim Umschalten nicht auseinanderlaeuft. */
+    --gutter-left: 93px;
+
     --font-body:    'Inter', system-ui, sans-serif;
     --font-heading: 'Outfit', system-ui, sans-serif;
     /* Orbitron ist ab jetzt reine Zahlen-Schrift (Countdown, Live-Timing,
@@ -59,6 +67,10 @@
     --text-lg:   1.125rem;
     --text-xl:   1.3rem;
     --text-2xl:  1.75rem;
+}
+
+@media (min-width: 900px) {
+    :root { --gutter-left: 30px; }
 }
 
 h1, h2, h3 {
@@ -633,6 +645,35 @@ body.dark-mode .form-fehler {
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+/* Die Zwischenueberschriften im Impressum sind jetzt h2 statt h3 - vorher
+   sprang die Gliederung von der h1 der Seite direkt auf h3. Damit sich
+   optisch nichts aendert, bekommen sie hier wieder das h3-Mass, ohne die
+   Unterlinie und den grossen Vorabstand, die main h2 mitbringt. */
+.impressum-box h2 {
+    margin-top: 26px;
+    margin-bottom: 8px;
+    padding-bottom: 0;
+    border-bottom: none;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* "Datenschutzerklaerung" war eine zweite h1 auf derselben Seite. Als h2
+   traegt sie die Gliederung richtig - sehen soll sie aber weiterhin aus
+   wie der Titel eines eigenen Dokuments (identisch zu main h1). */
+.dokument-titel {
+    margin-top: 0;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--primary-blue);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
 .price-box:hover,
 .chart-box:hover {
     transform: translateY(-2px);
@@ -753,12 +794,43 @@ body.dark-mode .form-fehler {
     border-color: var(--border-strong);
 }
 
-.faq-question { 
-    padding: 20px; 
-    cursor: pointer; 
-    display: flex; 
-    justify-content: space-between; 
-    font-weight: 600; 
+/* Die Frage ist ein <button> (Tastaturbedienung kommt dadurch vom Browser).
+   Deshalb die Knopf-Vorgaben zuruecksetzen: sonst braechte sie Systemschrift,
+   einen Rahmen und eine graue Flaeche mit. */
+.faq-question {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+}
+
+/* Der Pfeil zeigt, ob die Antwort offen ist. Ohne diese Regel stand er
+   dauerhaft nach unten - egal ob auf- oder zugeklappt. */
+.faq-icon {
+    flex-shrink: 0;
+    color: var(--primary-blue);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+body.dark-mode .faq-icon { color: var(--blue-light); }
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-icon { transition: none; }
 }
 
 .faq-answer { 
@@ -996,8 +1068,10 @@ body:not(.dark-mode) .container {
     box-shadow: var(--shadow-md);
 }
 
-/* Unterseiten main: schlichte weisse Inhaltsflaeche ohne Verlauf */
-body:not(.dark-mode):not(.page-home) main {
+/* Inhaltsflaeche: schlichtes Weiss mit feiner Kante.
+   Das :not(.page-home) ist hier entfallen - die Startseite bekommt
+   dieselbe Flaeche wie jede Unterseite. */
+body:not(.dark-mode) main {
     background: var(--surface) !important;
     box-shadow: var(--shadow-md);
     border-left: 1px solid var(--border-soft);
@@ -1005,7 +1079,10 @@ body:not(.dark-mode):not(.page-home) main {
     border-bottom: 1px solid var(--border-soft);
 }
 
-body:not(.dark-mode):not(.page-home) {
+/* Seitenrand ebenfalls fuer alle Seiten gleich. Vorher hatte die
+   Startseite 10px (aus der body-Grundregel) und jede Unterseite 15px -
+   beim Wechseln ruckte die gesamte Seite um 5px zur Seite. */
+body:not(.dark-mode) {
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -1076,8 +1153,8 @@ body:not(.dark-mode) main a:hover {
         max-width: 100%;
     }
 
-    /* Unterseiten-Padding: auf Mobile gleich wie Homepage (10 px) */
-    body:not(.dark-mode):not(.page-home) {
+    /* Auf dem Handy schmalerer Seitenrand - fuer alle Seiten gleich. */
+    body:not(.dark-mode) {
         padding-left: 10px;
         padding-right: 10px;
         padding-bottom: 10px;

@@ -98,7 +98,6 @@ body.dark-mode .main-search-box input:focus { border-color: #74a3ff; }
 /* Sonstiges */
 body.dark-mode .countdown-wrapper { color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
 body.dark-mode footer { background: linear-gradient(160deg, #06102a 0%, #020810 100%); border-top: none; }
-/* designer-credit ist im neuen Footer bereits korrekt gestylt */
 
 /* Dark Mode Anpassungen für Unterseiten */
 body.dark-mode .contact-form { background: transparent; border-color: rgba(255,255,255,0.09); border-top: none; box-shadow: none; }
@@ -176,15 +175,19 @@ body.dark-mode .trainer-img { background-color: #2a2a2a; }
 body.dark-mode .maps-placeholder-content p { color: #bbb; }
 
 body.dark-mode .info-card { background: #1a1c2b; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-body.dark-mode .info-card h3 { color: var(--blue-light); }
+body.dark-mode .info-card h3,
+body.dark-mode .info-card h2 { color: var(--blue-light); }
+/* Titel der Datenschutzerklaerung - fruehere zweite h1 der Seite */
+body.dark-mode .dokument-titel { color: var(--blue-light); }
 body.dark-mode .secondary-btn { color: #74a3ff; border-color: #74a3ff; }
 body.dark-mode .secondary-btn:hover { background: var(--primary-blue); color: #fff !important; border-color: var(--primary-blue); }
 
 body.dark-mode .klaro .cookie-modal .cm-modal .cm-body { background-color: #1a1c2b !important; color: #e0e0e0 !important; }
 body.dark-mode .klaro .cookie-modal .cm-modal .cm-footer { background-color: #121212 !important; border-top: 1px solid #333 !important; }
 
-/* Sub-page main dark background */
-body.dark-mode:not(.page-home) main {
+/* Inhaltsflaeche im Dark Mode - fuer alle Seiten, auch die Startseite
+   (frueher mit :not(.page-home) ausgenommen). */
+body.dark-mode main {
     background: #1a1c2b;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-top: none;
@@ -226,22 +229,40 @@ body.dark-mode .breadcrumb a:hover { color: #74a3ff; }
 body.dark-mode .breadcrumb [aria-current="page"] { color: #74a3ff; }
 body.dark-mode .breadcrumb-sep { color: #555; }
 
-/* Sponsor-Banden Dark Mode
-   Die Logo-Tafel bleibt bewusst hell: fast alle Sponsorenlogos sind fuer
-   hellen Untergrund gemacht und wuerden auf Dunkelgrau ausfransen. */
+/* Sponsor-Karten Dark Mode.
+   Die LOGO-TAFEL bleibt bewusst hell: fast alle Sponsorenlogos sind fuer
+   hellen Untergrund gemacht und wuerden auf Dunkelgrau ausfransen.
+   Die KARTE dagegen wird dunkel wie jede andere Karte der Seite. Vorher
+   war die ganze Karte hell - im Dark Mode standen dadurch zehn weisse
+   Kacheln auf dunklem Grund, und die Beschriftung darunter war hellgrau
+   auf fast Weiss praktisch nicht zu lesen. */
 body.dark-mode .sponsor-card {
-    background: #f2f3f7;
+    background: #1a1c2b;
+    border-color: rgba(255, 255, 255, 0.09);
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
 }
+
 body.dark-mode .sponsor-card:hover,
 body.dark-mode .sponsor-card:focus-visible {
-    box-shadow: 0 10px 26px rgba(77, 122, 255, 0.30);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
 }
-body.dark-mode .sponsor-card picture { background: #f2f3f7; }
+
+/* Helle Tafel nur unter dem Logo, mit denselben oberen Rundungen wie die
+   Karte - sonst blitzen an den Ecken helle Zipfel heraus. */
+body.dark-mode .sponsor-card picture {
+    background: #f2f3f7;
+    border-radius: 9px 9px 0 0;
+}
+
 body.dark-mode .sponsor-card-name {
-    background: #10163a;
-    color: #eef1fa;
+    background: transparent;
+    border-top-color: rgba(255, 255, 255, 0.09);
+    color: #b6bdcc;
 }
+
+body.dark-mode .sponsor-card:hover .sponsor-card-name,
+body.dark-mode .sponsor-card:focus-visible .sponsor-card-name { color: #fff; }
 
 /* Link-Karten Dark Mode */
 body.dark-mode .link-card-grid li a {
@@ -261,4 +282,56 @@ body.dark-mode .sugg-item:hover,
 body.dark-mode .sugg-item:focus {
     background: var(--primary-blue);
     color: #fff;
+}
+
+/* =========================================
+   HAUPTNAVIGATION (Dark Mode)
+   =========================================
+   Die Leiste selbst sitzt auf der blauen Kopfzeile und braucht nichts -
+   nur die weissen Aufklappfelder muessen dunkel werden. */
+body.dark-mode .main-nav-sub {
+    background: #1a1c2b;
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.55);
+}
+
+body.dark-mode .main-nav-sub a { color: #e0e0e0; }
+
+body.dark-mode .main-nav-sub a:hover,
+body.dark-mode .main-nav-sub a:focus-visible,
+body.dark-mode .main-nav-sub a.is-active {
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+}
+
+body.dark-mode .main-nav-sub i { color: #8b93a7; }
+
+body.dark-mode .main-nav-sub a:hover i,
+body.dark-mode .main-nav-sub a:focus-visible i,
+body.dark-mode .main-nav-sub a.is-active i { color: #74a3ff; }
+
+/* =========================================
+   SEITENKOPF (Dark Mode)
+   ========================================= */
+/* Die Haarlinie unter dem Seitenkopf ist im Light Mode ein dunkles
+   Transparent - auf dunklem Grund waere sie unsichtbar und der Abstand
+   zum Fliesstext saehe aus wie ein Loch. */
+body.dark-mode .page-head { border-bottom-color: rgba(255, 255, 255, 0.10); }
+body.dark-mode .page-kicker { color: #8b93a7; }
+body.dark-mode .page-lead { color: #b6bdcc; }
+body.dark-mode .breadcrumb,
+body.dark-mode .breadcrumb a { color: #8b93a7; }
+body.dark-mode .breadcrumb a:hover { color: #74a3ff; }
+body.dark-mode .breadcrumb [aria-current="page"] { color: #dfe4ee; }
+
+/* Gestapelte Tabellen auf dem Handy (siehe css/mobile.css): dort trennt
+   die ZEILE, nicht mehr die Zelle - die Zellenlinie aus dem Dark Mode
+   wuerde sonst zwischen jedem Wert eine Linie ziehen. */
+@media (max-width: 700px) {
+    body.dark-mode table.stats-table tbody td { border-bottom: none; }
+    body.dark-mode table.stats-table tbody tr { border-bottom: 1px solid #333; }
+    body.dark-mode table.stats-table tbody tr:last-child { border-bottom: none; }
+    body.dark-mode table.stats-table tr.kart-class-adult { background-color: #1a2340; }
+    body.dark-mode table.stats-table tr.kart-class-adult td { background-color: transparent; }
+    body.dark-mode table.stats-table tbody td::before { color: #8b93a7; }
 }

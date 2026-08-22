@@ -487,6 +487,42 @@ def _abschnitt(ueberschrift, eintraege, nachsatz=None):
         print(f"  -> {nachsatz}")
 
 
+def pruefe_symbole():
+    """Symbole, die benutzt werden, aber nicht mehr in der ausgelieferten
+    Font-Awesome-Fassung stecken.
+
+    css/all.min.css und die drei Schriftdateien enthalten nur noch die rund
+    70 Symbole, die auf der Seite vorkommen (tools/icons_bauen.py) - das
+    spart 290 KB pro Aufruf. Der Haken: kommt ueber ein Pflege-Werkzeug ein
+    neues Symbol dazu, ist es NICHT enthalten und die Stelle bleibt einfach
+    leer. Kein Fehler, kein Ersatzzeichen, nur eine Luecke. Deshalb hier.
+    """
+    treffer = []
+    try:
+        import icons_bauen
+    except ImportError:
+        return treffer
+
+    ausgeliefert = os.path.join(ROOT, "css", "all.min.css")
+    if not os.path.isfile(ausgeliefert):
+        return treffer
+    css = open(ausgeliefert, encoding="utf-8").read()
+
+    vorhanden = set()
+    for auswahl, _ in icons_bauen.REGEL.findall(css):
+        for name in auswahl.split(","):
+            vorhanden.add(name.lstrip("."))
+
+    je_familie, herkunft = icons_bauen.sammle()
+    for familie in sorted(je_familie):
+        for name in sorted(je_familie[familie]):
+            if name in vorhanden:
+                continue
+            wo = ", ".join(sorted(herkunft.get(name, []))[:3])
+            treffer.append(f"{name} ({familie}) fehlt in css/all.min.css - benutzt in: {wo}")
+    return treffer
+
+
 def pruefe_alles(still=False, extern=False):
     """Fuehrt alle Pruefungen aus. Gibt True zurueck, wenn nichts Kritisches
     gefunden wurde. extern=True prueft zusaetzlich die Links ins Internet."""
@@ -500,12 +536,13 @@ def pruefe_alles(still=False, extern=False):
     suchindex = pruefe_suchindex()
     ladebudget = pruefe_ladebudget()
     schreibweisen = pruefe_schreibweisen()
+    fehlende_symbole = pruefe_symbole()
     kaputte_links = pruefe_externe_links(fortschritt=not still) if extern else []
 
     kritisch = bool(tote or schreibweise or veralteter_build)
     hinweise = bool(fehlende_pdfs or ohne_alt or doppelte_ids or meta_maengel
                     or drittanbieter or kaputte_links or suchindex
-                    or ladebudget or schreibweisen)
+                    or ladebudget or schreibweisen or fehlende_symbole)
 
     if not still or kritisch or hinweise:
         print("\n" + "=" * 60)
@@ -528,6 +565,11 @@ def pruefe_alles(still=False, extern=False):
                "(laedt ohne Einwilligung nach - DSGVO!):",
                drittanbieter,
                "Dienst in js/klaro-config.js eintragen oder Einbindung entfernen")
+
+    _abschnitt(f"WARNUNG - {len(fehlende_symbole)} Symbol(e) nicht in der Schrift\n"
+               "(die Stelle bleibt auf der Seite einfach leer):",
+               fehlende_symbole,
+               "python tools/icons_bauen.py neu laufen lassen")
 
     _abschnitt(f"WARNUNG - {len(kaputte_links)} externe(r) Link(s) antworten nicht:",
                kaputte_links,

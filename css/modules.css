@@ -116,27 +116,42 @@
     box-sizing: border-box;
 }
 
+/* Die Logos liegen zwischen 72x110 und 118x80 - hochformatige wirkten
+   dadurch deutlich groesser als breite, obwohl beide dieselbe Tafel
+   fuellen. Die Hoehe wird darum staerker begrenzt als die Breite, das
+   gleicht die optische Groesse an. */
 .sponsor-card img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 74px;
     object-fit: contain;
     border-radius: 0;
     box-shadow: none;
     margin: 0;
 }
 
-/* Namensleiste im Vereinsblau mit gelber Kante */
+/* Namenszeile.
+   Frueher eine vollflaechige Leiste im Vereinsblau mit 3px goldener
+   Oberkante - bei zehn Karten nebeneinander waren das zehn kraeftige
+   Blau-Gold-Balken, die den Logos die Aufmerksamkeit weggenommen haben.
+   Auf einer Sponsorenseite soll das Logo die Farbe liefern, nicht die
+   Karte. Jetzt eine ruhige Beschriftung mit feiner Trennlinie. */
 .sponsor-card-name {
     width: 100%;
     box-sizing: border-box;
-    padding: 9px 12px;
-    background: var(--dark-blue);
-    border-top: 3px solid var(--accent);
-    color: #fff;
-    font-size: 0.76rem;
+    padding: 10px 12px;
+    background: var(--surface-muted);
+    border-top: 1px solid var(--border-soft);
+    color: var(--text-light);
+    font-size: 0.78rem;
     font-weight: 600;
     text-align: center;
-    line-height: 1.3;
+    line-height: 1.35;
+    transition: color 0.2s ease;
+}
+
+.sponsor-card:hover .sponsor-card-name,
+.sponsor-card:focus-visible .sponsor-card-name {
+    color: var(--primary-blue);
 }
 
 /* Link-Card-Grid (Befreundete Vereine & Links) */
@@ -404,16 +419,11 @@ table.stats-table tr:hover td { background-color: #f9f9f9; }
     font-weight: 700;
 }
 
-/* Kleines Abstandshalter-Icon vor h1/h2-Text */
-.heading-icon {
-    margin-right: 10px;
-}
-
-/* Primärblau-Icon (Standard) */
-.heading-icon--blue { color: var(--primary-blue); }
-
-/* Orange-Icon (z.B. Sommer, Warnungen) */
-.heading-icon--orange { color: #ff9800; }
+/* .heading-icon ist entfallen. Die Unterseiten hatten 39 Ueberschriften
+   mit vorangestelltem Icon, die Startseite keine einzige - genau daran
+   brach die Seite optisch auseinander. Icons stehen weiterhin in
+   Navigation, Schaltflaechen, Karten und Listen, wo sie ein Ziel
+   unterscheiden helfen; vor einer Ueberschrift waren sie reine Zierde. */
 
 /* =========================================
    6c. NEWS-CARD VARIANTEN
@@ -702,10 +712,17 @@ body.dark-mode .news-card--highlight {
 
 .trainer-info { padding: 20px 18px; }
 
+/* Steht auf ueber-uns.html an einem h3 (dort ist jede Person ein Abschnitt),
+   auf trialsport.html an einem p (dort sind es Bildunterschriften, keine
+   Abschnitte). Schrift und Gewicht deshalb hier setzen statt sie vom
+   h3-Grundstil zu erben - sonst saehen die beiden unterschiedlich aus. */
 .trainer-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
     font-size: var(--text-xl);
     color: var(--primary-blue);
     margin: 0 0 10px 0;
+    max-width: none;
     letter-spacing: -0.01em;
 }
 
@@ -1075,9 +1092,20 @@ body.dark-mode .sugg-item {
     box-shadow: var(--shadow-md);
 }
 
-.info-card h3 {
+/* Auf der Trialseite sind die Kartenueberschriften jetzt h2 statt h3 (vorher
+   sprang die Gliederung von h1 direkt auf h3). Damit sich am Aussehen nichts
+   aendert, gilt dieselbe Regel fuer beide - und die Unterlinie, die main h2
+   mitbringt, faellt in der Karte wieder weg. */
+.info-card h3,
+.info-card h2 {
     margin-top: 0;
     color: var(--primary-blue);
+}
+
+.info-card h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: var(--text-lg);
 }
 
 .secondary-btn {
