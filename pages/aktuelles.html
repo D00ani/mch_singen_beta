@@ -137,6 +137,8 @@
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Startseite</a>
             <span class="breadcrumb-sep" aria-hidden="true">/</span>
+            <span class="breadcrumb-gruppe" data-gruppe="aktuelles">Aktuelles</span>
+            <span class="breadcrumb-sep" aria-hidden="true">/</span>
             <span aria-current="page">News &amp; Termine</span>
         </nav>
         <div class="page-head">
@@ -144,6 +146,54 @@
             <h1>Aktuelle News &amp; Termine</h1>
             <p class="page-lead">Hier findest du die neuesten Ergebnisse, News und alle wichtigen Daten für die aktuelle Saison. Lade dir die Pläne einfach bequem herunter!</p>
         </div>
+
+        <!-- ---- Saisonabschluss ---- -->
+        <!-- Stand 28.09.2026: Der letzte BKC-Lauf beim MSC Steisslingen am
+             04.10. wurde abgesagt, damit ist die Kart-Saison 2026 gelaufen.
+             Beide Karten gehoeren zusammen und koennen nach der Siegerehrung
+             im Herbst zusammen entfernt werden. -->
+        <h2>Saisonabschluss 2026</h2>
+        <div class="news-grid">
+            <div class="news-card news-card--highlight news-card-upcoming">
+                <span class="news-badge news-badge-special">Termin</span>
+                <div>
+                    <span class="news-date">Sonntag, 25. Oktober 2026 · 12:30 Uhr</span>
+                    <h3>BKC-Gesamtsiegerehrung</h3>
+                    <p class="news-card-desc">
+                        Zum Saisonabschluss lädt die BKC-Gemeinschaft auf die Kartbahn Alemannenring
+                        in Singen ein - mit Essen, Getränken und der Möglichkeit, selbst noch einmal
+                        auf die Bahn zu gehen (15 Minuten für 16&nbsp;€, nur mit Voranmeldung).
+                        Für Essen und Trinken wird eine Anzahlung von 8&nbsp;€ pro Person fällig, die
+                        ihr am Veranstaltungstag als Bon zurückbekommt. Anmeldung und Anzahlung
+                        laufen über den Ansprechpartner eures Vereins.
+                    </p>
+                </div>
+                <div class="button-group">
+                    <a href="../media/dokumente/einladungbkcgesamtsiegerehrung2026.pdf" target="_blank" rel="noopener noreferrer" class="action-btn action-btn--orange">
+                        <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Einladung (PDF)
+                    </a>
+                    <a href="https://maps.google.com/?q=Am+Rehbuck+2,+78224+Singen" target="_blank" rel="noopener noreferrer" class="action-btn">
+                        <span class="news-icon"><i class="fa-solid fa-location-dot"></i></span> Am Rehbuck 2, Singen
+                    </a>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <span class="news-badge news-badge-termin">News</span>
+                <div>
+                    <span class="news-date">Saison 2026</span>
+                    <h3>Kart-Saison ist beendet</h3>
+                    <p class="news-card-desc">
+                        Der abschließende BKC-Lauf beim MSC Steißlingen am 4. Oktober wurde abgesagt.
+                        Damit ist die Kart-Saison 2026 nach dem Lauf vom 27. September gelaufen.
+                        Die endgültige BKC-Gesamtwertung folgt hier, sobald sie vorliegt - vergeben
+                        werden die Pokale bei der Gesamtsiegerehrung am 25. Oktober.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
 
         <!-- ---- Sommerferienprogramm ---- -->
         <!-- Stand des Ferienprogramms: einmal im Jahr anpassen, zusammen mit
@@ -181,7 +231,7 @@
                 <div>
                     <span class="news-date">Saison 2026</span>
                     <h3>Aktuelle BKC-Wertung</h3>
-                    <p class="news-card-desc">Check hier die neuesten Ergebnisse im Bodensee-Kart-Cup.</p>
+                    <p class="news-card-desc">Der Stand im Bodensee-Kart-Cup. Die Saison ist beendet - die endgültige Gesamtwertung wird hier ausgetauscht, sobald sie da ist.</p>
                 </div>
                 <a href="../media/dokumente/wertungen/bkcgesamtwertung_2026.pdf" target="_blank" rel="noopener noreferrer" class="news-link">
                     <span class="news-icon"><i class="fa-solid fa-file-pdf"></i></span> Wertung (PDF)
@@ -346,5 +396,26 @@
         </nav>
     </aside>
 
+    <!-- =============================================
+         SCHNELLZUGRIFF (nur Handy, siehe css/mobile.css)
+         =============================================
+         Die fuenf haeufigsten Ziele dort, wo am Handy der Daumen liegt.
+         Oberhalb von 768px ist die Leiste ausgeblendet - dort fuehrt die
+         Hauptnavigation im Kopf.
+
+         Live steht bewusst NICHT hier: dafuer gibt es den Live-Banner, der
+         nur erscheint, solange die Zeitnahme wirklich Ergebnisse liefert.
+         Ein Dauerplatz fuer drei Renntage im Jahr waere totes Gewicht.
+
+         Steht im Markup statt in js/main.js, damit die Navigation auch ohne
+         JavaScript da ist - gleiche Ueberlegung wie beim Skip-Link oben.
+         Die Markierung der aktuellen Seite ergaenzt js/main.js. -->
+    <nav class="tabbar" aria-label="Schnellzugriff">
+        <a class="tabbar-link" href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Start</span></a>
+        <a class="tabbar-link" href="aktuelles.html"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i><span>Termine</span></a>
+        <a class="tabbar-link" href="kartsport.html"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i><span>Kart</span></a>
+        <a class="tabbar-link" href="trialsport.html"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i><span>Trial</span></a>
+        <button type="button" class="tabbar-link tabbar-menue" aria-controls="side-menu" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i><span>Menü</span></button>
+    </nav>
 </body>
 </html>
