@@ -22,8 +22,9 @@ Texteditor (z. B. Notepad, Notepad++, VS Code).
 /js/                      -> Eigene Steuerungs-Skripte (Timer, Kalender-Downloads etc.)
 /js/vendor/               -> Eingebundene Bibliotheken (chart.js, klaro.js) - NICHT bearbeiten!
 /webfonts/                -> Schriftarten
+/kurs-planer/             -> Kurs-Planer, Kopie aus eigenem Repo - NICHT bearbeiten! (Abschnitt 14)
 
-/tools/                   -> Alle Pflege- und Hilfsskripte (siehe Abschnitt 10!)
+/tools/                  -> Alle Pflege- und Hilfsskripte (siehe Abschnitt 10!)
 
 /data/                    -> Textdateien und JSON für Timer, Countdown und Live-Daten
   timer.txt               -> Kart-Renntermine und Countdown
@@ -516,6 +517,31 @@ Dann im Menü wählen:
     paar Sekunden, braucht Internet). Sponsoren- und Vereinsseiten ziehen
     um oder verschwinden, ohne dass es jemand merkt. Beim automatischen
     Prüfen vor dem Veröffentlichen bleibt das aus, damit es schnell geht.
+    GLEICH BEHEBEN (Pflege-Fenster -> Webseite prüfen): Unter jedem Fund
+    stehen passende Knöpfe:
+      - Toter Link: "Pfad ändern" schlägt ähnlich heißende Dateien aus dem
+        Projekt vor (Doppelklick übernimmt) oder lässt eine Datei wählen -
+        liegt sie außerhalb der Webseite, wird sie hineinkopiert. Jede
+        Seite bekommt automatisch den passenden relativen Pfad (../ usw.).
+        "Datei hinlegen" kopiert eine Datei genau dorthin, wo der Link sie
+        erwartet. "Stelle öffnen" springt im Editor (VS Code, sonst
+        Notepad++/Editor) an die Fundstelle.
+      - Groß-/Kleinschreibung: "Korrigieren" bzw. "Alle korrigieren"
+      - Build fehlt: "Jetzt bauen"
+      - Angekündigte PDF: hinlegen, Pfad in data/timer*.txt ändern oder
+        austragen (der Termin bleibt, nur der PDF-Knopf fällt weg)
+      - Externer Link: "Adresse ändern" ersetzt ihn auf allen Seiten
+      - alt-Text, Seitenbeschreibung, Schreibweise, Suchindex: eintragen
+        bzw. vereinheitlichen per Formular (Suchindex baut danach selbst)
+    Jede Änderung legt vorher eine Sicherung an - "Rückgängig" holt sie
+    zurück. Nur neu hingelegte Dateien bleiben liegen.
+    Bekannte HINWEISE lassen sich "Ausblenden" (gemerkt in
+    tools/pruefe_ausnahmen.json, gilt auch vor dem Veröffentlichen).
+    FEHLER lassen sich bewusst nicht ausblenden.
+    Seiten, die .gitignore ausschließt (z. B. lokale vorschlag-*.html),
+    prüft das Werkzeug nicht mit - sie gehen ja nie online.
+    Im Terminal (python tools/pruefe_seite.py) fragt es am Ende, ob die
+    Fehler gleich behoben werden sollen.
  7b) Medien aufräumen
     Zeigt für /media/, was niemand mehr braucht und was zu groß ist:
       - von keiner Seite mehr verlinkt (kann weg)
@@ -892,6 +918,52 @@ NACH EINER AENDERUNG AN css/index.css:
   Ohne diesen Schritt bleibt die Aenderung unsichtbar - die Seite laedt
   css/index.min.css, nicht css/index.css (siehe Abschnitt 9).
   Aenderungen NUR an index.html brauchen keinen Build.
+
+-------------------------------------------------------
+14. KURS-PLANER (Ordner kurs-planer/)
+-------------------------------------------------------
+
+Der Kurs-Planer zeichnet Streckenplaene fuer den Kartslalom. Er ist ein
+eigenes Programm mit eigenem Repo:
+
+      https://github.com/D00ani/BKC_Strecken_Planer
+
+Auf der Webseite liegt davon eine unveraenderte Kopie im Ordner
+kurs-planer/, erreichbar unter https://mch-singen.de/kurs-planer/.
+
+WO WAS STEHT:
+
+  kurs-planer/            Das Programm selbst. NICHTS von Hand aendern -
+                          der naechste Abgleich ueberschreibt es.
+  pages/kartsport.html    Die Karte mit Bild und Knopf, unter dem Regelwerk.
+                          Suche nach: <section class="info-card kursplaner-card"
+  css/kartsport.css       Die Gestaltung der Karte, Abschnitt "KURS-PLANER".
+  js/suche.js             Der Eintrag fuer die Suche der Webseite.
+  sitemap.xml             Der Eintrag fuer Suchmaschinen.
+
+DEN KURS-PLANER AKTUALISIEREN:
+
+  1. Die Aenderung im Repo des Kurs-Planers machen und dort pushen.
+  2. Hier einmal ausfuehren:
+
+      python tools/kursplaner_sync.py
+
+  3. Wie gewohnt veroeffentlichen.
+
+  Das Werkzeug holt den aktuellen Stand, schreibt neue und geaenderte
+  Dateien und loescht, was es im Repo nicht mehr gibt.
+
+GUT ZU WISSEN:
+
+  - Der Kurs-Planer bringt einen Service Worker mit (kurs-planer/sw.js),
+    damit er als App ohne Internet laeuft. Der gilt NUR fuer Adressen
+    unter /kurs-planer/ - die uebrige Webseite hat weiterhin keinen.
+  - Das Vorschaubild der Karte ist ein Bildschirmfoto:
+    media/bilder/kartsport/kurs-planer.png. Sieht der Kurs-Planer spaeter
+    deutlich anders aus, das Foto ersetzen (1200 x 750) und danach
+    python tools/optimize_images.py ausfuehren.
+  - tools/pruefe_seite.py und tools/update_sitemap.py sehen nur die
+    Hauptebene und pages/. Den Ordner kurs-planer/ pruefen sie nicht.
 
 
 =======================================================

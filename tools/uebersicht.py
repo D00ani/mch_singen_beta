@@ -105,7 +105,7 @@ def pruefe_termine(heute):
         if rennen["tage"] is None:
             hinweise.append(_hinweis(
                 FAELLIG,
-                f"{sportart}: kein kommender Termin mehr — neue Saison eintragen",
+                f"{sportart}: kein kommender Termin mehr - neue Saison eintragen",
                 'Menüpunkt "Renntermine verwalten"', "termine_verwalten"))
         else:
             hinweise.append(_hinweis(
@@ -131,7 +131,7 @@ def pruefe_copyright(heute):
     if veraltet:
         return [_hinweis(
             FAELLIG,
-            f"Copyright im Footer steht auf {', '.join(veraltet)} — aktuell ist {heute.year}",
+            f"Copyright im Footer steht auf {', '.join(veraltet)} - aktuell ist {heute.year}",
             'Menüpunkt "Technisches Update"', "jaehrliches_update")]
     return []
 
@@ -191,7 +191,8 @@ def pruefe_wanderpokal(heute):
 def pruefe_offene_arbeit():
     hinweise = []
 
-    fehlende_pdfs = pruefe_seite.pruefe_angekuendigte_pdfs()
+    # Im Pflege-Fenster ausgeblendete Hinweise zaehlen hier nicht mit
+    fehlende_pdfs = pruefe_seite.ohne_ausgeblendete(pruefe_seite.pruefe_angekuendigte_pdfs())
     if fehlende_pdfs:
         hinweise.append(_hinweis(
             HINWEIS, f"{len(fehlende_pdfs)} angekündigte PDF-Datei(en) fehlen noch",
@@ -200,7 +201,7 @@ def pruefe_offene_arbeit():
     veralteter_build = pruefe_seite.pruefe_build_aktuell()
     if veralteter_build:
         hinweise.append(_hinweis(
-            FAELLIG, f"{len(veralteter_build)}x Build-Schritt fehlt — Änderung ist online unsichtbar",
+            FAELLIG, f"{len(veralteter_build)}x Build-Schritt fehlt - Änderung ist online unsichtbar",
             'Menüpunkt "Technisches Update"', "jaehrliches_update"))
 
     return hinweise
@@ -297,7 +298,7 @@ def zeige(hinweise=None, ueberschrift=True):
         print("=" * 60)
 
     if not hinweise:
-        print("\nNichts Offenes — alles auf Stand.")
+        print("\nNichts Offenes - alles auf Stand.")
         return
 
     print()

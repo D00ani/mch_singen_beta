@@ -26,7 +26,6 @@ import ausschreibung_pdf
 import fenster_bausteine as B
 import medien_aufraeumen
 import pflege_hilfen as h
-import pruefe_seite
 import termine_verwalten as tv
 import uebersicht
 import vorschau
@@ -125,7 +124,7 @@ class Seite:
 
 class UebersichtSeite(Seite):
     titel = "Was steht an?"
-    untertitel = "Alles, was gerade Aufmerksamkeit braucht — beim Start automatisch geprüft."
+    untertitel = "Alles, was gerade Aufmerksamkeit braucht - beim Start automatisch geprüft."
 
     def baue(self):
         self.knopf("Neu prüfen", self.aktualisieren)
@@ -151,7 +150,7 @@ class UebersichtSeite(Seite):
 
         if not offen:
             B.karte(self.inhalt, self.s, uebersicht.INFO,
-                    "Nichts Offenes — alles auf Stand.")
+                    "Nichts Offenes - alles auf Stand.")
 
     def _boxentafel(self):
         for kind in self.tafel.winfo_children():
@@ -163,12 +162,12 @@ class UebersichtSeite(Seite):
         for rennen in uebersicht.naechste_rennen():
             block = tk.Frame(innen, bg=B.FARBEN["tief"])
             block.pack(side="left", padx=(0, 34))
-            tk.Label(block, text=f"NÄCHSTES RENNEN — {rennen['sportart'].upper()}",
+            tk.Label(block, text=f"NÄCHSTES RENNEN - {rennen['sportart'].upper()}",
                      bg=B.FARBEN["tief"], fg=B.FARBEN["rail_text"],
                      font=self.s.label).pack(anchor="w")
 
             if rennen["tage"] is None:
-                tk.Label(block, text="—", bg=B.FARBEN["tief"], fg=B.FARBEN["gelb"],
+                tk.Label(block, text="-", bg=B.FARBEN["tief"], fg=B.FARBEN["gelb"],
                          font=self.s.zahl).pack(anchor="w")
                 tk.Label(block, text="kein Termin mehr eingetragen", bg=B.FARBEN["tief"],
                          fg=B.FARBEN["rail_text"], font=self.s.klein).pack(anchor="w")
@@ -206,88 +205,7 @@ class UebersichtSeite(Seite):
 # ------------------------------------------------------------------
 # Webseite pruefen
 # ------------------------------------------------------------------
-
-class PruefenSeite(Seite):
-    titel = "Webseite prüfen"
-    untertitel = ("Findet das, was auf GitHub Pages kaputt wäre, hier aber "
-                  "funktioniert — und alles, was Besucher oder Google stört.")
-
-    def baue(self):
-        self.extern = tk.BooleanVar(value=False)
-        self.knopf("Prüfung starten", self.starten, "haupt")
-        tk.Checkbutton(self.aktionen, text="Internet-Links",
-                       variable=self.extern, bg=B.FARBEN["grund"],
-                       fg=B.FARBEN["text"], font=self.s.klein,
-                       activebackground=B.FARBEN["grund"], selectcolor=B.FARBEN["karte"],
-                       cursor="hand2").pack(side="right", padx=(0, 10))
-        self.laeuft = False
-
-    def aktualisieren(self):
-        if not self.inhalt.winfo_children():
-            self.leeren()
-            B.karte(self.inhalt, self.s, uebersicht.INFO,
-                    "Noch nicht geprüft.",
-                    "Oben rechts auf „Prüfung starten“ — dauert ohne Internet-Links "
-                    "unter einer Sekunde.")
-
-    def starten(self):
-        if self.laeuft:
-            return
-        self.laeuft = True
-        self.leeren()
-        B.karte(self.inhalt, self.s, uebersicht.INFO, "Prüfe …",
-                "Bei eingeschalteter Internet-Prüfung dauert das ein paar Sekunden.")
-
-        extern = self.extern.get()
-
-        def arbeit():
-            gruppen = [
-                (0, "Tote Verweise (Link führt ins Leere)", pruefe_seite.pruefe_verweise()[0]),
-                (0, "Falsche Groß-/Kleinschreibung (bricht erst auf dem Server)",
-                 pruefe_seite.pruefe_verweise()[1]),
-                (0, "Build-Schritt fehlt (Änderung ist online unsichtbar)",
-                 pruefe_seite.pruefe_build_aktuell()),
-                (0, "Externe Dienste ohne Klaro-Eintrag (DSGVO)",
-                 pruefe_seite.pruefe_drittanbieter()),
-                (1, "Externe Links ohne Antwort",
-                 pruefe_seite.pruefe_externe_links(fortschritt=False) if extern else []),
-                (1, "Dieselbe id mehrfach auf einer Seite", pruefe_seite.pruefe_doppelte_ids()),
-                (1, "Über die Suche nicht auffindbar", pruefe_seite.pruefe_suchindex()),
-                (1, f"Seiten über {pruefe_seite.LADEBUDGET_KB // 1024} MB Ladegewicht",
-                 pruefe_seite.pruefe_ladebudget()),
-                (1, "Uneinheitliche Schreibweisen", pruefe_seite.pruefe_schreibweisen()),
-                (1, "Bilder ohne alt-Text", pruefe_seite.pruefe_alt_texte()),
-                (1, "Titel, Beschreibung, Vorschaubild", pruefe_seite.pruefe_meta()),
-                (1, "Angekündigte PDFs noch nicht hochgeladen",
-                 pruefe_seite.pruefe_angekuendigte_pdfs()),
-            ]
-            return gruppen
-
-        B.im_hintergrund(self.rahmen, arbeit, self._fertig)
-
-    def _fertig(self, gruppen):
-        self.laeuft = False
-        self.leeren()
-
-        gefunden = [(stufe, name, eintraege) for stufe, name, eintraege in gruppen if eintraege]
-        if not gefunden:
-            B.karte(self.inhalt, self.s, uebersicht.INFO,
-                    "Alles in Ordnung — keine Probleme gefunden.",
-                    "Weder tote Verweise noch Schreibweise, Build, alt-Texte oder Meta-Angaben.")
-            return
-
-        fehler = sum(1 for stufe, _, _ in gefunden if stufe == 0)
-        B.abschnitt(self.inhalt, self.s, "Ergebnis",
-                    f"{fehler} Fehlergruppe(n), {len(gefunden) - fehler} Hinweisgruppe(n)")
-
-        for stufe, name, eintraege in gefunden:
-            B.karte(self.inhalt, self.s, stufe, f"{name} — {len(eintraege)}")
-            kasten = tk.Text(self.inhalt, height=min(len(eintraege), 7), font=self.s.daten,
-                             wrap="none", bg=B.FARBEN["karte"], fg=B.FARBEN["gedimmt"],
-                             relief="solid", bd=1, padx=10, pady=6)
-            kasten.pack(fill="x", pady=(0, 14))
-            kasten.insert("1.0", "\n".join(str(e) for e in eintraege))
-            kasten.configure(state="disabled")
+# Steht jetzt in tools/fenster_seiten_pruefen.py (mit Reparatur-Knoepfen).
 
 
 # ------------------------------------------------------------------
@@ -332,7 +250,7 @@ class MedienSeite(Seite):
 
         zeilen = []
         for pfad in daten["verwaist"]:
-            zeilen.append((medien_aufraeumen.kurz(pfad), "Verwaist — von keiner Seite verlinkt",
+            zeilen.append((medien_aufraeumen.kurz(pfad), "Verwaist - von keiner Seite verlinkt",
                            self._groesse(pfad)))
         for pfad in daten["nur_werkzeug"]:
             zeilen.append((medien_aufraeumen.kurz(pfad),
@@ -346,7 +264,7 @@ class MedienSeite(Seite):
 
         if not zeilen:
             B.karte(self.inhalt, self.s, uebersicht.INFO,
-                    "Nichts aufzuräumen — jede Datei wird gebraucht und ist handlich.")
+                    "Nichts aufzuräumen - jede Datei wird gebraucht und ist handlich.")
             return
 
         baum = self.tabelle(self.inhalt, ("Datei", "Zustand", "Größe"),
@@ -358,7 +276,7 @@ class MedienSeite(Seite):
         if daten["verwaist"]:
             frei = sum(os.path.getsize(p) for p in daten["verwaist"]) // 1024
             tk.Label(self.inhalt,
-                     text=f"{len(daten['verwaist'])} verwaiste Datei(en) — "
+                     text=f"{len(daten['verwaist'])} verwaiste Datei(en) - "
                           f"{frei} KB würden frei.",
                      bg=B.FARBEN["grund"], fg=B.FARBEN["gedimmt"],
                      font=self.s.klein).pack(anchor="w", pady=(10, 0))
@@ -380,7 +298,7 @@ class MedienSeite(Seite):
                        "Handy. Reihenfolge: Tonspur raus (bei „muted“ hört sie ohnehin "
                        "niemand), neu kodieren, zusätzlich ein modernes Format anbieten "
                        "(AV1 spart gegenüber H.264 etwa die Hälfte). Dafür wird ffmpeg "
-                       "gebraucht — kostenlos von ffmpeg.org.")).pack(anchor="w", pady=(0, 8))
+                       "gebraucht - kostenlos von ffmpeg.org.")).pack(anchor="w", pady=(0, 8))
 
         befehle = []
         for pfad, _ in videos:
@@ -470,7 +388,7 @@ class PdfSeite(Seite):
         tk.Label(self.inhalt, bg=B.FARBEN["grund"], fg=B.FARBEN["gedimmt"],
                  font=self.s.klein, justify="left", anchor="w", wraplength=640,
                  text=("Zeile auswählen, dann oben auf „PDF auswählen …“. Die Datei wird "
-                       "an die erwartete Stelle kopiert und richtig benannt — "
+                       "an die erwartete Stelle kopiert und richtig benannt - "
                        "abtippen ist nicht nötig.")).pack(anchor="w", pady=(12, 0))
 
     def _auswahl(self):
@@ -557,7 +475,7 @@ class PdfSeite(Seite):
         for pfad, termine in treffer.items():
             vorschlag = ausschreibung_pdf.sauberer_name(pfad)
             vorhanden = os.path.join(ROOT, pfad.lstrip("/"))
-            zusatz = ("\n\nDie Datei ist noch nicht hochgeladen — es ändert sich nur "
+            zusatz = ("\n\nDie Datei ist noch nicht hochgeladen - es ändert sich nur "
                       "der Eintrag im Termin.") if not os.path.isfile(vorhanden) else ""
             if not messagebox.askyesno(
                     "Umbenennen?",
@@ -585,7 +503,7 @@ class PdfSeite(Seite):
 
 class VorschauSeite(Seite):
     titel = "Vorschau im Browser"
-    untertitel = ("Zeigt die Seite so, wie sie online aussieht — nur auf diesem Rechner. "
+    untertitel = ("Zeigt die Seite so, wie sie online aussieht - nur auf diesem Rechner. "
                   "Es wird nichts veröffentlicht.")
 
     def baue(self):
@@ -607,13 +525,13 @@ class VorschauSeite(Seite):
                         functools.partial(webbrowser.open, adresse + pfad))
         else:
             B.karte(self.inhalt, self.s, uebersicht.INFO, "Vorschau läuft nicht.",
-                    "Oben rechts starten — dann öffnet sich der Browser.")
+                    "Oben rechts starten - dann öffnet sich der Browser.")
 
         tk.Label(self.inhalt, bg=B.FARBEN["grund"], fg=B.FARBEN["gedimmt"],
                  font=self.s.klein, justify="left", anchor="w", wraplength=640,
                  text=("Ein Doppelklick auf index.html reicht dafür nicht: der Browser lädt "
                        "die Datei dann über file:// und blockt genau das, was die Seite "
-                       "braucht — Countdown, Suche und Live-Timing holen ihre Daten "
+                       "braucht - Countdown, Suche und Live-Timing holen ihre Daten "
                        "nach und blieben leer.\n\n"
                        "Änderungen an HTML und Bildern sieht man sofort nach F5. Bei "
                        "Änderungen an CSS/JS vorher das technische Update laufen lassen, "

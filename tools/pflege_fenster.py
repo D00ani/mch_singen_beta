@@ -71,6 +71,7 @@ try:
     import fenster_seiten_statistik as ST
     import fenster_seiten_technik as TE
     import fenster_seiten_texte as T
+    import fenster_seiten_pruefen as PR
     import jaehrliches_update
     import pflege_hilfen as h
     import pruefe_seite
@@ -85,7 +86,7 @@ ROOT = h.ROOT
 # Seiten, die es im Fenster selbst gibt
 SEITEN = {
     "uebersicht": S.UebersichtSeite,
-    "pruefen":    S.PruefenSeite,
+    "pruefen":    PR.PruefenSeite,
     "medien":     S.MedienSeite,
     "pdf":        S.PdfSeite,
     "vorschau":   S.VorschauSeite,
@@ -191,7 +192,7 @@ class PflegeFenster:
 
     def __init__(self, wurzel):
         self.wurzel = wurzel
-        wurzel.title("MCH Singen — Webseiten-Pflege")
+        wurzel.title("MCH Singen - Webseiten-Pflege")
         wurzel.geometry("1100x780")
         wurzel.minsize(940, 620)
         wurzel.configure(bg=B.FARBEN["grund"])
@@ -343,7 +344,7 @@ class PflegeFenster:
         if zeilen:
             self.fuss_titel.configure(text=f"{len(zeilen)} Änderung(en) liegen bereit")
             self.fuss_text.configure(
-                text="Noch nichts veröffentlicht — alles liegt im Arbeitsordner")
+                text="Noch nichts veröffentlicht - alles liegt im Arbeitsordner")
             self.knopf_pushen.configure(state="normal", bg=B.FARBEN["blau"])
         else:
             self.fuss_titel.configure(text="Nichts zu veröffentlichen")
@@ -357,7 +358,7 @@ class PflegeFenster:
             messagebox.showinfo(
                 "Nichts rückgängig zu machen",
                 "Es liegt keine Sicherung vor.\n\nVor jeder Änderung legt das Werkzeug "
-                "automatisch eine an — hier war seitdem noch keine.")
+                "automatisch eine an - hier war seitdem noch keine.")
             return
 
         if not messagebox.askyesno(
@@ -388,7 +389,7 @@ class PflegeFenster:
             f"{einleitung}\n\n"
             "Nach dem Veröffentlichen erreichbar unter\n"
             "https://mch-singen.de/pages/status.html\n\n"
-            "Nicht verlinkt, auf „noindex“, in robots.txt ausgeschlossen — "
+            "Nicht verlinkt, auf „noindex“, in robots.txt ausgeschlossen - "
             "sie taucht also in keiner Suchmaschine auf.")
         self.fuss_auffrischen()
 
@@ -488,7 +489,7 @@ class VeroeffentlichenFenster:
         B.im_hintergrund(self.fenster, arbeit, lambda e: self._pruefung_fertig(*e))
 
     def _pruefung_fertig(self, sauber, ausgabe):
-        self._schreibe(ausgabe.strip() or "Alles in Ordnung — keine Probleme gefunden.",
+        self._schreibe(ausgabe.strip() or "Alles in Ordnung - keine Probleme gefunden.",
                        ersetzen=True)
         if sauber:
             self.stand.configure(text="Prüfung ohne Fehler.", fg=B.FARBEN["gut"])
@@ -519,7 +520,7 @@ class VeroeffentlichenFenster:
             self.stand.configure(text="Gepusht. GitHub Pages braucht 1–3 Minuten.",
                                  fg=B.FARBEN["gut"])
         else:
-            self.stand.configure(text="Nicht veröffentlicht — siehe Meldung oben.",
+            self.stand.configure(text="Nicht veröffentlicht - siehe Meldung oben.",
                                  fg=B.FARBEN["faellig"])
             self.knopf_los.configure(state="normal", bg=B.FARBEN["blau"],
                                      text="Erneut versuchen")
